@@ -1,4 +1,4 @@
-# Capstone
+# Tenor music app
 
 ## Database Schema Design
 
