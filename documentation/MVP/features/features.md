@@ -93,6 +93,13 @@ These are the essential features required to build a working, user-ready MVP. Fo
 ## **Bonus Features (Lower Priority)**
 These features are more **complex** and require more development effort. Complete them **after core features are done** or leave them as **future enhancements**.
 
+### **Personality Quiz**
+- Allow user to take quiz to determine desired starter tags.
+- Allow user to choose up to three adjectives to set mood of session
+- Allow user to choose length of mood session
+
+--
+
 ### **Play More Option**
 - View play more selection on song and artist page or tab.
 - Remove play more selection from song and artist page or tab.

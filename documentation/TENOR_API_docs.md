@@ -22,11 +22,11 @@ All endpoints that require a current user to be logged in.
     * **Content-Type**: `application/json`
   * **Body**:
 
-    ```json
-    {
-      "message": "Authentication required"
-    }
-    ```
+  ```json
+  {
+    "message": "Authentication required"
+  }
+  ```
 
 ### All endpoints that require proper authorization
 
@@ -40,11 +40,11 @@ correct role(s) or permission(s).
     * **Content-Type**: `application/json`
   * **Body**:
 
-    ```json
-    {
-      "message": "Forbidden"
-    }
-    ```
+  ```json
+  {
+    "message": "Forbidden"
+  }
+  ```
 
 ### Get the Current User
 
@@ -62,17 +62,17 @@ Returns the information about the current user that is logged in.
     * **Content-Type**: `application/json`
   * **Body**:
 
-    ```json
-    {
-      "user": {
-        "id": 1,
-        "firstName": "Gugu",
-        "lastName": "Mbatha-Raw",
-        "email": "gugu.gaga@app.io",
-        "username": "GuguGaga"
-      }
+  ```json
+  {
+    "user": {
+      "id": 1,
+      "firstName": "Gugu",
+      "lastName": "Mbatha-Raw",
+      "email": "gugu.gaga@app.io",
+      "username": "GuguGaga"
     }
-    ```
+  }
+  ```
 
 * **Successful Response** when there is no logged in user
   * **Status Code**: `200`
@@ -80,11 +80,11 @@ Returns the information about the current user that is logged in.
     * **Content-Type**: `application/json`
   * **Body**:
 
-    ```json
-    {
-      "user": null
-    }
-    ```
+  ```json
+  {
+    "user": null
+  }
+  ```
 
 ### Log In a User
 
@@ -99,12 +99,12 @@ information.
     * **Content-Type**: `application/json`
   * **Body**:
 
-    ```json
-    {
-      "credential": "gugu.gaga@app.io",
-      "password": "password1"
-    }
-    ```
+  ```json
+  {
+    "credential": "gugu.gaga@app.io",
+    "password": "password1"
+  }
+  ```
 
 * **Successful Response**
   * **Status Code**: `200`
@@ -112,17 +112,17 @@ information.
     * **Content-Type**: `application/json`
   * **Body**:
 
-    ```json
-    {
-      "user": {
-        "id": 1,
-        "firstName": "Gugu",
-        "lastName": "Mbatha-Raw",
-        "email": "gugu.gaga@app.io",
-        "username": "GuguGaga"
-      }
+  ```json
+  {
+    "user": {
+      "id": 1,
+      "firstName": "Gugu",
+      "lastName": "Mbatha-Raw",
+      "email": "gugu.gaga@app.io",
+      "username": "GuguGaga"
     }
-    ```
+  }
+  ```
 
 * **Error Response**: Invalid credentials
   * **Status Code**: `401`
@@ -130,11 +130,11 @@ information.
     * **Content-Type**: `application/json`
   * **Body**:
 
-    ```json
-    {
-      "message": "Invalid login credentials"
-    }
-    ```
+  ```json
+  {
+    "message": "Invalid login credentials"
+  }
+  ```
 
 * **Error Response**: Body validation errors
   * **Status Code**: `400`
@@ -142,15 +142,15 @@ information.
     * **Content-Type**: `application/json`
   * **Body**:
 
-    ```json
-    {
-      "message": "Bad Request", 
-      "errors": {
-        "credential": "Email or username is required",
-        "password": "Password is required"
-      }
+  ```json
+  {
+    "message": "Bad Request", 
+    "errors": {
+      "credential": "Email or username is required",
+      "password": "Password is required"
     }
-    ```
+  }
+  ```
 
 ### Sign Up a User
 
@@ -165,15 +165,15 @@ user's information.
     * **Content-Type**: `application/json`
   * **Body**:
 
-    ```json
-    {
-      "firstName": "Gugu",
-      "lastName": "Mbatha-Raw",
-      "email": "gugu.gaga@app.io",
-      "username": "GuguGaga",
-      "password": "password1"
-    }
-    ```
+  ```json
+  {
+    "firstName": "Gugu",
+    "lastName": "Mbatha-Raw",
+    "email": "gugu.gaga@app.io",
+    "username": "GuguGaga",
+    "password": "password1"
+  }
+  ```
 
 * **Successful Response**
   * **Status Code**: `201`
@@ -181,16 +181,16 @@ user's information.
     * **Content-Type**: `application/json`
   * **Body**:
 
-    ```json
-    {
-      "user": {
-        "id": 1,
-        "firstName": "Gugu",
-        "lastName": "Mbatha-Raw",
-        "email": "gugu.gaga@app.io",
-        "username": "GuguGaga"
-      }
+  ```json
+  {
+    "user": {
+      "id": 1,
+      "firstName": "Gugu",
+      "lastName": "Mbatha-Raw",
+      "email": "gugu.gaga@app.io",
+      "username": "GuguGaga"
     }
+  }
     ```
 
 * **Error Response**: User already exists with the specified email or username
@@ -199,15 +199,15 @@ user's information.
     * **Content-Type**: `application/json`
   * **Body**:
 
-    ```json
-    {
-      "message": "User already exists",
-      "errors": {
-        "email": "User with that email already exists",
-        "username": "User with that username already exists"
-      }
+  ```json
+  {
+    "message": "User already exists",
+    "errors": {
+      "email": "User with that email already exists",
+      "username": "User with that username already exists"
     }
-    ```
+  }
+  ```
 
 * **Error Response**: Body validation errors
   * **Status Code**: `400`
@@ -215,17 +215,17 @@ user's information.
     * **Content-Type**: `application/json`
   * **Body**:
 
-    ```json
-    {
-      "message": "Bad Request", 
-      "errors": {
-        "email": "Invalid email",
-        "username": "Username is required",
-        "firstName": "First Name is required",
-        "lastName": "Last Name is required"
-      }
+  ```json
+  {
+    "message": "Bad Request", 
+    "errors": {
+      "email": "Invalid email",
+      "username": "Username is required",
+      "firstName": "First Name is required",
+      "lastName": "Last Name is required"
     }
-    ```
+  }
+  ```
 
 ## SONGS
 
@@ -245,71 +245,32 @@ Returns all the songs.
     * **Content-Type**: `application/json`
   * **Body**:
 
-    ```json
-    {
-      "Songs": [
-        {
-          "id": 1,
-          "ownerId": 1,
-          "artistId": 1,
-          "file": "song1 url",
-          "title": "Pink + White",
-          "date": "2016-08-20",
-          "albumName": "Blonde",
-          "albumImg": "song1 img url",
-          "length": "3:04",
-          "price": 0.99,
-          "liked": true,
-          "playMore": true,
-          "playLess": null,
-          "lastPlayed": "2022-01-09 00:25:13",
-          "timesPlayed": 3,
-          "explicit": true,
-          "createdAt": "2021-11-19 20:39:36",
-          "updatedAt": "2021-11-19 20:39:36",
-          "Tags": [
-            { 
-              "id": 1,
-              "song_id": 1,
-              "artist_id": 1, 
-              "name": "neo-soul",
-              "custom": false
-            },
-            { 
-              "id": 5,
-              "song_id": 1,
-              "artist_id": 1, 
-              "name": "soothing",
-              "custom": true
-            },
-          ],
-          "Artist": {
-            "id": 1,
-            "name": "Frank Ocean",
-            "liked": true,
-            "playMore": true,
-            "playLess": null,
-            "Tags": [
-              { 
-                "id": 1,
-                "song_id": 1,
-                "artist_id": 1, 
-                "name": "neo-soul",
-                "custom": false
-              },
-            ],
-          },
-          "Playlists": [
-            {
-              "id": 1,
-              "userId": 1,
-              "name": "Lazy Day"
-            },
-          ]
-        }
-      ]
-    }
-    ```
+  ```json
+  {
+    "Songs": [
+      {
+        "id": 1,
+        "ownerId": 1,
+        "artistId": 1,
+        "file": "song1 url",
+        "title": "Pink + White",
+        "date": "2016-08-20",
+        "albumName": "Blonde",
+        "albumImg": "song1 img url",
+        "length": "3:04",
+        "price": 0.99,
+        "liked": true,
+        "playMore": true,
+        "playLess": null,
+        "lastPlayed": "2022-01-09 00:25:13",
+        "timesPlayed": 3,
+        "explicit": true,
+        "createdAt": "2021-11-19 20:39:36",
+        "updatedAt": "2021-11-19 20:39:36"
+      }
+    ]
+  }
+  ```
 
 ### Get all Songs uploaded by the Current User
 
@@ -327,79 +288,33 @@ Returns all the songs owned (uploaded) by the current user.
     * **Content-Type**: `application/json`
   * **Body**:
 
-    ```json
-    {
-      "Songs": [
-        {
-          "id": 1,
-          "ownerId": 1,
-          "artistId": 1,
-          "ownerId": 1,
-          "file": "song1 url",
-          "title": "Pink + White",
-          "date": "2016-08-20",
-          "albumName": "Blonde",
-          "albumImg": "song1 img url",
-          "length": "3:04",
-          "price": 0.99,
-          "liked": true,
-          "playMore": true,
-          "playLess": null,
-          "lastPlayed": "2022-01-09 00:25:13",
-          "timesPlayed": 3,
-          "explicit": true,
-          "createdAt": "2021-11-19 20:39:36",
-          "updatedAt": "2021-11-19 20:39:36",
-          "Tags": [
-            { 
-              "id": 1,
-              "song_id": 1,
-              "artist_id": 1, 
-              "name": "neo-soul",
-              "custom": false
-            },
-            { 
-              "id": 5,
-              "song_id": 1,
-              "artist_id": 1, 
-              "name": "soothing",
-              "custom": true
-            },
-          ],
-          "Artist": {
-            "id": 1,
-            "name": "Frank Ocean",
-            "liked": true,
-            "playMore": true,
-            "playLess": null,
-            "Tags": [
-              { 
-                "id": 1,
-                "song_id": 1,
-                "artist_id": 1, 
-                "name": "neo-soul",
-                "custom": false
-              },
-            ],
-          },
-          "Playlists": [
-            {
-              "id": 1,
-              "userId": 1,
-              "name": "Lazy Day"
-            }
-          ],
-          "Owner": {
-            "id": 1,
-            "firstName": "Gugu",
-            "lastName": "Mbatha-Raw",
-            "email": "gugu.gaga@app.io",
-            "username": "GuguGaga"
-          }
-        },
-      ]
-    }
-    ```
+  ```json
+  {
+    "Songs": [
+      {
+        "id": 1,
+        "ownerId": 1,
+        "artistId": 1,
+        "ownerId": 1,
+        "file": "song1 url",
+        "title": "Pink + White",
+        "date": "2016-08-20",
+        "albumName": "Blonde",
+        "albumImg": "song1 img url",
+        "length": "3:04",
+        "price": null,
+        "liked": true,
+        "playMore": true,
+        "playLess": null,
+        "lastPlayed": "2022-01-09 00:25:13",
+        "timesPlayed": 3,
+        "explicit": true,
+        "createdAt": "2021-11-19 20:39:36",
+        "updatedAt": "2021-11-19 20:39:36"
+      },
+    ]
+  }
+  ```
 
 ### Get details of a Song from an Id
 
@@ -417,67 +332,71 @@ Returns the details of a song specified by its id.
     * **Content-Type**: `application/json`
   * **Body**:
 
-    ```json
-    {
+  ```json
+  {
+    "id": 1,
+    "ownerId": 1,
+    "artistId": 1,
+    "ownerId": 1,
+    "file": "song1 url",
+    "title": "Pink + White",
+    "date": "2016-08-20",
+    "albumName": "Blonde",
+    "albumImg": "song1 img url",
+    "length": "3:04",
+    "price": null,
+    "liked": null,
+    "playMore": null,
+    "playLess": null,
+    "lastPlayed": "2022-01-09 00:25:13",
+    "timesPlayed": 3,
+    "explicit": true,
+    "createdAt": "2021-11-19 20:39:36",
+    "updatedAt": "2021-11-19 20:39:36",
+    "Tags": [
+          { 
+            "id": 1,
+            "song_id": 1,
+            "artist_id": 1, 
+            "name": "neo-soul",
+            "custom": false
+          },
+        ],
+    "Playlists": [
+          {
+            "id": 1,
+            "userId": 1,
+            "name": "Lazy Day"
+          }
+        ],
+    "Artist": {
       "id": 1,
-      "artistId": 1,
-      "ownerId": 1,
-      "file": "song1 url",
-      "title": "Pink + White",
-      "date": "2016-08-20",
-      "albumName": "Blonde",
-      "albumImg": "song1 img url",
-      "length": "3:04",
+      "name": "Frank Ocean",
       "liked": true,
       "playMore": true,
       "playLess": null,
-      "lastPlayed": "2025-01-09 00:19:47",
-      "createdAt": "2021-11-19 20:39:36",
-      "updatedAt": "2021-11-19 20:39:36",
-      "Tags": [
-            { 
-              "id": 1,
-              "song_id": 1,
-              "artist_id": 1, 
-              "name": "neo-soul",
-              "custom": false
-            },
-          ],
-      "Playlists": [
-            {
-              "id": 1,
-              "userId": 1,
-              "name": "Lazy Day"
-            }
-          ],
-      "Artist": {
-        "id": 1,
-        "name": "Frank Ocean",
-        "liked": true,
-        "playMore": true,
-        "playLess": null,
-      },
-      "Owner": {
-        "id": 1,
-        "firstName": "Gugu",
-        "lastName": "Mbatha-Raw",
-        "email": "gugu.gaga@app.io",
-        "username": "GuguGaga"
-      }
+    },
+    "Owner": {
+      "id": 1,
+      "firstName": "Gugu",
+      "lastName": "Mbatha-Raw",
+      "email": "gugu.gaga@app.io",
+      "username": "GuguGaga"
     }
-    ```
+  }
+  ```
 
 * **Error Response**: Couldn't find a Song with the specified Id
-  * **Status Code**: `404`
-  * **Headers**:
-    * **Content-Type**: `application/json`
-  * **Body**:
+* **Status Code**: `404`
+* **Headers**:
+  * **Content-Type**: `application/json`
+* **Body**:
 
-    ```json
-    {
-      "message": "Song couldn't be found"
-    }
-    ```
+```json
+{
+  "message": "Song couldn't be found"
+}
+```
 
 ### Create a Song
 
@@ -485,25 +404,26 @@ Uploads and returns a new song.
 
 * **Require Authentication**: true
 * **Request**
-  * **Method**: `POST`
-  * **Route path**: `/api/songs`
-  * **Headers**:
-    * **Content-Type**: `application/json`
-  * **Body**:
+* **Method**: `POST`
+* **Route path**: `/api/songs`
+* **Headers**:
+  * **Content-Type**: `application/json`
+* **Body**:
 
-    ```json
-    {
-      "title": "Pink + White",
-      "artist": "Frank Ocean",
-      "file": "song file url",
-      "date": "2016-08-20",
-      "albumName": "Blonde",
-      "albumImg": "song1 img url",
-      "liked": true,
-      "playMore": true,
-      "playLess": null,
-    }
-    ```
+```json
+{
+  "title": "Pink + White",
+  "artist": "Frank Ocean",
+  "file": "song file url",
+  "date": "2016-08-20",
+  "albumName": "Blonde",
+  "albumImg": "song1 img url",
+  "liked": true,
+  "playMore": true,
+  "playLess": null,
+  "explicit": false
+}
+```
 
 * **Successful Response**
   * **Status Code**: `201`
@@ -511,30 +431,29 @@ Uploads and returns a new song.
     * **Content-Type**: `application/json`
   * **Body**:
 
-    ```json
-    {
-      "id": 1,
-      "ownerId": 1,
-      "artistId": 1,
-      "title": "Pink + White",
-      "file": "song file url",
-      "date": "2016-08-20",
-      "albumName": "Blonde",
-      "albumImg": "song1 img url",
-      "liked": true,
-      "playMore": true,
-      "playLess": null,
-      "createdAt": "2021-11-19 20:39:36",
-      "updatedAt": "2021-11-19 20:39:36",
-      "Artist": {
-        "id": 1,
-        "name": "Frank Ocean",
-        "liked": true,
-        "playMore": true,
-        "playLess": null,
-      }
-    }
-    ```
+  ```json
+  {
+    "id": 1,
+    "ownerId": 1,
+    "artistId": 1,
+    "ownerId": 1,
+    "file": "song1 url",
+    "title": "Pink + White",
+    "date": "2016-08-20",
+    "albumName": "Blonde",
+    "albumImg": "song1 img url",
+    "length": "3:04",
+    "price": null,
+    "liked": true,
+    "playMore": true,
+    "playLess": null,
+    "explicit": false,
+    "lastPlayed": "2022-01-09 00:25:13",
+    "timesPlayed": 3,
+    "createdAt": "2021-11-19 20:39:36",
+    "updatedAt": "2021-11-19 20:39:36",
+  }
+  ```
 
 * **Error Response**: Body validation errors
   * **Status Code**: `400`
@@ -542,20 +461,20 @@ Uploads and returns a new song.
     * **Content-Type**: `application/json`
   * **Body**:
 
-    ```json
-    {
-      "message": "Bad Request", 
-      "errors": {
-        "title": "Title is required",
-        "title": "Title must be shorter than 50 characters",
-        "albumName": "Album name must be shorter than 50 characters",
-        "file": "Song file url is required",
-        "file": "Song file too large, must be below 4G",
-        "file": "Song file must be in AIFF, MP3 or WAV format",
-        "albumImg": "Album image must be in JPG, JPEG, or PNG format",
-      }
+  ```json
+  {
+    "message": "Bad Request", 
+    "errors": {
+      "title": "Title is required",
+      "title": "Title must be shorter than 50 characters",
+      "albumName": "Album name must be shorter than 50 characters",
+      "file": "Song file url is required",
+      "file": "Song file must be smaller than 4G",
+      "file": "Song file must be in AIFF, MP3 or WAV format",
+      "albumImg": "Album image must be in JPG, JPEG, or PNG format",
     }
-    ```
+  }
+  ```
 
 ### Add Tag to a Song based on the Song's id
 
@@ -570,11 +489,11 @@ Create and return a new tag for a song specified by id.
     * **Content-Type**: `application/json`
   * **Body**:
 
-    ```json
-    {
-      "name": "mellow"
-    }
-    ```
+  ```json
+  {
+    "name": "mellow"
+  }
+  ```
 
 * **Successful Response**
   * **Status Code**: `201`
@@ -582,15 +501,15 @@ Create and return a new tag for a song specified by id.
     * **Content-Type**: `application/json`
   * **Body**:
 
-    ```json
-    {
-      "id": 1,
-      "userId": 1,
-      "songId": 1,
-      "name": "mellow",
-      "custom": true
-    }
-    ```
+  ```json
+  {
+    "id": 1,
+    "userId": 1,
+    "songId": 1,
+    "name": "mellow",
+    "custom": true
+  }
+  ```
 
 * **Error Response**: Couldn't find a Song with the specified id
   * **Status Code**: `404`
@@ -598,11 +517,11 @@ Create and return a new tag for a song specified by id.
     * **Content-Type**: `application/json`
   * **Body**:
 
-    ```json
-    {
-      "message": "Song couldn't be found"
-    }
-    ```
+  ```json
+  {
+    "message": "Song couldn't be found"
+  }
+  ```
 
 ### Edit a Song
 
@@ -617,18 +536,18 @@ Updates and returns an existing song.
     * **Content-Type**: `application/json`
   * **Body**:
 
-    ```json
-    {
-      "file": "song1 url",
-      "title": "Pink + White",
-      "artistId": 1,
-      "albumName": "Blonde",
-      "albumImg": "song1 img url",
-      "liked": true,
-      "playMore": true,
-      "playLess": null,   
-    }
-    ```
+  ```json
+  {
+    "file": "song1 url",
+    "title": "Pink + White",
+    "artistId": 1,
+    "albumName": "Blonde",
+    "albumImg": "song1 img url",
+    "liked": true,
+    "playMore": true,
+    "playLess": null,   
+  }
+  ```
 
 * **Successful Response**
   * **Status Code**: `200`
@@ -636,29 +555,22 @@ Updates and returns an existing song.
     * **Content-Type**: `application/json`
   * **Body**:
 
-    ```json
-    {
-      "id": 1,
-      "ownerId": 1,
-      "file": "song1 url",
-      "title": "Pink + White",
-      "artistId": 1,
-      "date": "2016-08-20",
-      "albumName": "Blonde",
-      "albumImg": "song1 img url",
-      "playMore": true,
-      "playLess": null,
-      "createdAt": "2021-11-19 20:39:36",
-      "updatedAt": "2025-01-09 20:39:36",
-      "Artist": {
-        "id": 1,
-        "name": "Frank Ocean",
-        "liked": true,
-        "playMore": true,
-        "playLess": null,
-      }
-    }
-    ```
+  ```json
+  {
+    "id": 1,
+    "ownerId": 1,
+    "artistId": 1,
+    "file": "song1 url",
+    "title": "Pink + White",
+    "date": "2016-08-20",
+    "albumName": "Blonde",
+    "albumImg": "song1 img url",
+    "playMore": true,
+    "playLess": null,
+    "createdAt": "2021-11-19 20:39:36",
+    "updatedAt": "2025-01-09 20:39:36",
+  }
+  ```
 
 * **Error Response**: Body validation errors
   * **Status Code**: `400`
@@ -666,22 +578,22 @@ Updates and returns an existing song.
     * **Content-Type**: `application/json`
   * **Body**:
 
-    ```json
-    {
-      "message": "Bad Request",
-      "errors": {
-        "file": "Song url is required",
-        "title": "Title must be less than 50 characters",
-        "artist": "Artist is required",
-        "date": "Date is required",
-        "albumName": "Album name is required",
-        "albumImg": "Image url is required",
-        "file": "Song file too large, must be below 4G",
-        "file": "Song file must be in AIFF, MP3 or WAV format",
-        "albumImg": "Album image must be in JPG, JPEG, or PNG format",
-      }
+  ```json
+  {
+    "message": "Bad Request",
+    "errors": {
+      "file": "Song url is required",
+      "title": "Title must be less than 50 characters",
+      "artist": "Artist is required",
+      "date": "Date is required",
+      "albumName": "Album name is required",
+      "albumImg": "Image url is required",
+      "file": "Song file too large, must be below 4G",
+      "file": "Song file must be in AIFF, MP3 or WAV format",
+      "albumImg": "Album image must be in JPG, JPEG, or PNG format",
     }
-    ```
+  }
+  ```
 
 * **Error Response**: Couldn't find a Song with the specified id
   * **Status Code**: `404`
@@ -689,11 +601,11 @@ Updates and returns an existing song.
     * **Content-Type**: `application/json`
   * **Body**:
 
-    ```json
-    {
-      "message": "Song couldn't be found"
-    }
-    ```
+  ```json
+  {
+    "message": "Song couldn't be found"
+  }
+  ```
 
 ### Delete a Song
 
@@ -712,11 +624,11 @@ Deletes an existing song.
     * **Content-Type**: `application/json`
   * **Body**:
 
-    ```json
-    {
-      "message": "Successfully deleted"
-    }
-    ```
+  ```json
+  {
+    "message": "Successfully deleted"
+  }
+  ```
 
 * **Error Response**: Couldn't find a Song with the specified id
   * **Status Code**: `404`
@@ -724,11 +636,11 @@ Deletes an existing song.
     * **Content-Type**: `application/json`
   * **Body**:
 
-    ```json
-    {
-      "message": "Song couldn't be found"
-    }
-    ```
+  ```json
+  {
+    "message": "Song couldn't be found"
+  }
+  ```
 
 ## PLAYLISTS
 
@@ -748,45 +660,43 @@ Returns all the playlists created by the current user.
     * **Content-Type**: `application/json`
   * **Body**:
 
-    ```json
-    {
-      "Playlists": [
-        {
-          "id": 1,
-          "userId": 1,
-          "name": "Lazy Day",
-          "createdAt": "2021-11-19 20:39:36",
-          "updatedAt": "2021-11-19 20:39:36",
-          "Songs": [
-            {
-              "id": 1,
-              "title": "Pink + White",
-              "artistId": 1,
-              "albumName": "Blonde",
-              "albumImg": "song1 img url",
-              "Artist": {},
-              "Tags": [
-                {
-                  "id": 1,
-                  "playlistId": 1,
-                  "name": "soothing",
-                  "custom": true
-                }
-              ] 
-            },
-          ],
-          "Tags": [
-            {
-              "id": 1,
-              "playlistId": 1,
-              "name": "soothing",
-              "custom": true
-            },
-          ]
-        }
-      ]
-    }
-    ```
+  ```json
+  {
+    "Playlists": [
+      {
+        "id": 1,
+        "userId": 1,
+        "name": "Lazy Day",
+        "createdAt": "2021-11-19 20:39:36",
+        "updatedAt": "2021-11-19 20:39:36",
+        "Songs": [
+          {
+            "id": 1,
+            "ownerId": 1,
+            "artistId": 1,
+            "file": "song1 url",
+            "title": "Pink + White",
+            "date": "2016-08-20",
+            "albumName": "Blonde",
+            "albumImg": "song1 img url",
+            "playMore": true,
+            "playLess": null,
+            "createdAt": "2021-11-19 20:39:36",
+            "updatedAt": "2025-01-09 20:39:36",
+          },
+        ],
+        "Tags": [
+          {
+            "id": 1,
+            "playlistId": 1,
+            "name": "Soothing",
+            "custom": true
+          },
+        ]
+      }
+    ]
+  }
+  ```
 
 ### Get all playlists by a Song's id
 
@@ -804,27 +714,17 @@ Returns all the playlists that a song is part of specified by id.
     * **Content-Type**: `application/json`
   * **Body**:
 
-    ```json
-    {
-      "Playlists": [
-        {
-          "id": 1,
-          "userId": 1,
-          "name": "Lazy Day"
-        },
-        {
-          "id": 2,
-          "userId": 1,
-          "name": "Road Trip"
-        },
-        {
-          "id": 3,
-          "userId": 1,
-          "name": "Hangout"
-        }
-      ]
-    }
-    ```
+  ```json
+  {
+    "Playlists": [
+      {
+        "id": 1,
+        "userId": 1,
+        "name": "Lazy Day",
+      },
+    ]
+  }
+  ```
 
 * **Error Response**: Couldn't find a Song with the specified id
   * **Status Code**: `404`
@@ -832,11 +732,11 @@ Returns all the playlists that a song is part of specified by id.
     * **Content-Type**: `application/json`
   * **Body**:
 
-    ```json
-    {
-      "message": "Song couldn't be found"
-    }
-    ```
+  ```json
+  {
+    "message": "Song couldn't be found"
+  }
+  ```
 
 ### Add song to a Playlist for a Song based on the Song's id
 
@@ -850,12 +750,12 @@ Add song and return the new playlist for a song specified by id.
     * **Content-Type**: `application/json`
   * **Body**:
 
-    ```json
-    {
-      "songId": 1,
-      "playlistId": 1,
-    }
-    ```
+  ```json
+  {
+    "songId": 1,
+    "playlistId": 1,
+  }
+  ```
 
 * **Successful Response**
   * **Status Code**: `201`
@@ -863,32 +763,39 @@ Add song and return the new playlist for a song specified by id.
     * **Content-Type**: `application/json`
   * **Body**:
 
-    ```json
-    {
-      "Playlist": {
-        "id": 1,
-        "userId": 1,
-        "name": "Lazy Day",
-        "createdAt": "2021-11-19 20:39:36",
-        "updatedAt": "2021-11-19 20:39:36",
-        "Songs": [
-          {
-            "id": 1,
-            "title": "Pink + White",
-            "artistId": 1,
-            "albumName": "Blonde",
-            "albumImg": "song1 img url",
-            "Artist": {},
-            "Tags": [
-              {
-                "id": 1,
-                "playlistId": 1,
-                "name": "soothing",
-                "custom": true
-              }
-            ] 
+  ```json
+  {
+    "Playlist": {
+      "id": 1,
+      "userId": 1,
+      "name": "Lazy Day",
+      "createdAt": "2021-11-19 20:39:36",
+      "updatedAt": "2025-01-09 20:39:36",
+      "Songs": [
+        {
+          "id": 1,
+          "ownerId": 1,
+          "artistId": 1,
+          "file": "song1 url",
+          "title": "Pink + White",
+          "artistId": 1,
+          "date": "2016-08-20",
+          "albumName": "Blonde",
+          "albumImg": "song1 img url",
+          "playMore": true,
+          "playLess": null,
+            "createdAt": "2021-11-19 20:39:36",
+            "updatedAt": "2025-01-09 20:39:36",
           }
-        ]
+        ],
+        "Tags": [
+            {
+              "id": 1,
+              "playlistId": 1,
+              "name": "Soothing",
+              "custom": true
+            },
+          ]
       }
     }
     ```
@@ -899,15 +806,15 @@ Add song and return the new playlist for a song specified by id.
     * **Content-Type**: `application/json`
   * **Body**:
 
-    ```json
-    {
-      "message": "Bad Request", 
-      "errors": {
-        "songId": "Song ID is required",
-        "playlistId": "Playlist ID is required",
-      }
+  ```json
+  {
+    "message": "Bad Request", 
+    "errors": {
+      "songId": "Song ID is required",
+      "playlistId": "Playlist ID is required",
     }
-    ```
+  }
+  ```
 
 * **Error Response**: Couldn't find a Song with the specified id
   * **Status Code**: `404`
@@ -915,11 +822,11 @@ Add song and return the new playlist for a song specified by id.
     * **Content-Type**: `application/json`
   * **Body**:
 
-    ```json
-    {
-      "message": "Song couldn't be found"
-    }
-    ```
+  ```json
+  {
+    "message": "Song couldn't be found"
+  }
+  ```
 
 * **Error Response**: Song already exists in user Playlist
   * **Status Code**: `500`
@@ -927,11 +834,11 @@ Add song and return the new playlist for a song specified by id.
     * **Content-Type**: `application/json`
   * **Body**:
 
-    ```json
-    {
-      "message": "Song already in playlist"
-    }
-    ```
+  ```json
+  {
+    "message": "Song already in playlist"
+  }
+  ```
 
 ### Add an Tag to a Playlist based on the Playlist's id
 
@@ -946,11 +853,11 @@ Create and return a new tag for a playlist specified by id.
     * **Content-Type**: `application/json`
   * **Body**:
 
-    ```json
-    {
-      "name": "soothing"
-    }
-    ```
+  ```json
+  {
+    "name": "Soothing"
+  }
+  ```
 
 * **Successful Response**
   * **Status Code**: `201`
@@ -959,14 +866,13 @@ Create and return a new tag for a playlist specified by id.
   * **Body**:
 
     ```json
-    {
-      "id": 1,
-      "userId": 1,
-      "playlistId": 1,
-      "name": "soothing",
-      "custom": true
-    }
-    ```
+  {
+    "id": 1,
+    "playlistId": 1,
+    "name": "Soothing",
+    "custom": true
+  }
+  ```
 
 * **Error Response**: Couldn't find a Playlist with the specified id
   * **Status Code**: `404`
@@ -974,11 +880,11 @@ Create and return a new tag for a playlist specified by id.
     * **Content-Type**: `application/json`
   * **Body**:
 
-    ```json
-    {
-      "message": "Playlist couldn't be found"
-    }
-    ```
+  ```json
+  {
+    "message": "Playlist couldn't be found"
+  }
+  ```
 
 * **Error Response**: Cannot add any more tags because the maximum is 10 tags per resource
   * **Status Code**: `403`
@@ -986,11 +892,11 @@ Create and return a new tag for a playlist specified by id.
     * **Content-Type**: `application/json`
   * **Body**:
 
-    ```json
-    {
-      "message": "Maximum number of tags for this resource was reached"
-    }
-    ```
+  ```json
+  {
+    "message": "Maximum number of tags for this resource was reached"
+  }
+  ```
 
 ### Edit a Playlist
 
@@ -1005,11 +911,11 @@ Update and return an existing playlist.
     * **Content-Type**: `application/json`
   * **Body**:
 
-    ```json
-    {
-      "name": "Relaxation Day"
-    }
-    ```
+  ```json
+  {
+    "name": "Relaxation Day"
+  }
+  ```
 
 * **Successful Response**
   * **Status Code**: `200`
@@ -1017,42 +923,69 @@ Update and return an existing playlist.
     * **Content-Type**: `application/json`
   * **Body**:
 
-    ```json
-    {
+  ```json
+  {
+    "Playlist": {
       "id": 1,
       "userId": 1,
       "name": "Relaxation Day",
-      "updatedAt": "2025-01-10 10:06:40"
+      "createdAt": "2021-11-19 20:39:36",
+      "updatedAt": "2025-01-09 20:39:36",
+      "Songs": [
+        {
+          "id": 1,
+          "ownerId": 1,
+          "artistId": 1,
+          "file": "song1 url",
+          "title": "Pink + White",
+          "artistId": 1,
+          "date": "2016-08-20",
+          "albumName": "Blonde",
+          "albumImg": "song1 img url",
+          "playMore": true,
+          "playLess": null,
+          "createdAt": "2021-11-19 20:39:36",
+          "updatedAt": "2025-01-09 20:39:36",
+        }
+      ],
+      "Tags": [
+          {
+            "id": 1,
+            "playlistId": 1,
+            "name": "Soothing",
+            "custom": true
+          },
+        ]
     }
-    ```
+  }
+  ```
 
 * **Error Response**: Body validation errors
-  * **Status Code**: `400`
-  * **Headers**:
-    * **Content-Type**: `application/json`
-  * **Body**:
+* **Status Code**: `400`
+* **Headers**:
+  * **Content-Type**: `application/json`
+* **Body**:
 
-    ```json
-    {
-      "message": "Bad Request", 
-      "errors": {
-        "name": "Name cannot be blank",
-        "name": "Name must have a minimum of 3 characters",
-      }
-    }
-    ```
+```json
+{
+  "message": "Bad Request", 
+  "errors": {
+    "name": "Name must have a minimum of 3 characters",
+  }
+}
+```
 
 * **Error Response**: Couldn't find a Playlist with the specified id
-  * **Status Code**: `404`
-  * **Headers**:
-    * **Content-Type**: `application/json`
-  * **Body**:
+* **Status Code**: `404`
+* **Headers**:
+  * **Content-Type**: `application/json`
+* **Body**:
 
-    ```json
-    {
-      "message": "Playlist couldn't be found"
-    }
-    ```
+```json
+{
+  "message": "Playlist couldn't be found"
+}
+```
 
 ### Delete a Playlist
 
@@ -1061,9 +994,9 @@ Delete an existing playlist.
 * **Require Authentication**: true
 * **Require Proper Authorization**: Playlist must belong to the current user
 * **Request**
-  * **Method**: `DELETE`
-  * **Route path**: `/api/playlists/:playlistId`
-  * **Body**: `none`
+* **Method**: `DELETE`
+* **Route path**: `/api/playlists/:playlistId`
+* **Body**: `none`
 
 * **Successful Response**
   * **Status Code**: `200`
@@ -1071,11 +1004,11 @@ Delete an existing playlist.
     * **Content-Type**: `application/json`
   * **Body**:
 
-    ```json
-    {
-      "message": "Successfully deleted"
-    }
-    ```
+  ```json
+  {
+    "message": "Successfully deleted"
+  }
+  ```
 
 * **Error Response**: Couldn't find a Playlist with the specified id
   * **Status Code**: `404`
@@ -1083,11 +1016,11 @@ Delete an existing playlist.
     * **Content-Type**: `application/json`
   * **Body**:
 
-    ```json
-    {
-      "message": "Playlist couldn't be found"
-    }
-    ```
+  ```json
+  {
+    "message": "Playlist couldn't be found"
+  }
+  ```
 
 ## TAGS
 
@@ -1098,10 +1031,70 @@ Return all the tags that the current user has made.
 * **Require Authentication**: true
 * **Request**
   * **Method**: `GET`
-  * **Route path**: /api/tags/current
+  * **Route path**: `/api/tags/current`
   * **Body**: `none`
 
 * **Successful Response**
+  * **Status Code**: `200`
+  * **Headers**:
+    * **Content-Type**: `application/json`
+  * **Body**:
+
+  ```json
+  {
+    "Tags": [
+      {
+        "id": 1,
+        "creatorId": 1,
+        "artistId": 1,
+        "songId": 1,
+        "playlistId": 1,
+        "name": "Soothing",
+        "custom": true,
+        "type": "mood",
+        "createdAt": "2021-11-19 20:39:36",
+        "updatedAt": "2021-11-19 20:39:36"
+      },
+    ]
+  }
+  ```
+
+### Get all tags for a Song based on the Song's id
+
+Return all the tags for a song specified by id.
+
+* **Require Authentication**: true
+* **Request**
+  * **Method**: `GET`
+  * **Route path**: `/api/songs/:songId/tags`
+  * **Body**: `none`
+
+* **Successful Response**: If you ARE NOT the owner of the song.
+  * **Status Code**: `200`
+  * **Headers**:
+    * **Content-Type**: `application/json`
+  * **Body**:
+
+  ```json
+  {
+    "Tags": [
+      {
+      "id": 2,
+      "creatorId": null,
+      "artistId": 1,
+      "songId": 1,
+      "playlistId": null,
+      "name": "Hip Hop",
+      "custom": false,
+      "type": "genre",
+      "createdAt": "2021-11-19 20:39:36",
+      "updatedAt": "2021-11-19 20:39:36"
+      }
+    ]
+  }
+  ```
+
+* **Successful Response**: If you ARE the owner of the song.
   * **Status Code**: `200`
   * **Headers**:
     * **Content-Type**: `application/json`
@@ -1112,80 +1105,16 @@ Return all the tags that the current user has made.
       "Tags": [
         {
           "id": 1,
-          "userId": 1,
+          "name": "Soothing",
+          "creatorId": 1,
+          "artistId": 1,
           "songId": 1,
-          "Song": {
-            "id": 1,
-            "artistId": 1,
-            "city": "San Francisco",
-            "state": "California",
-            "country": "United States of America",
-            "lat": 37.7645358,
-            "lng": -122.4730327,
-            "title": "App Academy",
-            "price": 123,
-            "previewImage": "image url"
-          },
-          "startDate": "2021-11-19",
-          "endDate": "2021-11-20",
+          "playlistId": null,
+          "custom": true,
+          "type": "mood",
           "createdAt": "2021-11-19 20:39:36",
           "updatedAt": "2021-11-19 20:39:36"
-        }
-      ]
-    }
-    ```
-
-### Get all tags for a Song based on the Song's id
-
-Return all the tags for a song specified by id.
-
-* **Require Authentication**: true
-* **Request**
-  * **Method**: `GET`
-  * **Route path**: /api/songs/:songId/tags
-  * **Body**: `none`
-
-* **Successful Response**: If you ARE NOT the owner of the song.
-  * **Status Code**: `200`
-  * **Headers**:
-    * **Content-Type**: `application/json`
-  * **Body**:
-
-    ```json
-    {
-      "tags": [
-        {
-          "songId": 1,
-          "startDate": "2021-11-19",
-          "endDate": "2021-11-20"
-        }
-      ]
-    }
-    ```
-
-* **Successful Response**: If you ARE the owner of the song.
-  * **Status Code**: `200`
-  * **Headers**:
-    * **Content-Type**: `application/json`
-  * **Body**:
-
-    ```json
-    {
-      "tags": [
-        {
-          "User": {
-            "id": 2,
-            "firstName": "Gugu",
-            "lastName": "Mbatha-Raw"
-          },
-          "id": 1,
-          "songId": 1,
-          "userId": 2,
-          "startDate": "2021-11-19",
-          "endDate": "2021-11-20",
-          "createdAt": "2021-11-19 20:39:36",
-          "updatedAt": "2021-11-19 20:39:36"
-        }
+        },
       ]
     }
     ```
@@ -1202,25 +1131,25 @@ Return all the tags for a song specified by id.
     }
     ```
 
-### Create a Booking from a Song based on the Song's id
+### Create a Tag from a Song based on the Song's id
 
-Create and return a new booking from a song specified by id.
+Create and return a new tag for a song specified by id.
 
 * **Require Authentication**: true
-* **Require Proper Authorization**: Song must NOT belong to the current user
 * **Request**
   * **Method**: `POST`
-  * **Route path**: /api/songs/:songId/tags
+  * **Route path**: `/api/songs/:songId/tags`
   * **Headers**:
     * **Content-Type**: `application/json`
   * **Body**:
 
-    ```json
-    {
-      "startDate": "2021-11-19",
-      "endDate": "2021-11-20"
-    }
-    ```
+  ```json
+  {
+    "name": "Soothing",
+    "songId": 1,
+    "type": "mood",
+  }
+  ```
 
 * **Successful Response**
   * **Status Code**: `201`
@@ -1228,17 +1157,20 @@ Create and return a new booking from a song specified by id.
     * **Content-Type**: `application/json`
   * **Body**:
 
-    ```json
-    {
-      "id": 1,
-      "songId": 1,
-      "userId": 2,
-      "startDate": "2021-11-19",
-      "endDate": "2021-11-20",
-      "createdAt": "2021-11-19 20:39:36",
-      "updatedAt": "2021-11-19 20:39:36"
-    }
-    ```
+  ```json
+  {
+    "id": 1,
+    "name": "Soothing",
+    "creatorId": 1,
+    "artistId": null,
+    "songId": 1,
+    "playlistId": null,
+    "custom": true,
+    "type": "mood",
+    "createdAt": "2021-11-19 20:39:36",
+    "updatedAt": "2021-11-19 20:39:36"
+  }
+  ```
 
 * **Error Response**: Body validation errors
   * **Status Code**: `400`
@@ -1246,15 +1178,16 @@ Create and return a new booking from a song specified by id.
     * **Content-Type**: `application/json`
   * **Body**:
 
-    ```json
-    {
-      "message": "Bad Request", 
-      "errors": {
-        "startDate": "startDate cannot be in the past",
-        "endDate": "endDate cannot be on or before startDate"
-      }
+  ```json
+  {
+    "message": "Bad Request", 
+    "errors": {
+      "name": "Name cannot be blank",
+      "name": "Name must be a minimum of 3 characters",
+      "type": "Please select a type"
     }
-    ```
+  }
+  ```
 
 * **Error Response**: Couldn't find a Song with the specified id
   * **Status Code**: `404`
@@ -1262,47 +1195,46 @@ Create and return a new booking from a song specified by id.
     * **Content-Type**: `application/json`
   * **Body**:
 
-    ```json
-    {
-      "message": "Song couldn't be found"
-    }
-    ```
+  ```json
+  {
+    "message": "Song couldn't be found"
+  }
+  ```
 
-* **Error Response**: Booking conflict
+* **Error Response**: Tag conflict
   * **Status Code**: `403`
   * **Headers**:
     * **Content-Type**: `application/json`
   * **Body**:
 
-    ```json
-    {
-      "message": "Sorry, this song is already booked for the specified dates",
-      "errors": {
-        "startDate": "Start date conflicts with an existing booking",
-        "endDate": "End date conflicts with an existing booking"
-      }
+  ```json
+  {
+    "message": "Tag already exists for this song",
+    "errors": {
+      "message": "Tag already exists for this song"
     }
-    ```
+  }
+  ```
 
-### Edit a Booking
+### Edit a Tag
 
-Update and return an existing booking.
+Update and return an existing tag.
 
 * **Require Authentication**: true
-* **Require Proper Authorization**: Booking must belong to the current user
+* **Require Proper Authorization**: Tag must belong to the current user
 * **Request**
   * **Method**: `PUT`
-  * **Route path**: /api/tags/:bookingId
+  * **Route path**: `/api/tags/:tagId`
   * **Headers**:
     * **Content-Type**: `application/json`
   * **Body**:
 
-    ```json
-    {
-      "startDate": "2021-11-19",
-      "endDate": "2021-11-20"
-    }
-    ```
+  ```json
+  {
+    "name": "Trip Hop",
+    "type": "genre",
+  }
+  ```
 
 * **Successful Response**
   * **Status Code**: `200`
@@ -1310,17 +1242,20 @@ Update and return an existing booking.
     * **Content-Type**: `application/json`
   * **Body**:
 
-    ```json
-    {
-      "id": 1,
-      "songId": 1,
-      "userId": 2,
-      "startDate": "2021-11-19",
-      "endDate": "2021-11-20",
-      "createdAt": "2021-11-19 20:39:36",
-      "updatedAt": "2021-11-20 10:06:40"
-    }
-    ```
+  ```json
+  {
+    "id": 1,
+    "name": "Trip Hop",
+    "creatorId": 1,
+    "artistId": null,
+    "songId": 1,
+    "playlistId": null,
+    "custom": true,
+    "type": "genre",
+    "createdAt": "2021-11-19 20:39:36",
+    "updatedAt": "2025-01-09 00:39:36"
+  }
+  ```
 
 * **Error Response**: Body validation errors
   * **Status Code**: `400`
@@ -1328,66 +1263,39 @@ Update and return an existing booking.
     * **Content-Type**: `application/json`
   * **Body**:
 
-    ```json
-    {
-      "message": "Bad Request", 
-      "errors": {
-        "startDate": "startDate cannot be in the past",
-        "endDate": "endDate cannot be on or before startDate"
-      }
+  ```json
+  {
+    "message": "Bad Request", 
+    "errors": {
+      "name": "Name cannot be blank",
+      "name": "Name must be a minimum of 3 characters",
+      "type": "Please select a type"
     }
-    ```
+  }
+  ```
 
-* **Error Response**: Couldn't find a Booking with the specified id
+* **Error Response**: Couldn't find a Tag with the specified id
   * **Status Code**: `404`
   * **Headers**:
     * **Content-Type**: `application/json`
   * **Body**:
 
-    ```json
-    {
-      "message": "Booking couldn't be found"
-    }
-    ```
+  ```json
+  {
+    "message": "No tag found"
+  }
+  ```
 
-* **Error Response**: Can't edit a booking that's past the end date
-  * **Status Code**: `403`
-  * **Headers**:
-    * **Content-Type**: `application/json`
-  * **Body**:
 
-    ```json
-    {
-      "message": "Past tags can't be modified"
-    }
-    ```
+### Delete a Tag
 
-* **Error Response**: Booking conflict
-  * **Status Code**: `403`
-  * **Headers**:
-    * **Content-Type**: `application/json`
-  * **Body**:
-
-    ```json
-    {
-      "message": "Sorry, this song is already booked for the specified dates",
-      "errors": {
-        "startDate": "Start date conflicts with an existing booking",
-        "endDate": "End date conflicts with an existing booking"
-      }
-    }
-    ```
-
-### Delete a Booking
-
-Delete an existing booking.
+Delete an existing tag.
 
 * **Require Authentication**: true
-* **Require Proper Authorization**: Booking must belong to the current user or the
-  Song must belong to the current user
+* **Require Proper Authorization**: Tag must belong to the current user
 * **Request**
-  * **Method**: DELETE
-  * **Route path**: /api/tags/:bookingId
+  * **Method**: `DELETE`
+  * **Route path**: `/api/tags/:tagId`
   * **Body**: `none`
 
 * **Successful Response**
@@ -1396,35 +1304,23 @@ Delete an existing booking.
     * **Content-Type**: `application/json`
   * **Body**:
 
-    ```json
-    {
-      "message": "Successfully deleted"
-    }
-    ```
+  ```json
+  {
+    "message": "Successfully deleted"
+  }
+  ```
 
-* **Error Response**: Couldn't find a Booking with the specified id
+* **Error Response**: Couldn't find a Tag with the specified id
   * **Status Code**: `404`
   * **Headers**:
     * **Content-Type**: `application/json`
   * **Body**:
 
-    ```json
-    {
-      "message": "Booking couldn't be found"
-    }
-    ```
-
-* **Error Response**: tags that have been started can't be deleted
-  * **Status Code**: `403`
-  * **Headers**:
-    * **Content-Type**: `application/json`
-  * **Body**:
-
-    ```json
-    {
-      "message": "tags that have been started can't be deleted"
-    }
-    ```
+  ```json
+  {
+    "message": "No tag found"
+  }
+  ```
 
 ## IMAGES
 
@@ -1435,7 +1331,7 @@ Delete an existing image for a Song.
 * **Require Authentication**: true
 * **Require Proper Authorization**: Song must belong to the current user
 * **Request**
-  * **Method**: DELETE
+  * **Method**: `DELETE`
   * **Route path**: /api/song-images/:imageId
   * **Body**: `none`
 
@@ -1470,7 +1366,7 @@ Delete an existing image for a Review.
 * **Require Authentication**: true
 * **Require Proper Authorization**: Review must belong to the current user
 * **Request**
-  * **Method**: DELETE
+  * **Method**: `DELETE`
   * **Route path**: /api/review-images/:imageId
   * **Body**: `none`
 
