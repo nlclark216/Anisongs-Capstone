@@ -55,11 +55,11 @@ These are the essential features required to build a working, user-ready MVP. Fo
 
 ---
 
-### **5. Vibes (preferences)**
-- View selected vibes on profile.
-- Create new vibes for event filters (location, date, category, online/offline).
-- Delete selected vibes.
-- Allow user to play only explicit versions of songs, or only non-explicit 
+### **5. Tags (preferences)**
+- View selected tags on profile.
+- Create new tags for event filters (location, date, category, online/offline).
+- Delete selected tags.
+- Allow user to play only explicit versions of songs, or only non-explicit if desired
 
 ---
 
@@ -71,7 +71,7 @@ These are the essential features required to build a working, user-ready MVP. Fo
 ---
 
 ### **7. Search**
-- Search for songs, artists, playlists, and preferences/vibes.
+- Search for songs, artists, playlists, and preferences/tags.
 - View search results in a list format.
 - Filter search results by event type, location, and availability.
 - Search for songs using specific keywords.

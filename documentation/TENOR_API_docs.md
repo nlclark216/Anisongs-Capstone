@@ -51,12 +51,12 @@ correct role(s) or permission(s).
 Returns the information about the current user that is logged in.
 
 * **Require Authentication**: false
-* Request
+* **Request**
   * **Method**: `GET`
   * **Route path**: `/api/session`
   * **Body**: `none`
 
-* Successful Response when there is a logged in user
+* **Successful Response** when there is a logged in user
   * **Status Code**: `200`
   * **Headers**:
     * **Content-Type**: `application/json`
@@ -74,7 +74,7 @@ Returns the information about the current user that is logged in.
     }
     ```
 
-* Successful Response when there is no logged in user
+* **Successful Response** when there is no logged in user
   * **Status Code**: `200`
   * **Headers**:
     * **Content-Type**: `application/json`
@@ -92,7 +92,7 @@ Logs in a current user with valid credentials and returns the current user's
 information.
 
 * **Require Authentication**: false
-* Request
+* **Request**
   * **Method**: `POST`
   * **Route path**: `/api/session`
   * **Headers**:
@@ -106,7 +106,7 @@ information.
     }
     ```
 
-* Successful Response
+* **Successful Response**
   * **Status Code**: `200`
   * **Headers**:
     * **Content-Type**: `application/json`
@@ -158,7 +158,7 @@ Creates a new user, logs them in as the current user, and returns the current
 user's information.
 
 * **Require Authentication**: false
-* Request
+* **Request**
   * **Method**: `POST`
   * **Route path**: `/api/users`
   * **Headers**:
@@ -175,7 +175,7 @@ user's information.
     }
     ```
 
-* Successful Response
+* **Successful Response**
   * **Status Code**: `201`
   * **Headers**:
     * **Content-Type**: `application/json`
@@ -234,12 +234,12 @@ user's information.
 Returns all the songs.
 
 * **Require Authentication**: false
-* Request
+* **Request**
   * **Method**: `GET`
   * **Route path**: `/api/songs`
   * **Body**: `none`
 
-* Successful Response
+* **Successful Response**
   * **Status Code**: `200`
   * **Headers**:
     * **Content-Type**: `application/json`
@@ -251,21 +251,68 @@ Returns all the songs.
         {
           "id": 1,
           "ownerId": 1,
+          "artistId": 1,
           "file": "song1 url",
           "title": "Pink + White",
-          "artist": "Frank Ocean",
-          "playlistId": 1,
-          "year": 2016,
-          "month": 08,
-          "day": 20,
+          "date": "2016-08-20",
           "albumName": "Blonde",
-          "albumImg": "Blonde url",
+          "albumImg": "song1 img url",
           "length": "3:04",
           "price": 0.99,
+          "liked": true,
+          "playMore": true,
+          "playLess": null,
+          "lastPlayed": "2022-01-09 00:25:13",
+          "timesPlayed": 3,
+          "explicit": true,
           "createdAt": "2021-11-19 20:39:36",
           "updatedAt": "2021-11-19 20:39:36",
-          "Categories": ["neo-soul", "pop", "soothing", "laid-back", "trip hop", "smooth", "semi-explicit"],
-          "previewImage": "image url"
+          "Tags": [
+            { 
+              "id": 1,
+              "song_id": 1,
+              "artist_id": 1, 
+              "name": "neo-soul",
+              "custom": false
+            },
+            { 
+              "id": 5,
+              "song_id": 1,
+              "artist_id": 1, 
+              "name": "soothing",
+              "custom": true
+            },
+          ],
+          "Artist": {
+            "id": 1,
+            "name": "Frank Ocean",
+            "liked": true,
+            "playMore": true,
+            "playLess": null,
+            "Tags": [
+              { 
+                "id": 1,
+                "song_id": 1,
+                "artist_id": 1, 
+                "name": "neo-soul",
+                "custom": false
+              },
+              { 
+                "id": 3,
+                "song_id": 1,
+                "artist_id": 1, 
+                "name": "trip hop",
+                "custom": false
+              },
+            ],
+          },
+          "Playlists": [
+            {
+              "id": 1,
+              "userId": 1,
+              "name": "Lazy Day"
+            }
+          ]
         }
       ]
     }
@@ -276,12 +323,12 @@ Returns all the songs.
 Returns all the songs owned (uploaded) by the current user.
 
 * **Require Authentication**: true
-* Request
+* **Request**
   * **Method**: `GET`
   * **Route path**: `/api/songs/current`
   * **Body**: `none`
 
-* Successful Response
+* **Successful Response**
   * **Status Code**: `200`
   * **Headers**:
     * **Content-Type**: `application/json`
@@ -293,23 +340,69 @@ Returns all the songs owned (uploaded) by the current user.
         {
           "id": 1,
           "ownerId": 1,
+          "artistId": 1,
           "file": "song1 url",
           "title": "Pink + White",
-          "artist": "Frank Ocean",
-          "year": 2016,
-          "month": 08,
-          "day": 20,
+          "date": "2016-08-20",
           "albumName": "Blonde",
           "albumImg": "song1 img url",
           "length": "3:04",
-          "liked": "True",
-          "playMore": "True",
+          "price": 0.99,
+          "liked": true,
+          "playMore": true,
           "playLess": null,
+          "lastPlayed": "2022-01-09 00:25:13",
+          "timesPlayed": 3,
+          "explicit": true,
           "createdAt": "2021-11-19 20:39:36",
           "updatedAt": "2021-11-19 20:39:36",
-          "Categories": ["neo-soul", "pop", "soothing", "laid-back", "trip hop", "smooth", "semi-explicit"],
-          "Playlists": ["Lazy Day", "Road Trip", "Hangout"]
-        }
+          "Tags": [
+            { 
+              "id": 1,
+              "song_id": 1,
+              "artist_id": 1, 
+              "name": "neo-soul",
+              "custom": false
+            },
+            { 
+              "id": 5,
+              "song_id": 1,
+              "artist_id": 1, 
+              "name": "soothing",
+              "custom": true
+            },
+          ],
+          "Artist": {
+            "id": 1,
+            "name": "Frank Ocean",
+            "liked": true,
+            "playMore": true,
+            "playLess": null,
+            "Tags": [
+              { 
+                "id": 1,
+                "song_id": 1,
+                "artist_id": 1, 
+                "name": "neo-soul",
+                "custom": false
+              },
+              { 
+                "id": 3,
+                "song_id": 1,
+                "artist_id": 1, 
+                "name": "trip hop",
+                "custom": false
+              },
+            ],
+          },
+          "Playlists": [
+            {
+              "id": 1,
+              "userId": 1,
+              "name": "Lazy Day"
+            }
+          ]
+        },
       ]
     }
     ```
@@ -319,12 +412,12 @@ Returns all the songs owned (uploaded) by the current user.
 Returns the details of a song specified by its id.
 
 * **Require Authentication**: false
-* Request
+* **Request**
   * **Method**: `GET`
   * **Route path**: `/api/songs/:songId`
   * **Body**: `none`
 
-* Successful Response
+* **Successful Response**
   * **Status Code**: `200`
   * **Headers**:
     * **Content-Type**: `application/json`
@@ -347,7 +440,7 @@ Returns the details of a song specified by its id.
       "lastPlayed": "2025-01-09 00:19:47",
       "createdAt": "2021-11-19 20:39:36",
       "updatedAt": "2021-11-19 20:39:36",
-      "Categories": ["neo-soul", "pop", "soothing", "laid-back", "trip hop", "smooth", "semi-explicit"],
+      "Tags": ["neo-soul", "pop", "soothing", "laid-back", "trip hop", "smooth", "semi-explicit"],
       "Playlists": ["Lazy Day", "Road Trip", "Hangout"],
       "Artist": {
         "id": 1,
@@ -355,8 +448,7 @@ Returns the details of a song specified by its id.
       },
       "Owner": {
         "id": 1,
-        "firstName": "Gugu",
-        "lastName": "Mbatha-Raw"
+        "username": "GuguGaga"
       }
     }
     ```
@@ -378,7 +470,7 @@ Returns the details of a song specified by its id.
 Uploads and returns a new song.
 
 * **Require Authentication**: true
-* Request
+* **Request**
   * **Method**: `POST`
   * **Route path**: `/api/songs`
   * **Headers**:
@@ -389,13 +481,14 @@ Uploads and returns a new song.
     {
       "title": "Pink + White",
       "artist": "Frank Ocean",
-      "date": 2016,
+      "file": "song file url",
+      "date": "2016-08-20",
       "albumName": "Blonde",
       "albumImg": "song1 img url"
     }
     ```
 
-* Successful Response
+* **Successful Response**
   * **Status Code**: `201`
   * **Headers**:
     * **Content-Type**: `application/json`
@@ -407,6 +500,7 @@ Uploads and returns a new song.
       "ownerId": 1,
       "title": "Pink + White",
       "artist": "Frank Ocean",
+      "file": "song file url",
       "date": "2016-08-20",
       "albumName": "Blonde",
       "albumImg": "song1 img url",
@@ -428,33 +522,31 @@ Uploads and returns a new song.
       "message": "Bad Request", 
       "errors": {
         "title": "Title is required",
-        "artist": "Artist is required",
-        "date": "Date is required",
-        "albumName": "Album name is required",
+        "file": "Song file url is required",
       }
     }
     ```
 
-### Add an Genre to a Song based on the Song's id
+### Add Tag to a Song based on the Song's id
 
-Create and return a new genre entry for a song specified by id.
+Create and return a new tag for a song specified by id.
 
 * **Require Authentication**: true
 * **Require Proper Authorization**: Song must belong to the current user
-* Request
+* **Request**
   * **Method**: `POST`
-  * **Route path**: `/api/songs/:songId/genres`
+  * **Route path**: `/api/songs/:songId/tags`
   * **Headers**:
     * **Content-Type**: `application/json`
   * **Body**:
 
     ```json
     {
-      "category": "Recently Played"
+      "name": "mellow"
     }
     ```
 
-* Successful Response
+* **Successful Response**
   * **Status Code**: `201`
   * **Headers**:
     * **Content-Type**: `application/json`
@@ -465,8 +557,8 @@ Create and return a new genre entry for a song specified by id.
       "id": 1,
       "userId": 1,
       "songId": 1,
-      "url": "image url",
-      "preview": true
+      "name": "mellow",
+      "custom": true
     }
     ```
 
@@ -488,7 +580,7 @@ Updates and returns an existing song.
 
 * **Require Authentication**: true
 * **Require Proper Authorization**: Song must belong to the current user
-* Request
+* **Request**
   * **Method**: `PUT`
   * **Route path**: `/api/songs/:songId`
   * **Headers**:
@@ -500,7 +592,6 @@ Updates and returns an existing song.
       "file": "song1 url",
       "title": "Pink + White",
       "artist": "Frank Ocean",
-      "date": "2016-08-20",
       "albumName": "Blonde",
       "albumImg": "song1 img url",
       "playMore": "True",
@@ -508,7 +599,7 @@ Updates and returns an existing song.
     }
     ```
 
-* Successful Response
+* **Successful Response**
   * **Status Code**: `200`
   * **Headers**:
     * **Content-Type**: `application/json`
@@ -568,12 +659,12 @@ Deletes an existing song.
 
 * **Require Authentication**: true
 * **Require Proper Authorization**: Song must belong to the current user
-* Request
+* **Request**
   * **Method**: `DELETE`
   * **Route path**: `/api/songs/:songId`
   * **Body**: `none`
 
-* Successful Response
+* **Successful Response**
   * **Status Code**: `200`
   * **Headers**:
     * **Content-Type**: `application/json`
@@ -604,12 +695,12 @@ Deletes an existing song.
 Returns all the playlists created by the current user.
 
 * **Require Authentication**: true
-* Request
+* **Request**
   * **Method**: `GET`
   * **Route path**: `/api/playlists/current`
   * **Body**: `none`
 
-* Successful Response
+* **Successful Response**
   * **Status Code**: `200`
   * **Headers**:
     * **Content-Type**: `application/json`
@@ -624,48 +715,22 @@ Returns all the playlists created by the current user.
           "name": "Lazy Day",
           "createdAt": "2021-11-19 20:39:36",
           "updatedAt": "2021-11-19 20:39:36",
-          "User": {
-            "id": 1,
-            "firstName": "Gugu",
-            "lastName": "Mbatha-Raw"
-          },
-          "songs": [
+          "Songs": [
             {
               "id": 1,
               "title": "Pink + White",
               "artist": "Frank Ocean",
               "albumName": "Blonde",
-              "albumImg": "song1 url",
-            }
+              "albumImg": "song1 img url",
+              "Tags": ["neo-soul", "pop", "soothing", "laid-back", "trip hop", "smooth", "semi-explicit"] 
+            },
           ],
-          "Categories": [
+          "Tags": [
             {
               "id": 1,
-              "type": "neo-soul"
-            },
-            {
-              "id": 2,
-              "type": "soothing"
-            },
-            {
-              "id": 3,
-              "type": "laid-back"
-            },
-            {
-              "id": 4,
-              "type": "trip hop"
-            },
-            {
-              "id": 5,
-              "type": "smooth"
-            },
-            {
-              "id": 6,
-              "type": "semi-explicit"
-            },
-            {
-              "id": 7,
-              "type": "pop"
+              "playlistId": 1,
+              "name": "soothing",
+              "custom": true
             },
           ]
         }
@@ -678,12 +743,12 @@ Returns all the playlists created by the current user.
 Returns all the playlists that a song is part of specified by id.
 
 * **Require Authentication**: false
-* Request
+* **Request**
   * **Method**: `GET`
   * **Route path**: `/api/songs/:songId/playlists`
   * **Body**: `none`
 
-* Successful Response
+* **Successful Response**
   * **Status Code**: `200`
   * **Headers**:
     * **Content-Type**: `application/json`
@@ -691,7 +756,7 @@ Returns all the playlists that a song is part of specified by id.
 
     ```json
     {
-      "playlists": [
+      "Playlists": [
         {
           "id": 1,
           "userId": 1,
@@ -724,12 +789,11 @@ Returns all the playlists that a song is part of specified by id.
     ```
 
 ### Add song to a Playlist for a Song based on the Song's id
-****STOPPED HERE****
 
 Add song and return the new playlist for a song specified by id.
 
 * **Require Authentication**: true
-* Request
+* **Request**
   * **Method**: `POST`
   * **Route path**: `/api/songs/:songId/playlists`
   * **Headers**:
@@ -738,12 +802,12 @@ Add song and return the new playlist for a song specified by id.
 
     ```json
     {
-      "review": "This was an awesome song!",
-      "stars": 5,
+      "songId": 1,
+      "playlistId": 1,
     }
     ```
 
-* Successful Response
+* **Successful Response**
   * **Status Code**: `201`
   * **Headers**:
     * **Content-Type**: `application/json`
@@ -751,13 +815,18 @@ Add song and return the new playlist for a song specified by id.
 
     ```json
     {
-      "id": 1,
-      "userId": 1,
-      "songId": 1,
-      "review": "This was an awesome song!",
-      "stars": 5,
-      "createdAt": "2021-11-19 20:39:36",
-      "updatedAt": "2021-11-19 20:39:36"
+      "Playlist": {
+        "id": 1,
+        "userId": 1,
+        "name": "Lazy Day",
+        "createdAt": "2021-11-19 20:39:36",
+        "updatedAt": "2021-11-19 20:39:36",
+        "Songs": [
+          {
+            "id": 1
+          }
+        ]
+      }
     }
     ```
 
@@ -771,8 +840,8 @@ Add song and return the new playlist for a song specified by id.
     {
       "message": "Bad Request", 
       "errors": {
-        "review": "Review text is required",
-        "stars": "Stars must be an integer from 1 to 5",
+        "songId": "Song ID is required",
+        "playlistId": "Playlist ID is required",
       }
     }
     ```
@@ -789,7 +858,7 @@ Add song and return the new playlist for a song specified by id.
     }
     ```
 
-* **Error Response**: Review from the current user already exists for the Song
+* **Error Response**: Song already exists in user Playlist
   * **Status Code**: `500`
   * **Headers**:
     * **Content-Type**: `application/json`
@@ -797,30 +866,30 @@ Add song and return the new playlist for a song specified by id.
 
     ```json
     {
-      "message": "User already has a review for this song"
+      "message": "Song already in playlist"
     }
     ```
 
-### Add an Image to a Review based on the Review's id
+### Add an Tag to a Playlist based on the Playlist's id
 
-Create and return a new image for a review specified by id.
+Create and return a new tag for a playlist specified by id.
 
 * **Require Authentication**: true
-* **Require Proper Authorization**: Review must belong to the current user
-* Request
+* **Require Proper Authorization**: Playlist must belong to the current user
+* **Request**
   * **Method**: `POST`
-  * **Route path**: /api/playlists/:reviewId/images
+  * **Route path**: `/api/playlists/:playlistId/tags`
   * **Headers**:
     * **Content-Type**: `application/json`
   * **Body**:
 
     ```json
     {
-      "url": "image url"
+      "name": "soothing"
     }
     ```
 
-* Successful Response
+* **Successful Response**
   * **Status Code**: `201`
   * **Headers**:
     * **Content-Type**: `application/json`
@@ -829,11 +898,14 @@ Create and return a new image for a review specified by id.
     ```json
     {
       "id": 1,
-      "url": "image url"
+      "userId": 1,
+      "playlistId": 1,
+      "name": "soothing",
+      "custom": true
     }
     ```
 
-* **Error Response**: Couldn't find a Review with the specified id
+* **Error Response**: Couldn't find a Playlist with the specified id
   * **Status Code**: `404`
   * **Headers**:
     * **Content-Type**: `application/json`
@@ -841,12 +913,11 @@ Create and return a new image for a review specified by id.
 
     ```json
     {
-      "message": "Review couldn't be found"
+      "message": "Playlist couldn't be found"
     }
     ```
 
-* **Error Response**: Cannot add any more images because there is a maximum of 10
-  images per resource
+* **Error Response**: Cannot add any more tags because the maximum is 10 tags per resource
   * **Status Code**: `403`
   * **Headers**:
     * **Content-Type**: `application/json`
@@ -854,31 +925,30 @@ Create and return a new image for a review specified by id.
 
     ```json
     {
-      "message": "Maximum number of images for this resource was reached"
+      "message": "Maximum number of tags for this resource was reached"
     }
     ```
 
-### Edit a Review
+### Edit a Playlist
 
-Update and return an existing review.
+Update and return an existing playlist.
 
 * **Require Authentication**: true
-* **Require Proper Authorization**: Review must belong to the current user
-* Request
+* **Require Proper Authorization**: Playlist must belong to the current user
+* **Request**
   * **Method**: `PUT`
-  * **Route path**: /api/playlists/:reviewId
+  * **Route path**: `/api/playlists/:playlistId`
   * **Headers**:
     * **Content-Type**: `application/json`
   * **Body**:
 
     ```json
     {
-      "review": "This was an awesome song!",
-      "stars": 5,
+      "name": "Relaxation Day"
     }
     ```
 
-* Successful Response
+* **Successful Response**
   * **Status Code**: `200`
   * **Headers**:
     * **Content-Type**: `application/json`
@@ -888,11 +958,8 @@ Update and return an existing review.
     {
       "id": 1,
       "userId": 1,
-      "songId": 1,
-      "review": "This was an awesome song!",
-      "stars": 5,
-      "createdAt": "2021-11-19 20:39:36",
-      "updatedAt": "2021-11-20 10:06:40"
+      "name": "Relaxation Day",
+      "updatedAt": "2025-01-10 10:06:40"
     }
     ```
 
@@ -906,13 +973,13 @@ Update and return an existing review.
     {
       "message": "Bad Request", 
       "errors": {
-        "review": "Review text is required",
-        "stars": "Stars must be an integer from 1 to 5",
+        "name": "Name cannot be blank",
+        "name": "Name must have a minimum of 3 characters",
       }
     }
     ```
 
-* **Error Response**: Couldn't find a Review with the specified id
+* **Error Response**: Couldn't find a Playlist with the specified id
   * **Status Code**: `404`
   * **Headers**:
     * **Content-Type**: `application/json`
@@ -920,22 +987,22 @@ Update and return an existing review.
 
     ```json
     {
-      "message": "Review couldn't be found"
+      "message": "Playlist couldn't be found"
     }
     ```
 
-### Delete a Review
+### Delete a Playlist
 
-Delete an existing review.
+Delete an existing playlist.
 
 * **Require Authentication**: true
-* **Require Proper Authorization**: Review must belong to the current user
-* Request
-  * **Method**: DELETE
-  * **Route path**: /api/playlists/:reviewId
+* **Require Proper Authorization**: Playlist must belong to the current user
+* **Request**
+  * **Method**: `DELETE`
+  * **Route path**: `/api/playlists/:playlistId`
   * **Body**: `none`
 
-* Successful Response
+* **Successful Response**
   * **Status Code**: `200`
   * **Headers**:
     * **Content-Type**: `application/json`
@@ -947,7 +1014,7 @@ Delete an existing review.
     }
     ```
 
-* **Error Response**: Couldn't find a Review with the specified id
+* **Error Response**: Couldn't find a Playlist with the specified id
   * **Status Code**: `404`
   * **Headers**:
     * **Content-Type**: `application/json`
@@ -955,7 +1022,7 @@ Delete an existing review.
 
     ```json
     {
-      "message": "Review couldn't be found"
+      "message": "Playlist couldn't be found"
     }
     ```
 
@@ -966,12 +1033,12 @@ Delete an existing review.
 Return all the bookings that the current user has made.
 
 * **Require Authentication**: true
-* Request
+* **Request**
   * **Method**: `GET`
   * **Route path**: /api/bookings/current
   * **Body**: `none`
 
-* Successful Response
+* **Successful Response**
   * **Status Code**: `200`
   * **Headers**:
     * **Content-Type**: `application/json`
@@ -1011,12 +1078,12 @@ Return all the bookings that the current user has made.
 Return all the bookings for a song specified by id.
 
 * **Require Authentication**: true
-* Request
+* **Request**
   * **Method**: `GET`
   * **Route path**: /api/songs/:songId/bookings
   * **Body**: `none`
 
-* Successful Response: If you ARE NOT the owner of the song.
+* **Successful Response**: If you ARE NOT the owner of the song.
   * **Status Code**: `200`
   * **Headers**:
     * **Content-Type**: `application/json`
@@ -1034,7 +1101,7 @@ Return all the bookings for a song specified by id.
     }
     ```
 
-* Successful Response: If you ARE the owner of the song.
+* **Successful Response**: If you ARE the owner of the song.
   * **Status Code**: `200`
   * **Headers**:
     * **Content-Type**: `application/json`
@@ -1079,7 +1146,7 @@ Create and return a new booking from a song specified by id.
 
 * **Require Authentication**: true
 * **Require Proper Authorization**: Song must NOT belong to the current user
-* Request
+* **Request**
   * **Method**: `POST`
   * **Route path**: /api/songs/:songId/bookings
   * **Headers**:
@@ -1093,7 +1160,7 @@ Create and return a new booking from a song specified by id.
     }
     ```
 
-* Successful Response
+* **Successful Response**
   * **Status Code**: `201`
   * **Headers**:
     * **Content-Type**: `application/json`
@@ -1161,7 +1228,7 @@ Update and return an existing booking.
 
 * **Require Authentication**: true
 * **Require Proper Authorization**: Booking must belong to the current user
-* Request
+* **Request**
   * **Method**: `PUT`
   * **Route path**: /api/bookings/:bookingId
   * **Headers**:
@@ -1175,7 +1242,7 @@ Update and return an existing booking.
     }
     ```
 
-* Successful Response
+* **Successful Response**
   * **Status Code**: `200`
   * **Headers**:
     * **Content-Type**: `application/json`
@@ -1256,12 +1323,12 @@ Delete an existing booking.
 * **Require Authentication**: true
 * **Require Proper Authorization**: Booking must belong to the current user or the
   Song must belong to the current user
-* Request
+* **Request**
   * **Method**: DELETE
   * **Route path**: /api/bookings/:bookingId
   * **Body**: `none`
 
-* Successful Response
+* **Successful Response**
   * **Status Code**: `200`
   * **Headers**:
     * **Content-Type**: `application/json`
@@ -1305,12 +1372,12 @@ Delete an existing image for a Song.
 
 * **Require Authentication**: true
 * **Require Proper Authorization**: Song must belong to the current user
-* Request
+* **Request**
   * **Method**: DELETE
   * **Route path**: /api/song-images/:imageId
   * **Body**: `none`
 
-* Successful Response
+* **Successful Response**
   * **Status Code**: `200`
   * **Headers**:
     * **Content-Type**: `application/json`
@@ -1340,12 +1407,12 @@ Delete an existing image for a Review.
 
 * **Require Authentication**: true
 * **Require Proper Authorization**: Review must belong to the current user
-* Request
+* **Request**
   * **Method**: DELETE
   * **Route path**: /api/review-images/:imageId
   * **Body**: `none`
 
-* Successful Response
+* **Successful Response**
   * **Status Code**: `200`
   * **Headers**:
     * **Content-Type**: `application/json`
@@ -1374,7 +1441,7 @@ Delete an existing image for a Review.
 Return songs filtered by query parameters.
 
 * **Require Authentication**: false
-* Request
+* **Request**
   * **Method**: `GET`
   * **Route path**: /api/songs
   * Query Parameters
@@ -1388,7 +1455,7 @@ Return songs filtered by query parameters.
     * maxPrice: decimal, optional, minimum: 0
   * **Body**: `none`
 
-* Successful Response
+* **Successful Response**
   * **Status Code**: `200`
   * **Headers**:
     * **Content-Type**: `application/json`
