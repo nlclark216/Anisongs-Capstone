@@ -297,13 +297,6 @@ Returns all the songs.
                 "name": "neo-soul",
                 "custom": false
               },
-              { 
-                "id": 3,
-                "song_id": 1,
-                "artist_id": 1, 
-                "name": "trip hop",
-                "custom": false
-              },
             ],
           },
           "Playlists": [
@@ -311,7 +304,7 @@ Returns all the songs.
               "id": 1,
               "userId": 1,
               "name": "Lazy Day"
-            }
+            },
           ]
         }
       ]
@@ -341,6 +334,7 @@ Returns all the songs owned (uploaded) by the current user.
           "id": 1,
           "ownerId": 1,
           "artistId": 1,
+          "ownerId": 1,
           "file": "song1 url",
           "title": "Pink + White",
           "date": "2016-08-20",
@@ -386,13 +380,6 @@ Returns all the songs owned (uploaded) by the current user.
                 "name": "neo-soul",
                 "custom": false
               },
-              { 
-                "id": 3,
-                "song_id": 1,
-                "artist_id": 1, 
-                "name": "trip hop",
-                "custom": false
-              },
             ],
           },
           "Playlists": [
@@ -401,7 +388,14 @@ Returns all the songs owned (uploaded) by the current user.
               "userId": 1,
               "name": "Lazy Day"
             }
-          ]
+          ],
+          "Owner": {
+            "id": 1,
+            "firstName": "Gugu",
+            "lastName": "Mbatha-Raw",
+            "email": "gugu.gaga@app.io",
+            "username": "GuguGaga"
+          }
         },
       ]
     }
@@ -426,28 +420,48 @@ Returns the details of a song specified by its id.
     ```json
     {
       "id": 1,
+      "artistId": 1,
       "ownerId": 1,
       "file": "song1 url",
       "title": "Pink + White",
-      "artist": "Frank Ocean",
       "date": "2016-08-20",
       "albumName": "Blonde",
       "albumImg": "song1 img url",
       "length": "3:04",
-      "liked": "True",
-      "playMore": "True",
+      "liked": true,
+      "playMore": true,
       "playLess": null,
       "lastPlayed": "2025-01-09 00:19:47",
       "createdAt": "2021-11-19 20:39:36",
       "updatedAt": "2021-11-19 20:39:36",
-      "Tags": ["neo-soul", "pop", "soothing", "laid-back", "trip hop", "smooth", "semi-explicit"],
-      "Playlists": ["Lazy Day", "Road Trip", "Hangout"],
+      "Tags": [
+            { 
+              "id": 1,
+              "song_id": 1,
+              "artist_id": 1, 
+              "name": "neo-soul",
+              "custom": false
+            },
+          ],
+      "Playlists": [
+            {
+              "id": 1,
+              "userId": 1,
+              "name": "Lazy Day"
+            }
+          ],
       "Artist": {
         "id": 1,
-        "title": "Frank Ocean",
+        "name": "Frank Ocean",
+        "liked": true,
+        "playMore": true,
+        "playLess": null,
       },
       "Owner": {
         "id": 1,
+        "firstName": "Gugu",
+        "lastName": "Mbatha-Raw",
+        "email": "gugu.gaga@app.io",
         "username": "GuguGaga"
       }
     }
@@ -484,7 +498,10 @@ Uploads and returns a new song.
       "file": "song file url",
       "date": "2016-08-20",
       "albumName": "Blonde",
-      "albumImg": "song1 img url"
+      "albumImg": "song1 img url",
+      "liked": true,
+      "playMore": true,
+      "playLess": null,
     }
     ```
 
@@ -498,16 +515,24 @@ Uploads and returns a new song.
     {
       "id": 1,
       "ownerId": 1,
+      "artistId": 1,
       "title": "Pink + White",
-      "artist": "Frank Ocean",
       "file": "song file url",
       "date": "2016-08-20",
       "albumName": "Blonde",
       "albumImg": "song1 img url",
-      "playMore": null,
+      "liked": true,
+      "playMore": true,
       "playLess": null,
       "createdAt": "2021-11-19 20:39:36",
-      "updatedAt": "2021-11-19 20:39:36"
+      "updatedAt": "2021-11-19 20:39:36",
+      "Artist": {
+        "id": 1,
+        "name": "Frank Ocean",
+        "liked": true,
+        "playMore": true,
+        "playLess": null,
+      }
     }
     ```
 
@@ -522,7 +547,12 @@ Uploads and returns a new song.
       "message": "Bad Request", 
       "errors": {
         "title": "Title is required",
+        "title": "Title must be shorter than 50 characters",
+        "albumName": "Album name must be shorter than 50 characters",
         "file": "Song file url is required",
+        "file": "Song file too large, must be below 4G",
+        "file": "Song file must be in AIFF, MP3 or WAV format",
+        "albumImg": "Album image must be in JPG, JPEG, or PNG format",
       }
     }
     ```
@@ -591,11 +621,12 @@ Updates and returns an existing song.
     {
       "file": "song1 url",
       "title": "Pink + White",
-      "artist": "Frank Ocean",
+      "artistId": 1,
       "albumName": "Blonde",
       "albumImg": "song1 img url",
-      "playMore": "True",
-      "playLess": null,    
+      "liked": true,
+      "playMore": true,
+      "playLess": null,   
     }
     ```
 
@@ -609,15 +640,23 @@ Updates and returns an existing song.
     {
       "id": 1,
       "ownerId": 1,
+      "file": "song1 url",
       "title": "Pink + White",
-      "artist": "Frank Ocean",
+      "artistId": 1,
       "date": "2016-08-20",
       "albumName": "Blonde",
       "albumImg": "song1 img url",
-      "playMore": "True",
+      "playMore": true,
       "playLess": null,
       "createdAt": "2021-11-19 20:39:36",
-      "updatedAt": "2025-01-09 20:39:36"
+      "updatedAt": "2025-01-09 20:39:36",
+      "Artist": {
+        "id": 1,
+        "name": "Frank Ocean",
+        "liked": true,
+        "playMore": true,
+        "playLess": null,
+      }
     }
     ```
 
@@ -637,6 +676,9 @@ Updates and returns an existing song.
         "date": "Date is required",
         "albumName": "Album name is required",
         "albumImg": "Image url is required",
+        "file": "Song file too large, must be below 4G",
+        "file": "Song file must be in AIFF, MP3 or WAV format",
+        "albumImg": "Album image must be in JPG, JPEG, or PNG format",
       }
     }
     ```
@@ -719,10 +761,18 @@ Returns all the playlists created by the current user.
             {
               "id": 1,
               "title": "Pink + White",
-              "artist": "Frank Ocean",
+              "artistId": 1,
               "albumName": "Blonde",
               "albumImg": "song1 img url",
-              "Tags": ["neo-soul", "pop", "soothing", "laid-back", "trip hop", "smooth", "semi-explicit"] 
+              "Artist": {},
+              "Tags": [
+                {
+                  "id": 1,
+                  "playlistId": 1,
+                  "name": "soothing",
+                  "custom": true
+                }
+              ] 
             },
           ],
           "Tags": [
@@ -823,7 +873,20 @@ Add song and return the new playlist for a song specified by id.
         "updatedAt": "2021-11-19 20:39:36",
         "Songs": [
           {
-            "id": 1
+            "id": 1,
+            "title": "Pink + White",
+            "artistId": 1,
+            "albumName": "Blonde",
+            "albumImg": "song1 img url",
+            "Artist": {},
+            "Tags": [
+              {
+                "id": 1,
+                "playlistId": 1,
+                "name": "soothing",
+                "custom": true
+              }
+            ] 
           }
         ]
       }
@@ -1026,16 +1089,16 @@ Delete an existing playlist.
     }
     ```
 
-## BOOKINGS
+## TAGS
 
-### Get all of the Current User's Bookings
+### Get all of the Current User's Tags
 
-Return all the bookings that the current user has made.
+Return all the tags that the current user has made.
 
 * **Require Authentication**: true
 * **Request**
   * **Method**: `GET`
-  * **Route path**: /api/bookings/current
+  * **Route path**: /api/tags/current
   * **Body**: `none`
 
 * **Successful Response**
@@ -1046,14 +1109,14 @@ Return all the bookings that the current user has made.
 
     ```json
     {
-      "Bookings": [
+      "Tags": [
         {
           "id": 1,
+          "userId": 1,
           "songId": 1,
           "Song": {
             "id": 1,
-            "ownerId": 1,
-            "address": "123 Disney Lane",
+            "artistId": 1,
             "city": "San Francisco",
             "state": "California",
             "country": "United States of America",
@@ -1063,7 +1126,6 @@ Return all the bookings that the current user has made.
             "price": 123,
             "previewImage": "image url"
           },
-          "userId": 2,
           "startDate": "2021-11-19",
           "endDate": "2021-11-20",
           "createdAt": "2021-11-19 20:39:36",
@@ -1073,14 +1135,14 @@ Return all the bookings that the current user has made.
     }
     ```
 
-### Get all Bookings for a Song based on the Song's id
+### Get all tags for a Song based on the Song's id
 
-Return all the bookings for a song specified by id.
+Return all the tags for a song specified by id.
 
 * **Require Authentication**: true
 * **Request**
   * **Method**: `GET`
-  * **Route path**: /api/songs/:songId/bookings
+  * **Route path**: /api/songs/:songId/tags
   * **Body**: `none`
 
 * **Successful Response**: If you ARE NOT the owner of the song.
@@ -1091,7 +1153,7 @@ Return all the bookings for a song specified by id.
 
     ```json
     {
-      "Bookings": [
+      "tags": [
         {
           "songId": 1,
           "startDate": "2021-11-19",
@@ -1109,7 +1171,7 @@ Return all the bookings for a song specified by id.
 
     ```json
     {
-      "Bookings": [
+      "tags": [
         {
           "User": {
             "id": 2,
@@ -1148,7 +1210,7 @@ Create and return a new booking from a song specified by id.
 * **Require Proper Authorization**: Song must NOT belong to the current user
 * **Request**
   * **Method**: `POST`
-  * **Route path**: /api/songs/:songId/bookings
+  * **Route path**: /api/songs/:songId/tags
   * **Headers**:
     * **Content-Type**: `application/json`
   * **Body**:
@@ -1230,7 +1292,7 @@ Update and return an existing booking.
 * **Require Proper Authorization**: Booking must belong to the current user
 * **Request**
   * **Method**: `PUT`
-  * **Route path**: /api/bookings/:bookingId
+  * **Route path**: /api/tags/:bookingId
   * **Headers**:
     * **Content-Type**: `application/json`
   * **Body**:
@@ -1296,7 +1358,7 @@ Update and return an existing booking.
 
     ```json
     {
-      "message": "Past bookings can't be modified"
+      "message": "Past tags can't be modified"
     }
     ```
 
@@ -1325,7 +1387,7 @@ Delete an existing booking.
   Song must belong to the current user
 * **Request**
   * **Method**: DELETE
-  * **Route path**: /api/bookings/:bookingId
+  * **Route path**: /api/tags/:bookingId
   * **Body**: `none`
 
 * **Successful Response**
@@ -1352,7 +1414,7 @@ Delete an existing booking.
     }
     ```
 
-* **Error Response**: Bookings that have been started can't be deleted
+* **Error Response**: tags that have been started can't be deleted
   * **Status Code**: `403`
   * **Headers**:
     * **Content-Type**: `application/json`
@@ -1360,7 +1422,7 @@ Delete an existing booking.
 
     ```json
     {
-      "message": "Bookings that have been started can't be deleted"
+      "message": "tags that have been started can't be deleted"
     }
     ```
 
