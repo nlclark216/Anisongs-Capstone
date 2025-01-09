@@ -13,6 +13,7 @@ These are the essential features required to build a working, user-ready MVP. Fo
   - Sign up using third-party providers like **Google** or **Apple**.
   - Verify email address via a confirmation link.
   - Show error messages for invalid email, weak password, or duplicate email.
+  - **(Bonus)** Determine user preferred genres during sign up process
 
 - **Login**
   - Log in with an existing email and password.
@@ -26,6 +27,7 @@ These are the essential features required to build a working, user-ready MVP. Fo
 - Update personal information (name, email, profile picture).
 - Delete account and associated data.
 - Manage saved preferences, like liked songs and artists.
+- **(Bonus)** Edit preferred genres on profile page
 
 ---
 
@@ -33,7 +35,9 @@ These are the essential features required to build a working, user-ready MVP. Fo
 
 - View a list of all songs in database.
 - View individual song page
-- Upload songs, edit and delete uploaded songs.
+- Upload songs, ensure uploaded songs are correct file size.
+- Edit uploaded song title and genres 
+- Delete uploaded songs.
 - See uploaded songs at the top of the song list (when logged in) - toggle this feature.
 - Filter songs by artist, genre, year.
 - Search for songs by vibe/preference.
@@ -55,6 +59,7 @@ These are the essential features required to build a working, user-ready MVP. Fo
 - View selected vibes on profile.
 - Create new vibes for event filters (location, date, category, online/offline).
 - Delete selected vibes.
+- Allow user to play only explicit versions of songs, or only non-explicit 
 
 ---
 
@@ -126,6 +131,12 @@ These features are more **complex** and require more development effort. Complet
 
 ---
 
+### **Sensory Accessibility Mode (Bonus Features)**
+- **Bonus**: Allow user to soften alerts and brightness within app.
+- **Bonus**: Warnings for songs with loud sounds and sirens.
+
+---
+
 ### **Shuffle (Bonus Features)**
 - **Bonus**: Let user avoid recently played songs in shuffle.
 - **Bonus**: Let user set durations to avoid recently played songs in shuffle.
@@ -143,3 +154,11 @@ These features are more **complex** and require more development effort. Complet
 
 ### **Notifications (Bonus Features)**
 - **Bonus**: Receive notifications about favorite artist updates (concerts, events, new singles/albums, etc.).
+
+---
+
+### **Music Videos (Bonus Features)**
+- **Bonus**: Add music videos to artist page.
+- **Bonus**: Hide music videos from artist page.
+
+
