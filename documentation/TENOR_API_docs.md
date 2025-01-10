@@ -315,6 +315,17 @@ Returns all the songs owned (uploaded) by the current user.
     ]
   }
   ```
+* **Error Response**: Couldn't find any songs uploaded by current user
+  * **Status Code**: `404`
+  * **Headers**:
+    * **Content-Type**: `application/json`
+  * **Body**:
+
+  ```json
+  {
+    "message": "No uploaded songs found"
+  }
+  ```
 
 ### Get details of a Song from an Id
 
@@ -356,10 +367,14 @@ Returns the details of a song specified by its id.
     "Tags": [
           { 
             "id": 1,
-            "song_id": 1,
-            "artist_id": 1, 
-            "name": "neo-soul",
-            "custom": false
+            "creatorId": 1,
+            "artistId": 1,
+            "songId": 1,
+            "playlistId": null,
+            "name": "Soothing",
+            "type": "mood",
+            "custom": true,
+            "preferred": true,
           },
         ],
     "Playlists": [
@@ -394,7 +409,7 @@ Returns the details of a song specified by its id.
 
 ```json
 {
-  "message": "Song couldn't be found"
+  "message": "No song found"
 }
 ```
 
@@ -471,7 +486,7 @@ Uploads and returns a new song.
       "file": "Song file url is required",
       "file": "Song file must be smaller than 4G",
       "file": "Song file must be in AIFF, MP3 or WAV format",
-      "albumImg": "Album image must be in JPG, JPEG, or PNG format",
+      "albumImg": "Album like must be in JPG, JPEG, or PNG format",
     }
   }
   ```
@@ -491,7 +506,7 @@ Create and return a new tag for a song specified by id.
 
   ```json
   {
-    "name": "mellow"
+    "name": "Mellow"
   }
   ```
 
@@ -506,7 +521,7 @@ Create and return a new tag for a song specified by id.
     "id": 1,
     "userId": 1,
     "songId": 1,
-    "name": "mellow",
+    "name": "Mellow",
     "custom": true
   }
   ```
@@ -519,7 +534,7 @@ Create and return a new tag for a song specified by id.
 
   ```json
   {
-    "message": "Song couldn't be found"
+    "message": "No song found"
   }
   ```
 
@@ -590,7 +605,7 @@ Updates and returns an existing song.
       "albumImg": "Image url is required",
       "file": "Song file too large, must be below 4G",
       "file": "Song file must be in AIFF, MP3 or WAV format",
-      "albumImg": "Album image must be in JPG, JPEG, or PNG format",
+      "albumImg": "Album like must be in JPG, JPEG, or PNG format",
     }
   }
   ```
@@ -603,7 +618,7 @@ Updates and returns an existing song.
 
   ```json
   {
-    "message": "Song couldn't be found"
+    "message": "No song found"
   }
   ```
 
@@ -638,7 +653,7 @@ Deletes an existing song.
 
   ```json
   {
-    "message": "Song couldn't be found"
+    "message": "No song found"
   }
   ```
 
@@ -697,12 +712,24 @@ Returns all the playlists created by the current user.
     ]
   }
   ```
+* **Error Response**: Couldn't find any playlists created by current user
+  * **Status Code**: `404`
+  * **Headers**:
+    * **Content-Type**: `application/json`
+  * **Body**:
+
+  ```json
+  {
+    "message": "No tag found"
+  }
+  ```
 
 ### Get all playlists by a Song's id
 
 Returns all the playlists that a song is part of specified by id.
 
-* **Require Authentication**: false
+* **Require Authentication**: true
+* **Require Authorizationn**: Playlist must belong to user
 * **Request**
   * **Method**: `GET`
   * **Route path**: `/api/songs/:songId/playlists`
@@ -726,7 +753,7 @@ Returns all the playlists that a song is part of specified by id.
   }
   ```
 
-* **Error Response**: Couldn't find a Song with the specified id
+* **Error Response**: Couldn't find a Playlist with the specified id
   * **Status Code**: `404`
   * **Headers**:
     * **Content-Type**: `application/json`
@@ -734,7 +761,7 @@ Returns all the playlists that a song is part of specified by id.
 
   ```json
   {
-    "message": "Song couldn't be found"
+    "message": "No playlist found"
   }
   ```
 
@@ -824,7 +851,7 @@ Add song and return the new playlist for a song specified by id.
 
   ```json
   {
-    "message": "Song couldn't be found"
+    "message": "No song found"
   }
   ```
 
@@ -1050,26 +1077,113 @@ Return all the tags that the current user has made.
         "songId": 1,
         "playlistId": 1,
         "name": "Soothing",
-        "custom": true,
         "type": "mood",
+        "custom": true,
+        "preferred": true,
         "createdAt": "2021-11-19 20:39:36",
         "updatedAt": "2021-11-19 20:39:36"
       },
     ]
   }
   ```
+### Create a Tag from a Artist based on the Artist's id
 
-### Get all tags for a Song based on the Song's id
+Create and return a new tag for a artist specified by id.
 
-Return all the tags for a song specified by id.
+* **Require Authentication**: true
+* **Require Authorization**: Tag must not have same `name` AND `creatorId` as another tag
+* **Request**
+  * **Method**: `POST`
+  * **Route path**: `/api/artists/:artistId/tags`
+  * **Headers**:
+    * **Content-Type**: `application/json`
+  * **Body**:
+
+  ```json
+  {
+    "name": "Soothing",
+    "type": "mood",
+    "preferred": true
+  }
+  ```
+
+* **Successful Response**
+  * **Status Code**: `201`
+  * **Headers**:
+    * **Content-Type**: `application/json`
+  * **Body**:
+
+  ```json
+  {
+    "id": 1,
+    "creatorId": 1,
+    "artistId": 1,
+    "songId": null,
+    "playlistId": null,
+    "name": "Soothing",
+    "type": "mood",
+    "custom": true,
+    "preferred": true,
+    "createdAt": "2021-11-19 20:39:36",
+    "updatedAt": "2021-11-19 20:39:36"
+  }
+  ```
+
+* **Error Response**: Body validation errors
+  * **Status Code**: `400`
+  * **Headers**:
+    * **Content-Type**: `application/json`
+  * **Body**:
+
+  ```json
+  {
+    "message": "Bad Request", 
+    "errors": {
+      "name": "Name cannot be blank",
+      "name": "Name must be a minimum of 3 characters",
+      "type": "Please select a type"
+    }
+  }
+  ```
+
+* **Error Response**: Couldn't find an Artist with the specified id
+  * **Status Code**: `404`
+  * **Headers**:
+    * **Content-Type**: `application/json`
+  * **Body**:
+
+  ```json
+  {
+    "message": "No artist found"
+  }
+  ```
+
+* **Error Response**: Tag conflict
+  * **Status Code**: `403`
+  * **Headers**:
+    * **Content-Type**: `application/json`
+  * **Body**:
+
+  ```json
+  {
+    "message": "Tag already exists for this artist",
+    "errors": {
+      "message": "Tag already exists for this artist"
+    }
+  }
+  ```
+
+### Get all tags for a Artist based on the Artist's id
+
+Return all the tags for a artist specified by id.
 
 * **Require Authentication**: true
 * **Request**
   * **Method**: `GET`
-  * **Route path**: `/api/songs/:songId/tags`
+  * **Route path**: `/api/artists/:artistId/tags`
   * **Body**: `none`
 
-* **Successful Response**: If you ARE NOT the owner of the song.
+* **Successful Response**: If you ARE NOT the creator of the tag.
   * **Status Code**: `200`
   * **Headers**:
     * **Content-Type**: `application/json`
@@ -1082,11 +1196,12 @@ Return all the tags for a song specified by id.
       "id": 2,
       "creatorId": null,
       "artistId": 1,
-      "songId": 1,
+      "songId": null,
       "playlistId": null,
       "name": "Hip Hop",
-      "custom": false,
       "type": "genre",
+      "custom": false,
+      "preferred": false,
       "createdAt": "2021-11-19 20:39:36",
       "updatedAt": "2021-11-19 20:39:36"
       }
@@ -1094,51 +1209,53 @@ Return all the tags for a song specified by id.
   }
   ```
 
-* **Successful Response**: If you ARE the owner of the song.
+* **Successful Response**: If you ARE the creator of the tag.
   * **Status Code**: `200`
   * **Headers**:
     * **Content-Type**: `application/json`
   * **Body**:
 
-    ```json
-    {
-      "Tags": [
-        {
-          "id": 1,
-          "name": "Soothing",
-          "creatorId": 1,
-          "artistId": 1,
-          "songId": 1,
-          "playlistId": null,
-          "custom": true,
-          "type": "mood",
-          "createdAt": "2021-11-19 20:39:36",
-          "updatedAt": "2021-11-19 20:39:36"
-        },
-      ]
-    }
-    ```
+  ```json
+  {
+    "Tags": [
+      {
+        "id": 1,
+        "creatorId": 1,
+        "artistId": 1,
+        "songId": null,
+        "playlistId": null,
+        "name": "Soothing",
+        "type": "mood",
+        "custom": true,
+        "preferred": true,
+        "createdAt": "2021-11-19 20:39:36",
+        "updatedAt": "2021-11-19 20:39:36"
+      },
+    ]
+  }
+  ```
 
-* **Error Response**: Couldn't find a Song with the specified id
+* **Error Response**: Couldn't find an Artist with the specified id
   * **Status Code**: `404`
   * **Headers**:
     * **Content-Type**: `application/json`
   * **Body**:
 
-    ```json
-    {
-      "message": "Song couldn't be found"
-    }
-    ```
+  ```json
+  {
+    "message": "Artist not found"
+  }
+  ```
 
-### Create a Tag from a Song based on the Song's id
+### Create a Tag for a Playlist based on the Playlist's id
 
-Create and return a new tag for a song specified by id.
+Create and return a new tag for a playlist specified by id.
 
 * **Require Authentication**: true
+* **Require Authorization**: Tag must not have same `name` AND `creatorId` as another tag
 * **Request**
   * **Method**: `POST`
-  * **Route path**: `/api/songs/:songId/tags`
+  * **Route path**: `/api/playlists/:playlistId/tags`
   * **Headers**:
     * **Content-Type**: `application/json`
   * **Body**:
@@ -1146,8 +1263,8 @@ Create and return a new tag for a song specified by id.
   ```json
   {
     "name": "Soothing",
-    "songId": 1,
     "type": "mood",
+    "preferred": true
   }
   ```
 
@@ -1163,10 +1280,174 @@ Create and return a new tag for a song specified by id.
     "name": "Soothing",
     "creatorId": 1,
     "artistId": null,
+    "songId": null,
+    "playlistId": 1,
+    "type": "mood",
+    "custom": true,
+    "preferred": true,
+    "createdAt": "2021-11-19 20:39:36",
+    "updatedAt": "2021-11-19 20:39:36"
+  }
+  ```
+
+* **Error Response**: Body validation errors
+  * **Status Code**: `400`
+  * **Headers**:
+    * **Content-Type**: `application/json`
+  * **Body**:
+
+  ```json
+  {
+    "message": "Bad Request", 
+    "errors": {
+      "name": "Name cannot be blank",
+      "name": "Name must be a minimum of 3 characters",
+      "type": "Please select a type"
+    }
+  }
+  ```
+
+* **Error Response**: Couldn't find a Playlist with the specified id
+  * **Status Code**: `404`
+  * **Headers**:
+    * **Content-Type**: `application/json`
+  * **Body**:
+
+  ```json
+  {
+    "message": "No playlist found"
+  }
+  ```
+
+* **Error Response**: Tag conflict
+  * **Status Code**: `403`
+  * **Headers**:
+    * **Content-Type**: `application/json`
+  * **Body**:
+
+  ```json
+  {
+    "message": "Tag already exists",
+    "errors": {
+      "playlist": "Tag already exists for this playlist",
+      "message": "Tag already in system, must update"
+    }
+  }
+  ```
+
+### Get all tags for a Playlist based on the Playlist's id
+
+Return all the tags for a playlist specified by id.
+
+* **Require Authentication**: true
+* **Require Authorization**: User must be creator of 
+* **Request**
+  * **Method**: `GET`
+  * **Route path**: `/api/playlists/:playlistId/tags`
+  * **Body**: `none`
+
+* **Successful Response**: If you ARE NOT the owner of the tag.
+  * **Status Code**: `200`
+  * **Headers**:
+    * **Content-Type**: `application/json`
+  * **Body**:
+
+  ```json
+  {
+    "Tags": [
+      {
+      "id": 2,
+      "creatorId": null,
+      "artistId": null,
+      "songId": null,
+      "playlistId": 1,
+      "name": "Hip Hop",
+      "type": "genre",
+      "custom": false,
+      "preferred": false,
+      "createdAt": "2021-11-19 20:39:36",
+      "updatedAt": "2021-11-19 20:39:36"
+      }
+    ]
+  }
+  ```
+
+* **Successful Response**: If you ARE the owner of the song.
+  * **Status Code**: `200`
+  * **Headers**:
+    * **Content-Type**: `application/json`
+  * **Body**:
+
+  ```json
+  {
+    "Tags": [
+      {
+        "id": 1,
+        "creatorId": 1,
+        "artistId": null,
+        "songId": null,
+        "playlistId": 1,
+        "name": "Soothing",
+        "type": "mood",
+        "custom": true,
+        "preferred": true,
+        "createdAt": "2021-11-19 20:39:36",
+        "updatedAt": "2021-11-19 20:39:36"
+      },
+    ]
+  }
+  ```
+
+* **Error Response**: Couldn't find a Playlist with the specified id
+  * **Status Code**: `404`
+  * **Headers**:
+    * **Content-Type**: `application/json`
+  * **Body**:
+
+  ```json
+  {
+    "message": "No playlist found"
+  }
+  ```
+
+### Create a Tag for a Song based on the Song's id
+
+Create and return a new tag for a song specified by id.
+
+* **Require Authentication**: true
+* **Require Authorization**: Tag must not have same `name` AND `creatorId` as another tag
+* **Request**
+  * **Method**: `POST`
+  * **Route path**: `/api/songs/:songId/tags`
+  * **Headers**:
+    * **Content-Type**: `application/json`
+  * **Body**:
+
+  ```json
+  {
+    "name": "Soothing",
+    "type": "mood",
+    "preferred": true
+  }
+  ```
+
+* **Successful Response**
+  * **Status Code**: `201`
+  * **Headers**:
+    * **Content-Type**: `application/json`
+  * **Body**:
+
+  ```json
+  {
+    "id": 1,
+    "creatorId": 1,
+    "artistId": null,
     "songId": 1,
     "playlistId": null,
-    "custom": true,
+    "name": "Soothing",
     "type": "mood",
+    "custom": true,
+    "preferred": true,
     "createdAt": "2021-11-19 20:39:36",
     "updatedAt": "2021-11-19 20:39:36"
   }
@@ -1197,7 +1478,7 @@ Create and return a new tag for a song specified by id.
 
   ```json
   {
-    "message": "Song couldn't be found"
+    "message": "No song found"
   }
   ```
 
@@ -1209,10 +1490,85 @@ Create and return a new tag for a song specified by id.
 
   ```json
   {
-    "message": "Tag already exists for this song",
+    "message": "Tag already exists",
     "errors": {
-      "message": "Tag already exists for this song"
+      "song": "Tag already exists for this song",
+      "message": "Tag already in system, must update"
     }
+  }
+  ```
+
+### Get all tags for a Song based on the Song's id
+
+Return all the tags for a song specified by id.
+
+* **Require Authentication**: true
+* **Request**
+  * **Method**: `GET`
+  * **Route path**: `/api/songs/:songId/tags`
+  * **Body**: `none`
+
+* **Successful Response**: If you ARE NOT the owner of the song.
+  * **Status Code**: `200`
+  * **Headers**:
+    * **Content-Type**: `application/json`
+  * **Body**:
+
+  ```json
+  {
+    "Tags": [
+      {
+      "id": 2,
+      "creatorId": null,
+      "artistId": 1,
+      "songId": 1,
+      "playlistId": null,
+      "name": "Hip Hop",
+      "type": "mood",
+      "custom": false,
+      "preferred": false,
+      "createdAt": "2021-11-19 20:39:36",
+      "updatedAt": "2021-11-19 20:39:36"
+      }
+    ]
+  }
+  ```
+
+* **Successful Response**: If you ARE the owner of the song.
+  * **Status Code**: `200`
+  * **Headers**:
+    * **Content-Type**: `application/json`
+  * **Body**:
+
+  ```json
+  {
+    "Tags": [
+      {
+        "id": 1,
+        "creatorId": 1,
+        "artistId": 1,
+        "songId": 1,
+        "playlistId": null,
+        "name": "Soothing",
+        "type": "mood",
+        "custom": true,
+        "preferred": true,
+        "createdAt": "2021-11-19 20:39:36",
+        "updatedAt": "2021-11-19 20:39:36"
+      },
+    ]
+  }
+  ```
+
+* **Error Response**: Couldn't find a Song with the specified id
+  * **Status Code**: `404`
+  * **Headers**:
+    * **Content-Type**: `application/json`
+  * **Body**:
+
+  ```json
+  {
+    "message": "No song found"
   }
   ```
 
@@ -1250,8 +1606,9 @@ Update and return an existing tag.
     "artistId": null,
     "songId": 1,
     "playlistId": null,
+    "type": "mood",
     "custom": true,
-    "type": "genre",
+    "preferred": true,
     "createdAt": "2021-11-19 20:39:36",
     "updatedAt": "2025-01-09 00:39:36"
   }
@@ -1286,6 +1643,290 @@ Update and return an existing tag.
   }
   ```
 
+
+### Edit a Song Tag
+
+Update and return an existing tag.
+
+* **Require Authentication**: true
+* **Require Proper Authorization**: Tag must belong to the current user
+* **Request**
+  * **Method**: `PUT`
+  * **Route path**: `/api/songs/:songId/tags/:tagId`
+  * **Headers**:
+    * **Content-Type**: `application/json`
+  * **Body**:
+
+  ```json
+  {
+    "name": "Trip Hop",
+    "type": "genre",
+  }
+  ```
+
+* **Successful Response**
+  * **Status Code**: `200`
+  * **Headers**:
+    * **Content-Type**: `application/json`
+  * **Body**:
+
+  ```json
+  {
+    "id": 1,
+    "name": "Trip Hop",
+    "creatorId": 1,
+    "artistId": null,
+    "songId": 1,
+    "playlistId": null,
+    "type": "mood",
+    "custom": true,
+    "preferred": true,
+    "createdAt": "2021-11-19 20:39:36",
+    "updatedAt": "2025-01-09 00:39:36"
+  }
+  ```
+
+* **Error Response**: Body validation errors
+  * **Status Code**: `400`
+  * **Headers**:
+    * **Content-Type**: `application/json`
+  * **Body**:
+
+  ```json
+  {
+    "message": "Bad Request", 
+    "errors": {
+      "name": "Name cannot be blank",
+      "name": "Name must be a minimum of 3 characters",
+      "type": "Please select a type"
+    }
+  }
+  ```
+
+* **Error Response**: Couldn't find a Tag with the specified id
+  * **Status Code**: `404`
+  * **Headers**:
+    * **Content-Type**: `application/json`
+  * **Body**:
+
+  ```json
+  {
+    "message": "No tag found"
+  }
+  ```
+
+### Edit an Artist Tag
+
+Update and return an existing tag.
+
+* **Require Authentication**: true
+* **Require Proper Authorization**: Tag must belong to the current user 
+* **Request**
+  * **Method**: `PUT`
+  * **Route path**: `/api/artists/:artistId/tags/:tagId`
+  * **Headers**:
+    * **Content-Type**: `application/json`
+  * **Body**:
+
+  ```json
+  {
+    "name": "Trip Hop",
+    "type": "genre",
+  }
+  ```
+
+* **Successful Response**
+  * **Status Code**: `200`
+  * **Headers**:
+    * **Content-Type**: `application/json`
+  * **Body**:
+
+  ```json
+  {
+    "id": 1,
+    "creatorId": 1,
+    "artistId": 1,
+    "songId": null,
+    "playlistId": null,
+    "name": "Trip Hop",
+    "type": "genre",
+    "custom": true,
+    "preferred": true,
+    "createdAt": "2021-11-19 20:39:36",
+    "updatedAt": "2025-01-09 00:39:36"
+  }
+  ```
+
+* **Error Response**: Body validation errors
+  * **Status Code**: `400`
+  * **Headers**:
+    * **Content-Type**: `application/json`
+  * **Body**:
+
+  ```json
+  {
+    "message": "Bad Request", 
+    "errors": {
+      "name": "Name cannot be blank",
+      "name": "Name must be a minimum of 3 characters",
+      "type": "Please select a type"
+    }
+  }
+  ```
+
+* **Error Response**: Couldn't find a Tag with the specified id
+  * **Status Code**: `404`
+  * **Headers**:
+    * **Content-Type**: `application/json`
+  * **Body**:
+
+  ```json
+  {
+    "message": "No tag found"
+  }
+  ```
+
+### Edit a Playlist Tag
+
+Update and return an existing tag.
+
+* **Require Authentication**: true
+* **Require Proper Authorization**: Tag and Playlist must belong to the current user
+* **Request**
+  * **Method**: `PUT`
+  * **Route path**: `/api/playlists/:playlistId/tags/:tagId`
+  * **Headers**:
+    * **Content-Type**: `application/json`
+  * **Body**:
+
+  ```json
+  {
+    "name": "Trip Hop",
+    "type": "genre",
+  }
+  ```
+
+* **Successful Response**
+  * **Status Code**: `200`
+  * **Headers**:
+    * **Content-Type**: `application/json`
+  * **Body**:
+
+  ```json
+  {
+    "id": 1,
+    "creatorId": 1,
+    "artistId": null,
+    "songId": null,
+    "playlistId": 1,
+    "name": "Trip Hop",
+    "type": "mood",
+    "custom": true,
+    "preferred": true,
+    "createdAt": "2021-11-19 20:39:36",
+    "updatedAt": "2025-01-09 00:39:36"
+  }
+  ```
+
+* **Error Response**: Body validation errors
+  * **Status Code**: `400`
+  * **Headers**:
+    * **Content-Type**: `application/json`
+  * **Body**:
+
+  ```json
+  {
+    "message": "Bad Request", 
+    "errors": {
+      "name": "Name cannot be blank",
+      "name": "Name must be a minimum of 3 characters",
+      "type": "Please select a type"
+    }
+  }
+  ```
+
+* **Error Response**: Couldn't find a Tag with the specified id
+  * **Status Code**: `404`
+  * **Headers**:
+    * **Content-Type**: `application/json`
+  * **Body**:
+
+  ```json
+  {
+    "message": "No tag found"
+  }
+  ```
+
+### Edit a Song Tag
+
+Update and return an existing tag.
+
+* **Require Authentication**: true
+* **Require Proper Authorization**: Tag must belong to the current user
+* **Request**
+  * **Method**: `PUT`
+  * **Route path**: `/api/songs/:songId/tags/:tagId`
+  * **Headers**:
+    * **Content-Type**: `application/json`
+  * **Body**:
+
+  ```json
+  {
+    "name": "Trip Hop",
+    "type": "genre",
+  }
+  ```
+
+* **Successful Response**
+  * **Status Code**: `200`
+  * **Headers**:
+    * **Content-Type**: `application/json`
+  * **Body**:
+
+  ```json
+  {
+    "id": 1,
+    "creatorId": 1,
+    "artistId": 1,
+    "songId": 1,
+    "playlistId": null,
+    "name": "Trip Hop",
+    "type": "mood",
+    "custom": true,
+    "preferred": true,
+    "createdAt": "2021-11-19 20:39:36",
+    "updatedAt": "2025-01-09 00:39:36"
+  }
+  ```
+
+* **Error Response**: Body validation errors
+  * **Status Code**: `400`
+  * **Headers**:
+    * **Content-Type**: `application/json`
+  * **Body**:
+
+  ```json
+  {
+    "message": "Bad Request", 
+    "errors": {
+      "name": "Name cannot be blank",
+      "name": "Name must be a minimum of 3 characters",
+      "type": "Please select a type"
+    }
+  }
+  ```
+
+* **Error Response**: Couldn't find a Tag with the specified id
+  * **Status Code**: `404`
+  * **Headers**:
+    * **Content-Type**: `application/json`
+  * **Body**:
+
+  ```json
+  {
+    "message": "No tag found"
+  }
+  ```
 
 ### Delete a Tag
 
@@ -1322,17 +1963,15 @@ Delete an existing tag.
   }
   ```
 
-## IMAGES
+### Delete an Artist Tag
 
-### Delete a Song Image
-
-Delete an existing image for a Song.
+Delete an existing tag.
 
 * **Require Authentication**: true
-* **Require Proper Authorization**: Song must belong to the current user
+* **Require Proper Authorization**: Tag must belong to the current user
 * **Request**
   * **Method**: `DELETE`
-  * **Route path**: /api/song-images/:imageId
+  * **Route path**: `/api/artists/:artistId/tags/:tagId`
   * **Body**: `none`
 
 * **Successful Response**
@@ -1341,33 +1980,33 @@ Delete an existing image for a Song.
     * **Content-Type**: `application/json`
   * **Body**:
 
-    ```json
-    {
-      "message": "Successfully deleted"
-    }
-    ```
+  ```json
+  {
+    "message": "Successfully deleted"
+  }
+  ```
 
-* **Error Response**: Couldn't find a Song Image with the specified id
+* **Error Response**: Couldn't find a Tag with the specified id
   * **Status Code**: `404`
   * **Headers**:
     * **Content-Type**: `application/json`
   * **Body**:
 
-    ```json
-    {
-      "message": "Song Image couldn't be found"
-    }
-    ```
+  ```json
+  {
+    "message": "No tag found"
+  }
+  ```
 
-### Delete a Review Image
+### Delete a Playlist Tag
 
-Delete an existing image for a Review.
+Delete an existing tag.
 
 * **Require Authentication**: true
-* **Require Proper Authorization**: Review must belong to the current user
+* **Require Proper Authorization**: Tag and Playlist must belong to the current user
 * **Request**
   * **Method**: `DELETE`
-  * **Route path**: /api/review-images/:imageId
+  * **Route path**: `/api/playlists/:playlistId/tags/:tagId`
   * **Body**: `none`
 
 * **Successful Response**
@@ -1376,13 +2015,231 @@ Delete an existing image for a Review.
     * **Content-Type**: `application/json`
   * **Body**:
 
-    ```json
-    {
-      "message": "Successfully deleted"
-    }
-    ```
+  ```json
+  {
+    "message": "Successfully deleted"
+  }
+  ```
 
-* **Error Response**: Couldn't find a Review Image with the specified id
+* **Error Response**: Couldn't find a Tag with the specified id
+  * **Status Code**: `404`
+  * **Headers**:
+    * **Content-Type**: `application/json`
+  * **Body**:
+
+  ```json
+  {
+    "message": "No tag found"
+  }
+  ```
+
+### Delete a Song Tag
+
+Delete an existing tag.
+
+* **Require Authentication**: true
+* **Require Proper Authorization**: Tag must belong to the current user
+* **Request**
+  * **Method**: `DELETE`
+  * **Route path**: `/api/songs/:songId/tags/:tagId`
+  * **Body**: `none`
+
+* **Successful Response**
+  * **Status Code**: `200`
+  * **Headers**:
+    * **Content-Type**: `application/json`
+  * **Body**:
+
+  ```json
+  {
+    "message": "Successfully deleted"
+  }
+  ```
+
+* **Error Response**: Couldn't find a Tag with the specified id
+  * **Status Code**: `404`
+  * **Headers**:
+    * **Content-Type**: `application/json`
+  * **Body**:
+
+  ```json
+  {
+    "message": "No tag found"
+  }
+  ```
+
+## LIKES
+
+## View current user likes
+
+View all of current user's liked songs and artists
+
+* **Require Authentication**: true
+* **Require Proper Authorization**: Like must belong to the current user
+* **Request**
+  * **Method**: `GET`
+  * **Route path**: `/api/likes/current`
+  * **Body**: `none`
+
+* **Successful Response**
+  * **Status Code**: `200`
+  * **Headers**:
+    * **Content-Type**: `application/json`
+  * **Body**:
+
+  ```json
+  {
+    "Likes": [
+      {
+        "id": 1,
+        "user_id": 1,
+        "song_id": null,
+        "artist_id": 1
+      }
+    ]
+  }
+  ```
+* **Error Response**: Couldn't find any Likes for the current user
+  * **Status Code**: `404`
+  * **Headers**:
+    * **Content-Type**: `application/json`
+  * **Body**:
+
+  ```json
+  {
+    "message": "No likes found"
+  }
+  ```
+
+## View Song Likes
+
+View all the songs the current user likes
+
+* **Require Authentication**: true
+* **Require Proper Authorization**: Like must belong to the current user
+* **Request**
+  * **Method**: `GET`
+  * **Route path**: `/api/songs/likes`
+  * **Body**: `none`
+
+* **Successful Response**
+  * **Status Code**: `200`
+  * **Headers**:
+    * **Content-Type**: `application/json`
+  * **Body**:
+
+  ```json
+  {
+    "Likes": [
+      {
+        "id": 1,
+        "user_id": 1,
+        "song_id": 1,
+        "artist_id": 1
+      }
+    ]
+  }
+  ```
+* **Error Response**: Couldn't find any Likes for the current user
+  * **Status Code**: `404`
+  * **Headers**:
+    * **Content-Type**: `application/json`
+  * **Body**:
+
+  ```json
+  {
+    "message": "No likes found"
+  }
+  ```
+
+## View Artist Likes
+
+View all the artists the current user likes
+
+* **Require Authentication**: true
+* **Require Proper Authorization**: Like must belong to the current user
+* **Request**
+  * **Method**: `GET`
+  * **Route path**: `/api/artists/likes`
+  * **Body**: `none`
+
+* **Successful Response**
+  * **Status Code**: `200`
+  * **Headers**:
+    * **Content-Type**: `application/json`
+  * **Body**:
+
+  ```json
+  {
+    "Likes": [
+      {
+        "id": 1,
+        "user_id": 1,
+        "song_id": null,
+        "artist_id": 1
+      }
+    ]
+  }
+  ```
+* **Error Response**: Couldn't find any Likes for the current user
+  * **Status Code**: `404`
+  * **Headers**:
+    * **Content-Type**: `application/json`
+  * **Body**:
+
+  ```json
+  {
+    "message": "No likes found"
+  }
+  ```
+
+### Delete a Song Like
+
+Delete an existing song like.
+
+* **Require Authentication**: true
+* **Require Proper Authorization**: Like must belong to the current user
+* **Request**
+  * **Method**: `DELETE`
+  * **Route path**: `/api/songs/:likeId`
+  * **Body**: `none`
+
+* **Successful Response**
+  * **Status Code**: `200`
+  * **Headers**:
+    * **Content-Type**: `application/json`
+  * **Body**:
+
+  ```json
+  {
+    "message": "Successfully deleted"
+  }
+  ```
+
+### Delete an Artist Like
+
+Delete an existing artist like.
+
+* **Require Authentication**: true
+* **Require Proper Authorization**: Like must belong to the current user
+* **Request**
+  * **Method**: `DELETE`
+  * **Route path**: `/api/artists/:likeId`
+  * **Body**: `none`
+
+* **Successful Response**
+  * **Status Code**: `200`
+  * **Headers**:
+    * **Content-Type**: `application/json`
+  * **Body**:
+
+  ```json
+  {
+    "message": "Successfully deleted"
+  }
+  ```
+
+* **Error Response**: Couldn't find an Artist Like with the specified id
   * **Status Code**: `404`
   * **Headers**:
     * **Content-Type**: `application/json`
@@ -1390,7 +2247,7 @@ Delete an existing image for a Review.
 
     ```json
     {
-      "message": "Review Image couldn't be found"
+      "message": "No Like found"
     }
     ```
 
@@ -1401,16 +2258,13 @@ Return songs filtered by query parameters.
 * **Require Authentication**: false
 * **Request**
   * **Method**: `GET`
-  * **Route path**: /api/songs
+  * **Route path**: `/api/songs`
   * Query Parameters
     * page: integer, minimum: 1, default: 1
     * size: integer, minimum: 1, maximum: 20, default: 20
-    * minLat: decimal, optional
-    * maxLat: decimal, optional
-    * minLng: decimal, optional
+    * artistId: decimal, optional, minimum: 1
+    * timesPlayed: decimal, optional, minimum: 0
     * maxLng: decimal, optional
-    * minPrice: decimal, optional, minimum: 0
-    * maxPrice: decimal, optional, minimum: 0
   * **Body**: `none`
 
 * **Successful Response**
@@ -1419,31 +2273,34 @@ Return songs filtered by query parameters.
     * **Content-Type**: `application/json`
   * **Body**:
 
-    ```json
+  ```json
+  {
+    "Songs": [
     {
-      "Songs": [
-        {
-          "id": 1,
-          "ownerId": 1,
-          "address": "123 Disney Lane",
-          "city": "San Francisco",
-          "state": "California",
-          "country": "United States of America",
-          "lat": 37.7645358,
-          "lng": -122.4730327,
-          "title": "App Academy",
-          "description": "Place where web developers are created",
-          "price": 123,
-          "createdAt": "2021-11-19 20:39:36",
-          "updatedAt": "2021-11-19 20:39:36",
-          "avgRating": 4.5,
-          "previewImage": "image url"
-        }
-      ],
-      "page": 2,
-      "size": 20
+      "id": 1,
+      "ownerId": 1,
+      "artistId": 1,
+      "file": "song1 url",
+      "title": "Pink + White",
+      "date": "2016-08-20",
+      "albumName": "Blonde",
+      "albumImg": "song1 img url",
+      "length": "3:04",
+      "price": 0.99,
+      "liked": true,
+      "playMore": true,
+      "playLess": null,
+      "lastPlayed": "2022-01-09 00:25:13",
+      "timesPlayed": 3,
+      "explicit": true,
+      "createdAt": "2021-11-19 20:39:36",
+      "updatedAt": "2021-11-19 20:39:36"
     }
-    ```
+  ],
+    "page": 2,
+    "size": 20
+  }
+  ```
 
 * **Error Response**: Query parameter validation errors
   * **Status Code**: `400`
@@ -1457,12 +2314,7 @@ Return songs filtered by query parameters.
       "errors": {
         "page": "Page must be greater than or equal to 1",
         "size": "Size must be between 1 and 20",
-        "maxLat": "Maximum latitude is invalid",
-        "minLat": "Minimum latitude is invalid",
-        "minLng": "Maximum longitude is invalid",
-        "maxLng": "Minimum longitude is invalid",
-        "minPrice": "Minimum price must be greater than or equal to 0",
-        "maxPrice": "Maximum price must be greater than or equal to 0"
+        "artistId": "Artist ID must be greater than 0"
       }
     }
     ```
