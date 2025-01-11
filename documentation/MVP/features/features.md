@@ -27,7 +27,6 @@ These are the essential features required to build a working, user-ready MVP.
 - Update personal information (name, email, profile picture).
 - Delete account and associated data.
 - Manage saved preferences, like liked songs and artists.
-- **(Bonus)** Edit preferred genres on profile page
 
 ---
 
@@ -51,7 +50,7 @@ These are the essential features required to build a working, user-ready MVP.
 ---
 
 ### **5. Lyrics**
-- View selected lyrics on song page.
+- View lyrics on selected song page.
 - Show or hide lyrics while playing song.
 - Delete lyrics.
 - Edit lyrics.
@@ -59,7 +58,7 @@ These are the essential features required to build a working, user-ready MVP.
 ---
 
 ### **6. Likes**
-- View likes at the top of liked artist page and beside liked songs.
+- View likes beside liked songs.
 - Filter songs by likes.
 - View saved likes on the **Profile Page**.
 
@@ -84,9 +83,10 @@ These features are more **complex** and require more development effort. Complet
 
 --
 
-### **Play More Option**
-- View play more selection on song page or tab.
-- Remove play more selection from song page or tab.
+### **Community Sharing**
+- Share lyrics and songs with user community
+- Rate submitted translations
+- Link lyrics submitted by other users to uploaded songs
 
 ---
 
@@ -112,8 +112,9 @@ These features are more **complex** and require more development effort. Complet
 ---
 
 ### **Suggestions**
-- **Bonus**: Get suggested sountracks from users that liked or uploaded the same songs
-- **Bonus**: Get suggested playlists from users that liked or uploaded the same songs
+- **Bonus**: Get suggested songs from users that liked the same songs
+- **Bonus**: Get suggested playlists from users that liked the same songs
+- **Bonus**: Get suggested songs and playlists from users that uploaded songs (and lyrics) from the same anime
 
 ---
 
@@ -145,12 +146,12 @@ These features are more **complex** and require more development effort. Complet
 ---
 
 ### **Notifications (Bonus Features)**
-- **Bonus**: Receive notifications about favorite artist updates (concerts, events, new singles/albums, etc.).
+- **Bonus**: Receive notifications about favorite anime (conventions, events, concerts, raves, pop-up events etc.).
 
 ---
 
 ### **Music Videos (Bonus Features)**
-- **Bonus**: Add music videos to artist page.
-- **Bonus**: Hide music videos from artist page.
+- **Bonus**: Add music videos to song page.
+- **Bonus**: Hide music videos from song page.
 
 
