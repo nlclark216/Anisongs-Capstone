@@ -71,15 +71,6 @@ These are the essential features required to build a working, user-ready MVP.
 - Filter search results by genre and show.
 - Search for songs using specific keywords.
 
-
----
-
-### **9. Shows**
-- Link user to songs from favorite shows
-- View all songs and albums of show.
-- View liked status of show.
-- **(Bonus)** Add vibe and genre to show
-
 ---
 
 

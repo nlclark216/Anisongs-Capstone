@@ -260,6 +260,7 @@ Returns all the songs.
         "year": 2001,
         "length": "3:04",
         "liked": true,
+        "language": "Japanese",
         "lastPlayed": "2022-01-09 00:25:13",
         "createdAt": "2021-11-19 20:39:36",
         "updatedAt": "2021-11-19 20:39:36"
@@ -295,11 +296,13 @@ Returns all the songs owned (uploaded) by the current user.
         "artist": "Do As Infinity",
         "file": "song1 url",
         "songImg": "song img url",
-        "anime": "InuYasha","albumName": "Deep Forest",
+        "anime": "InuYasha",
+        "albumName": "Deep Forest",
         "albumArt": "album art url",
         "year": 2001,
         "length": "3:04",
         "liked": true,
+        "language": "Japanese",
         "lastPlayed": "2022-01-09 00:25:13",
         "createdAt": "2021-11-19 20:39:36",
         "updatedAt": "2021-11-19 20:39:36"
@@ -349,6 +352,7 @@ Returns the details of a song specified by its id.
     "year": 2001,
     "length": "3:04",
     "liked": true,
+    "language": "Japanese",
     "lastPlayed": "2022-01-09 00:25:13",
     "createdAt": "2021-11-19 20:39:36",
     "updatedAt": "2021-11-19 20:39:36",
@@ -398,11 +402,12 @@ Uploads and returns a new song.
   "title": "ALIVE",
   "artist": "ClariS",
   "file": "song file url",
-  "anime": "Lycoris Recoil",
   "songImg": "song img url",
+  "anime": "Lycoris Recoil",
   "albumName": "ALIVE - Single",
   "albumArt": "album art url",
   "year": 2022,
+  "language": "Japanese"
 }
 ```
 
@@ -426,6 +431,7 @@ Uploads and returns a new song.
     "year": 2022,
     "length": "3:04",
     "liked": null,
+    "language": "Japanese",
     "lastPlayed": null,
     "createdAt": "2021-11-19 20:39:36",
     "updatedAt": "2021-11-19 20:39:36",
@@ -443,20 +449,23 @@ Uploads and returns a new song.
     "message": "Bad Request", 
     "errors": {
       "title": "Title is required",
-      "title": "Title must be shorter than 50 characters",
-      "albumName": "Album name must be shorter than 50 characters",
+      "title": "Title must be a minimum of 1 character",
+      "title": "Title must be a maximum of 50 characters",
+      "albumName": "Album name must be a minimum of 1 character",
       "file": "Song file url is required",
       "file": "Song file must be smaller than 4G",
       "file": "Song file must be in AIFF, MP3 or WAV format",
       "albumImg": "Album img must be in JPG, JPEG, or PNG format",
-      "anime": "Anime name is required"
+      "anime": "Anime name is required",
+      "year": "Year is required",
+      "language": "Please select a langauge"
     }
   }
   ```
 
 ### Add Like to a Song based on the Song's id
 
-Create and return a new lyric for a song specified by id.
+Create and return a new lyrics for a song specified by id.
 
 * **Require Authentication**: true
 * **Require Proper Authorization**: Song must belong to the current user
@@ -515,7 +524,8 @@ Updates and returns an existing song.
     "songImg": "song img url",
     "albumName": "Iris",
     "albumArt": "album art url",
-    "year": 2022,  
+    "year": 2022,
+    "language": "Japanese",  
   }
   ```
 
@@ -539,6 +549,7 @@ Updates and returns an existing song.
     "year": 2022,
     "length": "3:04",
     "liked": null,
+    "language": "Japanese",
     "lastPlayed": null,
     "createdAt": "2021-11-19 20:39:36",
     "updatedAt": "2021-11-19 20:39:36",
@@ -564,6 +575,7 @@ Updates and returns an existing song.
       "file": "Song file too large, must be below 4G",
       "file": "Song file must be in AIFF, MP3 or WAV format",
       "albumImg": "Album like must be in JPG, JPEG, or PNG format",
+      "language": "Please select a language"
     }
   }
   ```
@@ -617,6 +629,42 @@ Deletes an existing song.
 
 ## PLAYLISTS
 
+### Get all Playlists
+
+Returns all the playlists.
+
+* **Require Authentication**: false
+* **Request**
+  * **Method**: `GET`
+  * **Route path**: `/api/playlists`
+  * **Body**: `none`
+
+* **Successful Response**
+  * **Status Code**: `200`
+  * **Headers**:
+    * **Content-Type**: `application/json`
+  * **Body**:
+
+    ```json
+  {
+    "Playlists": [
+      {
+        "id": 1,
+        "creatorId": 1,
+        "name": "Nostalgia",
+        "img": "img url",
+        "createdAt": "2021-11-19 20:39:36",
+        "updatedAt": "2021-11-19 20:39:36",
+        "Creator": {
+          "id": 1,
+          "username": "GuguGaga",
+          "profile_pic": "profile pic url"
+        }
+      }
+    ]
+  }
+  ```
+
 ### Get all Playlists of the Current User
 
 Returns all the playlists created by the current user.
@@ -643,7 +691,7 @@ Returns all the playlists created by the current user.
         "img": "img url",
         "createdAt": "2021-11-19 20:39:36",
         "updatedAt": "2021-11-19 20:39:36"
-      }
+      },
     ]
   }
   ```
@@ -655,7 +703,7 @@ Returns all the playlists created by the current user.
 
   ```json
   {
-    "message": "No lyric found"
+    "message": "No playlists found"
   }
   ```
 
@@ -707,32 +755,52 @@ Returns all the playlists that a song is part of specified by id.
 
 Returns the playlist specified by id.
 
-* **Require Authentication**: true
-* **Require Authorizationn**: Playlist must belong to user
+* **Require Authentication**: false
 * **Request**
   * **Method**: `GET`
   * **Route path**: `/api/playlists/:playlistId`
   * **Body**: `none`
 
-* **Successful Response**
+* **Successful Response**: if user is NOT Playlist creator
   * **Status Code**: `200`
   * **Headers**:
     * **Content-Type**: `application/json`
   * **Body**:
 
   ```json
-  {
-    "Playlists": [
-      {
+
+    {
+        "id": 1,
+        "creatorId": 1,
+        "name": "Nostalgia",
+        "img": "img url",
+        "createdAt": "2021-11-19 20:39:36",
+        "updatedAt": "2021-11-19 20:39:36",
+        "Creator": {
+          "id": 1,
+          "username": "GuguGaga",
+          "profile_pic": "profile pic url"
+        }
+      }
+
+  ```
+* **Successful Response**: if user IS Playlist creator
+  * **Status Code**: `200`
+  * **Headers**:
+    * **Content-Type**: `application/json`
+  * **Body**:
+
+  ```json
+
+    {
         "id": 1,
         "creatorId": 1,
         "name": "Nostalgia",
         "img": "img url",
         "createdAt": "2021-11-19 20:39:36",
         "updatedAt": "2021-11-19 20:39:36"
-      },
-    ]
-  }
+      }
+
   ```
 
 * **Error Response**: Couldn't find a Playlist with the specified id
@@ -749,7 +817,7 @@ Returns the playlist specified by id.
 
 ### Add song to a Playlist based on the Playlist's id
 
-Add song and return the new playlist for a song specified by id.
+Add song and return the new playlist for a song specified by playlist id.
 
 * **Require Authentication**: true
 * **Request**
@@ -793,6 +861,7 @@ Add song and return the new playlist for a song specified by id.
           "year": 2001,
           "length": "3:04",
           "liked": true,
+          "language": "Japanese",
           "lastPlayed": "2022-01-09 00:25:13",
           "createdAt": "2021-11-19 20:39:36",
           "updatedAt": "2021-11-19 20:39:36"
@@ -859,15 +928,17 @@ Add song and return the new playlist for a song specified by id.
 * **Require Authentication**: true
 * **Request**
   * **Method**: `POST`
-  * **Route path**: `/api/songs/:songId/playlists`
+  * **Route path**: `/api/songs/:songId`
   * **Headers**:
     * **Content-Type**: `application/json`
   * **Body**:
 
   ```json
+
   {
     "playlistId": 1,
   }
+
   ```
 
 * **Successful Response**
@@ -1103,6 +1174,7 @@ Return all the lyrics in system.
       "songId": 1,
       "type": "Romaji",
       "lyrics": "fukai fukai mori no oku ni ima mo kitto\nokizari ni shita kokoro kakushite'ru yo\nsagasu hodo no chikara mo naku tsukarehateta\nhitobito wa eien no yami ni kieru\nchiisai mama nara kitto ima demo mieta ka na\nboku-tachi wa ikiru hodo ni\nnakushite'ku sukoshi zutsu\nitsuwari ya uso wo matoi\ntachisukumu koe mo naku\naoi aoi sora no iro mo kidzukanai mama\nsugite yuku mainichi ga kawatte yuku\ntsukurareta wakugumi wo koe ima wo ikite\nsabitsuita kokoro mata ugokidasu yo\ntoki no rizumu wo shireba mo ichido toberu darou\nboku-tachi wa samayoi nagara\nikite yuku doko made mo\nshinjite'ru hikari motome\narukidasu kimi to ima\nboku-tachi wa ikiru hodo ni\nnakushite'ku sukoshi zutsu\nitsuwari ya uso wo matoi\ntachisukumu koe mo naku\nboku-tachi wa samayoi nagara\nikite yuku doko made mo\nfurikaeru\nmichi wo tozashi\naruite'ku eien ni",
+      "translation": "Hiding deep, hiding deep in the forest, I know, lost among the trees\nAre the hearts that we simply left behind so many years ago\nHaving lost, having lost all our power to search, we lie completely drained\nAs our weary souls slowly fade away and darkness closes in\nOh, if we had just stayed forever young\nCould we find ourselves again, I wonder?\nEvery step we take, the more we seem to lose\nEvery waking breath, just a little more\nCaught up in the lies that hide between the lines\nNowhere left to run, nothing left to say\nNever stopping to gaze at the bluest of skies, the color starts to fade\nAnd it’s changing with every passing day, our time is moving on\nIf we live for the moment and break all the walls we put up long ago\nOh, if we come to know the flow of time\nWill we fly up once again, I wonder?\nAs we move along, we live as wanderers\nLiving day to day, everywhere we go\nSearching for the light and trying to believe\nHere we are again, walking hand in hand\nEvery step we take, the more we seem to lose\nEvery waking breath, just a little more\nCaught up in the lies that hide between the lines\nNowhere left to run, nothing left to say\nAs we move along, we live as wanderers\nLiving day to day, everywhere we go\nTurning from the past, those roads we knew before\nWalking here with you, here forevermore\nNowhere left to run, nothing left to say\nLiving day to day, here forevermore",
       "createdAt": "2021-11-19 20:39:36",
       "updatedAt": "2021-11-19 20:39:36"
       },
@@ -1143,15 +1215,16 @@ Return all the lyrics that the current user has made.
   {
     "UploadedLyrics": {
       "romaji": [
-      {
-        "id": 1,
-        "creatorId": 1,
-        "songId": 1,
-        "type": "Romaji",
-        "lyrics": "fukai fukai mori no oku ni ima mo kitto\nokizari ni shita kokoro kakushite'ru yo\nsagasu hodo no chikara mo naku tsukarehateta\nhitobito wa eien no yami ni kieru\nchiisai mama nara kitto ima demo mieta ka na\nboku-tachi wa ikiru hodo ni\nnakushite'ku sukoshi zutsu\nitsuwari ya uso wo matoi\ntachisukumu koe mo naku\naoi aoi sora no iro mo kidzukanai mama\nsugite yuku mainichi ga kawatte yuku\ntsukurareta wakugumi wo koe ima wo ikite\nsabitsuita kokoro mata ugokidasu yo\ntoki no rizumu wo shireba mo ichido toberu darou\nboku-tachi wa samayoi nagara\nikite yuku doko made mo\nshinjite'ru hikari motome\narukidasu kimi to ima\nboku-tachi wa ikiru hodo ni\nnakushite'ku sukoshi zutsu\nitsuwari ya uso wo matoi\ntachisukumu koe mo naku\nboku-tachi wa samayoi nagara\nikite yuku doko made mo\nfurikaeru\nmichi wo tozashi\naruite'ku eien ni",
-        "createdAt": "2021-11-19 20:39:36",
-        "updatedAt": "2021-11-19 20:39:36"
-      },
+        {
+          "id": 1,
+          "creatorId": 1,
+          "songId": 1,
+          "type": "Romaji",
+          "lyrics": "fukai fukai mori no oku ni ima mo kitto\nokizari ni shita kokoro kakushite'ru yo\nsagasu hodo no chikara mo naku tsukarehateta\nhitobito wa eien no yami ni kieru\nchiisai mama nara kitto ima demo mieta ka na\nboku-tachi wa ikiru hodo ni\nnakushite'ku sukoshi zutsu\nitsuwari ya uso wo matoi\ntachisukumu koe mo naku\naoi aoi sora no iro mo kidzukanai mama\nsugite yuku mainichi ga kawatte yuku\ntsukurareta wakugumi wo koe ima wo ikite\nsabitsuita kokoro mata ugokidasu yo\ntoki no rizumu wo shireba mo ichido toberu darou\nboku-tachi wa samayoi nagara\nikite yuku doko made mo\nshinjite'ru hikari motome\narukidasu kimi to ima\nboku-tachi wa ikiru hodo ni\nnakushite'ku sukoshi zutsu\nitsuwari ya uso wo matoi\ntachisukumu koe mo naku\nboku-tachi wa samayoi nagara\nikite yuku doko made mo\nfurikaeru\nmichi wo tozashi\naruite'ku eien ni",
+          "translation": "Hiding deep, hiding deep in the forest, I know, lost among the trees\nAre the hearts that we simply left behind so many years ago\nHaving lost, having lost all our power to search, we lie completely drained\nAs our weary souls slowly fade away and darkness closes in\nOh, if we had just stayed forever young\nCould we find ourselves again, I wonder?\nEvery step we take, the more we seem to lose\nEvery waking breath, just a little more\nCaught up in the lies that hide between the lines\nNowhere left to run, nothing left to say\nNever stopping to gaze at the bluest of skies, the color starts to fade\nAnd it’s changing with every passing day, our time is moving on\nIf we live for the moment and break all the walls we put up long ago\nOh, if we come to know the flow of time\nWill we fly up once again, I wonder?\nAs we move along, we live as wanderers\nLiving day to day, everywhere we go\nSearching for the light and trying to believe\nHere we are again, walking hand in hand\nEvery step we take, the more we seem to lose\nEvery waking breath, just a little more\nCaught up in the lies that hide between the lines\nNowhere left to run, nothing left to say\nAs we move along, we live as wanderers\nLiving day to day, everywhere we go\nTurning from the past, those roads we knew before\nWalking here with you, here forevermore\nNowhere left to run, nothing left to say\nLiving day to day, here forevermore",
+          "createdAt": "2021-11-19 20:39:36",
+          "updatedAt": "2021-11-19 20:39:36"
+        },
       ],
     }
   }
@@ -1186,17 +1259,20 @@ Return the lyrics for a song specified by song id.
   * **Body**:
 
   ```json
-  {"SongLyrics": {
-    "romaji": {
-    "id": 1,
-    "creatorId": 1,
-    "songId": 1,
-    "type": "Romaji",
-    "lyrics": "fukai fukai mori no oku ni ima mo kitto\nokizari ni shita kokoro kakushite'ru yo\nsagasu hodo no chikara mo naku tsukarehateta\nhitobito wa eien no yami ni kieru\nchiisai mama nara kitto ima demo mieta ka na\nboku-tachi wa ikiru hodo ni\nnakushite'ku sukoshi zutsu\nitsuwari ya uso wo matoi\ntachisukumu koe mo naku\naoi aoi sora no iro mo kidzukanai mama\nsugite yuku mainichi ga kawatte yuku\ntsukurareta wakugumi wo koe ima wo ikite\nsabitsuita kokoro mata ugokidasu yo\ntoki no rizumu wo shireba mo ichido toberu darou\nboku-tachi wa samayoi nagara\nikite yuku doko made mo\nshinjite'ru hikari motome\narukidasu kimi to ima\nboku-tachi wa ikiru hodo ni\nnakushite'ku sukoshi zutsu\nitsuwari ya uso wo matoi\ntachisukumu koe mo naku\nboku-tachi wa samayoi nagara\nikite yuku doko made mo\nfurikaeru\nmichi wo tozashi\naruite'ku eien ni",
-    "createdAt": "2021-11-19 20:39:36",
-    "updatedAt": "2021-11-19 20:39:36"
-    },
-  }}
+  {
+    "SongLyrics": {
+      "romaji": {
+      "id": 1,
+      "creatorId": 1,
+      "songId": 1,
+      "type": "Romaji",
+      "lyrics": "fukai fukai mori no oku ni ima mo kitto\nokizari ni shita kokoro kakushite'ru yo\nsagasu hodo no chikara mo naku tsukarehateta\nhitobito wa eien no yami ni kieru\nchiisai mama nara kitto ima demo mieta ka na\nboku-tachi wa ikiru hodo ni\nnakushite'ku sukoshi zutsu\nitsuwari ya uso wo matoi\ntachisukumu koe mo naku\naoi aoi sora no iro mo kidzukanai mama\nsugite yuku mainichi ga kawatte yuku\ntsukurareta wakugumi wo koe ima wo ikite\nsabitsuita kokoro mata ugokidasu yo\ntoki no rizumu wo shireba mo ichido toberu darou\nboku-tachi wa samayoi nagara\nikite yuku doko made mo\nshinjite'ru hikari motome\narukidasu kimi to ima\nboku-tachi wa ikiru hodo ni\nnakushite'ku sukoshi zutsu\nitsuwari ya uso wo matoi\ntachisukumu koe mo naku\nboku-tachi wa samayoi nagara\nikite yuku doko made mo\nfurikaeru\nmichi wo tozashi\naruite'ku eien ni",
+      "translation": "Hiding deep, hiding deep in the forest, I know, lost among the trees\nAre the hearts that we simply left behind so many years ago\nHaving lost, having lost all our power to search, we lie completely drained\nAs our weary souls slowly fade away and darkness closes in\nOh, if we had just stayed forever young\nCould we find ourselves again, I wonder?\nEvery step we take, the more we seem to lose\nEvery waking breath, just a little more\nCaught up in the lies that hide between the lines\nNowhere left to run, nothing left to say\nNever stopping to gaze at the bluest of skies, the color starts to fade\nAnd it’s changing with every passing day, our time is moving on\nIf we live for the moment and break all the walls we put up long ago\nOh, if we come to know the flow of time\nWill we fly up once again, I wonder?\nAs we move along, we live as wanderers\nLiving day to day, everywhere we go\nSearching for the light and trying to believe\nHere we are again, walking hand in hand\nEvery step we take, the more we seem to lose\nEvery waking breath, just a little more\nCaught up in the lies that hide between the lines\nNowhere left to run, nothing left to say\nAs we move along, we live as wanderers\nLiving day to day, everywhere we go\nTurning from the past, those roads we knew before\nWalking here with you, here forevermore\nNowhere left to run, nothing left to say\nLiving day to day, here forevermore",
+      "createdAt": "2021-11-19 20:39:36",
+      "updatedAt": "2021-11-19 20:39:36"
+      },
+    }
+  }
   ```
 
 * **Error Response**: Couldn't find a Song with the specified id
@@ -1224,12 +1300,12 @@ Return the lyrics for a song specified by song id.
 
 ### Get lyrics for a Song based on the Lyric's id
 
-Return the lyrics for a song specified by lyric id.
+Return the lyrics for a song specified by Lyrics id.
 
 * **Require Authentication**: false
 * **Request**
   * **Method**: `GET`
-  * **Route path**: `/api/lyrics/:lyricId`
+  * **Route path**: `/api/lyrics/:lyricsId`
   * **Body**: `none`
 
 * **Successful Response**
@@ -1245,6 +1321,7 @@ Return the lyrics for a song specified by lyric id.
     "songId": 1,
     "type": "Romaji",
     "lyrics": "fukai fukai mori no oku ni ima mo kitto\nokizari ni shita kokoro kakushite'ru yo\nsagasu hodo no chikara mo naku tsukarehateta\nhitobito wa eien no yami ni kieru\nchiisai mama nara kitto ima demo mieta ka na\nboku-tachi wa ikiru hodo ni\nnakushite'ku sukoshi zutsu\nitsuwari ya uso wo matoi\ntachisukumu koe mo naku\naoi aoi sora no iro mo kidzukanai mama\nsugite yuku mainichi ga kawatte yuku\ntsukurareta wakugumi wo koe ima wo ikite\nsabitsuita kokoro mata ugokidasu yo\ntoki no rizumu wo shireba mo ichido toberu darou\nboku-tachi wa samayoi nagara\nikite yuku doko made mo\nshinjite'ru hikari motome\narukidasu kimi to ima\nboku-tachi wa ikiru hodo ni\nnakushite'ku sukoshi zutsu\nitsuwari ya uso wo matoi\ntachisukumu koe mo naku\nboku-tachi wa samayoi nagara\nikite yuku doko made mo\nfurikaeru\nmichi wo tozashi\naruite'ku eien ni",
+    "translation": "Hiding deep, hiding deep in the forest, I know, lost among the trees\nAre the hearts that we simply left behind so many years ago\nHaving lost, having lost all our power to search, we lie completely drained\nAs our weary souls slowly fade away and darkness closes in\nOh, if we had just stayed forever young\nCould we find ourselves again, I wonder?\nEvery step we take, the more we seem to lose\nEvery waking breath, just a little more\nCaught up in the lies that hide between the lines\nNowhere left to run, nothing left to say\nNever stopping to gaze at the bluest of skies, the color starts to fade\nAnd it’s changing with every passing day, our time is moving on\nIf we live for the moment and break all the walls we put up long ago\nOh, if we come to know the flow of time\nWill we fly up once again, I wonder?\nAs we move along, we live as wanderers\nLiving day to day, everywhere we go\nSearching for the light and trying to believe\nHere we are again, walking hand in hand\nEvery step we take, the more we seem to lose\nEvery waking breath, just a little more\nCaught up in the lies that hide between the lines\nNowhere left to run, nothing left to say\nAs we move along, we live as wanderers\nLiving day to day, everywhere we go\nTurning from the past, those roads we knew before\nWalking here with you, here forevermore\nNowhere left to run, nothing left to say\nLiving day to day, here forevermore",
     "createdAt": "2021-11-19 20:39:36",
     "updatedAt": "2021-11-19 20:39:36"
   }
@@ -1267,6 +1344,7 @@ Create and return a new lyrics for a song specified by id.
   {
     "type": "romaji",
     "lyrics": "fukai fukai mori no oku ni ima mo kitto\nokizari ni shita kokoro kakushite'ru yo\nsagasu hodo no chikara mo naku tsukarehateta\nhitobito wa eien no yami ni kieru\nchiisai mama nara kitto ima demo mieta ka na\nboku-tachi wa ikiru hodo ni\nnakushite'ku sukoshi zutsu\nitsuwari ya uso wo matoi\ntachisukumu koe mo naku\naoi aoi sora no iro mo kidzukanai mama\nsugite yuku mainichi ga kawatte yuku\ntsukurareta wakugumi wo koe ima wo ikite\nsabitsuita kokoro mata ugokidasu yo\ntoki no rizumu wo shireba mo ichido toberu darou\nboku-tachi wa samayoi nagara\nikite yuku doko made mo\nshinjite'ru hikari motome\narukidasu kimi to ima\nboku-tachi wa ikiru hodo ni\nnakushite'ku sukoshi zutsu\nitsuwari ya uso wo matoi\ntachisukumu koe mo naku\nboku-tachi wa samayoi nagara\nikite yuku doko made mo\nfurikaeru\nmichi wo tozashi\naruite'ku eien ni",
+    "translation": "Hiding deep, hiding deep in the forest, I know, lost among the trees\nAre the hearts that we simply left behind so many years ago\nHaving lost, having lost all our power to search, we lie completely drained\nAs our weary souls slowly fade away and darkness closes in\nOh, if we had just stayed forever young\nCould we find ourselves again, I wonder?\nEvery step we take, the more we seem to lose\nEvery waking breath, just a little more\nCaught up in the lies that hide between the lines\nNowhere left to run, nothing left to say\nNever stopping to gaze at the bluest of skies, the color starts to fade\nAnd it’s changing with every passing day, our time is moving on\nIf we live for the moment and break all the walls we put up long ago\nOh, if we come to know the flow of time\nWill we fly up once again, I wonder?\nAs we move along, we live as wanderers\nLiving day to day, everywhere we go\nSearching for the light and trying to believe\nHere we are again, walking hand in hand\nEvery step we take, the more we seem to lose\nEvery waking breath, just a little more\nCaught up in the lies that hide between the lines\nNowhere left to run, nothing left to say\nAs we move along, we live as wanderers\nLiving day to day, everywhere we go\nTurning from the past, those roads we knew before\nWalking here with you, here forevermore\nNowhere left to run, nothing left to say\nLiving day to day, here forevermore",
   }
   ```
 
@@ -1277,17 +1355,20 @@ Create and return a new lyrics for a song specified by id.
   * **Body**:
 
   ```json
-  {"SongLyrics": {
-    "romaji": {
-    "id": 1,
-    "creatorId": 1,
-    "songId": 1,
-    "type": "Romaji",
-    "lyrics": "fukai fukai mori no oku ni ima mo kitto\nokizari ni shita kokoro kakushite'ru yo\nsagasu hodo no chikara mo naku tsukarehateta\nhitobito wa eien no yami ni kieru\nchiisai mama nara kitto ima demo mieta ka na\nboku-tachi wa ikiru hodo ni\nnakushite'ku sukoshi zutsu\nitsuwari ya uso wo matoi\ntachisukumu koe mo naku\naoi aoi sora no iro mo kidzukanai mama\nsugite yuku mainichi ga kawatte yuku\ntsukurareta wakugumi wo koe ima wo ikite\nsabitsuita kokoro mata ugokidasu yo\ntoki no rizumu wo shireba mo ichido toberu darou\nboku-tachi wa samayoi nagara\nikite yuku doko made mo\nshinjite'ru hikari motome\narukidasu kimi to ima\nboku-tachi wa ikiru hodo ni\nnakushite'ku sukoshi zutsu\nitsuwari ya uso wo matoi\ntachisukumu koe mo naku\nboku-tachi wa samayoi nagara\nikite yuku doko made mo\nfurikaeru\nmichi wo tozashi\naruite'ku eien ni",
-    "createdAt": "2021-11-19 20:39:36",
-    "updatedAt": "2021-11-19 20:39:36"
-    },
-  }}
+  {
+    "SongLyrics": {
+      "romaji": {
+      "id": 1,
+      "creatorId": 1,
+      "songId": 1,
+      "type": "Romaji",
+      "lyrics": "fukai fukai mori no oku ni ima mo kitto\nokizari ni shita kokoro kakushite'ru yo\nsagasu hodo no chikara mo naku tsukarehateta\nhitobito wa eien no yami ni kieru\nchiisai mama nara kitto ima demo mieta ka na\nboku-tachi wa ikiru hodo ni\nnakushite'ku sukoshi zutsu\nitsuwari ya uso wo matoi\ntachisukumu koe mo naku\naoi aoi sora no iro mo kidzukanai mama\nsugite yuku mainichi ga kawatte yuku\ntsukurareta wakugumi wo koe ima wo ikite\nsabitsuita kokoro mata ugokidasu yo\ntoki no rizumu wo shireba mo ichido toberu darou\nboku-tachi wa samayoi nagara\nikite yuku doko made mo\nshinjite'ru hikari motome\narukidasu kimi to ima\nboku-tachi wa ikiru hodo ni\nnakushite'ku sukoshi zutsu\nitsuwari ya uso wo matoi\ntachisukumu koe mo naku\nboku-tachi wa samayoi nagara\nikite yuku doko made mo\nfurikaeru\nmichi wo tozashi\naruite'ku eien ni",
+      "translation": "Hiding deep, hiding deep in the forest, I know, lost among the trees\nAre the hearts that we simply left behind so many years ago\nHaving lost, having lost all our power to search, we lie completely drained\nAs our weary souls slowly fade away and darkness closes in\nOh, if we had just stayed forever young\nCould we find ourselves again, I wonder?\nEvery step we take, the more we seem to lose\nEvery waking breath, just a little more\nCaught up in the lies that hide between the lines\nNowhere left to run, nothing left to say\nNever stopping to gaze at the bluest of skies, the color starts to fade\nAnd it’s changing with every passing day, our time is moving on\nIf we live for the moment and break all the walls we put up long ago\nOh, if we come to know the flow of time\nWill we fly up once again, I wonder?\nAs we move along, we live as wanderers\nLiving day to day, everywhere we go\nSearching for the light and trying to believe\nHere we are again, walking hand in hand\nEvery step we take, the more we seem to lose\nEvery waking breath, just a little more\nCaught up in the lies that hide between the lines\nNowhere left to run, nothing left to say\nAs we move along, we live as wanderers\nLiving day to day, everywhere we go\nTurning from the past, those roads we knew before\nWalking here with you, here forevermore\nNowhere left to run, nothing left to say\nLiving day to day, here forevermore",
+      "createdAt": "2021-11-19 20:39:36",
+      "updatedAt": "2021-11-19 20:39:36"
+      },
+    }
+  }
   ```
 
 * **Error Response**: Body validation errors
@@ -1330,15 +1411,15 @@ Create and return a new lyrics for a song specified by id.
   }
   ```
 
-### Edit Lyrics
+### Edit Lyrics by Lyric id
 
-Update and return existing lyrics.
+Update and return existing lyrics by lyrics id.
 
 * **Require Authentication**: true
 * **Require Proper Authorization**: Lyrics must belong to the current user
 * **Request**
   * **Method**: `PUT`
-  * **Route path**: `/api/lyrics/:lyricId`
+  * **Route path**: `/api/lyrics/:lyricsId`
   * **Headers**:
     * **Content-Type**: `application/json`
   * **Body**:
@@ -1347,6 +1428,7 @@ Update and return existing lyrics.
   {
     "type": "romaji",
     "lyrics": "fukai fukai mori no oku ni ima mo kitto\nokizari ni shita kokoro kakushite'ru yo\nsagasu hodo no chikara mo naku tsukarehateta\nhitobito wa eien no yami ni kieru\nchiisai mama nara kitto ima demo mieta ka na\nboku-tachi wa ikiru hodo ni\nnakushite'ku sukoshi zutsu\nitsuwari ya uso wo matoi\ntachisukumu koe mo naku\naoi aoi sora no iro mo kidzukanai mama\nsugite yuku mainichi ga kawatte yuku\ntsukurareta wakugumi wo koe ima wo ikite\nsabitsuita kokoro mata ugokidasu yo\ntoki no rizumu wo shireba mo ichido toberu darou\nboku-tachi wa samayoi nagara\nikite yuku doko made mo\nshinjite'ru hikari motome\narukidasu kimi to ima\nboku-tachi wa ikiru hodo ni\nnakushite'ku sukoshi zutsu\nitsuwari ya uso wo matoi\ntachisukumu koe mo naku\nboku-tachi wa samayoi nagara\nikite yuku doko made mo\nfurikaeru\nmichi wo tozashi\naruite'ku eien ni",
+    "translation": "Hiding deep, hiding deep in the forest, I know, lost among the trees\nAre the hearts that we simply left behind so many years ago\nHaving lost, having lost all our power to search, we lie completely drained\nAs our weary souls slowly fade away and darkness closes in\nOh, if we had just stayed forever young\nCould we find ourselves again, I wonder?\nEvery step we take, the more we seem to lose\nEvery waking breath, just a little more\nCaught up in the lies that hide between the lines\nNowhere left to run, nothing left to say\nNever stopping to gaze at the bluest of skies, the color starts to fade\nAnd it’s changing with every passing day, our time is moving on\nIf we live for the moment and break all the walls we put up long ago\nOh, if we come to know the flow of time\nWill we fly up once again, I wonder?\nAs we move along, we live as wanderers\nLiving day to day, everywhere we go\nSearching for the light and trying to believe\nHere we are again, walking hand in hand\nEvery step we take, the more we seem to lose\nEvery waking breath, just a little more\nCaught up in the lies that hide between the lines\nNowhere left to run, nothing left to say\nAs we move along, we live as wanderers\nLiving day to day, everywhere we go\nTurning from the past, those roads we knew before\nWalking here with you, here forevermore\nNowhere left to run, nothing left to say\nLiving day to day, here forevermore",
   }
   ```
 
@@ -1363,6 +1445,7 @@ Update and return existing lyrics.
     "songId": 1,
     "type": "Romaji",
     "lyrics": "fukai fukai mori no oku ni ima mo kitto\nokizari ni shita kokoro kakushite'ru yo\nsagasu hodo no chikara mo naku tsukarehateta\nhitobito wa eien no yami ni kieru\nchiisai mama nara kitto ima demo mieta ka na\nboku-tachi wa ikiru hodo ni\nnakushite'ku sukoshi zutsu\nitsuwari ya uso wo matoi\ntachisukumu koe mo naku\naoi aoi sora no iro mo kidzukanai mama\nsugite yuku mainichi ga kawatte yuku\ntsukurareta wakugumi wo koe ima wo ikite\nsabitsuita kokoro mata ugokidasu yo\ntoki no rizumu wo shireba mo ichido toberu darou\nboku-tachi wa samayoi nagara\nikite yuku doko made mo\nshinjite'ru hikari motome\narukidasu kimi to ima\nboku-tachi wa ikiru hodo ni\nnakushite'ku sukoshi zutsu\nitsuwari ya uso wo matoi\ntachisukumu koe mo naku\nboku-tachi wa samayoi nagara\nikite yuku doko made mo\nfurikaeru\nmichi wo tozashi\naruite'ku eien ni",
+    "translation": "Hiding deep, hiding deep in the forest, I know, lost among the trees\nAre the hearts that we simply left behind so many years ago\nHaving lost, having lost all our power to search, we lie completely drained\nAs our weary souls slowly fade away and darkness closes in\nOh, if we had just stayed forever young\nCould we find ourselves again, I wonder?\nEvery step we take, the more we seem to lose\nEvery waking breath, just a little more\nCaught up in the lies that hide between the lines\nNowhere left to run, nothing left to say\nNever stopping to gaze at the bluest of skies, the color starts to fade\nAnd it’s changing with every passing day, our time is moving on\nIf we live for the moment and break all the walls we put up long ago\nOh, if we come to know the flow of time\nWill we fly up once again, I wonder?\nAs we move along, we live as wanderers\nLiving day to day, everywhere we go\nSearching for the light and trying to believe\nHere we are again, walking hand in hand\nEvery step we take, the more we seem to lose\nEvery waking breath, just a little more\nCaught up in the lies that hide between the lines\nNowhere left to run, nothing left to say\nAs we move along, we live as wanderers\nLiving day to day, everywhere we go\nTurning from the past, those roads we knew before\nWalking here with you, here forevermore\nNowhere left to run, nothing left to say\nLiving day to day, here forevermore",
     "createdAt": "2021-11-19 20:39:36",
     "updatedAt": "2021-11-19 20:39:36"
   }
@@ -1392,19 +1475,106 @@ Update and return existing lyrics.
 
   ```json
   {
-    "message": "No lyric found"
+    "message": "No lyrics found"
+  }
+  ```
+
+### Edit Lyrics by Song id
+
+Update and return existing lyrics by Song id.
+
+* **Require Authentication**: true
+* **Require Proper Authorization**: Lyrics must belong to the current user
+* **Request**
+  * **Method**: `PUT`
+  * **Route path**: `/api/songs/:songId/lyrics/:lyricsId`
+  * **Headers**:
+    * **Content-Type**: `application/json`
+  * **Body**:
+
+  ```json
+  {
+    "type": "romaji",
+    "lyrics": "fukai fukai mori no oku ni ima mo kitto\nokizari ni shita kokoro kakushite'ru yo\nsagasu hodo no chikara mo naku tsukarehateta\nhitobito wa eien no yami ni kieru\nchiisai mama nara kitto ima demo mieta ka na\nboku-tachi wa ikiru hodo ni\nnakushite'ku sukoshi zutsu\nitsuwari ya uso wo matoi\ntachisukumu koe mo naku\naoi aoi sora no iro mo kidzukanai mama\nsugite yuku mainichi ga kawatte yuku\ntsukurareta wakugumi wo koe ima wo ikite\nsabitsuita kokoro mata ugokidasu yo\ntoki no rizumu wo shireba mo ichido toberu darou\nboku-tachi wa samayoi nagara\nikite yuku doko made mo\nshinjite'ru hikari motome\narukidasu kimi to ima\nboku-tachi wa ikiru hodo ni\nnakushite'ku sukoshi zutsu\nitsuwari ya uso wo matoi\ntachisukumu koe mo naku\nboku-tachi wa samayoi nagara\nikite yuku doko made mo\nfurikaeru\nmichi wo tozashi\naruite'ku eien ni",
+    "translation": "Hiding deep, hiding deep in the forest, I know, lost among the trees\nAre the hearts that we simply left behind so many years ago\nHaving lost, having lost all our power to search, we lie completely drained\nAs our weary souls slowly fade away and darkness closes in\nOh, if we had just stayed forever young\nCould we find ourselves again, I wonder?\nEvery step we take, the more we seem to lose\nEvery waking breath, just a little more\nCaught up in the lies that hide between the lines\nNowhere left to run, nothing left to say\nNever stopping to gaze at the bluest of skies, the color starts to fade\nAnd it’s changing with every passing day, our time is moving on\nIf we live for the moment and break all the walls we put up long ago\nOh, if we come to know the flow of time\nWill we fly up once again, I wonder?\nAs we move along, we live as wanderers\nLiving day to day, everywhere we go\nSearching for the light and trying to believe\nHere we are again, walking hand in hand\nEvery step we take, the more we seem to lose\nEvery waking breath, just a little more\nCaught up in the lies that hide between the lines\nNowhere left to run, nothing left to say\nAs we move along, we live as wanderers\nLiving day to day, everywhere we go\nTurning from the past, those roads we knew before\nWalking here with you, here forevermore\nNowhere left to run, nothing left to say\nLiving day to day, here forevermore",
+  }
+  ```
+
+* **Successful Response**
+  * **Status Code**: `200`
+  * **Headers**:
+    * **Content-Type**: `application/json`
+  * **Body**:
+
+  ```json
+  {
+    "id": 1,
+    "creatorId": 1,
+    "songId": 1,
+    "type": "Romaji",
+    "lyrics": "fukai fukai mori no oku ni ima mo kitto\nokizari ni shita kokoro kakushite'ru yo\nsagasu hodo no chikara mo naku tsukarehateta\nhitobito wa eien no yami ni kieru\nchiisai mama nara kitto ima demo mieta ka na\nboku-tachi wa ikiru hodo ni\nnakushite'ku sukoshi zutsu\nitsuwari ya uso wo matoi\ntachisukumu koe mo naku\naoi aoi sora no iro mo kidzukanai mama\nsugite yuku mainichi ga kawatte yuku\ntsukurareta wakugumi wo koe ima wo ikite\nsabitsuita kokoro mata ugokidasu yo\ntoki no rizumu wo shireba mo ichido toberu darou\nboku-tachi wa samayoi nagara\nikite yuku doko made mo\nshinjite'ru hikari motome\narukidasu kimi to ima\nboku-tachi wa ikiru hodo ni\nnakushite'ku sukoshi zutsu\nitsuwari ya uso wo matoi\ntachisukumu koe mo naku\nboku-tachi wa samayoi nagara\nikite yuku doko made mo\nfurikaeru\nmichi wo tozashi\naruite'ku eien ni",
+    "translation": "Hiding deep, hiding deep in the forest, I know, lost among the trees\nAre the hearts that we simply left behind so many years ago\nHaving lost, having lost all our power to search, we lie completely drained\nAs our weary souls slowly fade away and darkness closes in\nOh, if we had just stayed forever young\nCould we find ourselves again, I wonder?\nEvery step we take, the more we seem to lose\nEvery waking breath, just a little more\nCaught up in the lies that hide between the lines\nNowhere left to run, nothing left to say\nNever stopping to gaze at the bluest of skies, the color starts to fade\nAnd it’s changing with every passing day, our time is moving on\nIf we live for the moment and break all the walls we put up long ago\nOh, if we come to know the flow of time\nWill we fly up once again, I wonder?\nAs we move along, we live as wanderers\nLiving day to day, everywhere we go\nSearching for the light and trying to believe\nHere we are again, walking hand in hand\nEvery step we take, the more we seem to lose\nEvery waking breath, just a little more\nCaught up in the lies that hide between the lines\nNowhere left to run, nothing left to say\nAs we move along, we live as wanderers\nLiving day to day, everywhere we go\nTurning from the past, those roads we knew before\nWalking here with you, here forevermore\nNowhere left to run, nothing left to say\nLiving day to day, here forevermore",
+    "createdAt": "2021-11-19 20:39:36",
+    "updatedAt": "2021-11-19 20:39:36"
+  }
+  ```
+* **Error Response**: Body validation errors
+  * **Status Code**: `400`
+  * **Headers**:
+    * **Content-Type**: `application/json`
+  * **Body**:
+
+  ```json
+  {
+    "message": "Bad Request", 
+    "errors": {
+      "type": "Please select a type",
+      "lyrics": "Lyrics cannot be blank"
+    }
+  }
+  ```
+* **Error Response**: Couldn't find Lyrics with the specified id
+  * **Status Code**: `404`
+  * **Headers**:
+    * **Content-Type**: `application/json`
+  * **Body**:
+
+  ```json
+  {
+    "message": "No lyrics found"
   }
   ```
 
 ### Delete Lyrics
 
-Delete existing lyrics.
+Delete existing lyrics by Lyrics id.
 
 * **Require Authentication**: true
 * **Require Proper Authorization**: Lyrics must belong to the current user
 * **Request**
   * **Method**: `DELETE`
-  * **Route path**: `/api/lyrics/:lyricId`
+  * **Route path**: `/api/lyrics/:lyricsId`
+  * **Body**: `none`
+
+* **Successful Response**
+  * **Status Code**: `200`
+  * **Headers**:
+    * **Content-Type**: `application/json`
+  * **Body**:
+
+  ```json
+  {
+    "message": "Successfully deleted"
+  }
+  ```
+
+Delete existing lyrics by Song id.
+
+* **Require Authentication**: true
+* **Require Proper Authorization**: Lyrics must belong to the current user
+* **Request**
+  * **Method**: `DELETE`
+  * **Route path**: `/api/songs/:songId/lyrics/:lyricsId`
   * **Body**: `none`
 
 * **Successful Response**
