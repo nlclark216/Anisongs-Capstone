@@ -3,7 +3,7 @@
 ---
 
 ## **Core Features (Higher Priority)**
-These are the essential features required to build a working, user-ready MVP. Focus on completing these within the two-week timeline.
+These are the essential features required to build a working, user-ready MVP.
 
 ---
 
@@ -33,33 +33,28 @@ These are the essential features required to build a working, user-ready MVP. Fo
 
 ### **3. Songs List**
 
-- View a list of all songs in database.
+- View a list of all uploaded songs.
 - View individual song page
 - Upload songs, ensure uploaded songs are correct file size.
-- Edit uploaded song title and genres 
+- Edit uploaded song title and file 
 - Delete uploaded songs.
-- See uploaded songs at the top of the song list (when logged in) - toggle this feature.
-- Filter songs by artist, genre, year.
-- Search for songs by vibe/preference.
-- Ban song, with option to include artist.
-- Request that song be played less or more.
 
 ---
 
 ### **4. Playlists**
-- View a list of created playlistss.
-- Assign custom or preloaded vibe to playlist.
+- View a list of created playlists.
 - Add and remove songs from playlist
-- Update playlist title and vibe preference(s).
+- Update playlist title.
+- Delete playlist
 - See a list of playlists on the **Profile Page**.
 
 ---
 
-### **5. Tags (preferences)**
-- View selected tags on profile.
-- Create new tags for event filters (location, date, category, online/offline).
-- Delete selected tags.
-- Allow user to play only explicit versions of songs, or only non-explicit if desired
+### **5. Lyrics**
+- View selected lyrics on song page.
+- Show or hide lyrics while playing song.
+- Delete lyrics.
+- Edit lyrics.
 
 ---
 
@@ -71,21 +66,19 @@ These are the essential features required to build a working, user-ready MVP. Fo
 ---
 
 ### **7. Search**
-- Search for songs, artists, playlists, and preferences/tags.
+- Search for songs, soundtracks, playlists, and likes.
 - View search results in a list format.
-- Filter search results by event type, location, and availability.
+- Filter search results by genre and show.
 - Search for songs using specific keywords.
 
 
 ---
 
-### **9. Artists**
-- Provide user with list of popular and favorite artists
-- View all songs and albums of artists.
-- View liked status of artist.
-- **(Bonus)** Ban all songs by artist, with option to include collaborations.
-- **(Bonus)** Request that artist be played less or more.
-- **(Bonus)** Suggest similar artists by genre and vibe
+### **9. Shows**
+- Link user to songs from favorite shows
+- View all songs and albums of show.
+- View liked status of show.
+- **(Bonus)** Add vibe and genre to show
 
 ---
 
@@ -94,15 +87,15 @@ These are the essential features required to build a working, user-ready MVP. Fo
 These features are more **complex** and require more development effort. Complete them **after core features are done** or leave them as **future enhancements**.
 
 ### **Personality Quiz**
-- Allow user to take quiz to determine desired starter tags.
-- Allow user to choose up to three adjectives to set mood of session
+- Allow user to take quiz to determine favorite anime and suggest songs.
+- Allow user to set mood of session
 - Allow user to choose length of mood session
 
 --
 
 ### **Play More Option**
-- View play more selection on song and artist page or tab.
-- Remove play more selection from song and artist page or tab.
+- View play more selection on song page or tab.
+- Remove play more selection from song page or tab.
 
 ---
 
@@ -118,8 +111,8 @@ These features are more **complex** and require more development effort. Complet
 
 ---
 
-### **AI Generate Vibe**
-- Incorporate AI to generate vibe based on user vibe/preference.
+### **AI Generate Playlist**
+- Incorporate AI to generate playlist based on user preference.
 - Provide prompts that help generate playlists and shuffles.
 - Save playlists to **Profile**
 - Delete generated playlists.
@@ -127,8 +120,9 @@ These features are more **complex** and require more development effort. Complet
 
 ---
 
-### **Set Tenor(Vibe)**
-- **Bonus**: Select a vibe preference for playlist creation.
+### **Suggestions**
+- **Bonus**: Get suggested sountracks from users that liked or uploaded the same songs
+- **Bonus**: Get suggested playlists from users that liked or uploaded the same songs
 
 ---
 
