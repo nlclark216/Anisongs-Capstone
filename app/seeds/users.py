@@ -5,15 +5,42 @@ from sqlalchemy.sql import text
 # Adds a demo user, you can add other users here if you want
 def seed_users():
     demo = User(
-        username='Demo', email='demo@aa.io', password='password')
-    marnie = User(
-        username='marnie', email='marnie@aa.io', password='password')
-    bobbie = User(
-        username='bobbie', email='bobbie@aa.io', password='password')
+        username='Demo', 
+        email='demo@aa.io', 
+        password='password',
+        first_name='Demotrius',
+        last_name='Walker',
+        city='Brooklyn',
+        state='NY',
+        address='124 First St',
+        country='United States'
+        )
+    marina = User(
+        username='marina', 
+        email='marina@aa.io', 
+        password='password',
+        first_name='Marina',
+        last_name='Vasquez',
+        city='Los Angeles',
+        state='CA',
+        address='25781 East 23rd Ave',
+        country='US'
+        )
+    alex = User(
+        username='alex', 
+        email='alex@aa.io', 
+        password='password',
+        first_name='Alex',
+        last_name='Kingston',
+        city='Atlanta',
+        state='GA',
+        address='14 Hwy 85 S',
+        country='US'
+        )
 
     db.session.add(demo)
-    db.session.add(marnie)
-    db.session.add(bobbie)
+    db.session.add(marina)
+    db.session.add(alex)
     db.session.commit()
 
 

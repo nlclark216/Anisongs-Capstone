@@ -69,7 +69,16 @@ Returns the information about the current user that is logged in.
       "firstName": "Gugu",
       "lastName": "Mbatha-Raw",
       "email": "gugu.gaga@app.io",
-      "username": "GuguGaga"
+      "username": "GuguGaga",
+      "city": "Atlanta",
+      "state": "GA",
+      "zipCode": 30291,
+      "address": "124 Cherry Ln",
+      "country": "United States",
+      "phoneNumber": 801-555-5555,
+      "profilePic": "profile pic url",
+      "createdAt": "2021-11-19 20:39:36",
+      "updatedAt": "2021-11-19 20:39:36"
     }
   }
   ```
@@ -119,7 +128,48 @@ information.
       "firstName": "Gugu",
       "lastName": "Mbatha-Raw",
       "email": "gugu.gaga@app.io",
-      "username": "GuguGaga"
+      "username": "GuguGaga",
+      "city": "Atlanta",
+      "state": "GA",
+      "zipCode": 30291,
+      "address": "124 Cherry Ln",
+      "country": "United States",
+      "phoneNumber": 801-555-5555,
+      "profilePic": "profile pic url",
+      "createdAt": "2021-11-19 20:39:36",
+      "updatedAt": "2021-11-19 20:39:36",
+      "Lyrics": [
+        {
+          "id": 1
+        }
+      ],
+      "Playlists": [
+        {
+          "id": 1,
+          "creatorId": 1,
+          "name": "Nostalgia"
+        }
+      ],
+      "Songs": [
+        {
+          "id": 1,
+          "ownerId": 1,
+          "title": "Fukai Mori",
+          "artist": "Do As Infinity",
+          "file": "song1 url",
+          "songImg": "song img url",
+          "anime": "InuYasha",
+          "albumName": "Deep Forest",
+          "albumArt": "album art url",
+          "year": 2001,
+          "length": "3:04",
+          "liked": true,
+          "language": "Japanese",
+          "lastPlayed": "2022-01-09 00:25:13",
+          "createdAt": "2021-11-19 20:39:36",
+          "updatedAt": "2021-11-19 20:39:36"
+        }
+      ]
     }
   }
   ```
@@ -147,6 +197,7 @@ information.
     "message": "Bad Request", 
     "errors": {
       "credential": "Email or username is required",
+      "email": "Must provide a valid email",
       "password": "Password is required"
     }
   }
@@ -171,7 +222,15 @@ user's information.
     "lastName": "Mbatha-Raw",
     "email": "gugu.gaga@app.io",
     "username": "GuguGaga",
-    "password": "password1"
+    "password": "password1",
+    "confirmPassword": "password1",
+    "city": "Atlanta",
+    "state": "GA",
+    "zipCode": 30291,
+    "address": "124 Cherry Ln",
+    "country": "United States",
+    "phoneNumber": 801-555-5555,
+    "profilePic": null
   }
   ```
 
@@ -188,7 +247,16 @@ user's information.
       "firstName": "Gugu",
       "lastName": "Mbatha-Raw",
       "email": "gugu.gaga@app.io",
-      "username": "GuguGaga"
+      "username": "GuguGaga",
+      "city": "Atlanta",
+      "state": "GA",
+      "zipCode": 30291,
+      "address": "124 Cherry Ln",
+      "country": "United States",
+      "phoneNumber": 801-555-5555,
+      "profilePic": "default profile pic url",
+      "createdAt": "2021-11-19 20:39:36",
+      "updatedAt": "2021-11-19 20:39:36",
     }
   }
     ```
@@ -220,9 +288,14 @@ user's information.
     "message": "Bad Request", 
     "errors": {
       "email": "Invalid email",
+      "email": "Email is required",
       "username": "Username is required",
       "firstName": "First Name is required",
-      "lastName": "Last Name is required"
+      "lastName": "Last Name is required",
+      "city": "City is required",
+      "state": "State is required",
+      "country": "Please select a country",
+      "profilePic": "Profile image must be in JPG, JPEG, or PNG format",
     }
   }
   ```
@@ -255,7 +328,8 @@ Returns all the songs.
         "artist": "Do As Infinity",
         "file": "song1 url",
         "songImg": "song img url",
-        "anime": "InuYasha","albumName": "Deep Forest",
+        "anime": "InuYasha",
+        "albumName": "Deep Forest",
         "albumArt": "album art url",
         "year": 2001,
         "length": "3:04",
