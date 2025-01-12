@@ -1,4 +1,5 @@
 from flask import Blueprint, jsonify
+from flask_login import login_required
 from app.models import Playlists
 
 playlist_routes = Blueprint('playlists', __name__)

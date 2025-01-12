@@ -14,8 +14,6 @@ class Playlists(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.datetime.now())
     updated_at = db.Column(db.DateTime, default=datetime.datetime.now())
 
-    creator = db.relationship('Users', backref='playlists', cascade='all, delete-orphan', lazy=True)
-
     def to_dict(self):
         return {
             'id': self.id,

@@ -24,6 +24,8 @@ class User(db.Model, UserMixin):
     created_at = db.Column(db.DateTime, default=datetime.datetime.now())
     updated_at = db.Column(db.DateTime, default=datetime.datetime.now())
 
+    songs = db.relationship('Songs', backref='owner', cascade='all, delete-orphan', lazy=True)
+    playlists = db.relationship('Playlists', backref='creator', cascade='all, delete-orphan', lazy=True)
 
     @property
     def password(self):

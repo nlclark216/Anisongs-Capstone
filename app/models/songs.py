@@ -21,7 +21,6 @@ class Songs(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.datetime.now())
     updated_at = db.Column(db.DateTime, default=datetime.datetime.now())
 
-    owner = db.relationship('Users', backref='songs', cascade='all, delete-orphan', lazy=True)
 
     def to_dict(self):
         return {
@@ -35,5 +34,5 @@ class Songs(db.Model):
             'album_art': self.album_art,
             'year': self.year,
             'liked': self.liked,
-            'owner': self.owner.to_dict() if self.owner else None,
+            'owner': self.owner.to_dict() if self.owner else None
         }
