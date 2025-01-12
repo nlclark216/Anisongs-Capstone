@@ -28,6 +28,12 @@ function LoginFormModal() {
     }
   };
 
+  const loginDemo = () => {
+    return dispatch(thunkLogin({email:"demo@aa.io", password:"password" }))
+    .then(closeModal)
+
+  }
+
   return (
     <>
       <h1>Log In</h1>
@@ -53,6 +59,7 @@ function LoginFormModal() {
         </label>
         {errors.password && <p>{errors.password}</p>}
         <button type="submit">Log In</button>
+        <button className="demo-user-button" onClick={loginDemo}>Demo User</button>
       </form>
     </>
   );
