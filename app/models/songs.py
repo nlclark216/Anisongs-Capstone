@@ -12,15 +12,15 @@ class Songs(db.Model):
     title = db.Column(db.String(50), nullable=False)
     artist = db.Column(db.String(50), nullable=False)
     song_file = db.Column(db.String(200), nullable=False)
-    song_img = db.Column(db.String(50), nullable=True, default='')
+    song_img = db.Column(db.String(50), nullable=True, default='/song-default.png')
     anime = db.Column(db.String(200), nullable=False)
     album_name = db.Column(db.String(200), nullable=False)
     album_art = db.Column(db.String(50), nullable=True, default='')
     year = db.Column(db.Integer, nullable=False)
-    liked = db.Column(db.Boolean, default=False)
     created_at = db.Column(db.DateTime, default=datetime.datetime.now())
     updated_at = db.Column(db.DateTime, default=datetime.datetime.now())
 
+    # lyrics = db.relationship('Lyrics', backref='song', cascade='all, delete-orphan', lazy=True)
 
     def to_dict(self):
         return {
@@ -33,6 +33,5 @@ class Songs(db.Model):
             'anime': self.anime,
             'album_art': self.album_art,
             'year': self.year,
-            'liked': self.liked,
             'owner': self.owner.to_dict() if self.owner else None
         }
