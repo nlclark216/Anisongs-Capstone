@@ -539,13 +539,13 @@ Uploads and returns a new song.
 
 ### Add Like to a Song based on the Song's id
 
-Create and return a new lyrics for a song specified by id.
+Create and return a new like for a song specified by id.
 
 * **Require Authentication**: true
 * **Require Proper Authorization**: Song must belong to the current user
 * **Request**
   * **Method**: `POST`
-  * **Route path**: `/api/songs/:songId/lyrics`
+  * **Route path**: `/api/songs/:songId/like`
   * **Headers**:
     * **Content-Type**: `application/json`
   * **Body**: none
