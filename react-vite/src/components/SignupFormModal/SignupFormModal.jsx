@@ -112,11 +112,11 @@ function SignupFormModal() {
           <select>
             
           </select>
-          {/* <input
+          <input
             type="text"
             value={state}
             onChange={(e) => setState(e.target.value)}
-          /> */}
+          />
         </label>
         {errors.state && <p>{errors.state}</p>}
         <label>
@@ -133,12 +133,12 @@ function SignupFormModal() {
           <select>
 
           </select>
-          {/* <input
+          <input
             type="select"
             value={country}
             onChange={(e) => setCountry(e.target.value)}
             required
-          /> */}
+          />
         </label>
         {errors.country && <p>{errors.country}</p>}
         <label>
