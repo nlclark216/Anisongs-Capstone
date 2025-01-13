@@ -8,11 +8,11 @@ def seed_playlists():
     )
     list2 = Playlists(
         creator_id=1,
-        name='New Hits'
+        name='Relaxation'
     )
     list3 = Playlists(
         creator_id=2,
-        name='Relaxation'
+        name='New Hits'
     )
     list4 = Playlists(
         creator_id=2,
