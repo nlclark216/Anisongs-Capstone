@@ -27,6 +27,7 @@ class User(db.Model, UserMixin):
     songs = db.relationship('Songs', backref='owner', cascade='all, delete-orphan', lazy=True)
     playlists = db.relationship('Playlists', backref='creator', cascade='all, delete-orphan', lazy=True)
     likes = db.relationship('Likes', backref='owner', cascade='all, delete-orphan', lazy=True)
+    playlists = db.relationship('Lyrics', backref='creator', cascade='all, delete-orphan', lazy=True)
 
     @property
     def password(self):
@@ -52,6 +53,7 @@ class User(db.Model, UserMixin):
             'country': self.country,
             'profile_pic': self.profile_pic,
             'songs': self.songs.to_dict() if self.songs else None,
-            # 'playlists': self.playlists.to_dict() if self.playlists else None,
+            'likes': self.likes.to_dict() if self.likes else None,
+            'playlists': self.playlists.to_dict() if self.playlists else None,
             # 'lyrics': self.lyrics.to_dict() if self.lyrics else None 
         }
