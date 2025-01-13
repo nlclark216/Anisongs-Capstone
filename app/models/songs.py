@@ -15,7 +15,7 @@ class Songs(db.Model):
     song_img = db.Column(db.String, nullable=True, default='/song-default.png')
     anime = db.Column(db.String(200), nullable=False)
     album_name = db.Column(db.String(200), nullable=False)
-    album_art = db.Column(db.String, nullable=True, default='')
+    album_art = db.Column(db.String, nullable=True, default='/album-img.png')
     year = db.Column(db.Integer, nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.datetime.now())
     updated_at = db.Column(db.DateTime, default=datetime.datetime.now())

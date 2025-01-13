@@ -52,6 +52,6 @@ class User(db.Model, UserMixin):
             'country': self.country,
             'profile_pic': self.profile_pic,
             'songs': self.songs.to_dict() if self.songs else None,
-            'playlists': self.playlists.to_dict() if self.playlists else None,
+            # 'playlists': self.playlists.to_dict() if self.playlists else None,
             # 'lyrics': self.lyrics.to_dict() if self.lyrics else None 
         }

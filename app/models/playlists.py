@@ -10,7 +10,7 @@ class Playlists(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     creator_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     name = db.Column(db.String(40), nullable=False)
-    image = db.Column(db.String(255), nullable=True, default='/song-default.png')
+    image = db.Column(db.String(255), nullable=True, default='/playlist-default.png')
     created_at = db.Column(db.DateTime, default=datetime.datetime.now())
     updated_at = db.Column(db.DateTime, default=datetime.datetime.now())
 

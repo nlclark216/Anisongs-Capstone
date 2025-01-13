@@ -9,6 +9,7 @@ from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
 from .api.song_routes import song_routes
 from .api.playlist_routes import playlist_routes
+from .api.lyric_routes import lyric_routes
 from .seeds import seed_commands
 from .config import Config
 
@@ -28,10 +29,17 @@ def load_user(id):
 app.cli.add_command(seed_commands)
 
 app.config.from_object(Config)
+app.config['SESSION_COOKIE_HTTPONLY'] = True
+app.config['REMEMBER_COOKIE_HTTPONLY'] = True
+app.config['SESSION_COOKIE_SAMESITE'] = 'Lax' # Or 'Strict' if needed
+app.config['SESSION_COOKIE_SECURE'] = False  # Set to True in production
+
+app.config.from_object(Config)
 app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(song_routes, url_prefix='/api/songs')
 app.register_blueprint(playlist_routes, url_prefix='/api/playlists')
+app.register_blueprint(lyric_routes, url_prefix='/api/lyrics')
 db.init_app(app)
 Migrate(app, db)
 
