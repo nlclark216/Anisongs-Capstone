@@ -17,6 +17,7 @@ class Songs(db.Model):
     album_name = db.Column(db.String(200), nullable=False)
     album_art = db.Column(db.String, nullable=True, default='/album-img.png')
     year = db.Column(db.Integer, nullable=False)
+    language = db.Column(db.String, nullable=True)
     created_at = db.Column(db.DateTime, default=datetime.datetime.now())
     updated_at = db.Column(db.DateTime, default=datetime.datetime.now())
 
@@ -33,5 +34,6 @@ class Songs(db.Model):
             'anime': self.anime,
             'album_art': self.album_art,
             'year': self.year,
+            'language': self.language,
             'owner': self.owner.to_dict() if self.owner else None
         }

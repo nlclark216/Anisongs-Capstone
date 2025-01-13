@@ -12,7 +12,8 @@ class Lyrics(db.Model):
     song_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('songs.id')), nullable=False)
     type = db.Column(db.String(40), nullable=False)
     lyrics = db.Column(db.String, nullable=False)
-    translation = db.Column(db.String, nullable=False)
+    translation = db.Column(db.String, nullable=True)
+    translation_language = db.Column(db.String, nullable=True, default='English')
     created_at = db.Column(db.DateTime, default=datetime.datetime.now())
     updated_at = db.Column(db.DateTime, default=datetime.datetime.now())
 
@@ -23,5 +24,6 @@ class Lyrics(db.Model):
             'song_id': self.song_id,
             'type': self.type,
             'lyrics': self.lyrics,
-            'translation': self.translation
+            'translation': self.translation,
+            'translation_language': self.translation_language
         }
