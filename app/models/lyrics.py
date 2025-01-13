@@ -11,8 +11,8 @@ class Lyrics(db.Model):
     creator_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     song_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('songs.id')), nullable=False)
     type = db.Column(db.String(40), nullable=False)
-    lyrics = db.Column(db.BLOB, nullable=False)
-    translation = db.Column(db.BLOB, nullable=False)
+    lyrics = db.Column(db.String, nullable=False)
+    translation = db.Column(db.String, nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.datetime.now())
     updated_at = db.Column(db.DateTime, default=datetime.datetime.now())
 

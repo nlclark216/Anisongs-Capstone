@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 52c1a9752e6a
+Revision ID: 329f853af775
 Revises: 
-Create Date: 2025-01-12 19:46:48.072449
+Create Date: 2025-01-12 19:56:42.207869
 
 """
 from alembic import op
@@ -14,7 +14,7 @@ SCHEMA = os.environ.get("SCHEMA")
 
 
 # revision identifiers, used by Alembic.
-revision = '52c1a9752e6a'
+revision = '329f853af775'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -59,11 +59,11 @@ def upgrade():
     sa.Column('owner_id', sa.Integer(), nullable=False),
     sa.Column('title', sa.String(length=50), nullable=False),
     sa.Column('artist', sa.String(length=50), nullable=False),
-    sa.Column('song_file', sa.String(length=200), nullable=False),
-    sa.Column('song_img', sa.String(length=50), nullable=True),
+    sa.Column('song_file', sa.String(), nullable=False),
+    sa.Column('song_img', sa.String(), nullable=True),
     sa.Column('anime', sa.String(length=200), nullable=False),
     sa.Column('album_name', sa.String(length=200), nullable=False),
-    sa.Column('album_art', sa.String(length=50), nullable=True),
+    sa.Column('album_art', sa.String(), nullable=True),
     sa.Column('year', sa.Integer(), nullable=False),
     sa.Column('created_at', sa.DateTime(), nullable=True),
     sa.Column('updated_at', sa.DateTime(), nullable=True),
@@ -89,8 +89,8 @@ def upgrade():
     sa.Column('creator_id', sa.Integer(), nullable=False),
     sa.Column('song_id', sa.Integer(), nullable=False),
     sa.Column('type', sa.String(length=40), nullable=False),
-    sa.Column('lyrics', sa.BLOB(), nullable=False),
-    sa.Column('translation', sa.BLOB(), nullable=False),
+    sa.Column('lyrics', sa.String(), nullable=False),
+    sa.Column('translation', sa.String(), nullable=False),
     sa.Column('created_at', sa.DateTime(), nullable=True),
     sa.Column('updated_at', sa.DateTime(), nullable=True),
     sa.ForeignKeyConstraint(['creator_id'], ['users.id'], ),
