@@ -14,11 +14,14 @@ class Playlists(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.datetime.now())
     updated_at = db.Column(db.DateTime, default=datetime.datetime.now())
 
+    songs = db.relationship('PlaylistSongs', backref='playlists', cascade='all, delete-orphan', lazy=True)
+
     def to_dict(self):
         return {
             'id': self.id,
             'creator_id': self.creator_id,
             'name': self.name,
             'image': self.image, 
-            'creator': self.creator.to_dict() if self.creator else None 
+            'creator': self.creator.to_dict() if self.creator else None,
+            'songs': self.songs.to_dict() if self.songs else None
         }

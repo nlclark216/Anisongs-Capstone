@@ -22,6 +22,8 @@ class Songs(db.Model):
     updated_at = db.Column(db.DateTime, default=datetime.datetime.now())
 
     likes = db.relationship('Likes', backref='song', cascade='all, delete-orphan', lazy=True)
+    playlists = db.relationship('PlaylistSongs', backref='songs', cascade='all, delete-orphan', lazy=True)
+
 
     def to_dict(self):
         return {
@@ -36,5 +38,6 @@ class Songs(db.Model):
             'year': self.year,
             'language': self.language,
             'owner': self.owner.to_dict() if self.owner else None,
-            'likes': self.likes.to_dict() if self.likes else None
+            'likes': self.likes.to_dict() if self.likes else None,
+            'playlists': self.playlists.to_dict() if self.playlists else None
         }
