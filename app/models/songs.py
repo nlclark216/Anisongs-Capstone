@@ -20,7 +20,7 @@ class Songs(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.datetime.now())
     updated_at = db.Column(db.DateTime, default=datetime.datetime.now())
 
-    # lyrics = db.relationship('Lyrics', backref='song', cascade='all, delete-orphan', lazy=True)
+    likes = db.relationship('Likes', backref='song', cascade='all, delete-orphan', lazy=True)
 
     def to_dict(self):
         return {
