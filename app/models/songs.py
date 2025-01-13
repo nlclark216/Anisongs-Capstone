@@ -22,22 +22,25 @@ class Songs(db.Model):
     updated_at = db.Column(db.DateTime, default=datetime.datetime.now())
 
     likes = db.relationship('Likes', backref='song', cascade='all, delete-orphan', lazy=True)
-    playlists = db.relationship('PlaylistSongs', backref='songs', cascade='all, delete-orphan', lazy=True)
+    playlist_song = db.relationship('PlaylistSongs', backref='song', cascade='all, delete-orphan', lazy=True)
+    lyrics = db.relationship('Lyrics', backref='song', cascade='all, delete-orphan', lazy=True)
 
 
     def to_dict(self):
         return {
             'id': self.id,
-            'owner_id': self.owner_id,
+            'ownerId': self.owner_id,
             'title': self.title,
             'artist': self.artist,
-            'song_file': self.song_file,
-            'song_img': self.song_img,
+            'file': self.song_file,
+            'songImage': self.song_img,
             'anime': self.anime,
-            'album_art': self.album_art,
+            'albumArtwork': self.album_art,
             'year': self.year,
             'language': self.language,
+            'createdAt': self.created_at,
+            'updatedAt': self.updated_at,
             'owner': self.owner.to_dict() if self.owner else None,
-            'likes': self.likes.to_dict() if self.likes else None,
-            'playlists': self.playlists.to_dict() if self.playlists else None
+            # 'likes': self.likes.to_dict() if self.likes else None,
+            # 'playlists': self.playlists.to_dict() if self.playlists else None
         }

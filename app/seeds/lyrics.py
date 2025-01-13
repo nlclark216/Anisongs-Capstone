@@ -13,15 +13,15 @@ def seed_lyrics():
         creator_id=2,
         song_id=3,
         type='Romaji',
-        lyrics='',
-        translation=''
+        lyrics='lyrics text here',
+        translation='translation text here'
     )
     lyrics2 = Lyrics(
         creator_id=3,
         song_id=5,
         type='Romaji',
-        lyrics='',
-        translation=''
+        lyrics='lyrics text here',
+        translation='translation text here'
     )
 
     db.session.add(lyrics1)

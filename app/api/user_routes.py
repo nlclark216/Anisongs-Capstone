@@ -1,9 +1,10 @@
-from flask import Blueprint, jsonify
-from flask_login import login_required
+from app.models.db import db
+from flask import Blueprint, jsonify, request
+from flask_login import login_required, current_user
 from app.models import User
+import datetime
 
 user_routes = Blueprint('users', __name__)
-
 
 @user_routes.route('/')
 @login_required
@@ -23,3 +24,91 @@ def user(id):
     """
     user = User.query.get(id)
     return user.to_dict()
+
+@user_routes.route('/current')
+@login_required
+def current_user_info():
+    """
+    Query for the user currently logged in
+    """
+    if current_user:
+        return current_user.to_dict()
+
+    return { 'users': 'null' }
+
+@user_routes.route('/<int:id>', methods=['PUT'])
+@login_required
+def update(id):
+    """
+    Update a user's information by id
+    """
+    data = request.get_json()
+    user = User.query.get(id)
+    if not user:
+        return jsonify({'message': 'User not found'}), 404
+    if user.id != current_user.id:
+        return jsonify({'message': 'Forbidden'}), 403
+
+    user.first_name = data.get('first_name', user.first_name)
+    user.last_name = data.get('last_name', user.last_name)
+    user.email = data.get('email', user.email)
+    user.city = data.get('city', user.city)
+    user.state = data.get('state', user.state)
+    user.address = data.get('address', user.address)
+    user.country = data.get('country', user.country)
+    user.profile_pic = data.get('profile_pic', user.profile_pic)
+    user.updated_at = datetime.datetime.now()
+
+    db.session.commit()
+    return user.to_dict()
+
+@user_routes.route('/current', methods=['PUT'])
+@login_required
+def update_current():
+    """
+    Update a user's information by id
+    """
+    data = request.get_json()
+    user = User.query.get(current_user.get_id())
+
+    if not user:
+        return jsonify({'message': 'Forbidden'}), 403
+
+    user.first_name = data.get('first_name', user.first_name)
+    user.last_name = data.get('last_name', user.last_name)
+    user.email = data.get('email', user.email)
+    user.city = data.get('city', user.city)
+    user.state = data.get('state', user.state)
+    user.address = data.get('address', user.address)
+    user.country = data.get('country', user.country)
+    user.profile_pic = data.get('profile_pic', user.profile_pic)
+    user.updated_at = datetime.datetime.now()
+
+    db.session.commit()
+    return user.to_dict()
+
+@user_routes.route('/<int:id>', methods=['DELETE'])
+@login_required
+def delete_user(id):
+    user = User.query.get(id)
+    if not user:
+        return jsonify({'message': 'User not found'}), 404
+    if user.id != current_user.id:
+        return jsonify({'message': 'Forbidden'}), 403
+
+    if user:
+        db.session.delete(user)
+        db.session.commit()
+        return { 'message': "Successfully deleted" }
+
+
+@user_routes.route('/current', methods=['DELETE'])
+@login_required
+def delete_current_user():
+    user = User.query.get(current_user.get_id())
+    if user:
+        db.session.delete(user)
+        db.session.commit()
+        return { 'message': "Successfully deleted" }
+
+    return {'errors': {'message': "User could not be found"}}, 404

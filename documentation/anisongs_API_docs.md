@@ -64,36 +64,23 @@ Returns the information about the current user that is logged in.
 
   ```json
   {
-    "user": {
-      "id": 1,
-      "firstName": "Gugu",
-      "lastName": "Mbatha-Raw",
-      "email": "gugu.gaga@app.io",
-      "username": "GuguGaga",
-      "city": "Atlanta",
-      "state": "GA",
-      "zipCode": 30291,
-      "address": "124 Cherry Ln",
-      "country": "United States",
-      "phoneNumber": 801-555-5555,
-      "profilePic": "profile pic url",
-      "createdAt": "2021-11-19 20:39:36",
-      "updatedAt": "2021-11-19 20:39:36"
-    }
+    "id": 1,
+    "firstName": "Gugu",
+    "lastName": "Mbatha-Raw",
+    "email": "gugu.gaga@app.io",
+    "username": "GuguGaga",
+    "city": "Atlanta",
+    "state": "GA",
+    "zipCode": 30291,
+    "address": "124 Cherry Ln",
+    "country": "United States",
+    "phoneNumber": 801-555-5555,
+    "profilePic": "profile pic url",
+    "createdAt": "2021-11-19 20:39:36",
+    "updatedAt": "2021-11-19 20:39:36"
   }
   ```
 
-* **Successful Response** when there is no logged in user
-  * **Status Code**: `200`
-  * **Headers**:
-    * **Content-Type**: `application/json`
-  * **Body**:
-
-  ```json
-  {
-    "user": null
-  }
-  ```
 
 ### Log In a User
 
@@ -123,54 +110,20 @@ information.
 
   ```json
   {
-    "user": {
-      "id": 1,
-      "firstName": "Gugu",
-      "lastName": "Mbatha-Raw",
-      "email": "gugu.gaga@app.io",
-      "username": "GuguGaga",
-      "city": "Atlanta",
-      "state": "GA",
-      "zipCode": 30291,
-      "address": "124 Cherry Ln",
-      "country": "United States",
-      "phoneNumber": 801-555-5555,
-      "profilePic": "profile pic url",
-      "createdAt": "2021-11-19 20:39:36",
-      "updatedAt": "2021-11-19 20:39:36",
-      "Lyrics": [
-        {
-          "id": 1
-        }
-      ],
-      "Playlists": [
-        {
-          "id": 1,
-          "creatorId": 1,
-          "name": "Nostalgia"
-        }
-      ],
-      "Songs": [
-        {
-          "id": 1,
-          "ownerId": 1,
-          "title": "Fukai Mori",
-          "artist": "Do As Infinity",
-          "file": "song1 url",
-          "songImg": "song img url",
-          "anime": "InuYasha",
-          "albumName": "Deep Forest",
-          "albumArt": "album art url",
-          "year": 2001,
-          "length": "3:04",
-          "liked": true,
-          "language": "Japanese",
-          "lastPlayed": "2022-01-09 00:25:13",
-          "createdAt": "2021-11-19 20:39:36",
-          "updatedAt": "2021-11-19 20:39:36"
-        }
-      ]
-    }
+    "id": 1,
+    "firstName": "Gugu",
+    "lastName": "Mbatha-Raw",
+    "email": "gugu.gaga@app.io",
+    "username": "GuguGaga",
+    "city": "Atlanta",
+    "state": "GA",
+    "zipCode": 30291,
+    "address": "124 Cherry Ln",
+    "country": "United States",
+    "phoneNumber": 801-555-5555,
+    "profilePic": "profile pic url",
+    "createdAt": "2021-11-19 20:39:36",
+    "updatedAt": "2021-11-19 20:39:36"
   }
   ```
 
@@ -182,12 +135,13 @@ information.
 
   ```json
   {
-    "message": "Invalid login credentials"
+    "email": ["Email provided not found"],
+    "password": ["No such user exists", "Password was incorrect"]
   }
   ```
 
 * **Error Response**: Body validation errors
-  * **Status Code**: `400`
+  * **Status Code**: `401`
   * **Headers**:
     * **Content-Type**: `application/json`
   * **Body**:
@@ -196,9 +150,8 @@ information.
   {
     "message": "Bad Request", 
     "errors": {
-      "credential": "Email or username is required",
-      "email": "Must provide a valid email",
-      "password": "Password is required"
+      "email": "This field is required",
+      "password": "This field is required"
     }
   }
   ```
@@ -253,7 +206,6 @@ user's information.
       "zipCode": 30291,
       "address": "124 Cherry Ln",
       "country": "United States",
-      "phoneNumber": 801-555-5555,
       "profilePic": "default profile pic url",
       "createdAt": "2021-11-19 20:39:36",
       "updatedAt": "2021-11-19 20:39:36",
@@ -278,7 +230,7 @@ user's information.
   ```
 
 * **Error Response**: Body validation errors
-  * **Status Code**: `400`
+  * **Status Code**: `401`
   * **Headers**:
     * **Content-Type**: `application/json`
   * **Body**:
@@ -299,6 +251,8 @@ user's information.
     }
   }
   ```
+
+### Delete the current user
 
 ## SONGS
 
@@ -513,7 +467,7 @@ Uploads and returns a new song.
   ```
 
 * **Error Response**: Body validation errors
-  * **Status Code**: `400`
+  * **Status Code**: `401`
   * **Headers**:
     * **Content-Type**: `application/json`
   * **Body**:
@@ -631,7 +585,7 @@ Updates and returns an existing song.
   ```
 
 * **Error Response**: Body validation errors
-  * **Status Code**: `400`
+  * **Status Code**: `401`
   * **Headers**:
     * **Content-Type**: `application/json`
   * **Body**:
@@ -946,7 +900,7 @@ Add song and return the new playlist for a song specified by playlist id.
     ```
 
 * **Error Response**: Body validation errors
-  * **Status Code**: `400`
+  * **Status Code**: `401`
   * **Headers**:
     * **Content-Type**: `application/json`
   * **Body**:
@@ -1053,7 +1007,7 @@ Add song and return the new playlist for a song specified by id.
     ```
 
 * **Error Response**: Body validation errors
-  * **Status Code**: `400`
+  * **Status Code**: `401`
   * **Headers**:
     * **Content-Type**: `application/json`
   * **Body**:
@@ -1446,7 +1400,7 @@ Create and return a new lyrics for a song specified by id.
   ```
 
 * **Error Response**: Body validation errors
-  * **Status Code**: `400`
+  * **Status Code**: `401`
   * **Headers**:
     * **Content-Type**: `application/json`
   * **Body**:
@@ -1526,7 +1480,7 @@ Update and return existing lyrics by lyrics id.
   ```
 
 * **Error Response**: Body validation errors
-  * **Status Code**: `400`
+  * **Status Code**: `401`
   * **Headers**:
     * **Content-Type**: `application/json`
   * **Body**:
@@ -1593,7 +1547,7 @@ Update and return existing lyrics by Song id.
   }
   ```
 * **Error Response**: Body validation errors
-  * **Status Code**: `400`
+  * **Status Code**: `401`
   * **Headers**:
     * **Content-Type**: `application/json`
   * **Body**:

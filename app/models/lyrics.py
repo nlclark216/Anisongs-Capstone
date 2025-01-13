@@ -26,5 +26,6 @@ class Lyrics(db.Model):
             'lyrics': self.lyrics,
             'translation': self.translation,
             'translation_language': self.translation_language,
-            'creator': self.creator.to_dict() if self.creator else None 
+            'creator': self.creator.to_dict() if self.creator else None,
+            'song': self.song.to_dict() if self.song else None 
         }

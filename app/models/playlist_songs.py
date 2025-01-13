@@ -19,5 +19,5 @@ class PlaylistSongs(db.Model):
             'playlist_id': self.playlist_id,
             'song_id': self.song_id,
             'playlist': self.playlist.to_dict() if self.playlist else None,
-            'songs': self.songs.to_dict() if self.songs else None
+            'song': self.song.to_dict() if self.song else None
         }
