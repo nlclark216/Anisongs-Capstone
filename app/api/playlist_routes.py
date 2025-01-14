@@ -1,5 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
+from sqlalchemy import and_
 from app.models import Playlists, db, PlaylistSongs
 from app.forms import PlaylistForm, PlaylistSongsForm
 
@@ -102,17 +103,57 @@ def playlist_songs(id):
     playlist = Playlists.query.get(id)
 
     if not playlist:
-        return { 'message': 'Playlist not found' }
+        return jsonify({'message': 'Playlist not found'}), 404
     
     songs = PlaylistSongs.query.filter(PlaylistSongs.playlist_id == id)
 
     if not songs:
-        return { 'message': 'No songs found' }
+        return jsonify({'message': 'No songs found'}), 404
     
     if len([song.to_dict() for song in songs]) < 1:
-        return { 'message': 'No songs found' }
+        return jsonify({ 'message': 'No songs found' }), 404
     
     return [song.to_dict() for song in songs] 
+
+@playlist_routes.route('/<int:id>/songs/<int:song_id>')
+@login_required
+def playlist_song(id, song_id):
+    """
+    Query for a playlist by id and returns the song
+    that matches the provided song id
+    """
+    song = PlaylistSongs.query.filter(and_(PlaylistSongs.song_id == song_id, PlaylistSongs.playlist_id == id)).first()
+    if not song:
+        return jsonify({'message': 'Song not found'}), 404
+    
+    if song.added_by != current_user.id:
+        return jsonify({'message': 'Forbidden'}), 403
+    return song.to_dict()
+
+@playlist_routes.route('/<int:id>/songs/<int:song_id>', methods=['DELETE'])
+@login_required
+def delete_playlist_song(id, song_id):
+    """
+    Query for a playlist by id and returns the songs from that playlist in a dictionary
+    """
+    playlist = Playlists.query.get(id)
+
+    if not playlist:
+        return jsonify({ 'message': 'Playlist not found' }), 404
+    
+    if playlist.creator_id != current_user.id:
+        return jsonify({'message': 'Forbidden'}), 403
+    
+    song = PlaylistSongs.query.filter(PlaylistSongs.song_id == song_id).first()
+    if not song:
+        return jsonify({'message': 'Song not found'}), 404
+    if song.added_by != current_user.id:
+        return jsonify({'message': 'Forbidden'}), 403
+    
+    if song:
+        db.session.delete(song)
+        db.session.commit()
+        return jsonify({'message': "Successfully deleted"}), 204
 
 @playlist_routes.route('/<int:id>', methods=['PUT'])
 @login_required

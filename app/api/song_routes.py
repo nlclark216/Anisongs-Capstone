@@ -234,4 +234,4 @@ def delete_lyric(id):
     if lyrics:
         db.session.delete(lyrics)
         db.session.commit()
-        return { 'message': "Successfully deleted" }
+        return jsonify({'message': "Successfully deleted"}), 204

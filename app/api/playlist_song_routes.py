@@ -52,10 +52,10 @@ def delete_playlist_song(id):
     """
     Query for a playlist song by id and deletes that playlist song
     """
-    playlist_song = PlaylistSongs.query.get(id)
+    playlist_song = PlaylistSongs.query.filter(PlaylistSongs.song_id == id).first()
 
     if not playlist_song:
-        return { 'message': 'No song found' }
+        return jsonify({'message': 'Song not found'}), 404
 
     if playlist_song.added_by != current_user.id:
         return jsonify({'message': 'Forbidden'}), 403

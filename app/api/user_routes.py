@@ -115,6 +115,6 @@ def delete_current_user():
     if user:
         db.session.delete(user)
         db.session.commit()
-        return { 'message': "Successfully deleted" }
+        return jsonify({'message': "Successfully deleted"}), 204
 
     return {'errors': {'message': "User could not be found"}}, 404
