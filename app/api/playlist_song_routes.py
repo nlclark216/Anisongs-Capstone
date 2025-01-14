@@ -14,7 +14,7 @@ def playlist_songs():
 
     if not playlist_songs:
         return {
-            'message': 'No items found'
+            'message': 'No songs found'
         }
 
     return {'playlist_songs': [playlist_song.to_dict() for playlist_song in playlist_songs]}
@@ -28,8 +28,6 @@ def playlist_song(id):
     playlist_song = PlaylistSongs.query.get(id)
 
     if not playlist_song:
-        return {
-            'message': 'No item found'
-        }
+        return { 'message': 'No song found' }
 
     return playlist_song.to_dict()

@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import Playlists, db
-from app.forms import PlaylistForm
+from app.models import Playlists, db, PlaylistSongs
+from app.forms import PlaylistForm, PlaylistSongsForm
 
 playlist_routes = Blueprint('playlists', __name__)
 
@@ -62,6 +62,56 @@ def playlist(id):
         return { 'message': 'Playlist not found' }
     
     return playlist.to_dict()
+
+@playlist_routes.route('/<int:id>', methods=['POST'])
+@login_required
+def add_song(id):
+    """
+    Query for a playlist by id, adds song and returns that playlist in a dictionary
+    """
+    playlist = Playlists.query.get(id)
+
+    if not playlist:
+        return { 'message': 'Playlist not found' }
+    
+    if playlist.creator_id != current_user.id:
+        return jsonify({'message': 'Forbidden'}), 403
+    
+    
+    form = PlaylistSongsForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        new_song = PlaylistSongs(
+            playlist_id=id,
+            song_id=form.data['song_id']
+        )
+        db.session.add(new_song)
+        db.session.commit()
+        return new_song.to_dict(), 201
+    return form.errors, 401
+    
+
+
+@playlist_routes.route('/<int:id>/songs')
+@login_required
+def playlist_songs(id):
+    """
+    Query for a playlist by id and returns the songs from that playlist in a dictionary
+    """
+    playlist = Playlists.query.get(id)
+
+    if not playlist:
+        return { 'message': 'Playlist not found' }
+    
+    songs = PlaylistSongs.query.filter(PlaylistSongs.playlist_id == id)
+
+    if not songs:
+        return { 'message': 'No songs found' }
+    
+    if len([song.to_dict() for song in songs]) < 1:
+        return { 'message': 'No songs found' }
+    
+    return [song.to_dict() for song in songs] 
 
 @playlist_routes.route('/<int:id>', methods=['PUT'])
 @login_required

@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import Songs, db, Lyrics
+from app.models import Songs, db, Lyrics, PlaylistSongs
 from app.forms import SongForm, LyricsForm
 
 song_routes = Blueprint('songs', __name__)
@@ -71,6 +71,40 @@ def song(id):
         return { 'message': 'No song found' }
     
     return song.to_dict()
+
+@song_routes.route('/<int:id>/lyrics')
+def song_lyrics(id):
+    """
+    Query for a song by id and returns the lyrics of song in a dictionary
+    """
+    song = Songs.query.get(id)
+
+    if not song:
+        return { 'message': 'No song found' }
+    
+    lyrics = Lyrics.query.filter(Lyrics.song_id == id).first()
+
+    if not lyrics:
+        return { 'message': 'No lyrics found' }
+    
+    return lyrics.to_dict()
+
+@song_routes.route('/<int:id>/playlists')
+def song_playlists(id):
+    """
+    Query for a song by id and returns the playlists of song in a dictionary
+    """
+    song = Songs.query.get(id)
+
+    if not song:
+        return { 'message': 'No song found' }
+    
+    playlists = PlaylistSongs.query.filter(PlaylistSongs.song_id == id).all()
+
+    if not playlists:
+        return { 'message': 'No playlists found' }
+    
+    return [playlist.to_dict() for playlist in playlists]
 
 @song_routes.route('/<int:id>/lyrics', methods=['POST'])
 @login_required
