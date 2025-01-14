@@ -68,27 +68,33 @@ def song(id):
     song = Songs.query.get(id)
 
     if not song:
-        return {
-            'message': 'No song found'
-        }
+        return { 'message': 'No song found' }
     
     return song.to_dict()
 
-@song_routes.route('/<int:id>', methods=['POST'])
+@song_routes.route('/<int:id>/lyrics', methods=['POST'])
 @login_required
 def add_lyrics(id):
     """
     Creates new lyrics for song based on song id
     """
+    song = Songs.query.get(id)
+    if not song:
+        return { 'message': 'No song found' }
+
+    if song.owner_id != current_user.id:
+        return jsonify({'message': 'Forbidden'}), 403
+    
     lyrics = Lyrics.query.filter(Lyrics.song_id == id).first()
 
     if lyrics:
-        return jsonify({'message': 'Forbidden'}), 403
+        return jsonify({'message': 'Lyrics for this song already in system'}), 403
+        
 
     form = LyricsForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        lyric = Lyrics(
+        lyrics = Lyrics(
             creator_id=current_user.get_id(),
             song_id=id,
             type=form.data['type'],
@@ -96,9 +102,9 @@ def add_lyrics(id):
             translation=form.data['translation'],
             translation_language=form.data['translation_language']
         )
-        db.session.add(lyric)
+        db.session.add(lyrics)
         db.session.commit()
-        return lyric.to_dict(), 201
+        return lyrics.to_dict(), 201
     return form.errors, 401 
 
 @song_routes.route('/<int:id>', methods=['PUT'])
@@ -142,5 +148,56 @@ def delete_song(id):
 
     if song:
         db.session.delete(song)
+        db.session.commit()
+        return { 'message': "Successfully deleted" }
+    
+@song_routes.route('/<int:id>/lyrics', methods=['PUT'])
+@login_required
+def update_song_lyrics(id):
+    """
+    Update lyrics's information by song id
+    """
+    data = request.get_json()
+    song = Songs.query.get(id)
+    if not song:
+        return jsonify({'message': 'Song not found'}), 404
+    if song.owner_id != current_user.id:
+        return jsonify({'message': 'Forbidden'}), 403
+    
+    lyrics = Lyrics.query.filter(Lyrics.song_id == song.id).first()
+    if not lyrics:
+        return jsonify({'message': 'Lyrics not found'}), 404
+    if lyrics.creator_id != current_user.id:
+        return jsonify({'message': 'Forbidden'}), 403
+    
+    lyrics.type = data.get('type', lyrics.type)
+    lyrics.lyrics = data.get('lyrics', lyrics.lyrics)
+    lyrics.translation = data.get('translation', lyrics.translation)
+    lyrics.translation_language = data.get('translation_language', lyrics.translation_language)
+
+    db.session.commit()
+    return lyrics.to_dict()
+    
+@song_routes.route('/<int:id>/lyrics', methods=['DELETE'])
+@login_required
+def delete_lyric(id):
+    """
+    Deletes lyrics by song id
+    """
+    song = Songs.query.get(id)
+    if not song:
+        return jsonify({'message': 'Song not found'}), 404
+    
+    if song.owner_id != current_user.id:
+        return jsonify({'message': 'Forbidden'}), 403
+
+    lyrics = Lyrics.query.filter(Lyrics.song_id == song.id).first()
+    if not lyrics:
+        return jsonify({'message': 'Lyrics not found'}), 404
+    if lyrics.creator_id != current_user.id:
+        return jsonify({'message': 'Forbidden'}), 403
+
+    if lyrics:
+        db.session.delete(lyrics)
         db.session.commit()
         return { 'message': "Successfully deleted" }

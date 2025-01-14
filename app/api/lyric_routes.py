@@ -14,27 +14,6 @@ def lyrics():
     lyrics = Lyrics.query.all()
     return {'lyrics': [lyric.to_dict() for lyric in lyrics]}
 
-@lyric_routes.route('/', methods=['POST'])
-@login_required
-def create_lyrics():
-    """
-    Creates new lyrics
-    """
-    form = LyricsForm()
-    form['csrf_token'].data = request.cookies['csrf_token']
-    if form.validate_on_submit():
-        lyric = Lyrics(
-            creator_id=current_user.get_id(),
-            song_id=form.data['song_id'],
-            type=form.data['type'],
-            lyrics=form.data['lyrics'],
-            translation=form.data['translation'],
-            translation_language=form.data['translation_language']
-        )
-        db.session.add(lyric)
-        db.session.commit()
-        return lyric.to_dict(), 201
-    return form.errors, 401
 
 @lyric_routes.route('/current')
 @login_required
@@ -62,3 +41,42 @@ def lyric(id):
         return { 'message': 'Lyrics not found'}
     
     return lyric.to_dict()
+
+@lyric_routes.route('/<int:id>', methods=['PUT'])
+@login_required
+def update_lyrics(id):
+    """
+    Update lyrics's information by id
+    """
+    data = request.get_json()
+    lyrics = Lyrics.query.get(id)
+    if not lyrics:
+        return jsonify({'message': 'Lyrics not found'}), 404
+    if lyrics.creator_id != current_user.id:
+        return jsonify({'message': 'Forbidden'}), 403
+    
+    lyrics.type = data.get('type', lyrics.type)
+    lyrics.lyrics = data.get('lyrics', lyrics.lyrics)
+    lyrics.translation = data.get('translation', lyrics.translation)
+    lyrics.translation_language = data.get('translation_language', lyrics.translation_language)
+
+    db.session.commit()
+    return lyrics.to_dict()
+    
+
+@lyric_routes.route('/<int:id>', methods=['DELETE'])
+@login_required
+def delete_lyric(id):
+    """
+    Deletes lyrics by id
+    """
+    lyrics = Lyrics.query.get(id)
+    if not lyrics:
+        return jsonify({'message': 'Lyrics not found'}), 404
+    if lyrics.creator_id != current_user.id:
+        return jsonify({'message': 'Forbidden'}), 403
+
+    if lyrics:
+        db.session.delete(lyrics)
+        db.session.commit()
+        return { 'message': "Successfully deleted" }
