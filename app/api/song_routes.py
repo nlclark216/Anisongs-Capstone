@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import Songs, db
-from app.forms import SongForm
+from app.models import Songs, db, Lyrics
+from app.forms import SongForm, LyricsForm
 
 song_routes = Blueprint('songs', __name__)
 
@@ -72,7 +72,34 @@ def song(id):
             'message': 'No song found'
         }
     
-    return song.to_dict() 
+    return song.to_dict()
+
+@song_routes.route('/<int:id>', methods=['POST'])
+@login_required
+def add_lyrics(id):
+    """
+    Creates new lyrics for song based on song id
+    """
+    lyrics = Lyrics.query.filter(Lyrics.song_id == id).first()
+
+    if lyrics:
+        return jsonify({'message': 'Forbidden'}), 403
+
+    form = LyricsForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        lyric = Lyrics(
+            creator_id=current_user.get_id(),
+            song_id=id,
+            type=form.data['type'],
+            lyrics=form.data['lyrics'],
+            translation=form.data['translation'],
+            translation_language=form.data['translation_language']
+        )
+        db.session.add(lyric)
+        db.session.commit()
+        return lyric.to_dict(), 201
+    return form.errors, 401 
 
 @song_routes.route('/<int:id>', methods=['PUT'])
 @login_required
