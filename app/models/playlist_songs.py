@@ -8,6 +8,7 @@ class PlaylistSongs(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    added_by = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     playlist_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('playlists.id')), nullable=False)
     song_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('songs.id')), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.datetime.now())
@@ -17,8 +18,10 @@ class PlaylistSongs(db.Model):
     def to_dict(self):
         return {
             'id': self.id,
+            'added_by': self.added_by,
             'playlist_id': self.playlist_id,
             'song_id': self.song_id,
-            'playlist': (self.playlist.name) if self.playlist else None,
-            'song': (self.song.title, self.song.artist) if self.song else None
+            'added_by': self.added_by if self.added_by else None,
+            'playlist': {'name': self.playlist.name, 'creator': self.playlist.creator.username} if self.playlist else None,
+            'song': {'title': self.song.title, 'artist': self.song.artist} if self.song else None
         }

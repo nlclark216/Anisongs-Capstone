@@ -3,50 +3,62 @@ from sqlalchemy.sql import text
 
 def seed_playlist_songs():
     song1 = PlaylistSongs(
+        added_by=1,
         playlist_id=1,
         song_id=1
     )
     song2 = PlaylistSongs(
+        added_by=1,
         playlist_id=1,
         song_id=2
     )
     song3 = PlaylistSongs(
+        added_by=2,
         playlist_id=3,
         song_id=3
     )
     song4 = PlaylistSongs(
+        added_by=2,
         playlist_id=3,
         song_id=4
     )
     song5 = PlaylistSongs(
+        added_by=3,
         playlist_id=5,
         song_id=5
     )
     song6 = PlaylistSongs(
+        added_by=3,
         playlist_id=5,
         song_id=6
     )
     song7 = PlaylistSongs(
+        added_by=1,
         playlist_id=1,
         song_id=15
     )
     song8 = PlaylistSongs(
+        added_by=1,
         playlist_id=1,
         song_id=17
     )
     song9 = PlaylistSongs(
+        added_by=1,
         playlist_id=2,
         song_id=18
     )
     song10 = PlaylistSongs(
+        added_by=1,
         playlist_id=2,
         song_id=19
     )
     song11 = PlaylistSongs(
+        added_by=1,
         playlist_id=2,
         song_id=20
     )
     song12 = PlaylistSongs(
+        added_by=3,
         playlist_id=5,
         song_id=6
     )

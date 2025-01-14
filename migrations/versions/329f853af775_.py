@@ -103,10 +103,12 @@ def upgrade():
         op.execute(f"ALTER TABLE lyrics SET SCHEMA {SCHEMA};")
     op.create_table('playlist_songs',
     sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
+    sa.Column('added_by', sa.Integer(), nullable=False),
     sa.Column('playlist_id', sa.Integer(), nullable=False),
     sa.Column('song_id', sa.Integer(), nullable=False),
     sa.Column('created_at', sa.DateTime(), nullable=True),
     sa.Column('updated_at', sa.DateTime(), nullable=True),
+    sa.ForeignKeyConstraint(['added_by'], ['users.id'], ),
     sa.ForeignKeyConstraint(['song_id'], ['songs.id'], ),
     sa.ForeignKeyConstraint(['playlist_id'], ['playlists.id'], ),
     sa.PrimaryKeyConstraint('id')  

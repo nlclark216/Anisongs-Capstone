@@ -1,6 +1,6 @@
-from flask import Blueprint, jsonify
-from flask_login import login_required
-from app.models import PlaylistSongs
+from flask import Blueprint, jsonify, request
+from flask_login import login_required, current_user
+from app.models import PlaylistSongs, Songs, db
 
 playlist_song_routes = Blueprint('playlist_songs', __name__)
 
@@ -13,11 +13,24 @@ def playlist_songs():
     playlist_songs = PlaylistSongs.query.all()
 
     if not playlist_songs:
-        return {
-            'message': 'No songs found'
-        }
+        return { 'message': 'No songs found' }
 
-    return {'playlist_songs': [playlist_song.to_dict() for playlist_song in playlist_songs]}
+    return [playlist_song.to_dict() for playlist_song in playlist_songs]
+
+@playlist_song_routes.route('/current')
+@login_required
+def user_playlist_songs():
+    """
+    Query for all playlist songs belonging to current user and returns them in a list of playlist song dictionaries
+    """
+    playlist_songs = PlaylistSongs.query.filter(PlaylistSongs.added_by == current_user.id)
+
+    if not playlist_songs:
+        return { 'message': 'No songs found' }
+    
+    if playlist_songs:
+        return {'playlist_songs': [playlist_song.to_dict() for playlist_song in playlist_songs]}
+
 
 @playlist_song_routes.route('/<int:id>')
 @login_required
@@ -31,3 +44,23 @@ def playlist_song(id):
         return { 'message': 'No song found' }
 
     return playlist_song.to_dict()
+
+
+@playlist_song_routes.route('/<int:id>', methods=['DELETE'])
+@login_required
+def delete_playlist_song(id):
+    """
+    Query for a playlist song by id and deletes that playlist song
+    """
+    playlist_song = PlaylistSongs.query.get(id)
+
+    if not playlist_song:
+        return { 'message': 'No song found' }
+
+    if playlist_song.added_by != current_user.id:
+        return jsonify({'message': 'Forbidden'}), 403
+    
+    if playlist_song:
+        db.session.delete(playlist_song)
+        db.session.commit()
+        return { 'message': "Successfully deleted" }

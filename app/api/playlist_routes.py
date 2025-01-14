@@ -82,6 +82,7 @@ def add_song(id):
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         new_song = PlaylistSongs(
+            added_by=current_user.id,
             playlist_id=id,
             song_id=form.data['song_id']
         )

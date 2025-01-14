@@ -28,6 +28,7 @@ class User(db.Model, UserMixin):
     playlists = db.relationship('Playlists', backref='creator', cascade='all, delete-orphan', lazy=True)
     likes = db.relationship('Likes', backref='owner', cascade='all, delete-orphan', lazy=True)
     lyrics = db.relationship('Lyrics', backref='creator', cascade='all, delete-orphan', lazy=True)
+    # playlist_songs = db.relationship('PlaylistSongs', backref='added_by', cascade='all, delete-orphan', lazy=True)
 
     @property
     def password(self):
