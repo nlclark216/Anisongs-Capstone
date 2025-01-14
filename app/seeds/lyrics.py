@@ -16,16 +16,66 @@ def seed_lyrics():
         lyrics='lyrics text here',
         translation='translation text here'
     )
-    lyrics2 = Lyrics(
+    lyrics3 = Lyrics(
         creator_id=3,
         song_id=5,
         type='Romaji',
         lyrics='lyrics text here',
         translation='translation text here'
     )
+    lyrics4 = Lyrics(
+        creator_id=1,
+        song_id=2,
+        type='Romaji',
+        lyrics='lyrics text here',
+        translation='translation text here'
+    )
+    lyrics5 = Lyrics(
+        creator_id=2,
+        song_id=4,
+        type='Romaji',
+        lyrics='lyrics text here',
+        translation='translation text here'
+    )
+    lyrics6 = Lyrics(
+        creator_id=3,
+        song_id=6,
+        type='Romaji',
+        lyrics='lyrics text here',
+        translation='translation text here'
+    )
+    lyrics7 = Lyrics(
+        creator_id=4,
+        song_id=8,
+        type='Romaji',
+        lyrics='lyrics text here',
+        translation='translation text here'
+    )
+    lyrics8 = Lyrics(
+        creator_id=5,
+        song_id=9,
+        type='Romaji',
+        lyrics='lyrics text here',
+        translation='translation text here'
+    )
+    lyrics9 = Lyrics(
+        creator_id=6,
+        song_id=11,
+        type='Romaji',
+        lyrics='lyrics text here',
+        translation='translation text here'
+    )
+
 
     db.session.add(lyrics1)
     db.session.add(lyrics2)
+    db.session.add(lyrics3)
+    db.session.add(lyrics4)
+    db.session.add(lyrics5)
+    db.session.add(lyrics6)
+    db.session.add(lyrics7)
+    db.session.add(lyrics8)
+    db.session.add(lyrics9)
     db.session.commit()
 
 def undo_lyrics():

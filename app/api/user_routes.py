@@ -38,7 +38,7 @@ def current_user_info():
 
 @user_routes.route('/<int:id>', methods=['PUT'])
 @login_required
-def update(id):
+def update_user(id):
     """
     Update a user's information by id
     """
@@ -90,6 +90,9 @@ def update_current():
 @user_routes.route('/<int:id>', methods=['DELETE'])
 @login_required
 def delete_user(id):
+    """
+    Deletes user by id
+    """
     user = User.query.get(id)
     if not user:
         return jsonify({'message': 'User not found'}), 404
@@ -105,6 +108,9 @@ def delete_user(id):
 @user_routes.route('/current', methods=['DELETE'])
 @login_required
 def delete_current_user():
+    """
+    Deletes current user
+    """
     user = User.query.get(current_user.get_id())
     if user:
         db.session.delete(user)

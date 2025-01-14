@@ -68,6 +68,131 @@ def seed_songs():
         year=2001,
         language='Japanese'
     )
+    song7 = Songs(
+        owner_id=4,
+        title='song title',
+        artist='artist',
+        song_file='song file url',
+        anime='anime name',
+        album_name='album name',
+        year=2005
+    )
+    song8 = Songs(
+        owner_id=4,
+        title='song title',
+        artist='artist',
+        song_file='song file url',
+        anime='anime name',
+        album_name='album name',
+        year=2005
+    )
+    song9 = Songs(
+        owner_id=5,
+        title='song title',
+        artist='artist',
+        song_file='song file url',
+        anime='anime name',
+        album_name='album name',
+        year=2015
+    )
+    song10 = Songs(
+        owner_id=5,
+        title='song title',
+        artist='artist',
+        song_file='song file url',
+        anime='anime name',
+        album_name='album name',
+        year=2025
+    )
+    song11 = Songs(
+        owner_id=6,
+        title='song title',
+        artist='artist',
+        song_file='song file url',
+        anime='anime name',
+        album_name='album name',
+        year=2012
+    )
+    song12 = Songs(
+        owner_id=6,
+        title='song title',
+        artist='artist',
+        song_file='song file url',
+        anime='anime name',
+        album_name='album name',
+        year=2000
+    )
+    song13 = Songs(
+        owner_id=1,
+        title='song title',
+        artist='artist',
+        song_file='song file url',
+        anime='anime name',
+        album_name='album name',
+        year=2019
+    )
+    song14 = Songs(
+        owner_id=1,title='song title',
+        artist='artist',
+        song_file='song file url',
+        anime='anime name',
+        album_name='album name',
+        year=2016
+    )
+    song15 = Songs(
+        owner_id=1,
+        title='song title',
+        artist='artist',
+        song_file='song file url',
+        anime='anime name',
+        album_name='album name',
+        year=2009
+    )
+    song16 = Songs(
+        owner_id=1,
+        title='song title',
+        artist='artist',
+        song_file='song file url',
+        anime='anime name',
+        album_name='album name',
+        year=2013
+    )
+    song17 = Songs(
+        owner_id=1,
+        title='song title',
+        artist='artist',
+        song_file='song file url',
+        anime='anime name',
+        album_name='album name',
+        year=2005
+    )
+    song18 = Songs(
+        owner_id=1,
+        title='song title',
+        artist='artist',
+        song_file='song file url',
+        anime='anime name',
+        album_name='album name',
+        year=1997
+    )
+    song19 = Songs(
+        owner_id=1,
+        title='song title',
+        artist='artist',
+        song_file='song file url',
+        anime='anime name',
+        album_name='album name',
+        year=1998
+    )
+    song20 = Songs(
+        owner_id=1,
+        title='song title',
+        artist='artist',
+        song_file='song file url',
+        anime='anime name',
+        album_name='album name',
+        year=2003
+    )
 
     db.session.add(song1)
     db.session.add(song2)
@@ -75,6 +200,21 @@ def seed_songs():
     db.session.add(song4)
     db.session.add(song5)
     db.session.add(song6)
+    db.session.add(song7)
+    db.session.add(song8)
+    db.session.add(song9)
+    db.session.add(song10)
+    db.session.add(song11)
+    db.session.add(song12)
+    db.session.add(song13)
+    db.session.add(song14)
+    db.session.add(song15)
+    db.session.add(song16)
+    db.session.add(song17)
+    db.session.add(song18)
+    db.session.add(song19)
+    db.session.add(song20)
+
     db.session.commit()
 
 def undo_songs():

@@ -37,10 +37,46 @@ def seed_users():
         address='14 Hwy 85 S',
         country='US'
         )
+    gary = User(
+        username='gary', 
+        email='gary@aa.io', 
+        password='password',
+        first_name='Gary',
+        last_name='Denver',
+        city='Miami',
+        state='FL',
+        address='24367 Higher Cir',
+        country='US'
+        )
+    susan = User(
+        username='susan', 
+        email='susan@aa.io', 
+        password='password',
+        first_name='Susan',
+        last_name='Fam',
+        city='Aspen',
+        state='CO',
+        address='56 Snowflake Dr',
+        country='US'
+        )
+    lee = User(
+        username='lee', 
+        email='lee@aa.io', 
+        password='password',
+        first_name='Lee',
+        last_name='Smith',
+        city='Indianapolis',
+        state='IN',
+        address='452 Girdle Ln',
+        country='US'
+        )
 
     db.session.add(demo)
     db.session.add(marina)
     db.session.add(alex)
+    db.session.add(gary)
+    db.session.add(susan)
+    db.session.add(lee)
     db.session.commit()
 
 
