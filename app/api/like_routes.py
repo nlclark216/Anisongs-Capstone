@@ -1,5 +1,5 @@
-from flask import Blueprint, jsonify
-from flask_login import login_required
+from flask import Blueprint, jsonify, request
+from flask_login import login_required, current_user
 from app.models import Likes
 
 like_routes = Blueprint('likes', __name__)
@@ -16,6 +16,19 @@ def likes():
         return {
             'message': 'No likes found'
         }
+    
+    return {'likes': [like.to_dict() for like in likes]}
+
+@like_routes.route('/current')
+@login_required
+def created_likes():
+    """
+    Query for all likes user created and returns them in a list of like dictionaries
+    """
+    likes = Likes.query.filter(Likes.owner_id == current_user.get_id())
+
+    if not likes:
+        return { 'message': 'No likes found' }
     
     return {'likes': [like.to_dict() for like in likes]}
 

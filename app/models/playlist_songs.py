@@ -12,12 +12,13 @@ class PlaylistSongs(db.Model):
     song_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('songs.id')), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.datetime.now())
     updated_at = db.Column(db.DateTime, default=datetime.datetime.now())
+    
 
     def to_dict(self):
         return {
             'id': self.id,
             'playlist_id': self.playlist_id,
             'song_id': self.song_id,
-            'playlist': self.playlist.to_dict() if self.playlist else None,
-            'song': self.song.to_dict() if self.song else None
+            'playlist': (self.playlist.name) if self.playlist else None,
+            'song': (self.song.title, self.song.artist) if self.song else None
         }

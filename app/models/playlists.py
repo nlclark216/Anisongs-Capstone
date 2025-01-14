@@ -1,4 +1,5 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
+from flask_login import current_user
 import datetime
 
 class Playlists(db.Model):
@@ -14,7 +15,6 @@ class Playlists(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.datetime.now())
     updated_at = db.Column(db.DateTime, default=datetime.datetime.now())
 
-    songs = db.relationship('PlaylistSongs', backref='playlists', cascade='all, delete-orphan', lazy=True)
     playlist_song = db.relationship('PlaylistSongs', backref='playlist', cascade='all, delete-orphan', lazy=True)
 
     def to_dict(self):
@@ -23,6 +23,5 @@ class Playlists(db.Model):
             'creator_id': self.creator_id,
             'name': self.name,
             'image': self.image, 
-            'creator': self.creator.to_dict() if self.creator else None,
-            # 'songs': self.songs.to_dict() if self.songs else None
+            'creator': self.creator.username if self.creator_id != current_user.id else 'Current User'
         }

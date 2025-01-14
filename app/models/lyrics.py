@@ -1,4 +1,5 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
+from flask_login import current_user
 import datetime
 
 class Lyrics(db.Model):
@@ -26,6 +27,6 @@ class Lyrics(db.Model):
             'lyrics': self.lyrics,
             'translation': self.translation,
             'translation_language': self.translation_language,
-            # 'creator': self.creator.to_dict() if self.creator else None,
+            # 'creator': self.creator.to_dict() if self.creator_id != current_user.id else None,
             'song': self.song.to_dict() if self.song else None 
         }

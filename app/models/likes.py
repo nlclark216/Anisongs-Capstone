@@ -1,4 +1,5 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
+from flask_login import current_user
 import datetime
 
 class Likes(db.Model):
@@ -18,6 +19,6 @@ class Likes(db.Model):
             'id': self.id,
             'owner_id': self.owner_id,
             'song_id': self.song_id,
-            'owner': self.owner.to_dict() if self.owner else None,
+            'owner': self.owner.to_dict() if self.owner_id != current_user.id else None,
             'song': self.song.to_dict() if self.song else None  
         }
