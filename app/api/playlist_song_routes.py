@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import PlaylistSongs, Songs, db
+from app.models import PlaylistSongs, db
 
 playlist_song_routes = Blueprint('playlist_songs', __name__)
 
@@ -13,7 +13,7 @@ def playlist_songs():
     playlist_songs = PlaylistSongs.query.all()
 
     if not playlist_songs:
-        return { 'message': 'No songs found' }
+        return jsonify({'message': 'Song not found'}), 404
 
     return [playlist_song.to_dict() for playlist_song in playlist_songs]
 
@@ -26,10 +26,10 @@ def user_playlist_songs():
     playlist_songs = PlaylistSongs.query.filter(PlaylistSongs.added_by == current_user.id)
 
     if not playlist_songs:
-        return { 'message': 'No songs found' }
+        return jsonify({'message': 'Song not found'}), 404
     
     if playlist_songs:
-        return {'playlist_songs': [playlist_song.to_dict() for playlist_song in playlist_songs]}
+        return {'playlist_songs': [playlist_song.to_dict() for playlist_song in playlist_songs]}, 200
 
 
 @playlist_song_routes.route('/<int:id>')
@@ -41,7 +41,7 @@ def playlist_song(id):
     playlist_song = PlaylistSongs.query.get(id)
 
     if not playlist_song:
-        return { 'message': 'No song found' }
+        return jsonify({'message': 'Song not found'}), 404
 
     return playlist_song.to_dict()
 
@@ -63,4 +63,4 @@ def delete_playlist_song(id):
     if playlist_song:
         db.session.delete(playlist_song)
         db.session.commit()
-        return { 'message': "Successfully deleted" }
+        jsonify({'message': "Successfully deleted"}), 204

@@ -17,5 +17,5 @@ def song_exists(form, field):
         raise ValidationError('Song not found')
     
 class PlaylistSongsForm(FlaskForm):
-    added_by = IntegerField('added_by', validators=[])
+    added_by = IntegerField('added_by', validators=[DataRequired()])
     song_id = IntegerField('song_id', validators=[DataRequired(), song_in_list, song_exists])

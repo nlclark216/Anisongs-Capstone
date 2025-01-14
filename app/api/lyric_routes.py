@@ -79,4 +79,4 @@ def delete_lyric(id):
     if lyrics:
         db.session.delete(lyrics)
         db.session.commit()
-        return { 'message': "Successfully deleted" }
+        return {'message': "Successfully deleted"}

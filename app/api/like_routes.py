@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import Likes
+from app.models import Likes, db
 
 like_routes = Blueprint('likes', __name__)
 
@@ -13,11 +13,9 @@ def likes():
     likes = Likes.query.all()
 
     if not likes:
-        return {
-            'message': 'No likes found'
-        }
+        return jsonify({'message': 'Like not found'}), 404
     
-    return {'likes': [like.to_dict() for like in likes]}
+    return jsonify({'likes': [like.to_dict() for like in likes]}), 200
 
 @like_routes.route('/current')
 @login_required
@@ -28,9 +26,9 @@ def created_likes():
     likes = Likes.query.filter(Likes.owner_id == current_user.get_id())
 
     if not likes:
-        return { 'message': 'No likes found' }
+        return jsonify({'message': 'Like not found'}), 404
     
-    return {'likes': [like.to_dict() for like in likes]}
+    return jsonify({'likes': [like.to_dict() for like in likes]}), 200
 
 @like_routes.route('/<int:id>')
 @login_required
@@ -41,8 +39,21 @@ def like(id):
     like = Likes.query.get(id)
 
     if not like:
-        return {
-            'message': 'No like found'
-        }
-    
-    return like.to_dict()
+        return jsonify({'message': 'Like not found'}), 404
+    return like.to_dict(), 200
+
+@like_routes.route('/<int:id>', methods=['DELETE'])
+@login_required
+def delete_like(id):
+    """
+    Query for a like by id and deletes that like
+    """
+    like = Likes.query.get(id)
+    if not like:
+        return jsonify({'message': 'Like not found'}), 404
+    if like.owner_id != current_user.id:
+        return jsonify({'message': 'Forbidden'}), 403
+
+    db.session.delete(like)
+    db.session.commit()
+    return {'message': "Successfully deleted"}

@@ -190,4 +190,4 @@ def delete_playlist(id):
     if playlist:
         db.session.delete(playlist)
         db.session.commit()
-        return { 'message': "Successfully deleted" }
+        jsonify({'message': "Successfully deleted"}), 204

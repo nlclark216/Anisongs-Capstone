@@ -1,7 +1,8 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import Songs, db, Lyrics, PlaylistSongs
-from app.forms import SongForm, LyricsForm
+from sqlalchemy import and_
+from app.models import Songs, db, Lyrics, PlaylistSongs, Likes
+from app.forms import SongForm, LyricsForm, LikesForm
 
 song_routes = Blueprint('songs', __name__)
 
@@ -183,7 +184,7 @@ def delete_song(id):
     if song:
         db.session.delete(song)
         db.session.commit()
-        return { 'message': "Successfully deleted" }
+        return {'message': "Successfully deleted"}
     
 @song_routes.route('/<int:id>/lyrics', methods=['PUT'])
 @login_required
@@ -235,3 +236,33 @@ def delete_lyric(id):
         db.session.delete(lyrics)
         db.session.commit()
         return jsonify({'message': "Successfully deleted"}), 204
+    
+@song_routes.route('/<int:id>', methods=['POST'])
+@login_required
+def create_like(id):
+    """
+    Adds like by song id
+    """
+    song = Songs.query.get(id)
+    if not song:
+        return jsonify({'message': 'Song not found'}), 404
+    
+    if song.owner_id != current_user.id:
+        return jsonify({'message': 'Forbidden'}), 403
+    
+    like = Likes.query.filter(and_(Likes.owner_id == current_user.get_id(), Likes.song_id == id)).first()
+
+    if like:
+        return jsonify({'message': 'Like for song already in system'}), 403
+    
+    form = LikesForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        new_like = Likes(
+            owner_id=current_user.id,
+            song_id=id
+        )
+        db.session.add(new_like)
+        db.session.commit()
+        return new_like.to_dict(), 201
+    return form.errors, 401

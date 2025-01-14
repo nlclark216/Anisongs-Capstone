@@ -42,6 +42,6 @@ class Songs(db.Model):
             'createdAt': self.created_at,
             'updatedAt': self.updated_at,
             'owner': self.owner.username if self.owner_id != current_user.id else 'Current User',
-            # 'likes': self.likes.to_dict() if self.likes else None,
-            # 'playlists': self.playlists.to_dict() if self.playlists else None
+            'likes': { 'owner_id': self.like.owner_id for self.like in self.likes},
+            # 'playlists': { 'playlists': [self.playlist.to_dict() for self.playlist in self.playlists] }
         }
