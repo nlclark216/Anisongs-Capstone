@@ -13,9 +13,9 @@ const userSongs = (songs) => ({
     payload: songs
 })
 
-const deleteSong = song => ({
+const deleteSong = id => ({
     type: DELETE_SONG,
-    payload: song
+    payload: id
 })
 
 export const thunkAllSongs = () => async dispatch => {
@@ -36,8 +36,12 @@ export const thunkUserSongs = () => async dispatch => {
     }   
 }
 
-export const thunkDeleteSong = () => {
-    
+export const thunkDeleteSong = (id) => async dispatch =>{
+    const res = await fetch(`/api/songs/${id}`, {method: 'DELETE'})
+    if(res.ok) {
+        dispatch(deleteSong(id));
+        window.location.reload();
+    }
 }
 
 const initialState = { allSongs: {}, userSongs: {} }
@@ -58,6 +62,11 @@ export default function songsReducer(state = initialState, action) {
             songsArr.forEach(song=>{
                 newState.userSongs[song.id] = song;
             })
+            return newState;
+        }
+        case DELETE_SONG: {
+            const newState = {...state};
+            delete newState.allSongs[action.payload];
             return newState;
         }
         default: 

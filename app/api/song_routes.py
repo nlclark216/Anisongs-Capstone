@@ -23,6 +23,7 @@ def songs():
             'file': song.song_file,
             'song_img': song.song_img,
             'anime': song.anime,
+            'album_name': song.album_name,
             'album_art': song.album_art,
             'year': song.year,
             'language': song.language
@@ -48,6 +49,7 @@ def owned_songs():
             'file': song.song_file,
             'song_img': song.song_img,
             'anime': song.anime,
+            'album_name': song.album_name,
             'album_art': song.album_art,
             'year': song.year,
             'language': song.language
