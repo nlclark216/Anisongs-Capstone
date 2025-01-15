@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { useModal } from "../../../context/Modal";
 import './DeleteProfile.css';
-import { thunkLogout } from "../../../redux/session";
+import { thunkDeleteProfile } from "../../../redux/session";
 
 export default function DeleteProfileModal() {
     const { closeModal } = useModal();
@@ -10,8 +10,17 @@ export default function DeleteProfileModal() {
     const handleSubmit = async e => {
         e.preventDefault();
 
-        return await dispatch(thunkLogout())
+        const serverResponse = await dispatch(
+            thunkDeleteProfile()
+        );
+
+        if (serverResponse) {
+        setErrors(serverResponse);
+        } else {
+        closeModal();
+        }
     }
+
     return (
         <>
         <div >

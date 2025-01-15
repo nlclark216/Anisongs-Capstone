@@ -76,7 +76,23 @@ export const thunkEditUser = (user) => async dispatch => {
     dispatch(setUser(newUser));
     window.location.reload()
   } else if (response.status < 500) {
-    const errorMessages = await response.text();
+    const errorMessages = await response.json();
+    return errorMessages
+  } else {
+    return { server: "Something went wrong. Please try again" }
+  }
+};
+
+export const thunkDeleteProfile = () => async dispatch => {
+  const response = await csrfFetch(`/api/users/current`, {
+    method: "DELETE",
+    headers: { "Content-Type": "application/json" }
+  });
+
+  if(response.ok) {
+    await dispatch(removeUser());
+  } else if (response.status < 500) {
+    const errorMessages = await response.json();
     return errorMessages
   } else {
     return { server: "Something went wrong. Please try again" }
