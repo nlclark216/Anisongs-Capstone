@@ -7,7 +7,6 @@ from app.forms import PlaylistForm, PlaylistSongsForm
 playlist_routes = Blueprint('playlists', __name__)
 
 @playlist_routes.route('/')
-@login_required
 def playlists():
     """
     Query for all playlists and returns them in a list of playlist dictionaries

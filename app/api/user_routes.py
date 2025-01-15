@@ -31,10 +31,10 @@ def current_user_info():
     """
     Query for the user currently logged in
     """
-    if current_user:
-        return current_user.to_dict()
+    if not current_user:
+        return { 'users': 'null' }
 
-    return { 'users': 'null' }
+    return current_user.to_dict()
 
 @user_routes.route('/<int:id>', methods=['PUT'])
 @login_required

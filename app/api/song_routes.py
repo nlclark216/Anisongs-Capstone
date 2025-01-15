@@ -11,16 +11,25 @@ def songs():
     """
     Query for all songs and returns them in a list of song dictionaries
     """
-    songs = Songs.query.all()
-    
-    if not songs:
-        return {
-            'message': 'No songs found'
-        }
 
-    return {'songs': [song.to_dict() for song in songs]}
+    songs = Songs.query.all()
+
+    return {'songs': [
+        {
+            'id': song.id,
+            "owner_id": song.owner_id,
+            'title': song.title,
+            'artist': song.artist,
+            'file': song.song_file,
+            'song_img': song.song_img,
+            'anime': song.anime,
+            'album_art': song.album_art,
+            'year': song.year,
+            'language': song.language
+         } for song in songs]}, 200
 
 @song_routes.route('/current')
+@login_required
 def owned_songs():
     """
     Query for all songs owned by current user and returns them in a list of song dictionaries
@@ -28,11 +37,9 @@ def owned_songs():
     songs = Songs.query.filter(Songs.owner_id == current_user.get_id())
     
     if not songs:
-        return {
-            'message': 'No songs found'
-        }
+        return jsonify({'message': 'No songs found'}), 404
 
-    return {'songs': [song.to_dict() for song in songs]}
+    return {'songs': [song.to_dict() for song in songs]}, 200
 
 
 @song_routes.route('/', methods=['POST'])
@@ -71,7 +78,7 @@ def song(id):
     if not song:
         return { 'message': 'No song found' }
     
-    return song.to_dict()
+    return song.to_dict(), 200
 
 @song_routes.route('/<int:id>/lyrics')
 def song_lyrics(id):
@@ -81,14 +88,14 @@ def song_lyrics(id):
     song = Songs.query.get(id)
 
     if not song:
-        return { 'message': 'No song found' }
+        return jsonify({'message': 'Song not found'}), 404
     
     lyrics = Lyrics.query.filter(Lyrics.song_id == id).first()
 
     if not lyrics:
         return { 'message': 'No lyrics found' }
     
-    return lyrics.to_dict()
+    return lyrics.to_dict(), 200
 
 @song_routes.route('/<int:id>/playlists')
 def song_playlists(id):
@@ -98,14 +105,14 @@ def song_playlists(id):
     song = Songs.query.get(id)
 
     if not song:
-        return { 'message': 'No song found' }
+        return jsonify({'message': 'Song not found'}), 404
     
     playlists = PlaylistSongs.query.filter(PlaylistSongs.song_id == id).all()
 
     if not playlists:
-        return { 'message': 'No playlists found' }
+        return jsonify({'message': 'Playlist not found'}), 404
     
-    return [playlist.to_dict() for playlist in playlists]
+    return [playlist.to_dict() for playlist in playlists], 200
 
 @song_routes.route('/<int:id>/lyrics', methods=['POST'])
 @login_required
@@ -115,7 +122,7 @@ def add_lyrics(id):
     """
     song = Songs.query.get(id)
     if not song:
-        return { 'message': 'No song found' }
+        return jsonify({'message': 'Song not found'}), 404
 
     if song.owner_id != current_user.id:
         return jsonify({'message': 'Forbidden'}), 403

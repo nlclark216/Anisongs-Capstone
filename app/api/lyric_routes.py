@@ -6,13 +6,19 @@ from app.forms import LyricsForm
 lyric_routes = Blueprint('lyrics', __name__)
 
 @lyric_routes.route('/')
-@login_required
 def lyrics():
     """
     Query for all lyrics and returns them in a list of lyric dictionaries
     """
     lyrics = Lyrics.query.all()
-    return {'lyrics': [lyric.to_dict() for lyric in lyrics]}
+    return {'lyrics': [{
+        'id': lyric.id,
+        'creator_id': lyric.creator_id,
+        'type': lyric.type,
+        'lyrics': lyric.lyrics,
+        'translation': lyric.translation,
+        'translation_language': lyric.translation_language
+        } for lyric in lyrics]}
 
 
 @lyric_routes.route('/current')
