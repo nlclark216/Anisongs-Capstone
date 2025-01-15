@@ -27,7 +27,7 @@ export default function SingleSong() {
     <p>From: <b>{song?.anime}</b></p>
     <p>Album: <b>{song?.album_name}</b></p>
     <p>Artist: <b>{song?.artist}</b></p>
-    <div className='song-lyrics-translation'>
+    {!lyrics.message && <div className='song-lyrics-translation'>
         <label>
             Lyrics
            <p style={{'white-space': 'pre-line'}}>{(lyrics?.lyrics)}</p> 
@@ -36,6 +36,10 @@ export default function SingleSong() {
             Translation
             <p style={{'white-space': 'pre-line'}}>{lyrics?.translation}</p> 
         </label>
+    </div>}
+    <div>
+        <button>Edit Song</button>
+        <button>Delete Song</button>
     </div>
     </>
     )
