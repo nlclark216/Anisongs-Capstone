@@ -8,11 +8,13 @@ import thunk from "redux-thunk";
 import sessionReducer from "./session";
 import songsReducer from "./songs";
 import playlistReducer from "./playlists";
+import lyricsReducer from "./lyrics";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   songs: songsReducer,
-  playlists: playlistReducer
+  playlists: playlistReducer,
+  lyrics: lyricsReducer
 });
 
 let enhancer;
