@@ -109,9 +109,9 @@ function SignupFormModal() {
         {errors.city && <p>{errors.city}</p>}
         <label>
           State
-          <select>
+          {/* <select>
             
-          </select>
+          </select> */}
           <input
             type="text"
             value={state}
@@ -130,9 +130,9 @@ function SignupFormModal() {
         {errors.address && <p>{errors.address}</p>}
         <label>
           Country
-          <select>
+          {/* <select>
 
-          </select>
+          </select> */}
           <input
             type="select"
             value={country}

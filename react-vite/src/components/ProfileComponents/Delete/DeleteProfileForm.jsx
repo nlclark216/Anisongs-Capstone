@@ -1,0 +1,1 @@
+import './DeleteProfile.css';

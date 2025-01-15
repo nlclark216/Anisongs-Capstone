@@ -1,5 +1,6 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom';
 import LandingPage from '../components/LandingPage';
+import DashboardPage from '../components/DashboardPage';
 import Layout from './Layout';
 
 export const router = createBrowserRouter([
@@ -9,6 +10,10 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: <LandingPage />,
+      },
+      {
+        path: 'dashboard',
+        element: <DashboardPage />
       },
       {
 				path: '*',

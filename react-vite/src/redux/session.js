@@ -64,6 +64,25 @@ export const thunkLogout = () => async (dispatch) => {
   dispatch(removeUser());
 };
 
+export const thunkEditUser = (user) => async dispatch => {
+  const response = await fetch("/api/users/current", {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(user)
+  });
+
+  if(response.ok) {
+    const newUser = await response.json();
+    dispatch(setUser(newUser));
+    window.location.reload()
+  } else if (response.status < 500) {
+    const errorMessages = await response.text();
+    return errorMessages
+  } else {
+    return { server: "Something went wrong. Please try again" }
+  }
+};
+
 const initialState = { user: null };
 
 function sessionReducer(state = initialState, action) {
