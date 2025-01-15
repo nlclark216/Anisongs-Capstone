@@ -32,7 +32,7 @@ export const thunkLogin = (credentials) => async dispatch => {
 
   if(response.ok) {
     const data = await response.json();
-    dispatch(setUser(data));
+    dispatch(setUser(data)).then(window.location.reload());
   } else if (response.status < 500) {
     const errorMessages = await response.json();
     return errorMessages
@@ -42,7 +42,7 @@ export const thunkLogin = (credentials) => async dispatch => {
 };
 
 export const thunkSignup = (user) => async (dispatch) => {
-  const response = await fetch("/api/auth/signup", {
+  const response = await csrfFetch("/api/auth/signup", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(user)

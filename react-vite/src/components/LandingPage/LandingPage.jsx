@@ -19,7 +19,6 @@ export default function LandingPage(){
     const allPlaylists = useSelector(state=>state.playlists.allPlaylists);
     const userPlaylists = useSelector(state=>state.playlists.userPlaylists);
     const currentUser = useSelector(state=>state.session.user);
-    console.log(userSongs)
     
     if(!currentUser) return (<>
         <h1>Welcome to Ani-Songs!</h1>
