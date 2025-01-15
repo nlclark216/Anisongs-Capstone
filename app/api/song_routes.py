@@ -39,7 +39,19 @@ def owned_songs():
     if not songs:
         return jsonify({'message': 'No songs found'}), 404
 
-    return {'songs': [song.to_dict() for song in songs]}, 200
+    return {'songs': [
+        {
+            'id': song.id,
+            "owner_id": song.owner_id,
+            'title': song.title,
+            'artist': song.artist,
+            'file': song.song_file,
+            'song_img': song.song_img,
+            'anime': song.anime,
+            'album_art': song.album_art,
+            'year': song.year,
+            'language': song.language
+         } for song in songs]}, 200
 
 
 @song_routes.route('/', methods=['POST'])

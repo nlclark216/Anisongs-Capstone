@@ -2,13 +2,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import './PlaylistsComponent.css';
 import { useEffect } from 'react';
 import { thunkAllPlaylists, thunkUserPlaylists } from '../../redux/playlists';
+import { Link } from 'react-router-dom';
 
 export const listTile = (playlist) => {
     return (
-    <div key={playlist?.id} className='list-tile'>
+    <Link key={playlist?.id} className='list-tile'>
     <h5>{playlist?.name}</h5>
     <img height='300px' src={playlist?.image} />
-    </div>
+    </Link>
     )
 }
 
