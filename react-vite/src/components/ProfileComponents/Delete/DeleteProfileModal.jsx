@@ -15,7 +15,7 @@ export default function DeleteProfileModal() {
         );
 
         if (serverResponse) {
-        setErrors(serverResponse);
+        return serverResponse;
         } else {
         closeModal();
         }

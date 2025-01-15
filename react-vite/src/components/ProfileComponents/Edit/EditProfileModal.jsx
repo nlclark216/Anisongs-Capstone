@@ -16,7 +16,7 @@ export default function EditProfileModal({ payload }) {
         );
     
         if (serverResponse) {
-          setErrors(serverResponse);
+          return serverResponse;
         } else {
           closeModal();
         }

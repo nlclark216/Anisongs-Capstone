@@ -9,7 +9,6 @@ import EditProfileForm from '../ProfileComponents/Edit/EditProfileForm';
 
 export default function DashboardPage() {
     // const [activeComponent, setActiveComponent] = useState('edit')
-    const dispatch = useDispatch();
     const navigate = useNavigate()
 
     const currentUser = useSelector(state=>state.session.user);
@@ -21,13 +20,9 @@ export default function DashboardPage() {
         e.preventDefault();
     }
 
-    const handleDelete = (e) => {
-        e.preventDefault();
-    }
-
     return (
         <>
-        <h1>{currentUser.username}&apos;s Page</h1>
+        <h1>{currentUser?.username}&apos;s Page</h1>
         <EditProfileForm currentUser={currentUser} />
         <div>
              <button onClick={handleEdit}>

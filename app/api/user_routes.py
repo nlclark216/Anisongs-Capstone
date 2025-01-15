@@ -57,6 +57,7 @@ def update_user(id):
     user.address = data.get('address', user.address)
     user.country = data.get('country', user.country)
     user.profile_pic = data.get('profile_pic', user.profile_pic)
+    user.username = data.get('username', user.username)
     user.updated_at = datetime.datetime.now()
 
     db.session.commit()
@@ -82,6 +83,7 @@ def update_current():
     user.address = data.get('address', user.address)
     user.country = data.get('country', user.country)
     user.profile_pic = data.get('profile_pic', user.profile_pic)
+    user.username = data.get('username', user.username)
     user.updated_at = datetime.datetime.now()
 
     db.session.commit()

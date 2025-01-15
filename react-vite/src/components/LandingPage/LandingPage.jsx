@@ -1,8 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom';
 import './LandingPage.css'
 import { useEffect } from 'react';
 import { thunkAllSongs, thunkUserSongs } from '../../redux/songs';
 import { thunkAllPlaylists, thunkUserPlaylists } from '../../redux/playlists';
+import { FiChevronRight } from "react-icons/fi";
 
 export default function LandingPage(){
     const dispatch = useDispatch();
@@ -22,11 +24,11 @@ export default function LandingPage(){
     
     if(!currentUser) return (<>
         <h1>Welcome to Ani-Songs!</h1>
-        <h3>New Playlists</h3>
+        <h3><Link>New Playlists</Link> <FiChevronRight /></h3>
         {allPlaylists && Object.values(allPlaylists).map(list=>(
             <div key={list?.id}>{list?.name}</div>
         ))}
-        <h3>New Uploads</h3>
+        <h3><Link>Newest Uploads</Link> <FiChevronRight /></h3>
         {allSongs && Object.values(allSongs).map(song=>(
             <div key={song?.id}>{song?.title}</div>
         ))}
