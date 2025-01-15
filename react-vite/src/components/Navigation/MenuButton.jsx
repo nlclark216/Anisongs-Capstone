@@ -4,13 +4,11 @@ import { IoIosMenu } from "react-icons/io";
 import { NavLink } from "react-router-dom";
 
 export default function MenuButton() {
-  const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
-  const user = useSelector((store) => store.session.user);
   const ulRef = useRef();
 
   const toggleMenu = (e) => {
-    e.stopPropagation(); // Keep from bubbling up to document and triggering closeMenu
+    e.stopPropagation();
     setShowMenu(!showMenu);
   };
 
@@ -38,19 +36,16 @@ export default function MenuButton() {
       {showMenu && (
         <ul className={"profile-dropdown"} ref={ulRef}>
             <li>
-                <NavLink to="/">Home</NavLink>
+                <NavLink to="/" onClick={closeMenu}>Home</NavLink>
             </li>
             <li>
-                <NavLink onClick={closeMenu}>Playlists</NavLink>
+                <NavLink to='/playlists' onClick={closeMenu}>Playlists</NavLink>
             </li>
             <li>
-                <NavLink onClick={closeMenu}>Songs</NavLink>
+                <NavLink to='/songs' onClick={closeMenu}>Songs</NavLink>
             </li>
             <li>
-                <NavLink to='/dashboard'>Dashboard</NavLink>
-            </li>
-            <li>
-                <NavLink>Community</NavLink>
+                <NavLink onClick={closeMenu}>Community</NavLink>
             </li>
         </ul>
       )}

@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import { thunkAllSongs, thunkUserSongs } from '../../redux/songs';
 import { thunkAllPlaylists, thunkUserPlaylists } from '../../redux/playlists';
 import { FiChevronRight } from "react-icons/fi";
+import { listTile } from '../PlaylistsComponent/PlaylistsComponent';
 
 export default function LandingPage(){
     const dispatch = useDispatch();
@@ -16,20 +17,20 @@ export default function LandingPage(){
         dispatch(thunkUserSongs());
     }, [dispatch]);
 
-    const allSongs = useSelector(state=>state.songs.allSongs);
-    const userSongs = useSelector(state=>state.songs.userSongs);
-    const allPlaylists = useSelector(state=>state.playlists.allPlaylists);
-    const userPlaylists = useSelector(state=>state.playlists.userPlaylists);
+    const allSongs = Object.values(useSelector(state=>state.songs.allSongs));
+    const userSongs = Object.values(useSelector(state=>state.songs.userSongs));
+    const allPlaylists = Object.values(useSelector(state=>state.playlists.allPlaylists));
+    const userPlaylists = Object.values(useSelector(state=>state.playlists.userPlaylists));
     const currentUser = useSelector(state=>state.session.user);
     
     if(!currentUser) return (<>
         <h1>Welcome to Ani-Songs!</h1>
-        <h3><Link>New Playlists</Link> <FiChevronRight /></h3>
-        {allPlaylists && Object.values(allPlaylists).map(list=>(
-            <div key={list?.id}>{list?.name}</div>
+        <h3><Link to='/playlists'>New Playlists</Link> <FiChevronRight /></h3>
+        {allPlaylists && allPlaylists.map(list=>(
+            listTile(list)
         ))}
-        <h3><Link>Newest Uploads</Link> <FiChevronRight /></h3>
-        {allSongs && Object.values(allSongs).map(song=>(
+        <h3><Link to='/songs'>Newest Uploads</Link> <FiChevronRight /></h3>
+        {allSongs && allSongs.map(song=>(
             <div key={song?.id}>{song?.title}</div>
         ))}
         </>)
@@ -37,13 +38,21 @@ export default function LandingPage(){
     return(
     <>
     <h1>Home</h1>
-    <h3>Your Playlists</h3>
-    {userPlaylists && Object.values(userPlaylists).map(list=>(
-            <div key={list?.id}>{list?.name}</div>
+    {userPlaylists.length > 1 && <h3><Link to='/playlists'>Your Playlists</Link> <FiChevronRight /></h3>}
+    {userPlaylists && userPlaylists.map(list=>(
+            listTile(list)
         ))}
-    <h3>Your Uploads</h3>
-    {userSongs && Object.values(userSongs).map(song=>(
+    {userPlaylists.length > 1 && <h3><Link to='/songs'>Your Songs</Link> <FiChevronRight /></h3>}
+    {userSongs && userSongs.map(song=>(
             <div key={song?.id}>{song?.title}</div>
+        ))}
+    <h3><Link to='/songs'>All Songs</Link> <FiChevronRight /></h3>
+    {allSongs && allSongs.map(song=>(
+            <div key={song?.id}>{song?.title}</div>
+        ))}
+    <h3><Link to='/songs'>All Playlists</Link> <FiChevronRight /></h3>
+    {allPlaylists && allPlaylists.map(list=>(
+            listTile(list)
         ))}
     </>
 )

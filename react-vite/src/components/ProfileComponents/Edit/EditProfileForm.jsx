@@ -6,7 +6,6 @@ import OpenModalMenuItem from '../../Navigation/OpenModalMenuItem';
 import './EditProfile.css';
 
 export default function EditProfileForm({currentUser}) {
-    const dispatch = useDispatch();
     const [firstName, setFirstName] = useState(currentUser?.first_name);
     const [lastName, setLastName] = useState(currentUser?.last_name);
     const [email, setEmail] = useState(currentUser?.email);
@@ -40,7 +39,7 @@ export default function EditProfileForm({currentUser}) {
 
     return (
     <>
-    <h3>Edit Profile</h3>
+    <h3>Edit Account</h3>
     {errors.server && <p>{errors.server}</p>}
     <form onSubmit={handleSubmit}>
     <label>
@@ -135,7 +134,7 @@ export default function EditProfileForm({currentUser}) {
         {errors.profilePic && <p>{errors.profilePic}</p>}
         <button onClick={handleSubmit}>
           <OpenModalMenuItem
-          itemText='Edit Account'
+          itemText='Save Changes'
           modalComponent={<EditProfileModal payload={payload} />}
           />
         </button>

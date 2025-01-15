@@ -5,6 +5,8 @@ import { thunkLogout } from "../../redux/session";
 import OpenModalMenuItem from "./OpenModalMenuItem";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
+import EditProfileModal from "../ProfileComponents/Edit/EditProfileModal";
+import DeleteProfileModal from "../ProfileComponents/Delete/DeleteProfileModal";
 
 function ProfileButton() {
   const dispatch = useDispatch();
@@ -52,7 +54,18 @@ function ProfileButton() {
               <li>{user.email}</li>
               <li>
                 <button onClick={logout}>Log Out</button>
+                
               </li>
+              <button><OpenModalMenuItem
+              itemText="Edit Account"
+              modalComponent={<EditProfileModal />}
+                /></button>
+              <button>
+                <OpenModalMenuItem
+                itemText='Delete Account'
+                modalComponent={<DeleteProfileModal />}
+                />
+             </button>
             </>
           ) : (
             <>
