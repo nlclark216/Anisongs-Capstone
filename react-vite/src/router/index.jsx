@@ -2,6 +2,8 @@ import { createBrowserRouter, Navigate } from 'react-router-dom';
 import LandingPage from '../components/LandingPage';
 import SongsComponent from '../components/SongsComponent';
 import PlaylistsComponent from '../components/PlaylistsComponent/PlaylistsComponent';
+import SinglePlaylist from '../components/SinglePlaylist';
+import SingleSong from '../components/SingleSong';
 import Layout from './Layout';
 
 export const router = createBrowserRouter([
@@ -19,6 +21,14 @@ export const router = createBrowserRouter([
       {
         path: 'songs',
         element: <SongsComponent />
+      },
+      {
+        path: 'songs/:songId',
+        element: <SingleSong />
+      },
+      {
+        path: 'playlists/:playlistId',
+        element: <SinglePlaylist />
       },
       {
 				path: '*',

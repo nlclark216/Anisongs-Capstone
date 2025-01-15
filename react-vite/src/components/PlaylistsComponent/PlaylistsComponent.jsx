@@ -6,7 +6,10 @@ import { Link } from 'react-router-dom';
 
 export const listTile = (playlist) => {
     return (
-    <Link key={playlist?.id} className='list-tile'>
+    <Link
+    to={`/playlists/${playlist?.id}`} 
+    key={playlist?.id} 
+    className='list-tile'>
     <h5>{playlist?.name}</h5>
     <img height='300px' src={playlist?.image} />
     </Link>

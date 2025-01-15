@@ -23,17 +23,18 @@ export default function DeleteProfileModal() {
 
     return (
         <>
-        <div >
-            <h1>Delete Account</h1>
-        </div>
+        <div className="modal" id="delete-account">
+        <h1>Delete Account</h1>
+       
         <p>Are you sure you want to delete your account?</p>
-          <p className='warning'>This action cannot be undone.</p>
+        <p className='warning'>This action cannot be undone.</p>
         <button type="Submit" onClick={handleSubmit}>Delete Account</button>
         <button 
         onClick={closeModal} 
         >
         No (Go Back)
-        </button>
+        </button> 
+        </div>
         </>
     )
 }

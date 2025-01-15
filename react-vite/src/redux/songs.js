@@ -1,5 +1,6 @@
 const LOAD_SONGS = 'songs/loadSongs';
 const USER_SONGS = 'songs/userSongs';
+const DELETE_SONG = 'songs/deleteSong';
 
 
 const getSongs = (songs) => ({
@@ -10,6 +11,11 @@ const getSongs = (songs) => ({
 const userSongs = (songs) => ({
     type: USER_SONGS,
     payload: songs
+})
+
+const deleteSong = song => ({
+    type: DELETE_SONG,
+    payload: song
 })
 
 export const thunkAllSongs = () => async dispatch => {
@@ -28,6 +34,10 @@ export const thunkUserSongs = () => async dispatch => {
         if (data.errors) {return;}
         dispatch(userSongs(data));
     }   
+}
+
+export const thunkDeleteSong = () => {
+    
 }
 
 const initialState = { allSongs: {}, userSongs: {} }
