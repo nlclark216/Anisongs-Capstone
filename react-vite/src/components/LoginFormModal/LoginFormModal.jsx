@@ -13,7 +13,7 @@ function LoginFormModal() {
   
   const loginDemo = async () => {
     return await dispatch(thunkLogin({email:"demo@aa.io", password:"password" }))
-    .then(closeModal)
+    .then(alert('Demo User Successfully Logged In')).then(closeModal)
   }
 
   const handleSubmit = async (e) => {
@@ -29,6 +29,7 @@ function LoginFormModal() {
     if (serverResponse) {
       setErrors(serverResponse);
     } else {
+      alert('Welcome Back!');
       closeModal();
     }
   };
