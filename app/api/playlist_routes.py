@@ -94,7 +94,6 @@ def add_song(id):
 
 
 @playlist_routes.route('/<int:id>/songs')
-@login_required
 def playlist_songs(id):
     """
     Query for a playlist by id and returns the songs from that playlist in a dictionary

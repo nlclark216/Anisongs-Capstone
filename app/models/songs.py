@@ -43,6 +43,6 @@ class Songs(db.Model):
             'createdAt': self.created_at,
             'updatedAt': self.updated_at,
             'owner': self.owner.username if self.owner_id != current_user.id else 'Current User',
-            'likes': [{ 'owner_id': self.like.owner_id for self.like in self.likes}],
+            'likes': [{ 'ownerId': self.like.owner_id for self.like in self.likes}],
             # 'playlists': { 'playlists': [self.playlist.to_dict() for self.playlist in self.playlists] }
         }

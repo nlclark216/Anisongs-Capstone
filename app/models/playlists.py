@@ -23,5 +23,5 @@ class Playlists(db.Model):
             'creator_id': self.creator_id,
             'name': self.name,
             'image': self.image, 
-            # 'creator': self.creator.username if self.creator_id != current_user.id else 'Current User'
+            'creator': self.creator.username
         }

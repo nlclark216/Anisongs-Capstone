@@ -6,7 +6,8 @@ export default function ListTile({playlist}) {
     to={`/playlists/${playlist?.id}`} 
     key={playlist?.id} 
     className='list-tile'>
-    <h5>{playlist?.name}</h5>
+    <h3>{playlist?.name}</h3>
+    <h4>Submitted By: {playlist.creator}</h4>
     <img height='300px' src={playlist?.image} />
     </Link>
     )

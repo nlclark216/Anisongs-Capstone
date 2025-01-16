@@ -14,6 +14,7 @@ import DisplayLyricsModal from '../DisplayLyricsModal';
 import AddLikeModal from '../AddLikeModal';
 import DeleteLikeModal from '../DeleteLikeModal';
 import DeletePlaylistModal from '../DeletePlaylistModal';
+import CheckLikes from '../SingleSong/CheckLikesComponent';
 
 
 export default function SinglePlaylist() {
@@ -21,9 +22,22 @@ export default function SinglePlaylist() {
     const user = useSelector(state=>state.session.user);
     const { playlistId } = useParams();
 
+    const handleClick = e => {
+        e.preventDefault();
+    }
+
+    useEffect(() => {
+        dispatch(thunkAllPlaylists());
+        dispatch(thunkPlaylistSongs(playlistId))
+    }, [dispatch, playlistId]);
+
+    const playlists = useSelector(state=>state.playlists.allPlaylists);
+    const playlist = playlists[playlistId]
+    const listSongs = Object.values(useSelector(state=>state.songs.playlistSongs));
+
     const listSongTile = (song) => {
         const checkLikes = arr => {
-           const target = arr.filter(ele=>ele?.ownerId===user.id)
+           const target = arr.filter(ele=>ele?.ownerId===user?.id)
            if(target.length > 0) return (<button><OpenModalMenuItem
             itemText={<FaStar />}
             modalComponent={<DeleteLikeModal />} 
@@ -39,33 +53,27 @@ export default function SinglePlaylist() {
                 <Link to={`/songs/${song?.id}`}>{song?.song.title}</Link>
                 <p>{song?.song.artist}</p>
                 <p>{song?.song.album}</p>
-                <button><OpenModalMenuItem
+                <button onClick={handleClick}><OpenModalMenuItem
                 itemText='Lyrics' 
                 modalComponent={<DisplayLyricsModal />}
                 /></button>
-                <p>{checkLikes(song?.song.likes)}</p>
+                {user && user.id === playlist.creator_id &&
+                <button onClick={handleClick}><OpenModalMenuItem
+                itemText='Edit Lyrics' 
+                // modalComponent={<DisplayLyricsModal />}
+                /></button>
+                }
+                {user && user.id === song?.creator_id}
+                {user && <CheckLikes arr={song?.song.likes} user={user} />}
             </div>
         )
-    }
-
-    useEffect(() => {
-        dispatch(thunkAllPlaylists());
-        dispatch(thunkPlaylistSongs(playlistId))
-    }, [dispatch, playlistId]);
-
-    const playlists = useSelector(state=>state.playlists.allPlaylists);
-    const playlist = playlists[playlistId]
-    const listSongs = Object.values(useSelector(state=>state.songs.playlistSongs));
-
-    const handleClick = e => {
-        e.preventDefault();
     }
 
     return (
     <>
     <img src={playlist?.image} />
     <h1>{playlist?.name}</h1>
-    <p>Created By: {listSongs[0]?.playlist.creator}</p>
+    <p>Created By: {playlist?.creator}</p>
     <div>
         <button onClick={()=>alert('Coming soon...')}><FaPlay />Play</button>
         <button>

@@ -37,16 +37,16 @@ export default function SongsComponent() {
                 modalComponent={<CreateSongModal />}
                 /></button> 
         </div>
-        {userSongs?.map(song=><SongTile key={song.id} song={song} />)}
+        {userSongs?.map(song=><SongTile key={song.id} song={song} user={user} />)}
         <h3>User Submissions</h3>
-        {otherSongs?.map(song=><SongTile key={song.id} song={song} />)}
+        {otherSongs?.map(song=><SongTile key={song.id} song={song} user={user} />)}
         </>
         )}
     
         else return (
         <>
         <h1>Songs</h1>
-        {allSongs?.map(song=><SongTile key={song.id} song={song} />)}
+        {allSongs?.map(song=><SongTile key={song.id} song={song} user={user} />)}
         </>
         )
 }

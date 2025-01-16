@@ -5,10 +5,9 @@ import AddLikeModal from "../AddLikeModal";
 import DeleteLikeModal from "../DeleteLikeModal";
 
 export default function CheckLikes({arr, user}){
-    
-    const target = arr.filter(ele=>{
-        ele?.ownerId ? ele?.ownerId===user.id : ele?.owner_id===user.id})
-    if(target.length > 0) return (<button><OpenModalMenuItem
+
+    const target = arr?.filter(ele=>ele?.ownerId===user?.id)
+    if(target && target.length > 0) return (<button><OpenModalMenuItem
      itemText={<FaStar />}
      modalComponent={<DeleteLikeModal />} 
      /></button>)

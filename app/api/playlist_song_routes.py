@@ -5,7 +5,6 @@ from app.models import PlaylistSongs, db
 playlist_song_routes = Blueprint('playlist_songs', __name__)
 
 @playlist_song_routes.route('/')
-@login_required
 def playlist_songs():
     """
     Query for all playlist songs and returns them in a list of playlist song dictionaries
@@ -33,7 +32,6 @@ def user_playlist_songs():
 
 
 @playlist_song_routes.route('/<int:id>')
-@login_required
 def playlist_song(id):
     """
     Query for a playlist song by id and returns that playlist song in a dictionary
