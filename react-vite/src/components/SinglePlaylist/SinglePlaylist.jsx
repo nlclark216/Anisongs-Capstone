@@ -6,6 +6,8 @@ import { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { thunkAllPlaylists } from '../../redux/playlists';
 import { thunkPlaylistSongs } from '../../redux/songs';
+import { FaPlay } from "react-icons/fa";
+import { TbMusicPlus } from "react-icons/tb";
 
 
 export default function SinglePlaylist() {
@@ -45,8 +47,8 @@ export default function SinglePlaylist() {
     <h1>{playlist?.name}</h1>
     <p>Created By: {listSongs[0]?.playlist.creator}</p>
     <div>
-        <button onClick={()=>alert('Coming soon...')}>Play</button>
-        <button>Add Song</button>
+        <button onClick={()=>alert('Coming soon...')}><FaPlay />Play</button>
+        <button><TbMusicPlus /> Add Song</button>
         <button>Delete Playlist</button>
     </div>
     {listSongs.length === 0 ? <><p>No Songs Found</p></> : 
