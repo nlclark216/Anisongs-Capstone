@@ -1,7 +1,10 @@
+import { csrfFetch } from "./csrf";
+
 const LOAD_SONGS = 'songs/loadSongs';
 const USER_SONGS = 'songs/userSongs';
 const DELETE_SONG = 'songs/deleteSong';
 const PLAYLIST_SONGS = 'songs/playlistSongs';
+const CREATE_SONG = 'songs/createSong';
 
 
 const getSongs = (songs) => ({
@@ -21,6 +24,11 @@ const deleteSong = id => ({
 
 const listSongs = payload => ({
     type: PLAYLIST_SONGS,
+    payload
+})
+
+const createSong = payload => ({
+    type: CREATE_SONG,
     payload
 })
 
@@ -59,6 +67,24 @@ export const thunkPlaylistSongs = id => async dispatch => {
     } 
 }
 
+export const thunkCreateSong = (formData) => async dispatch => {
+    const res = await csrfFetch('/api/songs/', {
+        method: 'POST',
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData)
+    })
+
+    if(res.ok) {
+        const data = await res.json();
+        dispatch(createSong(data))
+    } else if (res.status < 500) {
+    const errorMessages = await res.json();
+    return errorMessages
+    } else {
+    return { server: "Something went wrong. Please try again" }
+    }
+}
+
 const initialState = { allSongs: {}, userSongs: {}, playlistSongs: {} }
 
 export default function songsReducer(state = initialState, action) {
@@ -90,6 +116,15 @@ export default function songsReducer(state = initialState, action) {
             songsArr.map(song=>{
                 newState.playlistSongs[song.id] = song;
             })
+            return newState;
+        }
+        case CREATE_SONG: {
+            const newState = {
+                allSongs: {
+                    ...state.allSongs,
+                    [action.payload.id]: action.payload
+                }
+            }
             return newState;
         }
         default: 

@@ -6,17 +6,18 @@ export default function SongTile({song, user}) {
 
     if (song?.likes) likes = song?.likes;
     return (<div>
-        {user && <CheckLikes user={user} arr={likes} />}
-        <Link 
-        key={song?.id} 
-        className='song-tile'
-        to={`/songs/${song?.id}`}
-        >
-            <h5>{song?.title} 
                 
-                </h5>
-            <img src={song?.song_img} />
-        </Link>
-    </div>
-    )
+                <Link 
+                key={song?.id} 
+                className='song-tile'
+                to={`/songs/${song?.id}`}
+                >
+                    <h4>
+                        {song?.title} 
+                    </h4>
+                    {user && likes && <CheckLikes user={user} arr={likes} />}
+                    <img src={song?.song_img} />
+                </Link>
+            </div>
+            )
 }

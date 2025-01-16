@@ -28,7 +28,7 @@ export default function LandingPage(){
         <h1>Welcome to Ani-Songs!</h1> 
         <h3><Link to='/songs'>Newest Uploads</Link> <FiChevronRight /></h3>
         {allSongs && allSongs.map(song=>(
-            <SongTile key={song.id} song={song} />
+            <SongTile key={song.id} song={song} user={currentUser} />
         ))}
         <h3><Link to='/playlists'>New Playlists</Link> <FiChevronRight /></h3>
         {allPlaylists && allPlaylists.map(list=><ListTile key={list.id} playlist={list} />)}
@@ -40,14 +40,14 @@ export default function LandingPage(){
     <h1>Home</h1>
     {userPlaylists.length > 1 && <h3><Link to='/songs'>Your Songs</Link> <FiChevronRight /></h3>}
     {userSongs && userSongs.map(song=>(
-            <SongTile key={song.id} song={song} />
+            <SongTile key={song.id} song={song} user={currentUser}  />
         ))}
     {userPlaylists.length > 1 && <h3><Link to='/playlists'>Your Playlists</Link> <FiChevronRight /></h3>}
     {userPlaylists && userPlaylists.map(list=><ListTile key={list.id} playlist={list} />)}
     
     <h3><Link to='/songs'>All Songs</Link> <FiChevronRight /></h3>
     {allSongs && allSongs.map(song=>(
-            <SongTile key={song.id} song={song} />
+            <SongTile key={song.id} song={song} user={currentUser}  />
         ))}
     <h3><Link to='/songs'>All Playlists</Link> <FiChevronRight /></h3>
     {allPlaylists && allPlaylists.map(list=><ListTile key={list.id} playlist={list} />)}
