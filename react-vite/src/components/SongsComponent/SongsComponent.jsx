@@ -2,21 +2,10 @@ import './SongsComponent.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { thunkAllSongs, thunkUserSongs } from '../../redux/songs';
+import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
+import SongTile from './SongTileComponent';
 import { Link } from 'react-router-dom';
 
-
-export const songTile = song => {
-    return (
-        <Link 
-        key={song?.id} 
-        className='song-tile'
-        to={`/songs/${song?.id}`}
-        >
-            <h5>{song?.title}</h5>
-            <img src={song?.song_img} />
-        </Link>
-    )
-}
 
 export default function SongsComponent() {
     const dispatch = useDispatch();
@@ -42,16 +31,16 @@ export default function SongsComponent() {
            <h3>Your Songs</h3>
             <button onClick={handleClick}>upload a track</button> 
         </div>
-        {userSongs?.map(song=>songTile(song))}
+        {userSongs?.map(song=><SongTile key={song.id} song={song} />)}
         <h3>User Submissions</h3>
-        {otherSongs?.map(song=>songTile(song))}
+        {otherSongs?.map(song=><SongTile key={song.id} song={song} />)}
         </>
         )}
     
         else return (
         <>
         <h1>Songs</h1>
-        {allSongs?.map(song=>songTile(song))}
+        {allSongs?.map(song=><SongTile key={song.id} song={song} />)}
         </>
         )
 }

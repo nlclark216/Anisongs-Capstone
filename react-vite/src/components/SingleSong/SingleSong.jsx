@@ -13,12 +13,12 @@ export default function SingleSong() {
     useEffect(() => {
             dispatch(thunkAllSongs());
             dispatch(thunkSongLyrics(songId))
-        }, [dispatch]);
+        }, [dispatch, songId]);
 
     const songs = useSelector(state=>state.songs.allSongs);
     const song = songs[songId];
-    const lyrics = useSelector(state=>state.lyrics.songLyrics)
-    console.log(lyrics)
+    const lyrics = useSelector(state=>state.lyrics.songLyrics);
+ 
 
     return (
     <>

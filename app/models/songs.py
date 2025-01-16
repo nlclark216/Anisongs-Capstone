@@ -36,12 +36,13 @@ class Songs(db.Model):
             'file': self.song_file,
             'songImage': self.song_img,
             'anime': self.anime,
+            'albumName': self.album_name,
             'albumArtwork': self.album_art,
             'year': self.year,
             'language': self.language,
             'createdAt': self.created_at,
             'updatedAt': self.updated_at,
             'owner': self.owner.username if self.owner_id != current_user.id else 'Current User',
-            'likes': { 'owner_id': self.like.owner_id for self.like in self.likes},
+            'likes': [{ 'owner_id': self.like.owner_id for self.like in self.likes}],
             # 'playlists': { 'playlists': [self.playlist.to_dict() for self.playlist in self.playlists] }
         }

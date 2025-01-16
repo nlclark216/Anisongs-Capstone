@@ -2,19 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import './PlaylistsComponent.css';
 import { useEffect } from 'react';
 import { thunkAllPlaylists, thunkUserPlaylists } from '../../redux/playlists';
-import { Link } from 'react-router-dom';
-
-export const listTile = (playlist) => {
-    return (
-    <Link
-    to={`/playlists/${playlist?.id}`} 
-    key={playlist?.id} 
-    className='list-tile'>
-    <h5>{playlist?.name}</h5>
-    <img height='300px' src={playlist?.image} />
-    </Link>
-    )
-}
+import ListTile from './ListTileComponent';
 
 export default function PlaylistsComponent() {
     const dispatch = useDispatch();
@@ -33,16 +21,16 @@ export default function PlaylistsComponent() {
     <>
     <h1>Playlists</h1>
     <h3>Your Playlists</h3>
-    {userPlaylists?.map(list=>listTile(list))}
+    {userPlaylists?.map(list=><ListTile key={list.id} playlist={list} />)}
     <h3>User Submissions</h3>
-    {otherLists?.map(list=>listTile(list))}
+    {otherLists?.map(list=><ListTile key={list.id} playlist={list} />)}
     </>
     )}
 
     else return (
     <>
     <h1>Playlists</h1>
-    {allPlaylists?.map(list=>listTile(list))}
+    {allPlaylists?.map(list=><ListTile key={list.id} playlist={list} />)}
     </>
     )
 

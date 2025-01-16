@@ -1,6 +1,7 @@
 const LOAD_SONGS = 'songs/loadSongs';
 const USER_SONGS = 'songs/userSongs';
 const DELETE_SONG = 'songs/deleteSong';
+const PLAYLIST_SONGS = 'songs/playlistSongs';
 
 
 const getSongs = (songs) => ({
@@ -16,6 +17,11 @@ const userSongs = (songs) => ({
 const deleteSong = id => ({
     type: DELETE_SONG,
     payload: id
+})
+
+const listSongs = payload => ({
+    type: PLAYLIST_SONGS,
+    payload
 })
 
 export const thunkAllSongs = () => async dispatch => {
@@ -36,7 +42,7 @@ export const thunkUserSongs = () => async dispatch => {
     }   
 }
 
-export const thunkDeleteSong = (id) => async dispatch =>{
+export const thunkDeleteSong = (id) => async dispatch => {
     const res = await fetch(`/api/songs/${id}`, {method: 'DELETE'})
     if(res.ok) {
         dispatch(deleteSong(id));
@@ -44,7 +50,16 @@ export const thunkDeleteSong = (id) => async dispatch =>{
     }
 }
 
-const initialState = { allSongs: {}, userSongs: {} }
+export const thunkPlaylistSongs = id => async dispatch => {
+    const res = await fetch(`/api/playlists/${id}/songs`);
+    if(res.ok) {
+        const data = await res.json();
+        if (data.errors) {return;}
+        dispatch(listSongs(data));
+    } 
+}
+
+const initialState = { allSongs: {}, userSongs: {}, playlistSongs: {} }
 
 export default function songsReducer(state = initialState, action) {
     switch(action.type) {
@@ -67,6 +82,14 @@ export default function songsReducer(state = initialState, action) {
         case DELETE_SONG: {
             const newState = {...state};
             delete newState.allSongs[action.payload];
+            return newState;
+        }
+        case PLAYLIST_SONGS: {
+            const newState = { ...state, playlistSongs: {}};
+            const songsArr = action.payload;
+            songsArr.map(song=>{
+                newState.playlistSongs[song.id] = song;
+            })
             return newState;
         }
         default: 

@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { IoIosMenu } from "react-icons/io";
 import { NavLink } from "react-router-dom";
 

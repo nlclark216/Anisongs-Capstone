@@ -4,7 +4,7 @@ from sqlalchemy.sql import text
 def seed_likes():
     like1 = Likes(
         owner_id=1,
-        song_id=3
+        song_id=2
     )
     like2 = Likes(
         owner_id=1,
@@ -35,12 +35,12 @@ def seed_likes():
         song_id=7
     )
     like9 = Likes(
-        owner_id=6,
-        song_id=15
+        owner_id=1,
+        song_id=1
     )
     like10 = Likes(
         owner_id=1,
-        song_id=10
+        song_id=7
     )
     like11 = Likes(
         owner_id=2,
