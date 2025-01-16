@@ -24,7 +24,6 @@ export default function SingleSong() {
     const songs = useSelector(state=>state.songs.allSongs);
     const song = songs[songId];
     const lyrics = useSelector(state=>state.lyrics.songLyrics);
-    console.log(lyrics)
 
     let likes;
 

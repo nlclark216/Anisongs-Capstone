@@ -61,7 +61,7 @@ export const thunkSignup = (user) => async (dispatch) => {
 
 export const thunkLogout = () => async (dispatch) => {
   await fetch("/api/auth/logout");
-  dispatch(removeUser());
+  dispatch(removeUser()).then(window.location.reload());
 };
 
 export const thunkEditUser = (user) => async dispatch => {
