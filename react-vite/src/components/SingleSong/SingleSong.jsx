@@ -29,16 +29,16 @@ export default function SingleSong() {
     return (
     <>
     <img src={song?.album_art} />
-    <h1>{song?.title} {likes && <CheckLikes arr={likes} user={user} />}</h1>
+    <h1>{song?.title} {likes && user && <CheckLikes arr={likes} user={user} />}</h1>
     <p>From: <b>{song?.anime}</b></p>
     <p>Album: <b>{song?.album_name}</b></p>
     <p>Artist: <b>{song?.artist}</b></p>
-   {user && user.id === song.owner_id &&
+   {user && user?.id === song?.owner_id &&
    <div>
         <button>Edit Song</button>
         <button>Delete Song</button>
     </div>}
-    {!lyrics.message && <div className='song-lyrics-translation'>
+    {Object.values(lyrics).length > 0 && !lyrics.message && <div className='song-lyrics-translation'>
         <label>
             <h4>Lyrics</h4>
            <p style={{'whiteSpace': 'pre-line'}}>{(lyrics?.lyrics)}</p> 
@@ -48,14 +48,13 @@ export default function SingleSong() {
             <p style={{'whiteSpace': 'pre-line'}}>{lyrics?.translation}</p> 
         </label>
     </div>}
-    {lyrics && lyrics.creator_id === user.id &&
+    {user && lyrics && lyrics?.creator_id === user?.id &&
     <div>
         <button>Edit Lyrics</button>
         <button>Delete Lyrics</button> 
     </div>
-    
     }
-    
+    {!user && <p>Login to view lyrics submitted by Ani-Songs users!</p>}
     </>
     )
 }

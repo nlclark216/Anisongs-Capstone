@@ -1,6 +1,4 @@
 import './SinglePlaylist.css'
-import { FaRegStar } from "react-icons/fa";
-import { FaStar } from "react-icons/fa6";
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
@@ -11,8 +9,6 @@ import { TbMusicPlus } from "react-icons/tb";
 import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
 import AddSongModal from '../AddSongModal/AddSongModal';
 import DisplayLyricsModal from '../DisplayLyricsModal';
-import AddLikeModal from '../AddLikeModal';
-import DeleteLikeModal from '../DeleteLikeModal';
 import DeletePlaylistModal from '../DeletePlaylistModal';
 import CheckLikes from '../SingleSong/CheckLikesComponent';
 
@@ -34,20 +30,9 @@ export default function SinglePlaylist() {
     const playlists = useSelector(state=>state.playlists.allPlaylists);
     const playlist = playlists[playlistId]
     const listSongs = Object.values(useSelector(state=>state.songs.playlistSongs));
+    console.log(listSongs)
 
     const listSongTile = (song) => {
-        const checkLikes = arr => {
-           const target = arr.filter(ele=>ele?.ownerId===user?.id)
-           if(target.length > 0) return (<button><OpenModalMenuItem
-            itemText={<FaStar />}
-            modalComponent={<DeleteLikeModal />} 
-            /></button>)
-           else return (<button>
-            <OpenModalMenuItem
-            itemText={<FaRegStar />}
-            modalComponent={<AddLikeModal />} 
-            /></button>)
-        }
         return (
             <div key={song?.id}>
                 <Link to={`/songs/${song?.id}`}>{song?.song.title}</Link>

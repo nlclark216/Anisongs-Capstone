@@ -36,7 +36,6 @@ def created_lyrics():
 
 
 @lyric_routes.route('/<int:id>')
-@login_required
 def lyric(id):
     """
     Query for a lyric by id and returns that lyric in a dictionary

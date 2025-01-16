@@ -60,7 +60,31 @@ def seed_playlist_songs():
     song12 = PlaylistSongs(
         added_by=3,
         playlist_id=5,
-        song_id=6
+        song_id=7
+    )
+
+    song13 = PlaylistSongs(
+        added_by=2,
+        playlist_id=4,
+        song_id=18
+    )
+
+    song14 = PlaylistSongs(
+        added_by=2,
+        playlist_id=4,
+        song_id=17
+    )
+
+    song15 = PlaylistSongs(
+        added_by=3,
+        playlist_id=6,
+        song_id=20
+    )
+
+    song16 = PlaylistSongs(
+        added_by=3,
+        playlist_id=6,
+        song_id=15
     )
 
     db.session.add(song1)
@@ -75,6 +99,10 @@ def seed_playlist_songs():
     db.session.add(song10)
     db.session.add(song11)
     db.session.add(song12)
+    db.session.add(song13)
+    db.session.add(song14)
+    db.session.add(song15)
+    db.session.add(song16)
     db.session.commit()
 
 def undo_playlist_songs():

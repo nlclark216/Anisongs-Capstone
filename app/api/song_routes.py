@@ -106,7 +106,7 @@ def song_lyrics(id):
     if not song:
         return jsonify({'message': 'Song not found'}), 404
     
-    lyrics = Lyrics.query.filter(Lyrics.song_id == id).first()
+    lyrics = Lyrics.query.filter(Lyrics.song_id == song.id).first()
 
     if not lyrics:
         return { 'message': 'No lyrics found' }
