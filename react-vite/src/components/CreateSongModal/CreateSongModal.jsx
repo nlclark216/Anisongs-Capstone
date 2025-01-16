@@ -1,5 +1,9 @@
 import './CreateSongModal.css'
 
 export default function CreateSongModal() {
-    return (<h1>Create Song</h1>)
+    return (
+        <div>
+            <h1>Upload Song</h1>
+        </div>
+    )
 }

@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { thunkAllSongs, thunkUserSongs } from '../../redux/songs';
 import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
 import SongTile from './SongTileComponent';
-import AddSongModal from '../AddSongModal/AddSongModal';
+import CreateSongModal from '../CreateSongModal/CreateSongModal';
 import { Link } from 'react-router-dom';
 
 
@@ -34,7 +34,7 @@ export default function SongsComponent() {
             <button onClick={handleClick}>
                 <OpenModalMenuItem
                 itemText='upload a track'
-                modalComponent={<AddSongModal />}
+                modalComponent={<CreateSongModal />}
                 /></button> 
         </div>
         {userSongs?.map(song=><SongTile key={song.id} song={song} />)}

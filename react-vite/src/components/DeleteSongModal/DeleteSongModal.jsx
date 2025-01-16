@@ -18,7 +18,7 @@ export default function DeleteSongModal() {
         <button 
         type="Submit" 
         onClick={handleSubmit}
-        >Delete Account</button>
+        >Delete Song</button>
         <button 
         onClick={closeModal} 
         >
