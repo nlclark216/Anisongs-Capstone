@@ -1,9 +1,28 @@
+import { useDispatch } from "react-redux";
+import { useModal } from "../../context/Modal";
 import './DeletePlaylistModal';
 
 export default function DeletePlaylistModal() {
+    const { closeModal } = useModal();
+    const dispatch = useDispatch();
+
+    const handleSubmit = e => {
+        e.preventDefault();
+    }
     return (
-        <div>
-            <h1>Delete Playlist</h1>
-        </div>
+    <div className="modal">
+        <h1>Delete Playlist</h1>
+        <p>Are you sure you want to delete this playlist?</p>
+        <p className='warning'>This action cannot be undone.</p>
+        <button 
+        type="Submit" 
+        onClick={handleSubmit}
+        >Delete Playlist</button>
+        <button 
+        onClick={closeModal} 
+        >
+        No (Go Back)
+        </button> 
+    </div>
     )
 }

@@ -23,5 +23,5 @@ class PlaylistSongs(db.Model):
             'song_id': self.song_id,
             'added_by': self.added_by if self.added_by else None,
             'playlist': {'name': self.playlist.name, 'creator': self.playlist.creator.username} if self.playlist else None,
-            'song': {'title': self.song.title, 'artist': self.song.artist, 'album': self.song.album_name, 'likes': [{'ownerId': self.song.like.owner_id} for self.song.like in self.song.likes]} if self.song else None
+            'song': {'ownerId': self.song.owner_id, 'title': self.song.title, 'artist': self.song.artist, 'album': self.song.album_name, 'albumArt': self.song.album_art, 'likes': [{'ownerId': self.song.like.owner_id} for self.song.like in self.song.likes]} if self.song else None
         }

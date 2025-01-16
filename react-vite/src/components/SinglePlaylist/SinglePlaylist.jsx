@@ -10,7 +10,11 @@ import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
 import AddSongModal from '../AddSongModal/AddSongModal';
 import DisplayLyricsModal from '../DisplayLyricsModal';
 import DeletePlaylistModal from '../DeletePlaylistModal';
+import RemovePlaylistSongModal from '../RemovePlaylistSongModal';
+import EditPlaylistModal from '../EditPlaylistModal';
+import EditLyricsModal from '../EditLyricsModal/EditLyricsModal';
 import CheckLikes from '../SingleSong/CheckLikesComponent';
+import { CiSquareRemove } from "react-icons/ci";
 
 
 export default function SinglePlaylist() {
@@ -35,21 +39,27 @@ export default function SinglePlaylist() {
     const listSongTile = (song) => {
         return (
             <div key={song?.id}>
-                <Link to={`/songs/${song?.id}`}>{song?.song.title}</Link>
+                <Link to={`/songs/${song?.id}`}><h3>{song?.song.title}</h3></Link>
+                <img src={song?.song.albumArt} />
                 <p>{song?.song.artist}</p>
                 <p>{song?.song.album}</p>
-                <button onClick={handleClick}><OpenModalMenuItem
+                {user && <button onClick={handleClick}><OpenModalMenuItem
                 itemText='Lyrics' 
                 modalComponent={<DisplayLyricsModal />}
-                /></button>
-                {user && user.id === playlist.creator_id &&
+                /></button>}
+                {user && user?.id === song?.song.ownerId &&
                 <button onClick={handleClick}><OpenModalMenuItem
                 itemText='Edit Lyrics' 
-                // modalComponent={<DisplayLyricsModal />}
+                modalComponent={<EditLyricsModal />}
                 /></button>
                 }
-                {user && user.id === song?.creator_id}
                 {user && <CheckLikes arr={song?.song.likes} user={user} />}
+                {user && user?.id === playlist?.creator_id &&
+                <button><OpenModalMenuItem
+                itemText={<span>Remove <CiSquareRemove /></span>}
+                modalComponent={<RemovePlaylistSongModal />} 
+                /></button>
+                }
             </div>
         )
     }
@@ -57,23 +67,31 @@ export default function SinglePlaylist() {
     return (
     <>
     <img src={playlist?.image} />
-    <h1>{playlist?.name}</h1>
-    <p>Created By: {playlist?.creator}</p>
     <div>
+       <h1>{playlist?.name}</h1>
+       {user && user?.id === playlist?.creator_id && <button>
+        <OpenModalMenuItem
+        itemText='Edit'
+        modalComponent={<EditPlaylistModal />} 
+        /></button> }
+    </div>
+    
+    <p>Created By: {playlist?.creator}</p>
+    {user && <div>
         <button onClick={()=>alert('Coming soon...')}><FaPlay />Play</button>
-        <button>
+        {user?.id === playlist?.creator_id && <button>
         <OpenModalMenuItem
         itemText={<><TbMusicPlus /> Add Song</>}
         modalComponent={<AddSongModal />} 
-        /></button>
-        <button><OpenModalMenuItem
+        /></button>}
+        {user?.id === playlist?.creator_id && <button><OpenModalMenuItem
         itemText='Delete Playlist'
         modalComponent={<DeletePlaylistModal />} 
-        /></button>
-    </div>
+        /></button>}
+    </div>}
     {listSongs.length === 0 ? <><p>No Songs Found</p></> : 
     <>
-    <h3>Songs</h3>
+    <h2>Songs</h2>
     {listSongs.map(song=>listSongTile(song))}
     </>
     }

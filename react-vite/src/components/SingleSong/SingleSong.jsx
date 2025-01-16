@@ -5,6 +5,11 @@ import { thunkAllSongs } from '../../redux/songs';
 import { thunkSongLyrics } from '../../redux/lyrics';
 import { useParams } from 'react-router-dom';
 import CheckLikes from './CheckLikesComponent';
+import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
+import EditSongModal from '../EditSongModal';
+import DeleteSongModal from '../DeleteSongModal';
+import EditLyricsModal from '../EditLyricsModal/EditLyricsModal';
+import DeleteLyricsModal from '../DeleteLyricsModal';
 
 export default function SingleSong() {
     const dispatch = useDispatch();
@@ -35,8 +40,18 @@ export default function SingleSong() {
     <p>Artist: <b>{song?.artist}</b></p>
    {user && user?.id === song?.owner_id &&
    <div>
-        <button>Edit Song</button>
-        <button>Delete Song</button>
+        <button>
+            <OpenModalMenuItem
+            itemText='Edit Song' 
+            modalComponent={<EditSongModal />}
+            />
+            </button>
+        <button>
+            <OpenModalMenuItem
+            itemText='Delete Song' 
+            modalComponent={<DeleteSongModal />}
+            />
+        </button>
     </div>}
     {Object.values(lyrics).length > 0 && !lyrics.message && <div className='song-lyrics-translation'>
         <label>
@@ -50,8 +65,18 @@ export default function SingleSong() {
     </div>}
     {user && lyrics && lyrics?.creator_id === user?.id &&
     <div>
-        <button>Edit Lyrics</button>
-        <button>Delete Lyrics</button> 
+        <button>
+            <OpenModalMenuItem
+            itemText='Edit Lyrics'
+            modalComponent={<EditLyricsModal />} 
+            />
+        </button>
+        <button>
+            <OpenModalMenuItem
+            itemText='Delete Lyrics'
+            modalComponent={<DeleteLyricsModal />} 
+            />
+        </button> 
     </div>
     }
     {!user && <p>Login to view lyrics submitted by Ani-Songs users!</p>}

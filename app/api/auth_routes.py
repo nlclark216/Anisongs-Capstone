@@ -60,6 +60,7 @@ def sign_up():
             address=form.data['address'],
             city=form.data['city'],
             state=form.data['state'],
+            country=form.data['country'],
             profile_pic=form.data['profile_pic'] 
         )
         db.session.add(user)

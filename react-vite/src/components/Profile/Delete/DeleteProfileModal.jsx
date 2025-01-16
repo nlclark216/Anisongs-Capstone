@@ -17,6 +17,7 @@ export default function DeleteProfileModal() {
         if (serverResponse) {
         return serverResponse;
         } else {
+        alert('Account Deleted! Sorry to see you go!');
         closeModal();
         }
     }
