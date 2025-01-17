@@ -39,7 +39,6 @@ export const thunkAddLike = (id, formData)=> async dispatch => {
     if(res.ok) {
         const data = await res.json();
         dispatch(addLike(data));
-        window.location.reload();
     } else if (res.status < 500) {
     const errorMessages = await res.json();
     return errorMessages

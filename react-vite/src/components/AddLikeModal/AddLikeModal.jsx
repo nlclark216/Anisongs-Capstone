@@ -7,13 +7,20 @@ export default function AddLikeModal({songId, user}) {
     const { closeModal } = useModal();
     const dispatch = useDispatch();
 
-    const handleSubmit = e => {
+    const handleSubmit = async e => {
         e.preventDefault();
         const data = {
             'owner_id': +user.id,
             'song_id': +songId
         }
-        dispatch(thunkAddLike(songId, data));
+        const serverResponse = await dispatch(thunkAddLike(songId, data));
+
+        if (serverResponse) {
+        return serverResponse;
+        } else {
+        alert('Favorite Added!');
+        closeModal();
+        }
     }
 
     return(

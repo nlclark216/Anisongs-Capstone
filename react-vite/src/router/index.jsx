@@ -2,10 +2,10 @@ import { createBrowserRouter, Navigate } from 'react-router-dom';
 import LandingPage from '../components/LandingPage';
 import SongsComponent from '../components/SongsComponent';
 import PlaylistsComponent from '../components/PlaylistsComponent/PlaylistsComponent';
-import SinglePlaylist from '../components/SinglePlaylist';
 import SingleSong from '../components/SingleSong';
 import CreateSongForm from '../components/CreateSongForm/CreateSongForm';
 import CreatePlaylistForm from '../components/CreatePlaylistForm/CreatePlaylistForm';
+import PlaylistComponent from '../components/PlaylistComponent';
 import Layout from './Layout';
 
 export const router = createBrowserRouter([
@@ -34,7 +34,7 @@ export const router = createBrowserRouter([
       },
       {
         path: 'playlists/:playlistId',
-        element: <SinglePlaylist />
+        element: <PlaylistComponent />
       },
       {
         path: 'playlists/create',

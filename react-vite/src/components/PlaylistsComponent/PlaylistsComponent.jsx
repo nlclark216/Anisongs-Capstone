@@ -31,7 +31,7 @@ export default function PlaylistsComponent() {
             </button></h3>
     {userPlaylists?.map(list=><ListTile key={list?.id} playlist={list} />)}
     <h3>User Submissions</h3>
-    {otherLists.length > 0 && otherLists?.map(list=><ListTile key={list?.id} playlist={list} />)}
+    {otherLists?.length > 0 && otherLists?.map(list=><ListTile key={list?.id} playlist={list} />)}
     </>
     )}
 

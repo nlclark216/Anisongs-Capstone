@@ -57,10 +57,11 @@ export const thunkUserPlaylists = () => async dispatch => {
     }
 }
 
-export const thunkDeletePlaylist = (id) => async dispatch => {
-    const res = await fetch(`/api/playlists/${id}`, {method: 'DELETE'});
+export const thunkDeletePlaylist = (id, navigate) => async dispatch => {
+    const res = await fetch(`/api/playlists/${+id}`, {method: 'DELETE'});
     if(res.ok) {
-        dispatch(deletePlaylist(id));
+        dispatch(deletePlaylist(+id));
+        navigate('/playlists/');
         window.location.reload();
     } else if (res.status < 500) {
     const errorMessages = await res.json();

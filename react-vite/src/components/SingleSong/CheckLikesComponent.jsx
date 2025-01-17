@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { thunkAllLikes } from "../../redux/likes";
 
-export default function CheckLikes({ user, songId}){
+export default function CheckLikes({ user, songId }){
     const dispatch = useDispatch();
 
     useEffect(() => {

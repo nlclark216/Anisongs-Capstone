@@ -35,7 +35,7 @@ export default function EditPlaylistModal({playlist, id}) {
             <h1>Edit Playlist</h1>
             {errors?.server && <p>{errors?.server}</p>}
             <form onSubmit={handleSubmit}>
-                <p>Choose a name for your new playlist! (image is optional)</p>
+                <p>Edit the name or image for your playlist</p>
                 <label>
                     Name
                     <input

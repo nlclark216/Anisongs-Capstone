@@ -12,3 +12,8 @@ a {
 a:hover {
     color: magenta;
 }
+
+button:hover,
+svg:hover {
+    cursor: pointer;
+}

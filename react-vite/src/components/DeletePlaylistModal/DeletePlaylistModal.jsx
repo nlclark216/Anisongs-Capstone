@@ -2,12 +2,10 @@ import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { thunkDeletePlaylist } from "../../redux/playlists";
 import './DeletePlaylistModal';
-import { useNavigate } from "react-router-dom";
 
-export default function DeletePlaylistModal({id}) {
+export default function DeletePlaylistModal({id, navigate}) {
     const { closeModal } = useModal();
     const dispatch = useDispatch();
-    const navigate = useNavigate();
 
     const handleSubmit = async e => {
         e.preventDefault();
@@ -20,6 +18,7 @@ export default function DeletePlaylistModal({id}) {
         return serverResponse;
         } else {
         alert('Playlist Deleted!');
+        navigate('/playlists/')
         closeModal();
         }
     }
