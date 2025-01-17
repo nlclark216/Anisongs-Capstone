@@ -6,7 +6,6 @@ const DELETE_SONG = 'songs/deleteSong';
 const PLAYLIST_SONGS = 'songs/playlistSongs';
 const CREATE_SONG = 'songs/createSong';
 const UPDATE_SONG = 'songs/updateSong';
-const REMOVE_LIKE = 'songs/removeLike';
 
 
 const getSongs = (songs) => ({

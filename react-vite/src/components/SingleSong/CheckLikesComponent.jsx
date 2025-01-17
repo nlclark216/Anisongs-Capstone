@@ -4,7 +4,7 @@ import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 import AddLikeModal from "../AddLikeModal";
 import DeleteLikeModal from "../DeleteLikeModal";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { thunkAllLikes } from "../../redux/likes";
 
 export default function CheckLikes({ user, songId}){
