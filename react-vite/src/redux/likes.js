@@ -12,6 +12,24 @@ const addLike = id => ({
     payload: id
 })
 
+const removeLike = id => ({
+    type: REMOVE_LIKE,
+    payload: id
+})
+
+export const thunkRemoveLike = (id) => async dispatch => {
+    const res = await fetch(`/api/likes/${id}`, {method: 'DELETE'})
+    if(res.ok) {
+        dispatch(removeLike(id));
+        window.location.reload();
+    } else if (res.status < 500) {
+    const errorMessages = await res.json();
+    return errorMessages
+    } else {
+    return { server: "Something went wrong. Please try again" }
+    }
+}
+
 export const thunkAddLike = (id, formData)=> async dispatch => {
     const res = await fetch(`/api/songs/${id}`, {
         method: "POST",
@@ -63,6 +81,11 @@ export default function likesReducer(state=initialState, action) {
                     [action.payload.id]: action.payload
                 }
             }
+            return newState;
+        }
+        case REMOVE_LIKE: {
+            const newState = {...state};
+            delete newState.allLikes[action.payload];
             return newState;
         }
         default:

@@ -4,7 +4,7 @@ import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 import AddLikeModal from "../AddLikeModal";
 import DeleteLikeModal from "../DeleteLikeModal";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { thunkAllLikes } from "../../redux/likes";
 
 export default function CheckLikes({ user, songId}){
@@ -20,7 +20,7 @@ export default function CheckLikes({ user, songId}){
     const target = targetArr?.filter(ele=>+ele?.song_id === +songId);
     if(target && target.length > 0) return (<button><OpenModalMenuItem
      itemText={<FaStar />}
-     modalComponent={<DeleteLikeModal />} 
+     modalComponent={<DeleteLikeModal songId={songId} likes={likes} user={user} />} 
      /></button>)
     else return (<button>
      <OpenModalMenuItem
