@@ -37,8 +37,7 @@ export default function CreateSongForm() {
           if (serverResponse) {
             setErrors(serverResponse);
           } else {
-            alert('Song created!');
-            navigate('/songs/')
+            alert('Lyrics changes saved!!');
           }
     }
 

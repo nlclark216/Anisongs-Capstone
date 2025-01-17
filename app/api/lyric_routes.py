@@ -14,6 +14,7 @@ def lyrics():
     return {'lyrics': [{
         'id': lyric.id,
         'creator_id': lyric.creator_id,
+        'song_id': lyric.song_id,
         'type': lyric.type,
         'lyrics': lyric.lyrics,
         'translation': lyric.translation,

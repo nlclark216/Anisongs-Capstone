@@ -19,8 +19,7 @@ export default function EditSongModal({song}) {
     const handleSubmit = async e => {
         e.preventDefault();
 
-        const serverResponse = await dispatch(
-            thunkEditSong({
+        const formData = {
                 title,
                 artist,
                 'song_file': file,
@@ -28,7 +27,10 @@ export default function EditSongModal({song}) {
                 'album_name': albumName,
                 'album_art': albumArtwork,
                 anime 
-            }, song.id)
+            }
+
+        const serverResponse = await dispatch(
+            thunkEditSong(formData, song.id)
         )
 
         if (serverResponse) {

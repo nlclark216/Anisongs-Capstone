@@ -30,11 +30,11 @@ export default function SongsComponent() {
         <>
         <h1>Songs</h1>
         <div>
-           <h3>Your Songs</h3>
+           <h2>Your Songs</h2>
             <button onClick={handleClick}><Link to='/songs/create'>upload a track</Link> </button>
         </div>
         {userSongs?.map(song=><SongTile key={song.id} song={song} user={user} />)}
-        <h3>User Submissions</h3>
+        <h2>User Submissions</h2>
         {otherSongs?.map(song=><SongTile key={song.id} song={song} user={user} />)}
         </>
         )}

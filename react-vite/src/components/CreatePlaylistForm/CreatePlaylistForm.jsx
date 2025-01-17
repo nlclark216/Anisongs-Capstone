@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from 'react-router-dom';
 import { useModal } from "../../context/Modal";
 import { thunkCreatePlaylist } from "../../redux/playlists";

@@ -89,7 +89,7 @@ export const thunkCreatePlaylist = (formData) => async dispatch => {
 }
 
 export const thunkEditPlaylist = (formData, id) => async dispatch => {
-    const res = await fetch(`/api/playlists/${id}`, {
+    const res = await fetch(`/api/playlists/${+id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData)
