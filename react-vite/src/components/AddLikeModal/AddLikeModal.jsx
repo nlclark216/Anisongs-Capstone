@@ -1,16 +1,19 @@
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
-import { thunkAddLike } from "../../redux/songs";
+import { thunkAddLike } from "../../redux/likes";
 import './AddLikeModal.css';
 
-export default function AddLikeModal({songId}) {
+export default function AddLikeModal({songId, user}) {
     const { closeModal } = useModal();
     const dispatch = useDispatch();
 
     const handleSubmit = e => {
         e.preventDefault();
-        dispatch(thunkAddLike(songId));
-        window.location.reload();
+        const data = {
+            'owner_id': +user.id,
+            'song_id': +songId
+        }
+        dispatch(thunkAddLike(songId, data));
     }
 
     return(

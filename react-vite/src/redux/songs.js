@@ -40,10 +40,6 @@ const updateSong = payload => ({
     payload
 })
 
-const addLike = payload => ({
-    type: ADD_LIKE,
-    payload
-})
 
 export const thunkAllSongs = () => async dispatch => {
     const res = await fetch('/api/songs/');
@@ -137,22 +133,6 @@ export const thunkEditSong = (formData, id) => async dispatch => {
     }
 }
 
-export const thunkAddLike = id => async dispatch => {
-    const res = await fetch(`/api/songs/${id}`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" }
-    });
-    if(res.ok) {
-        const data = await res.json();
-        dispatch(addLike(data));
-        window.location.reload();
-    } else if (res.status < 500) {
-    const errorMessages = await res.json();
-    return errorMessages
-    } else {
-    return { server: "Something went wrong. Please try again" }
-    }
-}
 
 
 const initialState = { allSongs: {}, userSongs: {}, playlistSongs: {} }
@@ -198,15 +178,6 @@ export default function songsReducer(state = initialState, action) {
             return newState;
         }
         case UPDATE_SONG: {
-            const newState = {
-                allSongs: {
-                    ...state.allSongs,
-                    [action.payload.id]: action.payload
-                }
-            }
-            return newState;
-        }
-        case ADD_LIKE:{
             const newState = {
                 allSongs: {
                     ...state.allSongs,

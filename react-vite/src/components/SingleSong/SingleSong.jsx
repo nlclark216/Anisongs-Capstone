@@ -26,8 +26,6 @@ export default function SingleSong() {
     const song = songs[songId];
     const lyrics = useSelector(state=>state.lyrics.songLyrics);
 
-    if(!song) navigate('/songs/')
-
     let likes;
 
     if (song?.likes) likes = song?.likes;
@@ -36,7 +34,7 @@ export default function SingleSong() {
     return (
     <>
     <img src={song?.album_art} />
-    <h1>{song?.title} {likes && user && <CheckLikes arr={likes} user={user} />}</h1>
+    <h1>{song?.title} {likes && user && <CheckLikes user={user} songId={songId} />}</h1>
     <p>From: <b>{song?.anime}</b></p>
     <p>Album: <b>{song?.album_name}</b></p>
     <p>Artist: <b>{song?.artist}</b></p>

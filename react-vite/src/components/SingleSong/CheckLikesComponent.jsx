@@ -3,10 +3,21 @@ import { FaStar } from "react-icons/fa6";
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 import AddLikeModal from "../AddLikeModal";
 import DeleteLikeModal from "../DeleteLikeModal";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { thunkAllLikes } from "../../redux/likes";
 
-export default function CheckLikes({arr, user, songId}){
+export default function CheckLikes({ user, songId}){
+    const dispatch = useDispatch();
 
-    const target = arr?.filter(ele=>ele?.ownerId===user?.id)
+    useEffect(() => {
+        dispatch(thunkAllLikes())
+    }, [dispatch])
+
+    const likes = Object.values(useSelector(state=>state.likes.allLikes));
+
+    const targetArr = likes?.filter(ele=>ele?.owner_id===user?.id);
+    const target = targetArr?.filter(ele=>+ele?.song_id === +songId);
     if(target && target.length > 0) return (<button><OpenModalMenuItem
      itemText={<FaStar />}
      modalComponent={<DeleteLikeModal />} 
@@ -14,6 +25,6 @@ export default function CheckLikes({arr, user, songId}){
     else return (<button>
      <OpenModalMenuItem
      itemText={<FaRegStar />}
-     modalComponent={<AddLikeModal songId={songId} />} 
+     modalComponent={<AddLikeModal user={user} songId={songId} />} 
      /></button>)
  }
