@@ -40,7 +40,7 @@ function EditProfileModal() {
     if (serverResponse) {
       setErrors(serverResponse);
     } else {
-        alert('Edits saved!').then(closeModal)
+      alert('Edits saved!').then(closeModal)
     }
   };
 

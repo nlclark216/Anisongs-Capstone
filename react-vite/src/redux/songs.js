@@ -5,6 +5,7 @@ const USER_SONGS = 'songs/userSongs';
 const DELETE_SONG = 'songs/deleteSong';
 const PLAYLIST_SONGS = 'songs/playlistSongs';
 const CREATE_SONG = 'songs/createSong';
+const UPDATE_SONG = 'songs/updateSong';
 
 
 const getSongs = (songs) => ({
@@ -32,6 +33,11 @@ const createSong = payload => ({
     payload
 })
 
+const updateSong = payload => ({
+    type: UPDATE_SONG,
+    payload
+})
+
 export const thunkAllSongs = () => async dispatch => {
     const res = await fetch('/api/songs/');
     if(res.ok) {
@@ -50,10 +56,11 @@ export const thunkUserSongs = () => async dispatch => {
     }   
 }
 
-export const thunkDeleteSong = (id) => async dispatch => {
+export const thunkDeleteSong = (id, navigate) => async dispatch => {
     const res = await fetch(`/api/songs/${id}`, {method: 'DELETE'})
     if(res.ok) {
         dispatch(deleteSong(id));
+        navigate('/songs/');
         window.location.reload();
     }
 }
@@ -84,6 +91,25 @@ export const thunkCreateSong = (formData) => async dispatch => {
     return { server: "Something went wrong. Please try again" }
     }
 }
+
+export const thunkEditSong = (formData, id) => async dispatch => {
+    const res = await fetch(`/api/songs/${id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData)
+      });
+    if(res.ok) {
+    const updatedSong = await res.json();
+    dispatch(updateSong(updatedSong));
+    window.location.reload()
+    } else if (res.status < 500) {
+    const errorMessages = await res.json();
+    return errorMessages
+    } else {
+    return { server: "Something went wrong. Please try again" }
+    }
+}
+
 
 const initialState = { allSongs: {}, userSongs: {}, playlistSongs: {} }
 
@@ -119,6 +145,15 @@ export default function songsReducer(state = initialState, action) {
             return newState;
         }
         case CREATE_SONG: {
+            const newState = {
+                allSongs: {
+                    ...state.allSongs,
+                    [action.payload.id]: action.payload
+                }
+            }
+            return newState;
+        }
+        case UPDATE_SONG: {
             const newState = {
                 allSongs: {
                     ...state.allSongs,

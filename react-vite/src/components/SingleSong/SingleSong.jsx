@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react';
 import { thunkAllSongs } from '../../redux/songs';
 import { thunkSongLyrics } from '../../redux/lyrics';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import CheckLikes from './CheckLikesComponent';
 import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
 import EditSongModal from '../EditSongModal';
@@ -13,6 +13,7 @@ import DeleteLyricsModal from '../DeleteLyricsModal';
 
 export default function SingleSong() {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const user = useSelector(state=>state.session.user);
     const { songId } = useParams()
 
@@ -42,13 +43,13 @@ export default function SingleSong() {
         <button>
             <OpenModalMenuItem
             itemText='Edit Song' 
-            modalComponent={<EditSongModal />}
+            modalComponent={<EditSongModal song={song} />}
             />
             </button>
         <button>
             <OpenModalMenuItem
             itemText='Delete Song' 
-            modalComponent={<DeleteSongModal />}
+            modalComponent={<DeleteSongModal id={songId} navigate={navigate} />}
             />
         </button>
     </div>}

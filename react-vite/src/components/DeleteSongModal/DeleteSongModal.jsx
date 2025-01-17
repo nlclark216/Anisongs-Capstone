@@ -1,13 +1,25 @@
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
+import { thunkDeleteSong } from "../../redux/songs";
 import './DeleteSongModal.css';
 
-export default function DeleteSongModal() {
+export default function DeleteSongModal({id, navigate}) {
     const { closeModal } = useModal();
     const dispatch = useDispatch();
 
-    const handleSubmit = e => {
+    const handleSubmit = async e => {
         e.preventDefault();
+
+        const serverResponse = await dispatch(
+            thunkDeleteSong(id, navigate)
+        );
+
+        if (serverResponse) {
+        return serverResponse;
+        } else {
+        alert('Song Deleted!');
+        closeModal();
+        }
     }
 
     return (
