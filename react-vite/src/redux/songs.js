@@ -6,6 +6,8 @@ const DELETE_SONG = 'songs/deleteSong';
 const PLAYLIST_SONGS = 'songs/playlistSongs';
 const CREATE_SONG = 'songs/createSong';
 const UPDATE_SONG = 'songs/updateSong';
+const ADD_LIKE = 'songs/addLike';
+const REMOVE_LIKE = 'songs/removeLike';
 
 
 const getSongs = (songs) => ({
@@ -38,13 +40,23 @@ const updateSong = payload => ({
     payload
 })
 
+const addLike = payload => ({
+    type: ADD_LIKE,
+    payload
+})
+
 export const thunkAllSongs = () => async dispatch => {
     const res = await fetch('/api/songs/');
     if(res.ok) {
         const data = await res.json();
         if (data.errors) {return;}
         dispatch(getSongs(data));
-    }   
+    } else if (res.status < 500) {
+    const errorMessages = await res.json();
+    return errorMessages
+    } else {
+    return { server: "Something went wrong. Please try again" }
+    }  
 }
 
 export const thunkUserSongs = () => async dispatch => {
@@ -53,7 +65,12 @@ export const thunkUserSongs = () => async dispatch => {
         const data = await res.json();
         if (data.errors) {return;}
         dispatch(userSongs(data));
-    }   
+    } else if (res.status < 500) {
+    const errorMessages = await res.json();
+    return errorMessages
+    } else {
+    return { server: "Something went wrong. Please try again" }
+    }
 }
 
 export const thunkDeleteSong = (id, navigate) => async dispatch => {
@@ -62,6 +79,11 @@ export const thunkDeleteSong = (id, navigate) => async dispatch => {
         dispatch(deleteSong(id));
         navigate('/songs/');
         window.location.reload();
+    } else if (res.status < 500) {
+    const errorMessages = await res.json();
+    return errorMessages
+    } else {
+    return { server: "Something went wrong. Please try again" }
     }
 }
 
@@ -71,7 +93,12 @@ export const thunkPlaylistSongs = id => async dispatch => {
         const data = await res.json();
         if (data.errors) {return;}
         dispatch(listSongs(data));
-    } 
+    } else if (res.status < 500) {
+    const errorMessages = await res.json();
+    return errorMessages
+    } else {
+    return { server: "Something went wrong. Please try again" }
+    }
 }
 
 export const thunkCreateSong = (formData) => async dispatch => {
@@ -101,7 +128,24 @@ export const thunkEditSong = (formData, id) => async dispatch => {
     if(res.ok) {
     const updatedSong = await res.json();
     dispatch(updateSong(updatedSong));
-    window.location.reload()
+    window.location.reload();
+    } else if (res.status < 500) {
+    const errorMessages = await res.json();
+    return errorMessages
+    } else {
+    return { server: "Something went wrong. Please try again" }
+    }
+}
+
+export const thunkAddLike = id => async dispatch => {
+    const res = await fetch(`/api/songs/${id}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" }
+    });
+    if(res.ok) {
+        const data = await res.json();
+        dispatch(addLike(data));
+        window.location.reload();
     } else if (res.status < 500) {
     const errorMessages = await res.json();
     return errorMessages
@@ -154,6 +198,15 @@ export default function songsReducer(state = initialState, action) {
             return newState;
         }
         case UPDATE_SONG: {
+            const newState = {
+                allSongs: {
+                    ...state.allSongs,
+                    [action.payload.id]: action.payload
+                }
+            }
+            return newState;
+        }
+        case ADD_LIKE:{
             const newState = {
                 allSongs: {
                     ...state.allSongs,

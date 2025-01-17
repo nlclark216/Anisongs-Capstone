@@ -3,6 +3,8 @@ import './PlaylistsComponent.css';
 import { useEffect } from 'react';
 import { thunkAllPlaylists, thunkUserPlaylists } from '../../redux/playlists';
 import ListTile from './ListTileComponent';
+import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
+import CreatePlaylistForm from '../CreatePlaylistForm';
 
 export default function PlaylistsComponent() {
     const dispatch = useDispatch();
@@ -20,17 +22,23 @@ export default function PlaylistsComponent() {
     if(user) { return(
     <>
     <h1>Playlists</h1>
-    <h3>Your Playlists</h3>
-    {userPlaylists?.map(list=><ListTile key={list.id} playlist={list} />)}
+    <h3>Your Playlists 
+        <button>
+            <OpenModalMenuItem
+            itemText='Create New Playlist'
+            modalComponent={<CreatePlaylistForm />} 
+            />
+            </button></h3>
+    {userPlaylists?.map(list=><ListTile key={list?.id} playlist={list} />)}
     <h3>User Submissions</h3>
-    {otherLists?.map(list=><ListTile key={list.id} playlist={list} />)}
+    {otherLists.length > 0 && otherLists?.map(list=><ListTile key={list?.id} playlist={list} />)}
     </>
     )}
 
     else return (
     <>
     <h1>Playlists</h1>
-    {allPlaylists?.map(list=><ListTile key={list.id} playlist={list} />)}
+    {allPlaylists && allPlaylists?.map(list=><ListTile key={list?.id} playlist={list} />)}
     </>
     )
 

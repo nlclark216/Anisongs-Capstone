@@ -4,7 +4,7 @@ import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 import AddLikeModal from "../AddLikeModal";
 import DeleteLikeModal from "../DeleteLikeModal";
 
-export default function CheckLikes({arr, user}){
+export default function CheckLikes({arr, user, songId}){
 
     const target = arr?.filter(ele=>ele?.ownerId===user?.id)
     if(target && target.length > 0) return (<button><OpenModalMenuItem
@@ -14,6 +14,6 @@ export default function CheckLikes({arr, user}){
     else return (<button>
      <OpenModalMenuItem
      itemText={<FaRegStar />}
-     modalComponent={<AddLikeModal />} 
+     modalComponent={<AddLikeModal songId={songId} />} 
      /></button>)
  }

@@ -1,38 +1,41 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from 'react-router-dom';
 import { useModal } from "../../context/Modal";
-import { thunkEditPlaylist } from "../../redux/playlists";
-import './EditPlaylistModal.css'
+import { thunkCreatePlaylist } from "../../redux/playlists";
+import './CreatePlaylistForm.css';
 
-export default function EditPlaylistModal({playlist, id}) {
+export default function CreatePlaylistForm() {
     const dispatch = useDispatch();
-    const { closeModal } = useModal();
+    const navigate = useNavigate();
+    const closeModal = useModal();
 
-    const [name, setName] = useState(playlist?.name);
-    const [image, setImage] = useState(playlist?.image);
+    const [name, setName] = useState('');
+    const [image, setImage] = useState();
     const [errors, setErrors] = useState({});
 
     const handleSubmit = async e => {
         e.preventDefault();
 
         const serverResponse = await dispatch(
-            thunkEditPlaylist({
+            thunkCreatePlaylist({
                 name,
                 image
-            }, id)
+            })
             );
 
             if (serverResponse) {
             setErrors(serverResponse);
             } else {
-            alert('Playlist edited successfully!');
+            alert('Playlist created!');
             closeModal();
+            navigate('/playlists/');
         }
     }
-    
+
     return (
         <div>
-            <h1>Edit Playlist</h1>
+            <h1>Create Playlist</h1>
             {errors?.server && <p>{errors?.server}</p>}
             <form onSubmit={handleSubmit}>
                 <p>Choose a name for your new playlist! (image is optional)</p>
@@ -58,7 +61,7 @@ export default function EditPlaylistModal({playlist, id}) {
                 {errors?.image && <p>{errors?.image}</p>}
                 <button
                 type="submit"
-                >Edit Playlist!</button>
+                >Create Playlist!</button>
             </form>
         </div>
     )

@@ -26,6 +26,8 @@ export default function SingleSong() {
     const song = songs[songId];
     const lyrics = useSelector(state=>state.lyrics.songLyrics);
 
+    if(!song) navigate('/songs/')
+
     let likes;
 
     if (song?.likes) likes = song?.likes;

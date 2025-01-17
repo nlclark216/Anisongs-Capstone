@@ -106,7 +106,7 @@ export default function CreateSongForm() {
                 required
                 />
             </label>
-            {errors.albumName && <p>{errors.albumName}</p>}
+            {errors?.albumName && <p>{errors?.albumName}</p>}
             <label>
                 Album Art
                 <input

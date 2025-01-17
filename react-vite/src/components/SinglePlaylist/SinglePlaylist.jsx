@@ -1,7 +1,7 @@
 import './SinglePlaylist.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { thunkAllPlaylists } from '../../redux/playlists';
 import { thunkPlaylistSongs } from '../../redux/songs';
 import { FaPlay } from "react-icons/fa";
@@ -19,6 +19,7 @@ import { CiSquareRemove } from "react-icons/ci";
 
 export default function SinglePlaylist() {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const user = useSelector(state=>state.session.user);
     const { playlistId } = useParams();
 
@@ -34,7 +35,8 @@ export default function SinglePlaylist() {
     const playlists = useSelector(state=>state.playlists.allPlaylists);
     const playlist = playlists[playlistId]
     const listSongs = Object.values(useSelector(state=>state.songs.playlistSongs));
-    console.log(listSongs)
+
+    if(!playlist) navigate('/playlists/')
 
     const listSongTile = (song) => {
         return (
@@ -71,8 +73,13 @@ export default function SinglePlaylist() {
        <h1>{playlist?.name}</h1>
        {user && user?.id === playlist?.creator_id && <button>
         <OpenModalMenuItem
-        itemText='Edit'
-        modalComponent={<EditPlaylistModal />} 
+        itemText='Edit Playlist'
+        modalComponent={
+        <EditPlaylistModal 
+        navigate={navigate} 
+        playlist={playlist}
+        id={playlistId} 
+        />} 
         /></button> }
     </div>
     
@@ -86,7 +93,7 @@ export default function SinglePlaylist() {
         /></button>}
         {user?.id === playlist?.creator_id && <button><OpenModalMenuItem
         itemText='Delete Playlist'
-        modalComponent={<DeletePlaylistModal />} 
+        modalComponent={<DeletePlaylistModal id={playlistId} navigate={navigate} />} 
         /></button>}
     </div>}
     {listSongs.length === 0 ? <><p>No Songs Found</p></> : 

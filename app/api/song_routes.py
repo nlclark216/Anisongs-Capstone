@@ -270,9 +270,6 @@ def create_like(id):
     if not song:
         return jsonify({'message': 'Song not found'}), 404
     
-    if song.owner_id != current_user.id:
-        return jsonify({'message': 'Forbidden'}), 403
-    
     like = Likes.query.filter(and_(Likes.owner_id == current_user.get_id(), Likes.song_id == id)).first()
 
     if like:
