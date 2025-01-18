@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
-import { thunkAllPlaylistSongs, thunkDeletePlaylistSong } from "../../redux/listSongs";
+import { thunkDeletePlaylistSong } from "../../redux/listSongs";
 import './RemovePlaylistSongModal.css';
 
 export default function RemovePlaylistSongModal({id}) {
