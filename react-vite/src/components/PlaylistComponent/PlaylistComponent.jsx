@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { thunkAllPlaylists} from '../../redux/playlists';
 import { thunkPlaylistSongs } from '../../redux/songs';
+import { thunkAllPlaylistSongs } from '../../redux/listSongs';
 import { useNavigate, useParams} from 'react-router-dom';
 import ListSongTile from './ListSongTile';
 import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
@@ -21,6 +22,7 @@ export default function PlaylistComponent() {
     useEffect(() => {
         dispatch(thunkAllPlaylists())
         dispatch(thunkPlaylistSongs(playlistId))
+        dispatch(thunkAllPlaylistSongs())
     }, [dispatch, playlistId])
 
     
@@ -28,7 +30,8 @@ export default function PlaylistComponent() {
     const targetPlaylist = allPlaylists[playlistId];
     const songs = useSelector(state=>state.songs.playlistSongs);
     const isOwner = targetPlaylist?.creator_id === user?.id;
-    
+
+    const listSongs = useSelector(state=>state.playlistSongs.allPlaylistSongs)
 
     return (
         <div>
@@ -59,7 +62,7 @@ export default function PlaylistComponent() {
                 />
             </button>}
             {songs && <h3>Songs</h3>}
-            {songs && Object.values(songs).map(song=><ListSongTile key={song.id} song={song} user={user} />)}
+            {songs && Object.values(songs).map(song=><ListSongTile key={song.id} song={song} user={user} playlist={targetPlaylist} listSongs={listSongs}/>)}
             
         </div>
     )

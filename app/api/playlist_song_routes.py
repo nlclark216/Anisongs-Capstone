@@ -14,7 +14,7 @@ def playlist_songs():
     if not playlist_songs:
         return jsonify({'message': 'Song not found'}), 404
 
-    return [playlist_song.to_dict() for playlist_song in playlist_songs], 200
+    return {'songs': [playlist_song.to_dict() for playlist_song in playlist_songs]}, 200
 
 @playlist_song_routes.route('/current')
 @login_required

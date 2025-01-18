@@ -1,14 +1,25 @@
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
+import { thunkAllPlaylistSongs, thunkDeletePlaylistSong } from "../../redux/listSongs";
 import './RemovePlaylistSongModal.css';
 
-export default function RemovePlaylistSongModal() {
+export default function RemovePlaylistSongModal({id}) {
     const { closeModal } = useModal();
     const dispatch = useDispatch();
 
-    const handleSubmit = e => {
+    const handleSubmit = async e => {
         e.preventDefault();
+
+        await dispatch(
+            thunkDeletePlaylistSong(id)
+        );
+
+        alert('Song Removed!');
+        window.location.reload();
+        closeModal();
+
     }
+
     return (
     <div className="modal">
         <h1>Remove Song from Playlist</h1>

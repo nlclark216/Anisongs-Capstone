@@ -68,9 +68,9 @@ export const thunkUserSongs = () => async dispatch => {
 }
 
 export const thunkDeleteSong = (id, navigate) => async dispatch => {
-    const res = await fetch(`/api/songs/${id}`, {method: 'DELETE'})
+    const res = await fetch(`/api/songs/${+id}`, {method: 'DELETE'})
     if(res.ok) {
-        dispatch(deleteSong(id));
+        dispatch(deleteSong(+id));
         navigate('/songs/');
         window.location.reload();
     } else if (res.status < 500) {
@@ -82,7 +82,7 @@ export const thunkDeleteSong = (id, navigate) => async dispatch => {
 }
 
 export const thunkPlaylistSongs = id => async dispatch => {
-    const res = await fetch(`/api/playlists/${id}/songs`);
+    const res = await fetch(`/api/playlists/${+id}/songs`);
     if(res.ok) {
         const data = await res.json();
         if (data.errors) {return;}
