@@ -31,7 +31,7 @@ export default function DeleteLyricsModal({songId}) {
         onClick={handleSubmit}
         >Remove Lyrics</button>
         <button 
-        onClick={closeModal} 
+        onClick={ closeModal } 
         >
         No (Go Back)
         </button> 

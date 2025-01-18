@@ -32,7 +32,7 @@ export default function AddLikeModal({songId, user}) {
         onClick={handleSubmit}
         >Add Favorite</button>
         <button 
-        onClick={closeModal} 
+        onClick={ closeModal } 
         >
         No (Go Back)
         </button> 

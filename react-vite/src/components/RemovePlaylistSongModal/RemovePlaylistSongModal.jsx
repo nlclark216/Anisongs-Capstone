@@ -30,7 +30,7 @@ export default function RemovePlaylistSongModal({id}) {
         onClick={handleSubmit}
         >Remove Song</button>
         <button 
-        onClick={closeModal} 
+        onClick={ closeModal } 
         >
         No (Go Back)
         </button> 

@@ -6,7 +6,7 @@ import './EditSongModal.css';
 
 export default function EditSongModal({song}) {
     const dispatch = useDispatch();
-    const closeModal = useModal();
+    const { closeModal } = useModal();
     const [title, setTitle] = useState(song.title);
     const [artist, setArtist] = useState(song.artist);
     const [file, setFile] = useState(song.file);

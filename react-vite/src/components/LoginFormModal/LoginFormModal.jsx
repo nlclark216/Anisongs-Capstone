@@ -13,7 +13,7 @@ function LoginFormModal() {
   
   const loginDemo = async () => {
     return await dispatch(thunkLogin({email:"demo@aa.io", password:"password" }))
-    .then(alert('Demo User Successfully Logged In')).then(closeModal)
+    .then(alert('Demo User successfully logged in')).then(closeModal)
   }
 
   const handleSubmit = async (e) => {

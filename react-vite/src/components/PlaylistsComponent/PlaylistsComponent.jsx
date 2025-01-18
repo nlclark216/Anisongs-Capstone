@@ -15,9 +15,10 @@ export default function PlaylistsComponent() {
         dispatch(thunkUserPlaylists());
     }, [dispatch])
 
-    const allPlaylists = Object.values(useSelector(state=>state.playlists.allPlaylists));
-    const userPlaylists = Object.values(useSelector(state=>state.playlists.userPlaylists));
-    const otherLists = allPlaylists.filter(list=>list?.creator_id !== user?.id)
+    const allPlaylists = useSelector(state=>state.playlists.allPlaylists);
+    const userPlaylists = useSelector(state=>state.playlists.userPlaylists);
+    let otherLists;
+    if(allPlaylists) otherLists = Object.values(allPlaylists).filter(list=>list?.creator_id !== user?.id)
 
     if(user) { return(
     <>
@@ -29,9 +30,9 @@ export default function PlaylistsComponent() {
             modalComponent={<CreatePlaylistForm />} 
             />
             </button></h3>
-    {userPlaylists?.map(list=><ListTile user={user} key={+list?.id} playlist={list} />)}
+    {userPlaylists && Object.values(userPlaylists)?.map(list=><ListTile user={user} key={+list?.id} playlist={list} />)}
     <h3>User Submissions</h3>
-    {otherLists?.length > 0 && otherLists?.map(list=><ListTile user={user} key={+list?.id} playlist={list} />)}
+    {otherLists && otherLists?.length > 0 && otherLists?.map(list=><ListTile user={user} key={+list?.id} playlist={list} />)}
     </>
     )}
 

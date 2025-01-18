@@ -6,7 +6,7 @@ import './EditLyricsModal.css';
 
 export default function EditLyricsModal({target, songId}) {
     const dispatch = useDispatch();
-    const closeModal = useModal();
+    const { closeModal } = useModal();
 
     const [type, setType] = useState(target?.type);
     const [lyrics, setLyrics] = useState(target?.lyrics);

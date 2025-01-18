@@ -17,8 +17,6 @@ export default function CreateSongForm() {
     const [albumArtwork, setAlbumArt] = useState('');
     const [errors, setErrors] = useState({});
 
-    if(!user) navigate('/')
-
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -29,15 +27,16 @@ export default function CreateSongForm() {
               'song_file': file,
               year,
               'album_name': albumName,
-              'album_art': albumArtwork,
-              anime
+              'album_art': albumArtwork || '/song-default.png',
+              anime,
             })
           );
 
           if (serverResponse) {
             setErrors(serverResponse);
           } else {
-            alert('Lyrics changes saved!!');
+            alert('Song created!!');
+            navigate('/songs/');
           }
     }
 

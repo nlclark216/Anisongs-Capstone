@@ -8,7 +8,7 @@ import './CreatePlaylistForm.css';
 export default function CreatePlaylistForm() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const closeModal = useModal();
+    const { closeModal } = useModal();
 
     const [name, setName] = useState('');
     const [image, setImage] = useState();

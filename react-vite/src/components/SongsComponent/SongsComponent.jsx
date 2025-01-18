@@ -18,9 +18,10 @@ export default function SongsComponent() {
             dispatch(thunkAllLikes());
         }, [dispatch]);
 
-    const allSongs = Object.values(useSelector(state=>state.songs.allSongs));
-    const userSongs = Object.values(useSelector(state=>state.songs.userSongs));
-    const otherSongs = allSongs.filter(list=>list?.owner_id !== user?.id);
+    const allSongs = useSelector(state=>state.songs.allSongs);
+    const userSongs = useSelector(state=>state.songs.userSongs);
+    let otherSongs;
+    if(allSongs) otherSongs = Object.values(allSongs).filter(list=>list?.owner_id !== user?.id);
     
     const handleClick = e => {
         e.preventDefault()
@@ -31,18 +32,18 @@ export default function SongsComponent() {
         <h1>Songs</h1>
         <div>
            <h2>Your Songs</h2>
-            <button onClick={handleClick}><Link to='/songs/create'>upload a track</Link> </button>
+            <button onClick={handleClick}><Link to='/songs/new'>upload a track</Link> </button>
         </div>
-        {userSongs?.map(song=><SongTile key={song.id} song={song} user={user} />)}
+        {userSongs && Object.values(userSongs)?.map(song=><SongTile key={song.id} song={song} user={user} />)}
         <h2>User Submissions</h2>
-        {otherSongs?.map(song=><SongTile key={song.id} song={song} user={user} />)}
+        {otherSongs && otherSongs?.map(song=><SongTile key={song.id} song={song} user={user} />)}
         </>
         )}
     
         else return (
         <>
         <h1>Songs</h1>
-        {allSongs?.map(song=><SongTile key={song.id} song={song} user={user} />)}
+        {allSongs && Object.values(allSongs)?.map(song=><SongTile key={song.id} song={song} user={user} />)}
         </>
         )
 }

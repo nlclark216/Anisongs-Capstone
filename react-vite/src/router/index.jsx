@@ -25,7 +25,7 @@ export const router = createBrowserRouter([
         element: <SongsComponent />
       },
       {
-        path: 'songs/create',
+        path: 'songs/new',
         element: <CreateSongForm />
       },
       {
@@ -37,7 +37,7 @@ export const router = createBrowserRouter([
         element: <PlaylistComponent />
       },
       {
-        path: 'playlists/create',
+        path: 'playlists/new',
         element: <CreatePlaylistForm />
       },
       {

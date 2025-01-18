@@ -31,7 +31,7 @@ export default function DeleteProfileModal() {
         <p className='warning'>This action cannot be undone.</p>
         <button type="Submit" onClick={handleSubmit}>Delete Account</button>
         <button 
-        onClick={closeModal} 
+        onClick={ closeModal } 
         >
         No (Go Back)
         </button> 

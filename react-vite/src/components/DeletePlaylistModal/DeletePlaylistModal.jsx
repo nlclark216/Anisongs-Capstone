@@ -32,7 +32,7 @@ export default function DeletePlaylistModal({id, navigate}) {
         onClick={handleSubmit}
         >Delete Playlist</button>
         <button 
-        onClick={closeModal} 
+        onClick={ closeModal } 
         >
         No (Go Back)
         </button> 

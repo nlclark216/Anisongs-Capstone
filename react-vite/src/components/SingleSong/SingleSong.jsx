@@ -56,7 +56,7 @@ export default function SingleSong() {
             />
         </button>
     </div>}
-    {Object.values(lyrics)?.length > 0 && !lyrics?.message && <div className='song-lyrics-translation'>
+    {lyrics && Object.values(lyrics)?.length > 0 && !lyrics?.message && <div className='song-lyrics-translation'>
         <label>
             <h4>Lyrics</h4>
            <p style={{'whiteSpace': 'pre-line'}}>{(lyrics?.lyrics)}</p> 
@@ -86,7 +86,7 @@ export default function SingleSong() {
     <button>
         <OpenModalMenuItem
         itemText='Add Lyrics'
-        modalComponent={<CreateLyricsForm songId={songId} />} 
+        modalComponent={<CreateLyricsForm songId={+songId} />} 
         />
     </button>
     }

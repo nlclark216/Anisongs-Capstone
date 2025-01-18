@@ -58,8 +58,8 @@ export default function AddSongModal({songId, user}) {
             >
                 <option value=''>Available Playlists:</option>
                 {userLists && userLists.map(e=>(
-                    <option key={e.id} value={e.id}>
-                        {e.name}
+                    <option key={e?.id} value={e?.id}>
+                        {e?.name}
                     </option>
                 ))}
             </select>

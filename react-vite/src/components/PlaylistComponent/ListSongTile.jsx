@@ -20,7 +20,7 @@ export default function ListSongTile({song, user, playlist, listSongs}) {
             <img src={song?.song.albumArt} />
             <p>{song?.song.artist}</p>
             <p>{song?.song.album}</p>
-            {isSongOwner && isPlaylistOwner && 
+            {isPlaylistOwner && 
             <button>
                 <OpenModalMenuItem
                 itemText={<><TbMusicMinus /> Remove Song</>}

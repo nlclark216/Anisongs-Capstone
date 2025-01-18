@@ -32,7 +32,7 @@ export default function DeleteSongModal({id, navigate}) {
         onClick={handleSubmit}
         >Delete Song</button>
         <button 
-        onClick={closeModal} 
+        onClick={ closeModal } 
         >
         No (Go Back)
         </button> 

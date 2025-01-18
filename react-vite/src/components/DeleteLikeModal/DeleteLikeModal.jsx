@@ -33,7 +33,7 @@ export default function DeleteLikeModal({songId, likes, user}) {
         onClick={handleSubmit}
         >Remove Favorite</button>
         <button 
-        onClick={closeModal} 
+        onClick={ closeModal } 
         >
         No (Go Back)
         </button> 

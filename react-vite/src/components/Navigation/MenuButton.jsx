@@ -44,7 +44,7 @@ export default function MenuButton() {
                 <NavLink to='/songs' onClick={closeMenu}>Songs</NavLink>
             </li>
             <li>
-                <NavLink onClick={closeMenu}>Community</NavLink>
+                <NavLink onClick={() => alert('Coming Soon!').then(closeMenu)}>Community</NavLink>
             </li>
         </ul>
       )}

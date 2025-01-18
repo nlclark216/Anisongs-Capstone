@@ -1,3 +1,5 @@
+import { csrfFetch } from "./csrf";
+
 const LOAD_PLAYLISTS = 'playlists/loadPlaylists';
 const USER_PLAYLISTS = 'playlists/userPlaylists';
 const DELETE_PLAYLIST = 'playlists/deletePlaylist';
@@ -72,7 +74,7 @@ export const thunkDeletePlaylist = (id, navigate) => async dispatch => {
 }
 
 export const thunkCreatePlaylist = (formData) => async dispatch => {
-    const res = await fetch('api/playlists/', {
+    const res = await csrfFetch('api/playlists/', {
         method: 'POST',
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData)
@@ -80,7 +82,8 @@ export const thunkCreatePlaylist = (formData) => async dispatch => {
 
     if(res.ok) {
         const data = await res.json();
-        dispatch(createList(data)).then(window.location.reload());
+        dispatch(createList(data))
+        // .then(window.location.reload());
     } else if (res.status < 500) {
     const errorMessages = await res.json();
     return errorMessages

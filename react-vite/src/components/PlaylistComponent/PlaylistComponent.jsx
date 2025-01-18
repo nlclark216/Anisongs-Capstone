@@ -52,7 +52,7 @@ export default function PlaylistComponent() {
                 </button>}
             </h2>
             
-            {songs && <h3>Songs</h3>}
+            {songs && Object.values(songs) > 0 && <h3>Songs</h3>}
             {songs && Object.values(songs).map(song=><ListSongTile key={song.id} song={song} user={user} playlist={targetPlaylist} listSongs={listSongs}/>)}
             
         </div>

@@ -50,7 +50,7 @@ export const thunkSongLyrics = (id) => async dispatch => {
 }
 
 export const thunkAddLyrics = (formData, id) => async dispatch => {
-    const res = await fetch(`/api/songs/${+id}/lyrics`, {
+    const res = await csrfFetch(`/api/songs/${+id}/lyrics`, {
         method: 'POST',
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData)
@@ -70,7 +70,7 @@ export const thunkAddLyrics = (formData, id) => async dispatch => {
 export const thunkDeleteLyrics = (id) => async dispatch => {
     const res = await fetch(`/api/songs/${id}/lyrics`, {method: 'DELETE'});
     if(res.ok) {
-        dispatch(deleteLyrics(id));
+        dispatch(deleteLyrics(+id));
         window.location.reload();
     } else if (res.status < 500) {
     const errorMessages = await res.json();

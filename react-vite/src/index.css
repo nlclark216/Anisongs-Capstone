@@ -17,3 +17,7 @@ button:hover,
 svg:hover {
     cursor: pointer;
 }
+
+button:disabled {
+    cursor: not-allowed;
+}

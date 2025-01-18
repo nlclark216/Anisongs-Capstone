@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 
 export default function ListTile({playlist, user}) {
-    const isOwner = user.id === playlist.creator_id
+    const isOwner = user?.id === playlist?.creator_id
     return (
         <div key={playlist?.id}>
         <Link

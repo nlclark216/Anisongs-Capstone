@@ -6,7 +6,7 @@ import './CreateLyricsForm.css';
 
 export default function CreateLyricsForm({songId}) {
     const dispatch = useDispatch();
-    const closeModal = useModal();
+    const { closeModal } = useModal();
 
     const [type, setType] = useState('');
     const [lyrics, setLyrics] = useState('');

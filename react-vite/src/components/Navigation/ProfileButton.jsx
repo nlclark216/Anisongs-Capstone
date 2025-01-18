@@ -7,9 +7,11 @@ import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 import EditProfileModal from "../Profile/Edit/EditProfileModal";
 import DeleteProfileModal from "../Profile/Delete/DeleteProfileModal";
+import { useNavigate } from "react-router-dom";
 
 function ProfileButton() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [showMenu, setShowMenu] = useState(false);
   const user = useSelector((store) => store.session.user);
   const ulRef = useRef();
@@ -40,6 +42,7 @@ function ProfileButton() {
     dispatch(thunkLogout());
     alert('Logged Out!')
     closeMenu();
+    navigate('/')
   };
 
   return (

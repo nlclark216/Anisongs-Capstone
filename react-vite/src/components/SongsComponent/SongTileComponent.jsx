@@ -6,7 +6,7 @@ import { TbMusicPlus } from 'react-icons/tb';
 import { useModal } from '../../context/Modal';
 
 export default function SongTile({song, user}) {
-    const closeModal = useModal();
+    const { closeModal } = useModal();
     const imgSrc = song => {
         if(song?.album_art !== "/album-img.png") {return song?.album_art}
         else return '/song-default.png'
@@ -31,7 +31,7 @@ export default function SongTile({song, user}) {
             <button>
                 <OpenModalMenuItem
                 itemText={<><TbMusicPlus /> Add Song</>}
-                modalComponent={<AddSongModal songId={song.id} user={user} closeModal={closeModal} />}
+                modalComponent={<AddSongModal songId={song.id} user={user} closeModal={ closeModal } />}
                 />
             </button>}
     </div>
