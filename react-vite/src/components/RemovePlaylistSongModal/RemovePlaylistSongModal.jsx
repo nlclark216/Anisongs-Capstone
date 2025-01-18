@@ -21,7 +21,7 @@ export default function RemovePlaylistSongModal({id}) {
     }
 
     return (
-    <div className="modal">
+    <div className="modal" id="remove-playlist-song">
         <h1>Remove Song from Playlist</h1>
         <p>Are you sure you want to remove this song from your playlist?</p>
         <p className='warning'>This action cannot be undone.</p>

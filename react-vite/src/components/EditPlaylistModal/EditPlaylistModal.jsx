@@ -31,7 +31,7 @@ export default function EditPlaylistModal({playlist, id}) {
     }
     
     return (
-        <div>
+        <div className="modal" id="edit-playlist">
             <h1>Edit Playlist</h1>
             {errors?.server && <p>{errors?.server}</p>}
             <form onSubmit={handleSubmit}>

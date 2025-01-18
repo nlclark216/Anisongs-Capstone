@@ -36,7 +36,7 @@ export default function CreateLyricsForm({songId}) {
         }
 
     return (
-        <div>
+        <div className="modal" id="add-lyrics">
             <h1>Add Lyrics</h1>
             {errors?.server && <p>{errors?.server}</p>}
             <form onSubmit={handleSubmit}>

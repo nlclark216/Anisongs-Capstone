@@ -24,21 +24,35 @@ export default function LandingPage(){
     const userPlaylists = Object.values(useSelector(state=>state.playlists.userPlaylists));
     const currentUser = useSelector(state=>state.session.user);
     
-    if(!currentUser) return (<>
-        <h1>Welcome to Ani-Songs!</h1> 
-        <h3><Link to='/songs'>Newest Uploads</Link> <FiChevronRight /></h3>
+    if(!currentUser) return (
+    <div className='landing'>
+        <h1>Welcome to Ani-Songs!</h1>
+        <h3 id='landing'><Link to='/songs'>Newest Uploads</Link> <FiChevronRight /></h3>
+        <div className='all-songs' id='before-login'>
         {allSongs && allSongs.map(song=>(
             <SongTile key={song.id} song={song} user={currentUser} />
         ))}
-        <h3><Link to='/playlists'>New Playlists</Link> <FiChevronRight /></h3>
-        {allPlaylists && allPlaylists.map(list=><ListTile key={list?.id} playlist={list} />)}
+        </div> 
+        <h3 id='landing'><Link to='/playlists'>New Playlists</Link> <FiChevronRight /></h3>
+        <div className='all-playlists'>
+           {allPlaylists && 
+           allPlaylists
+           .map(list=><ListTile key={list?.id} playlist={list} />)} 
+        </div>
+        
        
-        </>)
+    </div>)
     
     return(
     <div className='landing'>
     <h1>Home</h1>
-    {userPlaylists.length > 1 && <h3 id='landing'><Link to='/songs'>Your Songs</Link> <FiChevronRight /></h3>}
+    {userPlaylists.length > 1 && 
+    <h3 id='landing'>
+        <Link to='/songs'>
+        Your Songs
+        </Link> 
+        <FiChevronRight />
+    </h3>}
     <div className='user-songs' id='landing'>
     {userSongs && userSongs.map(song=>(
         <SongTile key={song.id} song={song} user={currentUser}  />

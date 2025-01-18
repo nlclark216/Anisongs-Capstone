@@ -24,7 +24,7 @@ export default function DeleteSongModal({id, navigate}) {
     }
 
     return (
-    <div className="modal">
+    <div className="modal" id="delete-song">
         <h1>Delete Song</h1>
         <p>Are you sure you want to delete this song?</p>
         <p className='warning'>This action cannot be undone.</p>

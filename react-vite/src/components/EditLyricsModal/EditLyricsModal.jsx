@@ -36,7 +36,7 @@ export default function EditLyricsModal({target, songId}) {
     }
     
     return (
-        <div>
+        <div className="modal" id="edit-lyrics">
             <h1>Edit Lyrics</h1>
             {errors?.server && <p>{errors?.server}</p>}
             <form onSubmit={handleSubmit}>

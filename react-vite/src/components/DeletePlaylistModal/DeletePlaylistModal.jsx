@@ -23,7 +23,7 @@ export default function DeletePlaylistModal({id, navigate}) {
         }
     }
     return (
-    <div className="modal">
+    <div className="modal" id="delete-playlist">
         <h1>Delete Playlist</h1>
         <p>Are you sure you want to delete this playlist?</p>
         <p className='warning'>This action cannot be undone.</p>

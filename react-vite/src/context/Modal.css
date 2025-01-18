@@ -20,5 +20,17 @@
 
 #modal-content {
   position: absolute;
-  background-color:white;
+  background-color:#121212;
+  border-radius: 20px;
+  max-width: 80%;
+}
+
+/* Modals */
+
+.modal {
+  /* border: solid red; */
+  background-color: #121212;
+  border-radius: 20px;
+  padding: 30px;
+  text-align: center;
 }

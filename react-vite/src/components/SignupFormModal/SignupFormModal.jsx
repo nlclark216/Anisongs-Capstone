@@ -54,7 +54,7 @@ function SignupFormModal() {
   };
 
   return (
-    <>
+    <div className="modal" id="sign-up">
       <h1>Sign Up</h1>
       {errors.server && <p>{errors.server}</p>}
       <form onSubmit={handleSubmit}>
@@ -170,7 +170,7 @@ function SignupFormModal() {
         disabled={firstName.length < 2 || lastName < 1 || !email.split('').includes('@')}
         >Sign Up</button>
       </form>
-    </>
+    </div>
   );
 }
 
