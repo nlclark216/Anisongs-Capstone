@@ -5,7 +5,6 @@ import RemovePlaylistSongModal from "../RemovePlaylistSongModal";
 import { TbMusicMinus } from "react-icons/tb";
 
 export default function ListSongTile({song, user, playlist, listSongs}) {
-    const isSongOwner = song?.song.ownerId === user?.id;
     const isPlaylistOwner = playlist?.creator_id === user?.id;
 
     return (

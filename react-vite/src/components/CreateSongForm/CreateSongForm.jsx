@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from 'react-router-dom';
 import { thunkCreateSong } from "../../redux/songs";
 import './CreateSongForm.css'
@@ -7,7 +7,6 @@ import './CreateSongForm.css'
 export default function CreateSongForm() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const user = useSelector(state=>state.session.user);
     const [title, setTitle] = useState('');
     const [artist, setArtist] = useState('');
     const [file, setFile] = useState('');
