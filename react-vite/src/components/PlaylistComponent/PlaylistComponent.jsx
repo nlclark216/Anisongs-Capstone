@@ -9,9 +9,7 @@ import ListSongTile from './ListSongTile';
 import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
 import EditPlaylistModal from '../EditPlaylistModal';
 import DeletePlaylistModal from '../DeletePlaylistModal';
-import { TbMusicPlus } from "react-icons/tb";
 import { FaPlay } from "react-icons/fa";
-import AddSongModal from '../AddSongModal/AddSongModal';
 
 export default function PlaylistComponent() {
     const dispatch = useDispatch();
@@ -54,13 +52,6 @@ export default function PlaylistComponent() {
                 </button>}
             </h2>
             
-            {isOwner && 
-            <button>
-                <OpenModalMenuItem
-                itemText={<><TbMusicPlus /> Add Song</>}
-                modalComponent={<AddSongModal />}
-                />
-            </button>}
             {songs && <h3>Songs</h3>}
             {songs && Object.values(songs).map(song=><ListSongTile key={song.id} song={song} user={user} playlist={targetPlaylist} listSongs={listSongs}/>)}
             

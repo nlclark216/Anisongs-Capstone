@@ -8,7 +8,7 @@ class PlaylistSongs(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    added_by = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
+    added_by = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
     playlist_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('playlists.id')), nullable=False)
     song_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('songs.id')), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.datetime.now())

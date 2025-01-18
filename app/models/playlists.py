@@ -23,5 +23,5 @@ class Playlists(db.Model):
             'creator_id': self.creator_id,
             'name': self.name,
             'image': self.image, 
-            'creator': self.creator.username
+            'creator': self.creator.username,
         }
