@@ -1,0 +1,32 @@
+/* Landing Page */
+
+/* Page Body */
+
+.landing {
+    /* border: solid red; */
+    border-radius: 16px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    background-color: #221a25;
+    row-gap: 20px;
+}
+
+.user-songs,
+.user-playlists,
+.all-songs,
+.all-playlists {
+    display: flex;
+    column-gap: 20px;
+    overflow: scroll;
+}
+
+div::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
+
+h3#landing {
+    /* border: dotted yellow; */
+    display: flex;
+    align-items: center;
+}

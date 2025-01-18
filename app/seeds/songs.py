@@ -9,7 +9,7 @@ def seed_songs():
         song_file='song file url',
         anime='InuYasha',
         album_name='Deep Forest',
-        album_art='https://i.scdn.co/image/ab67616d00001e023957a30e8f71d5adf8889a9b',
+        album_art='https://upload.wikimedia.org/wikipedia/en/c/cb/Deep_Forest_%28Do_As_Infinity_album%29.jpg',
         year=2001,
         language='Japanese'
     )

@@ -29,10 +29,12 @@ export default function PlaylistsComponent() {
             itemText='Create New Playlist'
             modalComponent={<CreatePlaylistForm />} 
             />
-            </button></h3>
+        </button>
+    </h3>
     {userPlaylists && Object.values(userPlaylists)?.map(list=><ListTile user={user} key={+list?.id} playlist={list} />)}
     <h3>User Submissions</h3>
-    {otherLists && otherLists?.length > 0 && otherLists?.map(list=><ListTile user={user} key={+list?.id} playlist={list} />)}
+    {otherLists && 
+    otherLists?.length > 0 && otherLists?.map(list=><ListTile user={user} key={+list?.id} playlist={list} />)}
     </>
     )}
 

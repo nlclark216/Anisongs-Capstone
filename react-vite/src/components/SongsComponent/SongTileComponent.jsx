@@ -15,25 +15,32 @@ export default function SongTile({song, user}) {
     let likes;
 
     if (song?.likes) likes = song?.likes;
-    return (<div>    
-        <Link 
-        key={song?.id} 
-        className='song-tile'
-        to={`/songs/${song?.id}`}
-        >
-            <h4>
-                {song?.title} 
-            </h4></Link>
-            <img src={imgSrc(song)} />
-        
-        {user && likes && <CheckLikes user={user} arr={likes} songId={song?.id} />}
-        {user && 
+    return (
+    <div className='song-tile' id='landing'>
+        <div className='favorite-add' id='landing'>
+            {user && likes && <CheckLikes user={user} arr={likes} songId={song?.id} />}
+            {user && 
             <button>
                 <OpenModalMenuItem
                 itemText={<><TbMusicPlus /> Add to Playlist</>}
                 modalComponent={<AddSongModal songId={song.id} user={user} closeModal={ closeModal } />}
                 />
             </button>}
+        </div>    
+        
+        
+        <Link 
+        key={song?.id} 
+        className='song-tile'
+        to={`/songs/${song?.id}`}
+        >
+            <img src={imgSrc(song)} />
+            <h4>{song?.title}</h4>
+            <p>{song?.artist}</p>
+        </Link>
+            
+        
+        
     </div>
     )
 }

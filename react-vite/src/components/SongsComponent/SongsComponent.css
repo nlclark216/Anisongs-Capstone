@@ -1,0 +1,25 @@
+/* Song Tiles */
+
+.song-tile {
+    /* border: solid green; */
+    width: fit-content;
+}
+
+.song-tile img {
+    /* border: dotted magenta; */
+    border-radius: 8px;
+    height: 220px;
+    width: 220px;
+    padding: 0px;
+}
+
+.song-tile h4,
+.song-tile p {
+    margin: 0px;
+}
+
+.favorite-add {
+    /* border: dashed purple; */
+    display: flex;
+    column-gap: 8px;
+}

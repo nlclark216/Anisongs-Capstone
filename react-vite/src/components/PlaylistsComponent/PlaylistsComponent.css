@@ -1,0 +1,16 @@
+/* Playlist Tiles */
+
+
+.playlist-tile img {
+    width: 400px;
+    height: 400px;
+    border-radius: 20px;
+}
+
+.titles#list-tile {
+    /* border: dashed pink; */
+    display: flex;
+    align-items: center;
+    column-gap: 4px;
+    height: 40px;
+}

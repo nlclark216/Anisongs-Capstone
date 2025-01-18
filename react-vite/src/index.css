@@ -1,16 +1,23 @@
 /* TODO: Add sitewide styles */
 
+/* General Styling */
+
+html {
+    background-color: #121212;
+    color: whitesmoke;
+}
+
 li {
     list-style: none;
 }
 
 a {
     text-decoration: none;
-    color: black;
+    color: whitesmoke;
 }
 
 a:hover {
-    color: magenta;
+    color: #d07dfb;
 }
 
 button:hover,
@@ -20,4 +27,16 @@ svg:hover {
 
 button:disabled {
     cursor: not-allowed;
+}
+
+h3, h4 {
+    margin: 0;
+}
+
+h3 {
+    color: #e7b6fe;
+}
+
+p {
+    color: #8b8b8b;
 }
