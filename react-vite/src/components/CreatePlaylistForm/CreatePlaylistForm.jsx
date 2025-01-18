@@ -1,13 +1,11 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from 'react-router-dom';
 import { useModal } from "../../context/Modal";
 import { thunkCreatePlaylist } from "../../redux/playlists";
 import './CreatePlaylistForm.css';
 
 export default function CreatePlaylistForm() {
     const dispatch = useDispatch();
-    const navigate = useNavigate();
     const { closeModal } = useModal();
 
     const [name, setName] = useState('');
@@ -29,7 +27,7 @@ export default function CreatePlaylistForm() {
             } else {
             alert('Playlist created!');
             closeModal();
-            navigate('/playlists/');
+            window.location.reload();
         }
     }
 

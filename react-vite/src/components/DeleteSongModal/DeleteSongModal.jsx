@@ -18,6 +18,7 @@ export default function DeleteSongModal({id, navigate}) {
         return serverResponse;
         } else {
         alert('Song Deleted!');
+        navigate('/songs/');
         closeModal();
         }
     }

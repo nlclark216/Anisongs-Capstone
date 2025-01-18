@@ -30,7 +30,7 @@ export default function SongTile({song, user}) {
         {user && 
             <button>
                 <OpenModalMenuItem
-                itemText={<><TbMusicPlus /> Add Song</>}
+                itemText={<><TbMusicPlus /> Add to Playlist</>}
                 modalComponent={<AddSongModal songId={song.id} user={user} closeModal={ closeModal } />}
                 />
             </button>}

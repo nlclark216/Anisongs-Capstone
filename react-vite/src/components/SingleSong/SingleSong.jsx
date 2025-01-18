@@ -25,6 +25,8 @@ export default function SingleSong() {
 
     const songs = useSelector(state=>state.songs.allSongs);
     const song = songs[songId];
+
+    if(!song) navigate('/');
     const lyrics = useSelector(state=>state.lyrics.songLyrics);
     const songOwner = user?.id === song?.owner_id;
 
