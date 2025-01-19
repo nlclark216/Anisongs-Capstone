@@ -18,7 +18,6 @@ export default function SongTile({song, user}) {
     return (
     <div className='song-tile' id='landing'>
         <div className='favorite-add' id='landing'>
-            {user && likes && <CheckLikes user={user} arr={likes} songId={song?.id} />}
             {user && 
             <button>
                 <OpenModalMenuItem
@@ -35,7 +34,11 @@ export default function SongTile({song, user}) {
         to={`/songs/${song?.id}`}
         >
             <img src={imgSrc(song)} />
-            <h4>{song?.title}</h4>
+            <h4 className='title-likes'>
+                {song?.title}
+                {user && likes && 
+                <CheckLikes user={user} arr={likes} songId={song?.id} />}
+            </h4>
             <p>{song?.artist}</p>
         </Link>
             

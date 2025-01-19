@@ -84,11 +84,11 @@
 .nav button#left {
   /* border: dashed red; */
   border-radius: 16px 0px 0px 16px;
+  
 }
 
 .nav button#left:hover,
 .nav button#right:hover {
-  background-color: #c769f9;
   transform: scale(110%);
   color: #3f3f3f;
 }

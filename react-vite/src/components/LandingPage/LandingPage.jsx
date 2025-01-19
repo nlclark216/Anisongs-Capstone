@@ -10,19 +10,22 @@ import ListTile from '../PlaylistsComponent/ListTileComponent';
 
 export default function LandingPage(){
     const dispatch = useDispatch();
+    const currentUser = useSelector(state=>state.session.user);
 
     useEffect(() => {
         dispatch(thunkAllSongs());
         dispatch(thunkAllPlaylists());
-        dispatch(thunkUserPlaylists());
-        dispatch(thunkUserSongs());
-    }, [dispatch]);
+        if(currentUser){
+            dispatch(thunkUserPlaylists());
+            dispatch(thunkUserSongs()); 
+        } 
+    }, [dispatch, currentUser]);
 
     const allSongs = Object.values(useSelector(state=>state.songs.allSongs));
     const userSongs = Object.values(useSelector(state=>state.songs.userSongs));
     const allPlaylists = Object.values(useSelector(state=>state.playlists.allPlaylists));
     const userPlaylists = Object.values(useSelector(state=>state.playlists.userPlaylists));
-    const currentUser = useSelector(state=>state.session.user);
+    
     
     if(!currentUser) return (
     <div className='landing'>

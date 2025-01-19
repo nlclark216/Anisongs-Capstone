@@ -1,0 +1,31 @@
+.single-song-page {
+    /* border: solid red; */
+    border-radius: 16px;
+    padding: 40px;
+    background-color: #312039;
+}
+
+.single-song-page img {
+    height: 200px;
+    width: 200px;
+    border-radius: 4px;
+}
+
+/* Title and Favoites Icon */
+
+.title-likes {
+    display: flex;
+    column-gap: 8px;
+    align-items: center;
+}
+
+.title-likes svg {
+    padding: 0px;
+    height: 100%;
+}
+
+.title-likes li {
+    /* border: solid red; */
+    display: flex;
+    align-items: center;
+}

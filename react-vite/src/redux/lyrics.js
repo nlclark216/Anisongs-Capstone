@@ -41,7 +41,7 @@ export const thunkAllLyrics = () => async dispatch => {
 }
 
 export const thunkSongLyrics = (id) => async dispatch => {
-    const res = await csrfFetch(`/api/songs/${id}/lyrics`);
+    const res = await fetch(`/api/songs/${id}/lyrics`);
     if(res.ok){
         const data = await res.json();
         if (data.errors) {return;}
