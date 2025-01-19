@@ -5,8 +5,7 @@ import MenuButton from "./MenuButton";
 function Navigation() {
 
   return (
-    <ul>
-
+    <ul className="nav" id="page">
       <li>
         <MenuButton />
       </li>

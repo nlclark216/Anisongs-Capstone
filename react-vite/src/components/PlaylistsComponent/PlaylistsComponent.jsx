@@ -31,7 +31,7 @@ export default function PlaylistsComponent() {
             />
         </button>
     </h3>
-    {userPlaylists && Object.values(userPlaylists)?.map(list=><ListTile user={user} key={+list?.id} playlist={list} />)}
+    {userPlaylists && Object.values(userPlaylists).map(list=><ListTile user={user} key={+list?.id} playlist={list} />)}
     <h3>User Submissions</h3>
     {otherLists && 
     otherLists?.length > 0 && otherLists?.map(list=><ListTile user={user} key={+list?.id} playlist={list} />)}
@@ -41,7 +41,7 @@ export default function PlaylistsComponent() {
     else return (
     <>
     <h1>Playlists</h1>
-    {allPlaylists && allPlaylists?.map(list=><ListTile user={user} key={+list?.id} playlist={list} />)}
+    {allPlaylists && Object.values(allPlaylists).map(list=><ListTile user={user} key={+list?.id} playlist={list} />)}
     </>
     )
 

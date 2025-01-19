@@ -29,11 +29,11 @@ export default function MenuButton() {
 
   return (
     <>
-      <button onClick={toggleMenu}>
+      <button id="left" onClick={toggleMenu}>
         <IoIosMenu />
       </button>
       {showMenu && (
-        <ul className={"profile-dropdown"} ref={ulRef}>
+        <ul className={"profile-dropdown"} id="left" ref={ulRef}>
             <li>
                 <NavLink to="/" onClick={closeMenu}>Home</NavLink>
             </li>
