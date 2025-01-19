@@ -60,7 +60,6 @@
   justify-content: center;
   position: fixed;
   bottom: 0;
-  width: 40%;
 }
 
 .nav#page {
@@ -71,30 +70,25 @@
 .nav button#left,
 .nav button#right {
   /* border: solid red; */
-  border: none;
   height: 40px;
   width: 100%;
   padding: 20px;
-  background-color: #d07dfb;
-  color: whitesmoke;
   font-size: 24px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .nav button#right {
   /* border: dashed red; */
-  border-radius: 0px 12px 12px 0px;
+  border-radius: 0px 16px 16px 0px;
 }
 
 .nav button#left {
   /* border: dashed red; */
-  border-radius: 12px 0px 0px 12px;
+  border-radius: 16px 0px 0px 16px;
 }
 
 .nav button#left:hover,
 .nav button#right:hover {
   background-color: #c769f9;
   transform: scale(110%);
+  color: #3f3f3f;
 }

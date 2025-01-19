@@ -16,8 +16,13 @@ a {
     color: whitesmoke;
 }
 
-a:hover {
-    color: #d07dfb;
+button {
+    background-color: #d07dfb;
+    border: none;
+    color: #282828;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 button:hover,

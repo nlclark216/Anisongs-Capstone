@@ -5,6 +5,10 @@
     width: fit-content;
 }
 
+.song-tile a {
+    color: #e7b6fe;
+}
+
 .song-tile img {
     /* border: dotted magenta; */
     border-radius: 8px;
@@ -23,3 +27,87 @@
     display: flex;
     column-gap: 8px;
 }
+
+
+/* Songs Page */
+
+.songs-page {
+    /* border: solid red; */
+    border-radius: 16px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    background-color: #282828;
+    row-gap: 20px;
+}
+
+.title-button {
+    /* border: solid red; */
+    display: flex;
+    column-gap: 20px;
+}
+
+.title-button h2 {
+    margin: 0;
+}
+
+.title-button button {
+    border: none;
+    border-radius: 8px;
+    background-color: #d07dfb;
+    font-weight: 600;
+    color: #282828;
+}
+
+.title-button button:hover {
+    background-color: #c769f9;
+    color: #3f3f3f;
+    transform: scale(105%);
+}
+
+/* Song Tiles Container */
+
+.songs-container {
+    /* border: solid red; */
+    max-width: 1340px;
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 12px;
+    row-gap: 12px;
+    margin: 0 auto;
+    padding-bottom: 40px;
+}
+
+.songs-container img {
+    height: 180px;
+    width: 180px;
+}
+
+/* Responsive Design */
+
+@media only screen and (max-width: 600px) {
+    .songs-container {
+        max-width: 200px;
+    }
+}
+
+@media only screen and (min-width: 630px) and (max-width: 820px) {
+    .songs-container {
+        max-width: 570px;
+    }
+}
+
+@media only screen and (min-width: 821px) and (max-width: 1011px) {
+    .songs-container {
+        max-width: 955px;
+    }
+}
+
+@media only screen and (min-width: 1011px) and (max-width: 1200px) {
+    .songs-container {
+        max-width: 960px;
+    }
+}
+
+
+
