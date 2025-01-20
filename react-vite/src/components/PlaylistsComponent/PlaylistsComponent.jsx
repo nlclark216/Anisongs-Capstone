@@ -11,9 +11,9 @@ export default function PlaylistsComponent() {
     const user = useSelector(state=>state.session.user);
 
     useEffect(() => {
-        dispatch(thunkAllPlaylists())
-        dispatch(thunkUserPlaylists());
-    }, [dispatch])
+        dispatch(thunkAllPlaylists());
+        if(user){ dispatch(thunkUserPlaylists()); }
+    }, [dispatch, user])
 
     const allPlaylists = useSelector(state=>state.playlists.allPlaylists);
     const userPlaylists = useSelector(state=>state.playlists.userPlaylists);
@@ -21,28 +21,44 @@ export default function PlaylistsComponent() {
     if(allPlaylists) otherLists = Object.values(allPlaylists).filter(list=>list?.creator_id !== user?.id)
 
     if(user) { return(
-    <>
+    <div className='playlists-page'>
     <h1>Playlists</h1>
-    <h3>Your Playlists 
+    <h2 className='your-playlists'>Your Playlists 
         <button>
             <OpenModalMenuItem
             itemText='Create New Playlist'
             modalComponent={<CreatePlaylistForm />} 
             />
         </button>
-    </h3>
-    {userPlaylists && Object.values(userPlaylists).map(list=><ListTile user={user} key={+list?.id} playlist={list} />)}
+    </h2>
+    <div className='list-tiles-container'>
+      {userPlaylists && 
+      Object.values(userPlaylists).map(list=>
+      <ListTile user={user} key={+list?.id} playlist={list} 
+      />)}  
+    </div>
+    
     <h3>User Submissions</h3>
-    {otherLists && 
-    otherLists?.length > 0 && otherLists?.map(list=><ListTile user={user} key={+list?.id} playlist={list} />)}
-    </>
+    <div className='list-tiles-container'>
+        {otherLists && 
+        otherLists?.length > 0 && 
+        otherLists?.map(list=>
+        <ListTile user={user} key={+list?.id} playlist={list} 
+        />)}  
+    </div>
+    
+    </div>
     )}
 
     else return (
-    <>
+    <div className='playlists-page'>
     <h1>Playlists</h1>
-    {allPlaylists && Object.values(allPlaylists).map(list=><ListTile user={user} key={+list?.id} playlist={list} />)}
-    </>
+    <div className='list-tiles-container'>
+       {allPlaylists &&
+        Object.values(allPlaylists).map(list=>
+        <ListTile user={user} key={+list?.id} playlist={list} />)} 
+    </div>
+    </div>
     )
 
     

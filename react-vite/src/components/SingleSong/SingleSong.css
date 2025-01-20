@@ -29,3 +29,37 @@
     display: flex;
     align-items: center;
 }
+
+/* Song Image and Info Container */
+
+.song-img-info {
+    display: flex;
+    column-gap: 60px;
+    align-items: center;
+}
+
+/* Edit and Delete Song buttons */
+
+.buttons#song-page {
+    /* border: solid red; */
+    width: 100px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 16px;
+}
+
+.buttons#song-page button {
+    border-radius: 2px;
+}
+
+/* Lyrics and Translation */
+
+.lyrics-translation-container {
+    display: flex;
+    margin-top: 40px;
+}
+
+.lyrics,
+.translation {
+    width: 50%;
+}

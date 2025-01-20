@@ -1,6 +1,5 @@
 /* Playlist Tiles */
 
-
 .playlist-tile img {
     width: 350px;
     height: 350px;
@@ -14,4 +13,71 @@
     align-items: center;
     column-gap: 4px;
     height: 40px;
+}
+
+.titles#list-tile p {
+    display: flex;
+    column-gap: 4px;
+    font-weight: 300;
+}
+
+/* Tiles Container */
+
+.list-tiles-container {
+    /* border: solid red; */
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 24px;
+    row-gap: 24px;
+    margin: 0 auto;
+}
+
+.list-tiles-container img {
+    height: 300px;
+    width: 320px;
+}
+
+/* Playlists Page */
+
+.playlists-page {
+    /* border: solid red; */
+    border-radius: 16px;
+    padding: 20px;
+    background-color: #282828;
+}
+
+@media only screen and (max-width: 734px) {
+    .list-tiles-container {
+        /* border: dotted; */
+        max-width: 330px;
+    }
+}
+
+@media only screen and (min-width: 735px) and (max-width: 1079px) {
+    .list-tiles-container {
+        /* border: dotted; */
+        max-width: 670px;
+    }
+}
+
+@media only screen and (min-width: 1080px) and (max-width: 1400px) {
+    .list-tiles-container {
+        /* border: dotted; */
+        max-width: 1020px;
+    }
+}
+
+.playlists-page h3 {
+    margin: 20px 0px;
+}
+
+/* Your Playlists title */
+
+.your-playlists {
+    display: flex;
+    column-gap: 12px;
+}
+
+.your-playlists button {
+    border-radius: 4px;
 }

@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { thunkAllSongs, thunkUserSongs } from '../../redux/songs';
 import { thunkAllLikes } from '../../redux/likes';
 import SongTile from './SongTileComponent';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -15,9 +15,11 @@ export default function SongsComponent() {
 
     useEffect(() => {
             dispatch(thunkAllSongs());
-            dispatch(thunkUserSongs());
-            dispatch(thunkAllLikes());
-        }, [dispatch]);
+            if(user) {
+                dispatch(thunkUserSongs());
+                dispatch(thunkAllLikes());  
+            }
+        }, [dispatch, user]);
 
     const allSongs = useSelector(state=>state.songs.allSongs);
     const userSongs = useSelector(state=>state.songs.userSongs);

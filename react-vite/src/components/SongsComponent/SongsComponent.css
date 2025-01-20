@@ -26,6 +26,10 @@
     margin: 0px;
 }
 
+.song-tile h4 {
+    font-weight: 500;
+}
+
 .favorite-add {
     /* border: dashed purple; */
     display: flex;
@@ -95,7 +99,14 @@
     }
 }
 
-@media only screen and (min-width: 630px) and (max-width: 900px) {
+@media only screen and (min-width: 601px) and (max-width: 638px) {
+    .songs-container {
+        /* border: dotted; */
+        max-width: 380px;
+    }
+}
+
+@media only screen and (min-width: 639px) and (max-width: 900px) {
     .songs-container {
         /* border: dotted; */
         max-width: 570px;

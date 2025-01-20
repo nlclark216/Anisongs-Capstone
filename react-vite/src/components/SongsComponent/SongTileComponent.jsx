@@ -26,8 +26,6 @@ export default function SongTile({song, user}) {
                 />
             </button>}
         </div>    
-        
-        
         <Link 
         key={song?.id} 
         className='song-tile'
@@ -41,9 +39,6 @@ export default function SongTile({song, user}) {
             </h4>
             <p>{song?.artist}</p>
         </Link>
-            
-        
-        
     </div>
     )
 }

@@ -7,7 +7,7 @@ import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 import EditProfileModal from "../Profile/Edit/EditProfileModal";
 import DeleteProfileModal from "../Profile/Delete/DeleteProfileModal";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function ProfileButton() {
   const dispatch = useDispatch();
@@ -79,20 +79,20 @@ function ProfileButton() {
             </>
           ) : (
             <>
-            <Link>
+            <span>
               <OpenModalMenuItem
                 itemText="Log In"
                 onItemClick={closeMenu}
                 modalComponent={<LoginFormModal />}
               />
-            </Link>
-            <Link>
+            </span>
+            <span>
               <OpenModalMenuItem
                 itemText="Sign Up"
                 onItemClick={closeMenu}
                 modalComponent={<SignupFormModal />}
               />
-            </Link> 
+            </span> 
             </>
           )}
         </ul>

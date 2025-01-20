@@ -36,51 +36,61 @@ export default function SingleSong() {
     return (
     <div className='single-song-page'>
         <div className='song-info'>
-           <img src={song?.album_art} />
-            <h1 className='title-likes'>
-                {song?.title} 
-                {likes && user && 
-                <CheckLikes user={user} songId={songId} />}
-            </h1>
-            <p>From: <b>{song?.anime}</b></p>
-            <p>Album: <b>{song?.album_name}</b></p>
-            <p>Artist: <b>{song?.artist}</b></p>
-            {user && songOwner &&
-            <div>
-                <button>
-                    <OpenModalMenuItem
-                    itemText='Edit Song' 
-                    modalComponent={<EditSongModal song={song} />}
-                    />
-                    </button>
-                <button>
-                    <OpenModalMenuItem
-                    itemText='Delete Song' 
-                    modalComponent={<DeleteSongModal id={songId} navigate={navigate} />}
-                    />
-                </button>
-            </div>} 
+            <div className='song-img-info' id='song-page'>
+                <img id='song' src={song?.album_art} />
+                <div className='info' id='song'>
+                    <h1 className='title-likes'>
+                        {song?.title} 
+                        {likes && user && 
+                        <CheckLikes user={user} songId={songId} />}
+                    </h1>
+                    <p>From: <b>{song?.anime}</b></p>
+                    <p>Album: <b>{song?.album_name}</b></p>
+                    <p>Artist: <b>{song?.artist}</b></p> 
+                    
+                </div>
+                    {user && songOwner &&
+                    <div className='buttons' id='song-page'>
+                        <button>
+                            <OpenModalMenuItem
+                            itemText='Edit Song' 
+                            modalComponent={<EditSongModal song={song} />}
+                            />
+                            </button>
+                        <button>
+                            <OpenModalMenuItem
+                            itemText='Delete Song' 
+                            modalComponent={<DeleteSongModal id={songId} navigate={navigate} />}
+                            />
+                        </button>
+                    </div>} 
+            </div>
+
         </div>
-        <div className='lyrics'>
-            {lyrics && 
-            Object.values(lyrics)?.length > 0 && 
-            !lyrics?.message && 
-            <div className='song-lyrics-translation'>
+
+        <div className='lyrics-translation-container'>
+            <div className='lyrics'>
+                {lyrics && 
+                Object.values(lyrics)?.length > 0 && 
+                !lyrics?.message && 
+                <div className='song-lyrics-translation'>
+                    <label>
+                        <h4>Lyrics</h4>
+                    <p style={{'whiteSpace': 'pre-line'}}>{(lyrics?.lyrics)}</p> 
+                    </label>
+                </div>}
+            </div>
+            <div className='translation'>
+                {lyrics &&
+                !lyrics?.message &&
+                lyrics.translation && 
                 <label>
-                    <h4>Lyrics</h4>
-                <p style={{'whiteSpace': 'pre-line'}}>{(lyrics?.lyrics)}</p> 
-                </label>
-            </div>}
+                    <h4>Translation</h4>
+                    <p style={{'whiteSpace': 'pre-line'}}>{lyrics?.translation}</p> 
+                </label>}
+            </div>
         </div>
-        <div>
-            {lyrics &&
-            !lyrics?.message &&
-            lyrics.translation && 
-            <label>
-                <h4>Translation</h4>
-                <p style={{'whiteSpace': 'pre-line'}}>{lyrics?.translation}</p> 
-            </label>}
-        </div>
+        
     
     
     {user && lyrics && lyrics?.creator_id === user?.id &&

@@ -84,7 +84,12 @@
 .nav button#left {
   /* border: dashed red; */
   border-radius: 16px 0px 0px 16px;
-  
+}
+
+.nav button#left svg {
+  /* border: solid red; */
+  stroke-width: 15;
+  font-size: 32px;
 }
 
 .nav button#left:hover,
