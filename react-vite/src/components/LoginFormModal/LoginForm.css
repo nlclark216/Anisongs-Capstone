@@ -1,0 +1,49 @@
+.modal-form,
+.modal-form label {
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-form {
+    row-gap: 16px;
+}
+
+.modal-form label {
+    text-align: left;
+    font-weight: 300;
+}
+
+.modal#login {
+    /* border: solid red; */
+    width: 300px;
+}
+
+.modal h1 {
+    font-size: 28px;
+    margin: 8px 0px;
+}
+
+.modal {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.modal#login button {
+    margin: 10px 0px;
+    height: 28px;
+    font-size: 16px;
+}
+
+.demo-user-button {
+    border: #e0a3fd solid 2px;
+    color: #e0a3fd;
+    background-color: #121212;
+}
+
+.demo-user-button:hover {
+    background-color: #282828;
+    color: #d890fc;
+    border: #d890fc solid 2px;
+}
+

@@ -33,7 +33,7 @@ export default function EditPlaylistModal({playlist, id}) {
     return (
         <div className="modal" id="edit-playlist">
             <h1>Edit Playlist</h1>
-            {errors?.server && <p>{errors?.server}</p>}
+            {errors?.server && <p className="error">{errors?.server}</p>}
             <form onSubmit={handleSubmit}>
                 <p>Edit the name or image for your playlist</p>
                 <label>
@@ -45,7 +45,7 @@ export default function EditPlaylistModal({playlist, id}) {
                     required 
                     />
                 </label>
-                {errors?.name && <p>{errors?.name}</p>}
+                {errors?.name && <p className="error">{errors?.name}</p>}
                 <label>
                     Image
                     <input
@@ -55,7 +55,7 @@ export default function EditPlaylistModal({playlist, id}) {
                     // defaultValue='/playlist-default.png'
                     />
                 </label>
-                {errors?.image && <p>{errors?.image}</p>}
+                {errors?.image && <p className="error">{errors?.image}</p>}
                 <button
                 type="submit"
                 >Edit Playlist!</button>

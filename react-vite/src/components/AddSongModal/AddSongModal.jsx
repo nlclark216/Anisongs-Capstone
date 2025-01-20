@@ -48,7 +48,7 @@ export default function AddSongModal({songId, user}) {
     return (
         <div className='modal' id='add-playlist-song'>
             <h1>Add Song to Playlist</h1>
-            {errors?.song_id && <p>{errors?.song_id}</p>}
+            {errors?.song_id && <p className="error">{errors?.song_id}</p>}
             <p>To which playlist would you like to add this song?</p>
 
             <select

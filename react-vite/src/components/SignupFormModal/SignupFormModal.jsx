@@ -56,7 +56,7 @@ function SignupFormModal() {
   return (
     <div className="modal" id="sign-up">
       <h1>Sign Up</h1>
-      {errors.server && <p>{errors.server}</p>}
+      {errors.server && <p className="error">{errors.server}</p>}
       <form onSubmit={handleSubmit}>
         <label>
           First Name
@@ -67,7 +67,7 @@ function SignupFormModal() {
             required
           />
         </label>
-        {errors.firstName && <p>{errors.firstName}</p>}
+        {errors.firstName && <p className="error">{errors.firstName}</p>}
         <label>
           Last Name
           <input
@@ -77,7 +77,7 @@ function SignupFormModal() {
             required
           />
         </label>
-        {errors.lastName && <p>{errors.lastName}</p>}
+        {errors.lastName && <p className="error">{errors.lastName}</p>}
         <label>
           Email
           <input
@@ -87,7 +87,7 @@ function SignupFormModal() {
             required
           />
         </label>
-        {errors.email && <p>{errors.email}</p>}
+        {errors.email && <p className="error">{errors.email}</p>}
         <label>
           Username
           <input
@@ -97,7 +97,7 @@ function SignupFormModal() {
             required
           />
         </label>
-        {errors.username && <p>{errors.username}</p>}
+        {errors.username && <p className="error">{errors.username}</p>}
         <label>
           City
           <input
@@ -107,7 +107,7 @@ function SignupFormModal() {
             required
           />
         </label>
-        {errors.city && <p>{errors.city}</p>}
+        {errors.city && <p className="error">{errors.city}</p>}
         <label>
           State
           <input
@@ -116,7 +116,7 @@ function SignupFormModal() {
             onChange={(e) => setState(e.target.value)}
           />
         </label>
-        {errors.state && <p>{errors.state}</p>}
+        {errors.state && <p className="error">{errors.state}</p>}
         <label>
           Address
           <input
@@ -125,7 +125,7 @@ function SignupFormModal() {
             onChange={(e) => setAddress(e.target.value)}
           />
         </label>
-        {errors.address && <p>{errors.address}</p>}
+        {errors.address && <p className="error">{errors.address}</p>}
         <label>
           Country
           <input
@@ -135,7 +135,7 @@ function SignupFormModal() {
             required
           />
         </label>
-        {errors.country && <p>{errors.country}</p>}
+        {errors.country && <p className="error">{errors.country}</p>}
         <label>
           Profile Picture
           <input
@@ -144,7 +144,7 @@ function SignupFormModal() {
             onChange={(e) => setProfilePic(e.target.value)}
           />
         </label>
-        {errors.profilePic && <p>{errors.profilePic}</p>}
+        {errors.profilePic && <p className="error">{errors.profilePic}</p>}
         <label>
           Password
           <input
@@ -154,7 +154,7 @@ function SignupFormModal() {
             required
           />
         </label>
-        {errors.password && <p>{errors.password}</p>}
+        {errors.password && <p className="error">{errors.password}</p>}
         <label>
           Confirm Password
           <input
@@ -164,7 +164,7 @@ function SignupFormModal() {
             required
           />
         </label>
-        {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
+        {errors.confirmPassword && <p className="error">{errors.confirmPassword}</p>}
         <button 
         type="submit"
         disabled={firstName.length < 2 || lastName < 1 || !email.split('').includes('@')}

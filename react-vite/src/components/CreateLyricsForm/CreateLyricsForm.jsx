@@ -38,7 +38,7 @@ export default function CreateLyricsForm({songId}) {
     return (
         <div className="modal" id="add-lyrics">
             <h1>Add Lyrics</h1>
-            {errors?.server && <p>{errors?.server}</p>}
+            {errors?.server && <p className="error">{errors?.server}</p>}
             <form onSubmit={handleSubmit}>
                 <label>
                     Lyrics Type
@@ -62,7 +62,7 @@ export default function CreateLyricsForm({songId}) {
                         >Kanji</option>
                     </select>
                 </label>
-                {errors?.type && <p>{errors?.type}</p>}
+                {errors?.type && <p className="error">{errors?.type}</p>}
                 <label>
                     Lyrics
                     <textarea
@@ -72,7 +72,7 @@ export default function CreateLyricsForm({songId}) {
                     required 
                     />
                 </label>
-                {errors?.lyrics && <p>{errors?.lyrics}</p>}
+                {errors?.lyrics && <p className="error">{errors?.lyrics}</p>}
                 <label>
                     Translation Text
                     <textarea
@@ -81,7 +81,7 @@ export default function CreateLyricsForm({songId}) {
                     onChange={(e) => setTranslation(e.target.value)}
                     />
                 </label>
-                {errors?.translation && <p>{errors?.translation}</p>}
+                {errors?.translation && <p className="error">{errors?.translation}</p>}
                 <label>
                     Translation Language
                     <select>
@@ -96,7 +96,7 @@ export default function CreateLyricsForm({songId}) {
                         >Spanish</option>
                     </select>
                 </label>
-                {errors?.lyrics && <p>{errors?.lyrics}</p>}
+                {errors?.lyrics && <p className="error">{errors?.lyrics}</p>}
                 <button
                 disabled={type !== ''} 
                 type="submit">Submit Lyrics</button>

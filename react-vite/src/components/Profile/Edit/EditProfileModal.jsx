@@ -47,7 +47,7 @@ function EditProfileModal() {
   return (
     <>
       <h1>Edit Account</h1>
-      {errors.server && <p>{errors.server}</p>}
+      {errors.server && <p className="error">{errors.server}</p>}
       <form onSubmit={handleSubmit}>
         <label>
           First Name
@@ -58,7 +58,7 @@ function EditProfileModal() {
             required
           />
         </label>
-        {errors.firstName && <p>{errors.firstName}</p>}
+        {errors.firstName && <p className="error">{errors.firstName}</p>}
         <label>
           Last Name
           <input
@@ -68,7 +68,7 @@ function EditProfileModal() {
             required
           />
         </label>
-        {errors.lastName && <p>{errors.lastName}</p>}
+        {errors.lastName && <p className="error">{errors.lastName}</p>}
         <label>
           Email
           <input
@@ -78,7 +78,7 @@ function EditProfileModal() {
             required
           />
         </label>
-        {errors.email && <p>{errors.email}</p>}
+        {errors.email && <p className="error">{errors.email}</p>}
         <label>
           Username
           <input
@@ -88,7 +88,7 @@ function EditProfileModal() {
             required
           />
         </label>
-        {errors.username && <p>{errors.username}</p>}
+        {errors.username && <p className="error">{errors.username}</p>}
         <label>
           City
           <input
@@ -98,7 +98,7 @@ function EditProfileModal() {
             required
           />
         </label>
-        {errors.city && <p>{errors.city}</p>}
+        {errors.city && <p className="error">{errors.city}</p>}
         <label>
           State
           {/* <select>
@@ -110,7 +110,7 @@ function EditProfileModal() {
             onChange={(e) => setState(e.target.value)}
           />
         </label>
-        {errors.state && <p>{errors.state}</p>}
+        {errors.state && <p className="error">{errors.state}</p>}
         <label>
           Address
           <input
@@ -119,7 +119,7 @@ function EditProfileModal() {
             onChange={(e) => setAddress(e.target.value)}
           />
         </label>
-        {errors.address && <p>{errors.address}</p>}
+        {errors.address && <p className="error">{errors.address}</p>}
         <label>
           Country
           {/* <select>
@@ -132,7 +132,7 @@ function EditProfileModal() {
             required
           />
         </label>
-        {errors.country && <p>{errors.country}</p>}
+        {errors.country && <p className="error">{errors.country}</p>}
         <label>
           Profile Picture
           <input
@@ -141,7 +141,7 @@ function EditProfileModal() {
             onChange={(e) => setProfilePic(e.target.value)}
           />
         </label>
-        {errors.profilePic && <p>{errors.profilePic}</p>}
+        {errors.profilePic && <p className="error">{errors.profilePic}</p>}
         <button 
         type="submit"
         >Save Account Edits</button>

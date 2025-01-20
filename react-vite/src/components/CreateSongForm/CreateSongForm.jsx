@@ -42,7 +42,7 @@ export default function CreateSongForm() {
     return (
     <div>
         <h1>Upload Song</h1>
-        {errors.server && <p>{errors.server}</p>}
+        {errors.server && <p className="error">{errors.server}</p>}
         <form onSubmit={handleSubmit}>
             <label>
                 Song Title
@@ -53,7 +53,7 @@ export default function CreateSongForm() {
                 required
                 />
             </label>
-            {errors.title && <p>{errors.title}</p>}
+            {errors.title && <p className="error">{errors.title}</p>}
             <label>
                 Artist
                 <input
@@ -63,7 +63,7 @@ export default function CreateSongForm() {
                 required
                 />
             </label>
-            {errors.artist && <p>{errors.artist}</p>}
+            {errors.artist && <p className="error">{errors.artist}</p>}
             <label>
                 Upload Song File
                 <input
@@ -73,7 +73,7 @@ export default function CreateSongForm() {
                 required
                 />
             </label>
-            {errors.file && <p>{errors.file}</p>}
+            {errors.file && <p className="error">{errors.file}</p>}
             <label>
                 Year
                 <input
@@ -83,7 +83,7 @@ export default function CreateSongForm() {
                 required
                 />
             </label>
-            {errors.year && <p>{errors.year}</p>}
+            {errors.year && <p className="error">{errors.year}</p>}
             <label>
                 Anime
                 <input
@@ -93,7 +93,7 @@ export default function CreateSongForm() {
                 required
                 />
             </label>
-            {errors.anime && <p>{errors.anime}</p>}
+            {errors.anime && <p className="error">{errors.anime}</p>}
             <label>
                 Album Name
                 <input
@@ -103,7 +103,7 @@ export default function CreateSongForm() {
                 required
                 />
             </label>
-            {errors?.albumName && <p>{errors?.albumName}</p>}
+            {errors?.albumName && <p className="error">{errors?.albumName}</p>}
             <label>
                 Album Art
                 <input
@@ -112,7 +112,7 @@ export default function CreateSongForm() {
                 onChange={(e) => setAlbumArt(e.target.value)}
                 />
             </label>
-            {errors.albumArtwork && <p>{errors.albumArtwork}</p>}
+            {errors.albumArtwork && <p className="error">{errors.albumArtwork}</p>}
             <button
             type="submit"
             >Create Song!</button>

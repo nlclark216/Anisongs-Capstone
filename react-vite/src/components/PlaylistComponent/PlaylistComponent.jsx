@@ -23,6 +23,11 @@ export default function PlaylistComponent() {
         dispatch(thunkAllPlaylistSongs())
     }, [dispatch, playlistId])
 
+    const handleClick = (e) => {
+        e.preventDefault();
+        return alert('Coming soon!')
+    }
+
     
     const allPlaylists = useSelector(state=>state.playlists.allPlaylists);
     const targetPlaylist = allPlaylists[playlistId];
@@ -39,7 +44,7 @@ export default function PlaylistComponent() {
                <div className='info' id='playlist'>
                 <h1 className='title-likes'>{targetPlaylist?.name} 
                     {user && 
-                    <button id='play' onClick={()=>alert('Coming soon...')}>
+                    <button id='play' onClick={handleClick}>
                     <FaPlay />Play</button>}
                 </h1>
                 <div className='created-for'>
