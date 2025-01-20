@@ -1,0 +1,139 @@
+/* Playlist Page */
+
+/* Background card */
+
+.single-playlist {
+    /* border: solid red; */
+    border-radius: 16px;
+    padding: 40px;
+    background-color: #312039;
+}
+
+/* Image and information */
+
+.single-playlist img#playlist {
+    height: 300px;
+    width: 60%;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.img-info {
+    display: flex;
+    column-gap: 60px;
+}
+
+.created-for {
+    display: flex;
+    flex-direction: column;
+    row-gap: 16px;
+}
+
+.created-for button {
+    height: 24px;
+    border-radius: 4px;
+}
+
+.info#playlist {
+    /* border: solid red; */
+    width: 40%;
+}
+
+.info#playlist button#edit,
+.info#playlist button#delete {
+    /* border: solid red; */
+    width: 50%;
+    height: 24px;
+}
+
+.info#playlist button#play {
+    /* border: dotted yellow; */
+    border-radius: 2px;
+    width: 55px;
+    display: flex;
+    align-items: center;
+    column-gap: 4px;
+    padding: 2px;
+}
+
+.info#playlist button li {
+    font-weight: 600px;
+}
+
+/* Playlist Song Tile */
+
+.list-song-tile {
+    /* border: solid red; */
+    background-color: #45354c;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.list-song-tile img {
+    /* border: solid red; */
+    border-radius: 2px;
+    height: 50px;
+    width: 50px;
+}
+
+.list-song-tile button {
+    border-radius: 4px;
+    min-height: 24px;
+    margin: 8px;
+}
+
+.list-song-tile button li {
+    /* border: solid red; */
+    font-weight: normal;
+}
+
+.list-song-tile button svg {
+    stroke-width: 3;
+}
+
+.title#list-tile {
+    /* border: solid red; */
+    width: 200px;
+}
+
+.artist#list-tile {
+    /* border: solid red; */
+    width: 120px;
+}
+
+.album#list-tile {
+    /* border: solid red; */
+    width: 170px;
+}
+
+.song-tiles#list-songs {
+    /* border: dashed red; */
+    display: flex;
+    flex-direction: column;
+    row-gap: 16px;
+}
+
+/* Creator Info */
+
+.creator-info img {
+    height: 50px;
+    width: 50px;
+    border-radius: 60px;
+}
+
+.creator-info {
+    /* border: solid red; */
+    display: flex;
+    align-items: center;
+    column-gap: 16px;
+    font-weight: 400;
+}
+
+.profile-pic-username {
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
+}

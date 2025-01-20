@@ -32,28 +32,54 @@ export default function PlaylistComponent() {
     const listSongs = useSelector(state=>state.playlistSongs.allPlaylistSongs)
 
     return (
-        <div>
-            <h1>{targetPlaylist?.name} {user && <button onClick={()=>alert('Coming soon...')}><FaPlay />Play</button>}</h1>
-            <img src={targetPlaylist?.image} />
-            <h2>Created By: {!isOwner ? targetPlaylist?.creator : 'You'} 
-                {isOwner && 
-                <button>
-                    <OpenModalMenuItem
-                    itemText='Edit Playlist'
-                    modalComponent={<EditPlaylistModal id={playlistId} playlist={targetPlaylist} />} 
-                    />
-                </button>}
-                {isOwner && 
-                <button>
-                    <OpenModalMenuItem
-                    itemText='Delete Playlist'
-                    modalComponent={<DeletePlaylistModal navigate={navigate} id={playlistId} />} 
-                    />
-                </button>}
-            </h2>
+        <div className='single-playlist'>
             
-            {songs && Object.values(songs) > 0 && <h3>Songs</h3>}
-            {songs && Object.values(songs).map(song=><ListSongTile key={song.id} song={song} user={user} playlist={targetPlaylist} listSongs={listSongs}/>)}
+            <div className='img-info'>
+               <img src={targetPlaylist?.image} id='playlist' />
+               <div className='info' id='playlist'>
+                <h1 className='title-likes'>{targetPlaylist?.name} 
+                    {user && 
+                    <button id='play' onClick={()=>alert('Coming soon...')}>
+                    <FaPlay />Play</button>}
+                </h1>
+                <div className='created-for'>
+                    <h4 className='creator-info'>
+                        Created By:
+                        <div className='profile-pic-username'>
+                        {user && <img src={user?.profile_pic} />} 
+                        {!isOwner ? targetPlaylist?.creator : 'You'}
+                        </div>    
+                    </h4>
+                    {console.log(user)} 
+                    {isOwner && 
+                    <button id='edit'>
+                        <OpenModalMenuItem
+                        itemText='Edit Playlist'
+                        modalComponent={<EditPlaylistModal id={playlistId} playlist={targetPlaylist} />} 
+                        />
+                    </button>}
+                    {isOwner && 
+                    <button id='delete'>
+                        <OpenModalMenuItem
+                        itemText='Delete Playlist'
+                        modalComponent={<DeletePlaylistModal navigate={navigate} id={playlistId} />} 
+                        />
+                    </button>}
+                </div> 
+               </div>
+                
+            </div>
+            
+            
+            {songs && 
+            <h2>Songs</h2>}
+            <div className='song-tiles' id='list-songs'>
+               {songs && 
+                Object.values(songs).map(song=>
+                <ListSongTile key={song.id} song={song} user={user} playlist={targetPlaylist} listSongs={listSongs}
+                />)} 
+            </div>
+            
             
         </div>
     )

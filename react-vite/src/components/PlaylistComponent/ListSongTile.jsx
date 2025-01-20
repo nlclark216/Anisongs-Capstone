@@ -8,22 +8,28 @@ export default function ListSongTile({song, user, playlist, listSongs}) {
     const isPlaylistOwner = playlist?.creator_id === user?.id;
 
     return (
-        <div key={song?.id}>
-            <div>
-               <Link to={`/songs/${song?.song_id}`}>
-                <h3>{song?.song.title}</h3>
-                </Link>
-                {user && <CheckLikes songId={song?.id} user={user} /> } 
-            </div>
-             
+        <div key={song?.id} className="list-song-tile">
             <img src={song?.song.albumArt} />
-            <p>{song?.song.artist}</p>
-            <p>{song?.song.album}</p>
+            <Link 
+            to={`/songs/${song?.song_id}`}
+            className="title"
+            id="list-tile"
+            >
+            {song?.song.title}
+            </Link>
+            {user && 
+            <CheckLikes songId={song?.id} user={user} 
+            /> } 
+            <p className="artist" id="list-tile">{song?.song.artist}</p>
+            <p className="album" id="list-tile">{song?.song.album}</p>
             {isPlaylistOwner && 
             <button>
+                <TbMusicMinus /> 
                 <OpenModalMenuItem
-                itemText={<><TbMusicMinus /> Remove Song</>}
-                modalComponent={<RemovePlaylistSongModal id={song?.song_id} listSongs={listSongs} />} 
+                itemText='Remove'
+                modalComponent={
+                <RemovePlaylistSongModal id={song?.song_id} listSongs={listSongs} 
+                />} 
                 />
             </button>}
         </div> 

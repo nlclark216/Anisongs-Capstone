@@ -9,6 +9,8 @@ html {
 
 li {
     list-style: none;
+    font-family: "Noto Sans Display";
+    font-weight: 500;
 }
 
 a {
