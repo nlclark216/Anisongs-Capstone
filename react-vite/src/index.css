@@ -13,10 +13,11 @@ li {
     font-weight: 500;
 }
 
-input, textarea {
+input, textarea, select {
     border: none;
     border-radius: 2px;
-    min-height: 24px;
+    height: 28px;
+    padding: 4px;
 }
 
 a {
@@ -39,6 +40,7 @@ button {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 4px;
 }
 
 svg:hover {
@@ -53,6 +55,8 @@ button:hover {
 
 button:disabled {
     cursor: not-allowed;
+    background-color: darkgray;
+    color: whitesmoke;
 }
 
 h3, h4 {

@@ -63,7 +63,11 @@ export default function AddSongModal({songId, user}) {
                     </option>
                 ))}
             </select>
-            <button type='submit' onClick={handleSubmit}>Add Song</button>
+            <button
+            id='add-song'
+            disabled={selectedPlaylistId === ''} 
+            type='submit' 
+            onClick={handleSubmit}>Add Song</button>
         </div>
     )
 }

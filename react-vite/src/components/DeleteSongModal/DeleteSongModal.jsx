@@ -33,6 +33,7 @@ export default function DeleteSongModal({id, navigate}) {
         onClick={handleSubmit}
         >Delete Song</button>
         <button 
+        id="reverse"
         onClick={ closeModal } 
         >
         No (Go Back)

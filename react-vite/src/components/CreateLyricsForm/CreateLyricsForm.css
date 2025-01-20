@@ -1,0 +1,10 @@
+.modal#add-lyrics {
+    /* border: solid red; */
+    width: 260px;
+}
+
+.modal#add-lyrics form {
+    display: flex;
+    flex-direction: column;
+    row-gap: 12px;
+}

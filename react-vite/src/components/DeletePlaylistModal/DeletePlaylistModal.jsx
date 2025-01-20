@@ -31,7 +31,8 @@ export default function DeletePlaylistModal({id, navigate}) {
         type="Submit" 
         onClick={handleSubmit}
         >Delete Playlist</button>
-        <button 
+        <button
+        id="reverse" 
         onClick={ closeModal } 
         >
         No (Go Back)

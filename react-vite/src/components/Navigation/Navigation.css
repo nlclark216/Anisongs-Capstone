@@ -1,5 +1,6 @@
 .profile-dropdown {
   padding: 0px;
+  z-index: 9999;
 }
 
 .profile-dropdown#left li,
@@ -59,7 +60,8 @@
   padding: 0px;
   justify-content: center;
   position: fixed;
-  bottom: 0;
+  bottom: 100px;
+  opacity: 90%;
 }
 
 .nav#page {
@@ -96,4 +98,10 @@
 .nav button#right:hover {
   transform: scale(110%);
   color: #3f3f3f;
+}
+
+.profile-pic-nav {
+  height: 32px;
+  border: solid #282828;
+  border-radius: 40px;
 }

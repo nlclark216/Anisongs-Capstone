@@ -19,7 +19,7 @@
 }
 
 .modal h1 {
-    font-size: 28px;
+    font-size: 24px;
     margin: 8px 0px;
 }
 
@@ -28,20 +28,31 @@
     flex-direction: column;
 }
 
+.modal label {
+    row-gap: 4px;
+}
 
-.modal#login button {
+
+.modal#login button,
+.modal#create-playlist button {
     margin: 10px 0px;
     height: 28px;
     font-size: 16px;
 }
 
-.demo-user-button {
+.modal button {
+    height: 28px;
+    font-size: 16px;
+    margin: 8px 0px;
+}
+
+button#reverse {
     border: #e0a3fd solid 2px;
     color: #e0a3fd;
     background-color: #121212;
 }
 
-.demo-user-button:hover {
+button#reverse:hover {
     background-color: #282828;
     color: #d890fc;
     border: #d890fc solid 2px;

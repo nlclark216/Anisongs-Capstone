@@ -23,8 +23,7 @@ export default function PlaylistComponent() {
         dispatch(thunkAllPlaylistSongs())
     }, [dispatch, playlistId])
 
-    const handleClick = (e) => {
-        e.preventDefault();
+    const handleClick = () => {
         return alert('Coming soon!')
     }
 

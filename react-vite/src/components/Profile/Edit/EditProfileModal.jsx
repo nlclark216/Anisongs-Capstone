@@ -45,10 +45,10 @@ function EditProfileModal() {
   };
 
   return (
-    <>
+    <div className="modal" id="sign-up">
       <h1>Edit Account</h1>
       {errors.server && <p className="error">{errors.server}</p>}
-      <form onSubmit={handleSubmit}>
+      <form className="signup-form" id="edit" onSubmit={handleSubmit}>
         <label>
           First Name
           <input
@@ -146,7 +146,7 @@ function EditProfileModal() {
         type="submit"
         >Save Account Edits</button>
       </form>
-    </>
+    </div>
   );
 }
 

@@ -62,7 +62,7 @@ function LoginFormModal() {
         {errors.password && <p className="error">{errors.password}</p>}
         <button type="submit">Log In</button>
       </form>
-      <button className="demo-user-button" onClick={loginDemo}>Demo User</button>
+      <button id="reverse" onClick={loginDemo}>Demo User</button>
     </div>
   );
 }

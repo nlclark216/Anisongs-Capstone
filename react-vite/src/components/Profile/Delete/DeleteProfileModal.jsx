@@ -30,7 +30,8 @@ export default function DeleteProfileModal() {
         <p>Are you sure you want to delete your account?</p>
         <p className='warning'>This action cannot be undone.</p>
         <button type="Submit" onClick={handleSubmit}>Delete Account</button>
-        <button 
+        <button
+        id="reverse" 
         onClick={ closeModal } 
         >
         No (Go Back)

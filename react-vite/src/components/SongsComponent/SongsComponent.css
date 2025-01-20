@@ -30,6 +30,15 @@
     font-weight: 500;
 }
 
+.add-playlist-song {
+    /* border: solid red; */
+    position: absolute;
+    opacity: 80%;
+    background-color: #e7b6fe;
+    height: 16px;
+    z-index: 0;
+}
+
 .favorite-add {
     /* border: dashed purple; */
     display: flex;

@@ -43,10 +43,10 @@ export default function EditSongModal({song}) {
 
 
     return (
-        <div className="modal" id="edit-song">
+        <div className="modal" id="sign-up">
         <h1>Edit Song</h1>
         {errors.server && <p className="error">{errors.server}</p>}
-        <form onSubmit={handleSubmit}>
+        <form className="signup-form" onSubmit={handleSubmit}>
             <label>
                 Song Title
                 <input

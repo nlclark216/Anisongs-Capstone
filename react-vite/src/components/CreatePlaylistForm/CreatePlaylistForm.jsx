@@ -32,11 +32,11 @@ export default function CreatePlaylistForm() {
     }
 
     return (
-        <div>
+        <div className="modal" id="create-playlist">
             <h1>Create Playlist</h1>
             {errors?.server && <p className="error">{errors?.server}</p>}
             <form onSubmit={handleSubmit}>
-                <p>Choose a name for your new playlist! (image is optional)</p>
+                <p>Choose a name for your new playlist (Image optional)</p>
                 <label>
                     Name
                     <input

@@ -32,6 +32,7 @@ export default function AddLikeModal({songId, user}) {
         onClick={handleSubmit}
         >Add Favorite</button>
         <button 
+        id="reverse"
         onClick={ closeModal } 
         >
         No (Go Back)

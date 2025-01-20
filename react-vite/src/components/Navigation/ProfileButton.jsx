@@ -48,7 +48,7 @@ function ProfileButton() {
   return (
     <>
       <button id="right" onClick={toggleMenu}>
-        <FaUserCircle />
+        {!user ? <FaUserCircle /> : <img height='40px' className="profile-pic-nav" src={user?.profile_pic} />}
       </button>
       {showMenu && (
         <ul className={"profile-dropdown"} id="right" ref={ulRef}>
