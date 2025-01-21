@@ -42,7 +42,7 @@
 
 .info#playlist button {
     /* border: solid red; */
-    width: 100%;
+    width: 60%;
     height: 24px;
 }
 
@@ -152,6 +152,7 @@
     }
     .single-playlist {
         display: flex;
+        flex-direction: column;
         justify-content: center;
     }
 

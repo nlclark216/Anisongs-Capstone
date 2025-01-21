@@ -35,7 +35,7 @@ export default function CreatePlaylistForm() {
             <h1>Create Playlist</h1>
             {errors.server && <p className="error">{errors?.server}</p>}
             <form onSubmit={handleSubmit}>
-                <p>Choose a name for your new playlist (Image optional)</p>
+                <p>Choose a name for your new playlist</p>
                 <label>
                     Name
                     <input
@@ -46,16 +46,6 @@ export default function CreatePlaylistForm() {
                     />
                 </label>
                 {errors.name && <p className="error">{errors.name}</p>}
-                {/* <label>
-                    Image
-                    <input
-                    type="text"
-                    value={image}
-                    onChange={(e) => setImage(e.target.value)}
-                    // defaultValue='/playlist-default.png'
-                    />
-                </label>
-                {errors.image && <p className="error">{errors.image}</p>} */}
                 <button
                 type="submit"
                 >Create Playlist!</button>

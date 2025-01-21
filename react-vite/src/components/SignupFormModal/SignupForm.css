@@ -12,7 +12,7 @@
 }
 
 .modal#sign-up {
-    width: 400px;
+    width: 500px;
     height: 500px;
 }
 
@@ -20,4 +20,10 @@
     height: 28px;
     font-size: 16px;
     margin: 16px 0px;
+}
+
+@media only screen and (max-width: 635px){
+    .modal#sign-up {
+        width: 200px;
+    }
 }

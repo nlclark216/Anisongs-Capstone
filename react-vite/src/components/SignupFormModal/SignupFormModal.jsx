@@ -14,7 +14,6 @@ function SignupFormModal() {
   const [state, setState] = useState("");
   const [address, setAddress] = useState("");
   const [country, setCountry] = useState("");
-  const [profilePic, setProfilePic] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState({});
@@ -40,7 +39,6 @@ function SignupFormModal() {
         state,
         address,
         country,
-        'profile_pic': profilePic,
         password
       })
     );
@@ -136,15 +134,6 @@ function SignupFormModal() {
           />
         </label>
         {errors.country && <p className="error">{errors.country}</p>}
-        <label>
-          Profile Picture
-          <input
-            type="text"
-            value={profilePic}
-            onChange={(e) => setProfilePic(e.target.value)}
-          />
-        </label>
-        {errors.profilePic && <p className="error">{errors.profilePic}</p>}
         <label>
           Password
           <input

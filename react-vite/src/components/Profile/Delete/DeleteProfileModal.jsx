@@ -2,10 +2,12 @@ import { useDispatch } from "react-redux";
 import { useModal } from "../../../context/Modal";
 import './DeleteProfile.css';
 import { thunkDeleteProfile } from "../../../redux/session";
+import { useNavigate } from "react-router-dom";
 
 export default function DeleteProfileModal() {
     const { closeModal } = useModal();
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const handleSubmit = async e => {
         e.preventDefault();
@@ -18,6 +20,7 @@ export default function DeleteProfileModal() {
         return serverResponse;
         } else {
         alert('Account Deleted! Sorry to see you go!');
+        navigate('/');
         closeModal();
         }
     }

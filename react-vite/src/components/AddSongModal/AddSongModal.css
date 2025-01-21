@@ -1,5 +1,9 @@
 .modal#add-playlist-song {
     /* border: solid red; */
-    height: 200px;
+    height: fit-content;
     row-gap: 12px;
+}
+
+.modal#add-playlist-song a {
+    text-decoration: underline;
 }
