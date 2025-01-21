@@ -11,6 +11,7 @@ from .api.song_routes import song_routes
 from .api.playlist_routes import playlist_routes
 from .api.lyric_routes import lyric_routes
 from .api.like_routes import like_routes
+from .api.file_routes import file_routes
 from .api.playlist_song_routes import playlist_song_routes
 from .seeds import seed_commands
 from .config import Config
@@ -44,6 +45,7 @@ app.register_blueprint(playlist_routes, url_prefix='/api/playlists')
 app.register_blueprint(lyric_routes, url_prefix='/api/lyrics')
 app.register_blueprint(like_routes, url_prefix='/api/likes')
 app.register_blueprint(playlist_song_routes, url_prefix='/api/playlist-songs')
+app.register_blueprint(file_routes, url_prefix='/api/files')
 db.init_app(app)
 Migrate(app, db)
 

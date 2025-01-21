@@ -25,6 +25,7 @@ class User(db.Model, UserMixin):
     updated_at = db.Column(db.DateTime, default=datetime.datetime.now())
 
     songs = db.relationship('Songs', backref='owner', cascade='all, delete-orphan', lazy=True)
+    files = db.relationship('Files', backref='owner', cascade='all, delete-orphan', lazy=True)
     playlists = db.relationship('Playlists', backref='creator', cascade='all, delete-orphan', lazy=True)
     likes = db.relationship('Likes', backref='owner', cascade='all, delete-orphan', lazy=True)
     lyrics = db.relationship('Lyrics', backref='creator', cascade='all, delete-orphan', lazy=True)

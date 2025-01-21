@@ -115,6 +115,19 @@ def upgrade():
     )
     if environment == "production":
         op.execute(f"ALTER TABLE playlist_songs SET SCHEMA {SCHEMA};")
+    op.create_table('files',
+    sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
+    sa.Column('owner_id', sa.Integer(), nullable=False),    
+    sa.Column('song_id', sa.Integer(), nullable=False),
+    sa.Column('file', sa.String(200), nullable=False),
+    sa.Column('created_at', sa.DateTime(), nullable=True),
+    sa.Column('updated_at', sa.DateTime(), nullable=True),
+    sa.ForeignKeyConstraint(['owner_id'], ['users.id'], ),
+    sa.ForeignKeyConstraint(['song_id'], ['songs.id'], ),
+    sa.PrimaryKeyConstraint('id')            
+    )
+    if environment == "production":
+        op.execute(f"ALTER TABLE files SET SCHEMA {SCHEMA};")
     # ### end Alembic commands ###
 
 

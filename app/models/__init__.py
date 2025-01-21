@@ -5,4 +5,5 @@ from .playlists import Playlists
 from .lyrics import Lyrics
 from .likes import Likes
 from .playlist_songs import PlaylistSongs
+from .files import Files
 from .db import environment, SCHEMA

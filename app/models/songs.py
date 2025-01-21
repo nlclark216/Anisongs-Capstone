@@ -25,6 +25,7 @@ class Songs(db.Model):
     likes = db.relationship('Likes', backref='song', cascade='all, delete-orphan', lazy=True)
     playlist_song = db.relationship('PlaylistSongs', backref='song', cascade='all, delete-orphan', lazy=True)
     lyrics = db.relationship('Lyrics', backref='song', cascade='all, delete-orphan', lazy=True)
+    files = db.relationship('Files', backref='song', cascade='all, delete-orphan', lazy=True)
 
 
     def to_dict(self):
