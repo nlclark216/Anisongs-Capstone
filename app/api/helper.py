@@ -1,0 +1,1 @@
+ALLOWED_EXTENSIONS = {"mp3", "mp4", "wav", "aiff", "m4a", "flac", "wma", "alac", "flac", "aac"}

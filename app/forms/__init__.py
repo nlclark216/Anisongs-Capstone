@@ -5,3 +5,4 @@ from .playlist_form import PlaylistForm
 from .lyrics_form import LyricsForm
 from .playlist_song_form import PlaylistSongsForm
 from .like_form import LikesForm
+from .file_form import FileForm

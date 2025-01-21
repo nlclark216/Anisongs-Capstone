@@ -1,8 +1,9 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from sqlalchemy import and_
-from app.models import Songs, db, Lyrics, PlaylistSongs, Likes
-from app.forms import SongForm, LyricsForm, LikesForm
+from app.models import Songs, db, Lyrics, PlaylistSongs, Likes, Files
+from app.forms import SongForm, LyricsForm, LikesForm, FileForm
+from .file_routes import (upload_file_to_s3, get_unique_filename)
 
 song_routes = Blueprint('songs', __name__)
 
@@ -164,6 +165,34 @@ def add_lyrics(id):
         db.session.commit()
         return lyrics.to_dict(), 201
     return form.errors, 401 
+
+@song_routes.route('/<int:id>/files', methods=['POST'])
+@login_required
+def add_file(id):
+    """
+    Creates new file for song based on song id
+    """
+    form = FileForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        file=form.data['file']
+        file.filename = get_unique_filename(file.filename)
+        upload = upload_file_to_s3(file)
+        print(upload)
+
+        if "url" not in upload:
+            return upload.errors, 401
+        
+        url = upload['url']
+        file = Files(
+           owner_id=current_user.get_id(),
+           song_id=id,
+           
+        )
+        db.session.add(file)
+        db.session.commit()
+        return file.to_dict(), 201
+    return form.errors, 401
 
 @song_routes.route('/<int:id>', methods=['PUT'])
 @login_required
