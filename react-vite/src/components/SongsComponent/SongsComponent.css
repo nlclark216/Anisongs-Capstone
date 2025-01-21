@@ -19,6 +19,7 @@
     height: 220px;
     width: 220px;
     padding: 0px;
+    z-index: 1;
 }
 
 .song-tile h4,
@@ -32,12 +33,13 @@
 
 .add-playlist-song {
     /* border: solid red; */
-    position: absolute;
-    opacity: 80%;
     background-color: #e7b6fe;
     height: 16px;
-    z-index: 0;
+    z-index: 1;
+    position: absolute;
+    opacity: 70%;
 }
+
 
 .favorite-add {
     /* border: dashed purple; */
