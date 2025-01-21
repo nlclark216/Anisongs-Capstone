@@ -54,7 +54,6 @@ export default function PlaylistComponent() {
                         {!isOwner ? targetPlaylist?.creator : 'You'}
                         </div>    
                     </h4>
-                    {console.log(user)} 
                     {isOwner && 
                     <button>
                         <OpenModalMenuItem
