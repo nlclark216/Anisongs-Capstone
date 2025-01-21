@@ -46,6 +46,10 @@
   color: whitesmoke;
 }
 
+.profile-dropdown#right button:hover {
+  background-color: #575757;
+}
+
 .profile-dropdown#right button li {
   /* border: solid red; */
   display: flex;

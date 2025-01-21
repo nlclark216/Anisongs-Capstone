@@ -25,20 +25,21 @@ export default function SongTile({song, user}) {
                 modalComponent={<AddSongModal songId={song.id} user={user} closeModal={ closeModal } />}
                 />
             </button>}
-        </div>    
-        <Link 
+        </div> 
+        <img src={imgSrc(song)} />   
+        
+            
+            <h4 className='title-likes'>
+                <Link 
         key={song?.id} 
         className='song-tile'
         to={`/songs/${song?.id}`}
-        >
-            <img src={imgSrc(song)} />
-            <h4 className='title-likes'>
-                {song?.title}
+        >{song?.title}</Link>
                 {user && likes && 
                 <CheckLikes user={user} arr={likes} songId={song?.id} />}
             </h4>
             <p>{song?.artist}</p>
-        </Link>
+        
     </div>
     )
 }

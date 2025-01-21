@@ -58,7 +58,7 @@ export default function LandingPage(){
     </h3>}
     <div className='user-songs' id='landing'>
     {userSongs && userSongs.map(song=>(
-        <SongTile key={song.id} song={song} user={currentUser}  />
+        <SongTile key={song.id} song={song} user={currentUser} id='landing-song-tile'  />
     ))}
     </div>
     {userPlaylists.length > 1 && <h3 id='landing'><Link to='/playlists/'>Your Playlists</Link> <FiChevronRight /></h3>}
@@ -69,7 +69,7 @@ export default function LandingPage(){
     <div className='all-songs' id='landing'>
     
     {allSongs && allSongs.map(song=>(
-        <SongTile key={song.id} song={song} user={currentUser}  />
+        <SongTile key={song.id} song={song} user={currentUser} id='landing-song-tile' />
     ))}
     </div>
     <h3 id='landing'><Link to='/songs'>All Playlists</Link> <FiChevronRight /></h3>

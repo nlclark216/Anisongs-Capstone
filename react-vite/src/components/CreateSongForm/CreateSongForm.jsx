@@ -40,7 +40,7 @@ export default function CreateSongForm() {
     }
 
     return (
-    <div>
+    <div className="upload-song">
         <h1>Upload Song</h1>
         {errors.server && <p className="error">{errors.server}</p>}
         <form onSubmit={handleSubmit}>
@@ -113,9 +113,11 @@ export default function CreateSongForm() {
                 />
             </label>
             {errors.albumArtwork && <p className="error">{errors.albumArtwork}</p>}
-            <button
-            type="submit"
-            >Create Song!</button>
+            <div className="button-holder">
+                <button
+                type="submit"
+                >Create Song!</button>
+            </div>
         </form>
     </div>
     )

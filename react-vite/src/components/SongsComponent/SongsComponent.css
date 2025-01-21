@@ -3,6 +3,7 @@
 .song-tile {
     /* border: solid green; */
     width: fit-content;
+    font-size: 12px;
 }
 
 .song-tile a {

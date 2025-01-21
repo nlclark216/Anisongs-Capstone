@@ -16,15 +16,17 @@ export default function CheckLikes({ user, songId }){
 
     const likes = Object.values(useSelector(state=>state.likes.allLikes));
 
+    const style = { color: "yellow" }
+
     const targetArr = likes?.filter(ele=>ele?.owner_id===user?.id);
     const target = targetArr?.filter(ele=>+ele?.song_id === +songId);
     if(target && target.length > 0) return (<OpenModalMenuItem
-     itemText={<FaStar />}
+     itemText={<FaStar style={style} id="like-icon" />}
      modalComponent={<DeleteLikeModal songId={songId} likes={likes} user={user} />} 
      />)
     else return (
      <OpenModalMenuItem
-     itemText={<FaRegStar />}
+     itemText={<FaRegStar style={style} id="like-icon" />}
      modalComponent={<AddLikeModal user={user} songId={songId} />} 
      />)
  }

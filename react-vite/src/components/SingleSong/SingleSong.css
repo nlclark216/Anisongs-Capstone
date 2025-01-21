@@ -5,6 +5,16 @@
     background-color: #312039;
 }
 
+.single-song-page h4 {
+    font-size: 14px;
+    font-weight: 300;
+    margin: 8px 0px;
+}
+
+.single-song-page h1 {
+    margin: 12px 0px;
+}
+
 .single-song-page img {
     height: 200px;
     width: 200px;
@@ -62,4 +72,12 @@
 .lyrics,
 .translation {
     width: 50%;
+}
+
+/* Check Likes icon */
+
+svg#like-icon:hover {
+    /* border: solid red; */
+    color: rgb(255, 197, 5);
+    cursor: pointer;
 }
