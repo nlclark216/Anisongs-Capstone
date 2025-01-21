@@ -3,7 +3,9 @@
     border-radius: 16px;
     padding: 40px;
     background-color: #312039;
+    width: 100%;
 }
+
 
 .single-song-page h4 {
     font-size: 14px;
