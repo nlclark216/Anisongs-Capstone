@@ -27,6 +27,8 @@ def songs():
             'album_name': song.album_name,
             'album_art': song.album_art,
             'year': song.year,
+            'createdAt': song.created_at,
+            'updatedAt': song.updated_at,
             'likes': [{'ownerId': song.like.owner_id} for song.like in song.likes]
          } for song in songs]}, 200
 
@@ -53,6 +55,8 @@ def owned_songs():
             'album_name': song.album_name,
             'album_art': song.album_art,
             'year': song.year,
+            'createdAt': song.created_at,
+            'updatedAt': song.updated_at,
             'likes': [{'ownerId': song.like.owner_id} for song.like in song.likes]
          } for song in songs]}, 200
 
