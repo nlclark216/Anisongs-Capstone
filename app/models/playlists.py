@@ -22,6 +22,8 @@ class Playlists(db.Model):
             'id': self.id,
             'creator_id': self.creator_id,
             'name': self.name,
-            'image': self.image, 
+            'image': self.image,
+            'createdAt': self.created_at,
+            'updatedAt': self.updated_at, 
             'creator': self.creator.username,
         }
