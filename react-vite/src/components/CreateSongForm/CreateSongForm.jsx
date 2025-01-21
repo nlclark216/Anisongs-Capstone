@@ -85,6 +85,7 @@ export default function CreateSongForm() {
                 required
                 />
             </label>
+            {(songLoading)&& <p>Loading...</p>}
             {errors.file && <p className="error">{errors.file}</p>}
             <label>
                 Year
@@ -130,7 +131,6 @@ export default function CreateSongForm() {
                 type="submit"
                 >Upload Song!</button>
             </div>
-            {(songLoading)&& <p>Loading...</p>}
         </form>
     </div>
     )
