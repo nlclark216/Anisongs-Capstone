@@ -74,7 +74,7 @@ export const thunkDeletePlaylist = (id, navigate) => async dispatch => {
 }
 
 export const thunkCreatePlaylist = (formData) => async dispatch => {
-    const res = await csrfFetch('api/playlists/', {
+    const res = await fetch('api/playlists/', {
         method: 'POST',
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData)

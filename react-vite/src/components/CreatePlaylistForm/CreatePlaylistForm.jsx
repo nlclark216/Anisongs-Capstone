@@ -9,7 +9,7 @@ export default function CreatePlaylistForm() {
     const { closeModal } = useModal();
 
     const [name, setName] = useState('');
-    const [image, setImage] = useState();
+    // const [image, setImage] = useState();
     const [errors, setErrors] = useState({});
 
     const handleSubmit = async e => {
@@ -17,8 +17,7 @@ export default function CreatePlaylistForm() {
 
         const serverResponse = await dispatch(
             thunkCreatePlaylist({
-                name,
-                image
+                name
             })
             );
 
@@ -34,7 +33,7 @@ export default function CreatePlaylistForm() {
     return (
         <div className="modal" id="create-playlist">
             <h1>Create Playlist</h1>
-            {errors?.server && <p className="error">{errors?.server}</p>}
+            {errors.server && <p className="error">{errors?.server}</p>}
             <form onSubmit={handleSubmit}>
                 <p>Choose a name for your new playlist (Image optional)</p>
                 <label>
@@ -46,8 +45,8 @@ export default function CreatePlaylistForm() {
                     required 
                     />
                 </label>
-                {errors?.name && <p className="error">{errors?.name}</p>}
-                <label>
+                {errors.name && <p className="error">{errors.name}</p>}
+                {/* <label>
                     Image
                     <input
                     type="text"
@@ -56,7 +55,7 @@ export default function CreatePlaylistForm() {
                     // defaultValue='/playlist-default.png'
                     />
                 </label>
-                {errors?.image && <p className="error">{errors?.image}</p>}
+                {errors.image && <p className="error">{errors.image}</p>} */}
                 <button
                 type="submit"
                 >Create Playlist!</button>

@@ -33,7 +33,9 @@ export default function PlaylistsComponent() {
     </h2>
     <div className='list-tiles-container'>
       {userPlaylists && 
-      Object.values(userPlaylists).sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).map(list=>
+      Object.values(userPlaylists)
+      .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
+      .map(list=>
       <ListTile user={user} key={+list?.id} playlist={list} 
       />)}  
     </div>
@@ -42,7 +44,9 @@ export default function PlaylistsComponent() {
     <div className='list-tiles-container'>
         {otherLists && 
         otherLists?.length > 0 && 
-        otherLists.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).map(list=>
+        otherLists
+        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+        .map(list=>
         <ListTile user={user} key={+list?.id} playlist={list} 
         />)}  
     </div>
@@ -55,7 +59,9 @@ export default function PlaylistsComponent() {
     <h1>Playlists</h1>
     <div className='list-tiles-container'>
        {allPlaylists &&
-        Object.values(allPlaylists).sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).map(list=>
+        Object.values(allPlaylists)
+        .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
+        .map(list=>
         <ListTile user={user} key={+list?.id} playlist={list} />)} 
     </div>
     </div>

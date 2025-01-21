@@ -57,24 +57,24 @@ export default function LandingPage(){
         <FiChevronRight />
     </h3>}
     <div className='user-songs' id='landing'>
-    {userSongs && userSongs.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).map(song=>(
+    {userSongs && userSongs.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt)).map(song=>(
         <SongTile key={song.id} song={song} user={currentUser} id='landing-song-tile'  />
     ))}
     </div>
     {userPlaylists.length > 1 && <h3 id='landing'><Link to='/playlists/'>Your Playlists</Link> <FiChevronRight /></h3>}
     <div className='user-playlists' id='landing'>
-        {userPlaylists && userPlaylists.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).map(list=><ListTile key={list?.id} playlist={list} />)}  
+        {userPlaylists && userPlaylists.map(list=><ListTile key={list?.id} playlist={list} />)}  
     </div>
     <h3 id='landing'><Link to='/songs'>All Songs</Link> <FiChevronRight /></h3>
     <div className='all-songs' id='landing'>
     
-    {allSongs && allSongs.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).map(song=>(
+    {allSongs && allSongs.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt)).map(song=>(
         <SongTile key={song.id} song={song} user={currentUser} id='landing-song-tile' />
     ))}
     </div>
     <h3 id='landing'><Link to='/songs'>All Playlists</Link> <FiChevronRight /></h3>
     <div className='all-playlists'>
-        {allPlaylists && allPlaylists.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).map(list=><ListTile key={list?.id} playlist={list} />)}
+        {allPlaylists && allPlaylists.map(list=><ListTile key={list?.id} playlist={list} />)}
     </div>
     
     </div> 
