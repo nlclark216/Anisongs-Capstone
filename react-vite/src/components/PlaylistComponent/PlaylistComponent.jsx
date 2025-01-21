@@ -56,14 +56,14 @@ export default function PlaylistComponent() {
                     </h4>
                     {console.log(user)} 
                     {isOwner && 
-                    <button id='edit'>
+                    <button>
                         <OpenModalMenuItem
                         itemText='Edit Playlist'
                         modalComponent={<EditPlaylistModal id={playlistId} playlist={targetPlaylist} />} 
                         />
                     </button>}
                     {isOwner && 
-                    <button id='delete'>
+                    <button id='reverse'>
                         <OpenModalMenuItem
                         itemText='Delete Playlist'
                         modalComponent={<DeletePlaylistModal navigate={navigate} id={playlistId} />} 
@@ -75,7 +75,7 @@ export default function PlaylistComponent() {
             </div>
             
             
-            {songs && 
+            {songs && Object.values(songs).length > 0 &&
             <h2>Songs</h2>}
             <div className='song-tiles' id='list-songs'>
                {songs && 
