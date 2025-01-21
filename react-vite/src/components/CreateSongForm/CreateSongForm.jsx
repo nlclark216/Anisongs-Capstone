@@ -1,39 +1,45 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from 'react-router-dom';
+// import { unstable_HistoryRouter } from "react-router-dom";
 import { thunkCreateSong } from "../../redux/songs";
 import './CreateSongForm.css'
 
 export default function CreateSongForm() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    // const history = unstable_HistoryRouter();
     const [title, setTitle] = useState('');
     const [artist, setArtist] = useState('');
-    const [file, setFile] = useState('');
+    const [file, setFile] = useState(null);
     const [year, setYear] = useState('');
     const [anime, setAnime] = useState('');
     const [albumName, setAlbumName] = useState('');
     const [albumArtwork, setAlbumArt] = useState('');
     const [errors, setErrors] = useState({});
+    const [songLoading, setSongLoading] = useState(false);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        const formData = new FormData();
+        formData.append('title', title);
+        formData.append('artist', artist);
+        formData.append('song_file', file);
+        formData.append('year', year);
+        formData.append('album_name', albumName);
+        if(albumArtwork !== '') {formData.append('album_art', albumArtwork)}
+        else {formData.append('album_art', '/song-default.png')}
+        formData.append('anime', anime)
+
         const serverResponse = await dispatch(
-            thunkCreateSong({
-              title,
-              artist,
-              'song_file': file,
-              year,
-              'album_name': albumName,
-              'album_art': albumArtwork || '/song-default.png',
-              anime,
-            })
+            thunkCreateSong(formData)
           );
 
           if (serverResponse) {
             setErrors(serverResponse);
           } else {
+            setSongLoading(true)
             alert('Song created!!');
             navigate('/songs/');
           }
@@ -43,7 +49,12 @@ export default function CreateSongForm() {
     <div className="upload-song">
         <h1>Upload Song</h1>
         {errors.server && <p className="error">{errors.server}</p>}
-        <form onSubmit={handleSubmit}>
+        <form 
+        action="/posts/new" 
+        method="POST" 
+        encType="multipart/form-data" 
+        onSubmit={handleSubmit}
+        >
             <label>
                 Song Title
                 <input
@@ -67,9 +78,10 @@ export default function CreateSongForm() {
             <label>
                 Upload Song File
                 <input
-                type="text"
-                value={file}
-                onChange={(e) => setFile(e.target.value)}
+                type="file"
+                accept="audio/*"
+                defaultValue={file}
+                onChange={(e) => setFile(e.target.files[0])}
                 required
                 />
             </label>
@@ -116,8 +128,9 @@ export default function CreateSongForm() {
             <div className="button-holder">
                 <button
                 type="submit"
-                >Create Song!</button>
+                >Upload Song!</button>
             </div>
+            {(songLoading)&& <p>Loading...</p>}
         </form>
     </div>
     )

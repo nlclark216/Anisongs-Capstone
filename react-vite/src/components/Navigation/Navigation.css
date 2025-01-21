@@ -65,7 +65,7 @@
   padding: 0px;
   justify-content: center;
   position: fixed;
-  bottom: 100px;
+  bottom: 4px;
   z-index: 10;
   opacity: 90%;
 }

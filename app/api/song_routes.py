@@ -3,6 +3,7 @@ from flask_login import login_required, current_user
 from sqlalchemy import and_
 from app.models import Songs, db, Lyrics, PlaylistSongs, Likes
 from app.forms import SongForm, LyricsForm, LikesForm
+from .helper import (upload_file_to_s3, get_unique_filename)
 
 song_routes = Blueprint('songs', __name__)
 
@@ -26,7 +27,8 @@ def songs():
             'album_name': song.album_name,
             'album_art': song.album_art,
             'year': song.year,
-            'language': song.language,
+            'createdAt': song.created_at,
+            'updatedAt': song.updated_at,
             'likes': [{'ownerId': song.like.owner_id} for song.like in song.likes]
          } for song in songs]}, 200
 
@@ -53,7 +55,8 @@ def owned_songs():
             'album_name': song.album_name,
             'album_art': song.album_art,
             'year': song.year,
-            'language': song.language,
+            'createdAt': song.created_at,
+            'updatedAt': song.updated_at,
             'likes': [{'ownerId': song.like.owner_id} for song.like in song.likes]
          } for song in songs]}, 200
 
@@ -67,17 +70,26 @@ def create_song():
     form = SongForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
+        song_file = form.data['song_file']
+        song_file.filename = get_unique_filename(song_file.filename)
+        upload = upload_file_to_s3(song_file)
+        print(upload)
+
+        if "url" not in upload:
+            return upload.errors, 401
+        
+        url = upload["url"]
+        
         song = Songs(
             owner_id=current_user.get_id(),
             title=form.data['title'],
             artist=form.data['artist'],
-            song_file=form.data['song_file'],
+            song_file=url,
             song_img=form.data['song_img'],
             anime=form.data['anime'],
             album_name=form.data['album_name'],
             album_art=form.data['album_art'],
             year=form.data['year'],
-            language=form.data['language'],
         )
         db.session.add(song)
         db.session.commit()
@@ -187,7 +199,6 @@ def update_song(id):
     song.album_name = data.get('album_name', song.album_name)
     song.album_art = data.get('album_art', song.album_art)
     song.year = data.get('year', song.year)
-    song.language = data.get('language', song.language)
 
     db.session.commit()
     return song.to_dict()

@@ -3,7 +3,9 @@
     border-radius: 16px;
     padding: 40px;
     background-color: #312039;
+    max-width: 1000px;
 }
+
 
 .single-song-page h4 {
     font-size: 14px;
@@ -43,9 +45,23 @@
 /* Song Image and Info Container */
 
 .song-img-info {
+    /* border: dashed yellow; */
     display: flex;
     column-gap: 60px;
     align-items: center;
+}
+
+@media only screen and (max-width: 735px) {
+    .song-img-info {
+        flex-direction: column;
+        justify-content: center;
+        row-gap: 12px;
+    }
+    .song-info div {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+    }
 }
 
 /* Edit and Delete Song buttons */
@@ -65,6 +81,7 @@
 /* Lyrics and Translation */
 
 .lyrics-translation-container {
+    /* border: dashed yellow; */
     display: flex;
     margin-top: 40px;
 }

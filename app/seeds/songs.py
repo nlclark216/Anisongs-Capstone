@@ -10,8 +10,7 @@ def seed_songs():
         anime='InuYasha',
         album_name='Deep Forest',
         album_art='https://upload.wikimedia.org/wikipedia/en/c/cb/Deep_Forest_%28Do_As_Infinity_album%29.jpg',
-        year=2001,
-        language='Japanese'
+        year=2001
     )
     song2 = Songs(
         owner_id=1,
@@ -21,8 +20,7 @@ def seed_songs():
         anime='Neon Genesis Evangelion',
         album_name="「Cruel Angel's Thesis」",
         album_art='https://ia601501.us.archive.org/2/items/evangelion-angel-thesis/cover.jpg',
-        year=1995,
-        language='Japanese'
+        year=1995
     )
     song3 = Songs(
         owner_id=2,
@@ -32,8 +30,7 @@ def seed_songs():
         anime='Lycoris Recoil',
         album_name='Iris',
         album_art='https://i.scdn.co/image/ab67616d00001e025f99233c71c5c2decd1ff77f',
-        year=2024,
-        language='Japanese'
+        year=2024
     )
     song4 = Songs(
         owner_id=2,
@@ -43,8 +40,7 @@ def seed_songs():
         anime='Demon Slayer',
         album_name='Parade',
         album_art='https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/27/31/e2/2731e2f7-ff58-7f09-4dca-6ef2c72457a6/4547366618228.jpg/632x632bb.webp',
-        year=2019,
-        language='Japanese'
+        year=2019
     )
     song5 = Songs(
         owner_id=3,
@@ -54,8 +50,7 @@ def seed_songs():
         anime='Fushigi Yuugi',
         album_name='Fushigi Yûgi: The Mysterious Play Original Soundtrack',
         album_art='https://static.wikia.nocookie.net/fushigiyuugi/images/b/b1/FYOS.jpeg',
-        year=1995,
-        language='Japanese'
+        year=1995
     )
     song6 = Songs(
         owner_id=3,
@@ -65,8 +60,7 @@ def seed_songs():
         anime='FLCL',
         album_name='FLCL Fooly Cooly Original Sound Track',
         album_art='https://i.scdn.co/image/ab67616d0000b273d7549e5484adb480ad33d6fc',
-        year=2001,
-        language='Japanese'
+        year=2001
     )
     song7 = Songs(
         owner_id=4,

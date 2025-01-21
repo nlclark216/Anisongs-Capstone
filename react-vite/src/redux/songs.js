@@ -1,4 +1,4 @@
-import { csrfFetch } from "./csrf";
+// import { csrfFetch } from "./csrf";
 
 const LOAD_SONGS = 'songs/loadSongs';
 const USER_SONGS = 'songs/userSongs';
@@ -96,10 +96,10 @@ export const thunkPlaylistSongs = id => async dispatch => {
 }
 
 export const thunkCreateSong = (formData) => async dispatch => {
-    const res = await csrfFetch('/api/songs/', {
+    const res = await fetch('/api/songs/', {
         method: 'POST',
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData)
+        // headers: { "Content-Type": "application/json" },
+        body: formData
     })
 
     if(res.ok) {
