@@ -1,5 +1,3 @@
-import { csrfFetch } from "./csrf";
-
 const LOAD_PLAYLISTS = 'playlists/loadPlaylists';
 const USER_PLAYLISTS = 'playlists/userPlaylists';
 const DELETE_PLAYLIST = 'playlists/deletePlaylist';
