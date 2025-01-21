@@ -41,7 +41,7 @@ export default function SongsComponent() {
             <div className='songs-container' id='your-songs'>
                {userSongs && 
                Object.values(userSongs)
-               .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt)).map(song=>
+               .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).map(song=>
                <SongTile key={song.id} song={song} user={user} 
                />)} 
             </div>
@@ -49,7 +49,7 @@ export default function SongsComponent() {
             <h2>User Submissions</h2>
             <div className='songs-container' id='user-songs'>
             {otherSongs && 
-            otherSongs.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt)).map(song=>
+            otherSongs.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).map(song=>
             <SongTile key={song.id} song={song} user={user} 
             />
             )
@@ -64,7 +64,7 @@ export default function SongsComponent() {
         <div className='songs-container'>
           {allSongs && 
           Object.values(allSongs)
-          .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
+          .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
           .map(song=>
           <SongTile key={song.id} song={song} user={user} 
           />)}  

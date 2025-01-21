@@ -60,7 +60,7 @@ export default function PlaylistsComponent() {
     <div className='list-tiles-container'>
        {allPlaylists &&
         Object.values(allPlaylists)
-        .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
+        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
         .map(list=>
         <ListTile user={user} key={+list?.id} playlist={list} />)} 
     </div>
