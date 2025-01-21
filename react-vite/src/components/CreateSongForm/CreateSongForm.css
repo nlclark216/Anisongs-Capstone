@@ -1,0 +1,35 @@
+/* Upload Song Page */
+
+.upload-song {
+    /* border: solid red; */
+    border-radius: 16px;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    background-color: #282828;
+    width: 100%;
+    text-align: center;
+}
+
+.upload-song label {
+    display: flex;
+    flex-direction: column;
+    margin: 12px 0px;
+}
+
+.upload-song form {
+    width: 80%;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.button-holder {
+    display: flex;
+    justify-content: center;
+}
+
+.button-holder button {
+    padding: 8px;
+    width: 140px;
+    margin: 20px;
+}

@@ -1,6 +1,7 @@
 .profile-dropdown {
+  /* border: solid red; */
   padding: 0px;
-  z-index: 9999;
+  z-index: 9;
 }
 
 .profile-dropdown#left li,
@@ -45,6 +46,10 @@
   color: whitesmoke;
 }
 
+.profile-dropdown#right button:hover {
+  background-color: #575757;
+}
+
 .profile-dropdown#right button li {
   /* border: solid red; */
   display: flex;
@@ -61,6 +66,7 @@
   justify-content: center;
   position: fixed;
   bottom: 100px;
+  z-index: 10;
   opacity: 90%;
 }
 

@@ -59,6 +59,18 @@ button:disabled {
     color: whitesmoke;
 }
 
+button#reverse {
+    border: #e0a3fd solid 2px;
+    color: #e0a3fd;
+    background-color: #121212;
+}
+
+button#reverse:hover {
+    background-color: #282828;
+    color: #d890fc;
+    border: #d890fc solid 2px;
+}
+
 h3, h4 {
     margin: 0;
 }

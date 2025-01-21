@@ -11,6 +11,8 @@ import DeleteSongModal from '../DeleteSongModal';
 import EditLyricsModal from '../EditLyricsModal/EditLyricsModal';
 import DeleteLyricsModal from '../DeleteLyricsModal';
 import CreateLyricsForm from '../CreateLyricsForm';
+import { TbMusicPlus } from 'react-icons/tb';
+import AddSongModal from '../AddSongModal';
 
 export default function SingleSong() {
     const dispatch = useDispatch();
@@ -44,9 +46,16 @@ export default function SingleSong() {
                         {likes && user && 
                         <CheckLikes user={user} songId={songId} />}
                     </h1>
-                    <p>From: <b>{song?.anime}</b></p>
-                    <p>Album: <b>{song?.album_name}</b></p>
-                    <p>Artist: <b>{song?.artist}</b></p> 
+                    {user && 
+                    <button>
+                        <OpenModalMenuItem
+                        itemText={<><TbMusicPlus /> Add to Playlist</>}
+                        modalComponent={<AddSongModal songId={song?.id} user={user} />}
+                        />
+                    </button>}
+                    <h4>From: <b>{song?.anime}</b></h4>
+                    <h4>Album: <b>{song?.album_name}</b></h4>
+                    <h4>Artist: <b>{song?.artist}</b></h4> 
                     
                 </div>
                     {user && songOwner &&
@@ -57,16 +66,47 @@ export default function SingleSong() {
                             modalComponent={<EditSongModal song={song} />}
                             />
                             </button>
-                        <button>
+                        <button id='reverse'>
                             <OpenModalMenuItem
                             itemText='Delete Song' 
                             modalComponent={<DeleteSongModal id={songId} navigate={navigate} />}
                             />
                         </button>
                     </div>} 
+                    <div className='edit-delete-add-buttons'>
+        {user && lyrics && 
+            lyrics?.creator_id === user?.id &&
+            <div className='buttons' id='song-page'>
+                <button>
+                    <OpenModalMenuItem
+                    itemText='Edit Lyrics'
+                    modalComponent={<EditLyricsModal songId={+songId} target={lyrics} />} 
+                    />
+                </button>
+                <button id="reverse" >
+                    <OpenModalMenuItem
+                    itemText='Delete Lyrics'
+                    modalComponent={<DeleteLyricsModal songId={songId} />} 
+                    />
+                </button> 
             </div>
-
+            }
+            {user && lyrics?.message &&
+            <div className='buttons' id='song-page'>
+               <button>
+                    <OpenModalMenuItem
+                    itemText='Add Lyrics'
+                    modalComponent={<CreateLyricsForm songId={+songId} />} 
+                    />
+                </button> 
+            </div>
+            
+            }
         </div>
+            </div>
+        
+        </div>
+        
 
         <div className='lyrics-translation-container'>
             <div className='lyrics'>
@@ -75,7 +115,7 @@ export default function SingleSong() {
                 !lyrics?.message && 
                 <div className='song-lyrics-translation'>
                     <label>
-                        <h4>Lyrics</h4>
+                        <h3>Lyrics</h3>
                     <p style={{'whiteSpace': 'pre-line'}}>{(lyrics?.lyrics)}</p> 
                     </label>
                 </div>}
@@ -85,38 +125,16 @@ export default function SingleSong() {
                 !lyrics?.message &&
                 lyrics.translation && 
                 <label>
-                    <h4>Translation</h4>
+                    <h3>Translation</h3>
                     <p style={{'whiteSpace': 'pre-line'}}>{lyrics?.translation}</p> 
                 </label>}
             </div>
         </div>
         
+        
     
     
-    {user && lyrics && lyrics?.creator_id === user?.id &&
-    <div>
-        <button>
-            <OpenModalMenuItem
-            itemText='Edit Lyrics'
-            modalComponent={<EditLyricsModal songId={+songId} target={lyrics} />} 
-            />
-        </button>
-        <button>
-            <OpenModalMenuItem
-            itemText='Delete Lyrics'
-            modalComponent={<DeleteLyricsModal songId={songId} />} 
-            />
-        </button> 
-    </div>
-    }
-    {user && lyrics?.message &&
-    <button>
-        <OpenModalMenuItem
-        itemText='Add Lyrics'
-        modalComponent={<CreateLyricsForm songId={+songId} />} 
-        />
-    </button>
-    }
+    
     {!user && <p>Login to view lyrics submitted by Ani-Songs users!</p>}
     </div>
     )

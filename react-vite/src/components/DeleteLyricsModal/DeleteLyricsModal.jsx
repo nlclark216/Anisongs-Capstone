@@ -27,10 +27,12 @@ export default function DeleteLyricsModal({songId}) {
         <p>Are you sure you want to remove the lyrics from this song?</p>
         <p className='warning'>This action cannot be undone.</p>
         <button 
+        
         type="Submit" 
         onClick={handleSubmit}
         >Remove Lyrics</button>
         <button 
+        id="reverse"
         onClick={ closeModal } 
         >
         No (Go Back)

@@ -32,9 +32,8 @@ export default function SongsComponent() {
     }
 
     if(user) { return(
-        <>
-        <h1>Songs</h1>
         <div className='songs-page'>
+        <h1>Songs</h1>
            <div className='title-button' id='songs-page'>
             <h2>Your Songs</h2>
                 <button onClick={handleClick}>upload a track</button>
@@ -53,10 +52,7 @@ export default function SongsComponent() {
             <SongTile key={song.id} song={song} user={user} 
             />)} 
             </div>
-            
         </div>
-        
-        </>
         )}
     
         else return (

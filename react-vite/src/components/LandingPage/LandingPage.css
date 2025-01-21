@@ -30,3 +30,9 @@ h3#landing {
     display: flex;
     align-items: center;
 }
+
+.user-songs button,
+.all-songs button {
+    /* border: solid red; */
+    display: none;
+}
