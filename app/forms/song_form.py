@@ -16,7 +16,6 @@ class SongForm(FlaskForm):
     title = StringField('title', validators=[DataRequired(), song_exists])
     artist = StringField('artist', validators=[DataRequired()])
     song_file = FileField("song_file", validators=[FileRequired(), FileAllowed(list(ALLOWED_MUSIC_EXTENSIONS))])
-    song_img = StringField('song_img', validators=[])
     anime = StringField('artist', validators=[DataRequired()])
     album_name = StringField('artist', validators=[DataRequired()])
     album_art = StringField('artist', validators=[])

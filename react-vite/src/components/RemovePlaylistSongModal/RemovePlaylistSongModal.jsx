@@ -17,7 +17,6 @@ export default function RemovePlaylistSongModal({id}) {
         alert('Song Removed!');
         window.location.reload();
         closeModal();
-
     }
 
     return (

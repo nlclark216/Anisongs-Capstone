@@ -22,7 +22,6 @@ def songs():
             'title': song.title,
             'artist': song.artist,
             'file': song.song_file,
-            'song_img': song.song_img,
             'anime': song.anime,
             'album_name': song.album_name,
             'album_art': song.album_art,
@@ -50,7 +49,6 @@ def owned_songs():
             'title': song.title,
             'artist': song.artist,
             'file': song.song_file,
-            'song_img': song.song_img,
             'anime': song.anime,
             'album_name': song.album_name,
             'album_art': song.album_art,
@@ -85,7 +83,6 @@ def create_song():
             title=form.data['title'],
             artist=form.data['artist'],
             song_file=url,
-            song_img=form.data['song_img'],
             anime=form.data['anime'],
             album_name=form.data['album_name'],
             album_art=form.data['album_art'],
@@ -194,7 +191,6 @@ def update_song(id):
     song.title = data.get('title', song.title)
     song.artist = data.get('artist', song.artist)
     song.song_file = data.get('song_file', song.song_file)
-    song.song_img = data.get('song_img', song.song_img)
     song.anime = data.get('anime', song.anime)
     song.album_name = data.get('album_name', song.album_name)
     song.album_art = data.get('album_art', song.album_art)
