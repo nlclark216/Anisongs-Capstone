@@ -5,12 +5,6 @@ from wtforms import StringField, SelectField, IntegerField
 from wtforms.validators import DataRequired, Email, ValidationError
 from app.models import PlaylistSongs, Songs, Playlists
 
-def song_in_list(form, field):
-    song_id = field.data
-    playlist_song = PlaylistSongs.query.filter(PlaylistSongs.song_id == song_id).filter( PlaylistSongs.added_by == current_user.id).first()
-    if playlist_song:
-        raise ValidationError('Song already in playlist.')
-    
 def song_exists(form, field):
     song_id = field.data
     song = Songs.query.get(song_id)
@@ -19,4 +13,4 @@ def song_exists(form, field):
     
 class PlaylistSongsForm(FlaskForm):
     added_by = IntegerField('added_by', validators=[])
-    song_id = IntegerField('song_id', validators=[DataRequired(), song_in_list, song_exists])
+    song_id = IntegerField('song_id', validators=[DataRequired(), song_exists])
