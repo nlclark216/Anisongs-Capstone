@@ -48,7 +48,7 @@ def seed_songs():
         artist='Satou Akemi',
         song_file='song file url',
         anime='Fushigi Yuugi',
-        album_name='Fushigi Yûgi: The Mysterious Play Original Soundtrack',
+        album_name='Fushigi Yûgi: The Mysterious Play OST',
         album_art='https://static.wikia.nocookie.net/fushigiyuugi/images/b/b1/FYOS.jpeg',
         year=1995
     )
