@@ -58,7 +58,7 @@ def seed_songs():
         artist='The Pillows',
         song_file='song file url',
         anime='FLCL',
-        album_name='FLCL Fooly Cooly Original Sound Track',
+        album_name='FLCL Fooly Cooly OST',
         album_art='https://i.scdn.co/image/ab67616d0000b273d7549e5484adb480ad33d6fc',
         year=2001
     )
@@ -69,7 +69,7 @@ def seed_songs():
         song_file='song file url',
         anime='Bleach',
         album_name='Gou On Progressive',
-        album_art='https://en.wikipedia.org/wiki/G%C5%8D_on_Progressive#/media/File:Gouonprogressive.jpg',
+        album_art='https://t2.genius.com/unsafe/177x177/https%3A%2F%2Fimages.genius.com%2Fcfdba2d7e3defef773fed294a1bf179b.754x754x1.jpg',
         year=2006
     )
     song8 = Songs(
@@ -99,7 +99,7 @@ def seed_songs():
         song_file='song file url',
         anime='JoJo’s Bizarre Adventure',
         album_name='JoJo (Sono Chi no Sadame)',
-        album_art='https://en.wikipedia.org/wiki/JoJo_(Sono_Chi_no_Sadame)#/media/File:JoJo_~Sono_Chi_no_Sadame~.jpg',
+        album_art='https://s.mxmcdn.net/images-storage/albums/7/2/8/2/4/9/30942827_500_500.jpg',
         year=2012
     )
     song11 = Songs(
@@ -139,7 +139,7 @@ def seed_songs():
         song_file='song file url',
         anime='Fullmetal Alchemist: Brotherhood',
         album_name='Holidays in the Sun',
-        album_art='https://en.wikipedia.org/wiki/Holidays_in_the_Sun_(album)#/media/File:HITS_RE.jpg',
+        album_art='https://m.media-amazon.com/images/I/51bv7RGxjcL._SX300_SY300_QL70_FMwebp_.jpg',
         year=2010
     )
     song15 = Songs(
@@ -179,7 +179,7 @@ def seed_songs():
         song_file='song file url',
         anime='NANA',
         album_name='Strip Me?',
-        album_art='https://en.wikipedia.org/wiki/Strip_Me%3F#/media/File:Tsuch_stripCD.jpg',
+        album_art='https://static.fnac-static.com/multimedia/FR/Images_Produits/FR/fnac.com/Visual_Principal_340/4/2/4/3700091011424/tsp20120923053111/Strip-me.jpg',
         year=2006
     )
     song19 = Songs(

@@ -29,16 +29,17 @@ export default function SongTile({song, user}) {
         <img src={imgSrc(song)} />   
         
             
-            <h4 className='title-likes'>
-                <Link 
+        <h4 className='title-likes'>
+        <Link 
         key={song?.id} 
-        className='song-tile'
+        className='song-tile-title'
         to={`/songs/${song?.id}`}
-        >{song?.title}</Link>
-                {user && likes && 
-                <CheckLikes user={user} arr={likes} songId={song?.id} />}
-            </h4>
-            <p>{song?.artist}</p>
+        >{song?.title}
+        </Link>
+        {user && likes && 
+        <CheckLikes user={user} songId={song?.id} />}
+        </h4>
+        <p>{song?.artist}</p>
         
     </div>
     )

@@ -6,6 +6,7 @@ import { TbMusicMinus } from "react-icons/tb";
 
 export default function ListSongTile({song, user, playlist, listSongs}) {
     const isPlaylistOwner = playlist?.creator_id === user?.id;
+    console.log(song)
 
     return (
         <div key={song?.id} className="list-song-tile">
@@ -18,7 +19,7 @@ export default function ListSongTile({song, user, playlist, listSongs}) {
             {song?.song.title}
             </Link>
             {user && 
-            <CheckLikes songId={song?.id} user={user} 
+            <CheckLikes songId={song?.song_id} user={user} 
             /> } 
             <p className="artist" id="list-tile">{song?.song.artist}</p>
             <p className="album" id="list-tile">{song?.song.album}</p>

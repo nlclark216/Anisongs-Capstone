@@ -20,6 +20,8 @@ export default function CheckLikes({ user, songId }){
 
     const targetArr = likes?.filter(ele=>ele?.owner_id===user?.id);
     const target = targetArr?.filter(ele=>+ele?.song_id === +songId);
+    // console.log(songId)
+
     if(target && target.length > 0) return (<OpenModalMenuItem
      itemText={<FaStar style={style} id="like-icon" />}
      modalComponent={<DeleteLikeModal songId={songId} likes={likes} user={user} />} 

@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from 'react-router-dom';
-// import { unstable_HistoryRouter } from "react-router-dom";
+import { useNavigate, Link } from 'react-router-dom';
 import { thunkCreateSong } from "../../redux/songs";
 import './CreateSongForm.css'
+import { IoArrowBackOutline } from "react-icons/io5";
 
 export default function CreateSongForm() {
     const dispatch = useDispatch();
@@ -47,6 +47,9 @@ export default function CreateSongForm() {
 
     return (
     <div className="upload-song">
+        <div className="back-button">
+           <Link to='/songs/' ><IoArrowBackOutline /></Link> 
+        </div>
         <h1>Upload Song</h1>
         {errors.server && <p className="error">{errors.server}</p>}
         <form 

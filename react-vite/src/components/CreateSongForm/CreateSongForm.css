@@ -41,3 +41,11 @@
     width: 140px;
     margin: 20px;
 }
+
+/* Back button */
+
+.back-button {
+    /* border: solid red; */
+    display: flex;
+    font-size: 32px;
+}

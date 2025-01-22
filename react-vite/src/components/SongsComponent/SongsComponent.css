@@ -2,12 +2,17 @@
 
 .song-tile {
     /* border: solid green; */
-    width: fit-content;
+    width: 180px;
     font-size: 14px;
 }
 
-.song-tile a {
+.song-tile-title {
     color: #e7b6fe;
+}
+
+.title-likes {
+    /* border: solid red; */
+    width: 100%;
 }
 
 .song-tile a:hover {

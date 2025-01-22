@@ -4,11 +4,13 @@ from sqlalchemy.sql import text
 def seed_playlists():
     list1 = Playlists(
         creator_id=1,
-        name='Nostalgia'
+        name='Nostalgia',
+        image='https://i.pinimg.com/736x/98/c6/54/98c654ba9c5af3a8e4b48926c78bb111.jpg'
     )
     list2 = Playlists(
         creator_id=1,
-        name='Relaxation'
+        name='Relaxation',
+        image='https://upload.wikimedia.org/wikipedia/en/3/3e/Lo-Fi_Girl.png'
     )
     list3 = Playlists(
         creator_id=2,
