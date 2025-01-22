@@ -24,12 +24,10 @@ export default function PlaylistsComponent() {
     <div className='playlists-page'>
     <h1>Playlists</h1>
     <h2 className='your-playlists'>Your Playlists 
-        <button>
-            <OpenModalMenuItem
-            itemText='Create New Playlist'
-            modalComponent={<CreatePlaylistForm />} 
-            />
-        </button>
+        <OpenModalMenuItem
+        itemText={<button>Create New Playlist</button>}
+        modalComponent={<CreatePlaylistForm />} 
+        />
     </h2>
     <div className='list-tiles-container'>
       {userPlaylists && 

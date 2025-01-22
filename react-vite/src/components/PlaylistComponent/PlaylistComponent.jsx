@@ -1,5 +1,6 @@
 import './PlaylistComponent.css';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import { thunkAllPlaylists} from '../../redux/playlists';
 import { thunkPlaylistSongs } from '../../redux/songs';
@@ -10,6 +11,7 @@ import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
 import EditPlaylistModal from '../EditPlaylistModal';
 import DeletePlaylistModal from '../DeletePlaylistModal';
 import { FaPlay } from "react-icons/fa";
+import { IoArrowBackOutline } from "react-icons/io5";
 
 export default function PlaylistComponent() {
     const dispatch = useDispatch();
@@ -37,6 +39,9 @@ export default function PlaylistComponent() {
 
     return (
         <div className='single-playlist'>
+            <div className="back-button">
+                <Link to='/playlists/' ><IoArrowBackOutline /></Link> 
+            </div>
             
             <div className='img-info'>
                <img src={targetPlaylist?.image} id='playlist' />
@@ -55,19 +60,17 @@ export default function PlaylistComponent() {
                         </div>    
                     </h4>
                     {isOwner && 
-                    <button>
-                        <OpenModalMenuItem
-                        itemText='Edit Playlist'
-                        modalComponent={<EditPlaylistModal id={playlistId} playlist={targetPlaylist} />} 
-                        />
-                    </button>}
+                    <OpenModalMenuItem
+                    itemText={<button>Edit Playlist</button>}
+                    modalComponent={<EditPlaylistModal id={playlistId} playlist={targetPlaylist} />} 
+                    />
+                   }
                     {isOwner && 
-                    <button id='reverse'>
-                        <OpenModalMenuItem
-                        itemText='Delete Playlist'
-                        modalComponent={<DeletePlaylistModal navigate={navigate} id={playlistId} />} 
-                        />
-                    </button>}
+                    <OpenModalMenuItem
+                    itemText={<button id='reverse'>Delete Playlist</button>}
+                    modalComponent={<DeletePlaylistModal navigate={navigate} id={playlistId} />} 
+                    />
+                    }
                 </div> 
                </div>
                 

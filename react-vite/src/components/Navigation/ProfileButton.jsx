@@ -59,22 +59,18 @@ function ProfileButton() {
               <li>
                 <button onClick={logout}>Log Out</button>
               </li>
-              <li>
-                <button>
-                  <OpenModalMenuItem
-                  itemText="Edit Account"
-                  modalComponent={<EditProfileModal />}
-                  />
-                </button>
-              </li>
-              <li>
-                <button>
-                  <OpenModalMenuItem
-                  itemText='Delete Account'
-                  modalComponent={<DeleteProfileModal />}
-                  />
-              </button>
-              </li>
+             
+              <OpenModalMenuItem
+              itemText={<button>Edit Account</button>}
+              modalComponent={<EditProfileModal />}
+              />
+            
+             
+              <OpenModalMenuItem
+              itemText={<button>Delete Account</button>}
+              modalComponent={<DeleteProfileModal />}
+              />
+         
               
             </>
           ) : (
