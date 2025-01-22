@@ -14,7 +14,7 @@ def playlists():
     playlists = Playlists.query.all()
 
     if not playlists:
-        return { 'message': 'No playlists found' }
+        return { 'message': 'No playlists found' }, 404
     
     return {'playlists': [playlist.to_dict() for playlist in playlists]}
 
@@ -27,7 +27,7 @@ def created_playlists():
     playlists = Playlists.query.filter(Playlists.creator_id == current_user.get_id())
 
     if not playlists:
-        return { 'message': 'No playlists found' }
+        return { 'message': 'No playlists found' }, 404
     
     return {'playlists': [playlist.to_dict() for playlist in playlists]}
 
@@ -59,7 +59,7 @@ def playlist(id):
     playlist = Playlists.query.get(id)
 
     if not playlist:
-        return { 'message': 'Playlist not found' }
+        return { 'message': 'Playlist not found' }, 404
     
     return playlist.to_dict()
 
@@ -71,8 +71,10 @@ def add_song(id):
     """
     playlist = Playlists.query.get(id)
 
+    
+
     if not playlist:
-        return { 'message': 'Playlist not found' }
+        return { 'message': 'Playlist not found' }, 404
     
     if playlist.creator_id != current_user.id:
         return jsonify({'message': 'Forbidden'}), 403
@@ -80,15 +82,18 @@ def add_song(id):
     
     form = PlaylistSongsForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    if form.validate_on_submit():
-        new_song = PlaylistSongs(
-            added_by=current_user.get_id(),
-            playlist_id=id,
-            song_id=form.data['song_id']
-        )
-        db.session.add(new_song)
-        db.session.commit()
-        return new_song.to_dict(), 201
+    # find playlist song with same song id as form data and same playlist id as id
+    song = PlaylistSongs.query.filter(and_(PlaylistSongs.song_id == form.data['song_id'], PlaylistSongs.playlist_id == id)).first()
+    if not song:
+        if form.validate_on_submit():
+            new_song = PlaylistSongs(
+                added_by=current_user.get_id(),
+                playlist_id=id,
+                song_id=form.data['song_id']
+            )
+            db.session.add(new_song)
+            db.session.commit()
+            return new_song.to_dict(), 201
     return form.errors, 401
     
 
@@ -151,7 +156,7 @@ def delete_playlist_song(id, song_id):
     if song:
         db.session.delete(song)
         db.session.commit()
-        return jsonify({'message': "Successfully deleted"}), 204
+        return {'message': "Successfully deleted"}, 204
 
 @playlist_routes.route('/<int:id>', methods=['PUT'])
 @login_required

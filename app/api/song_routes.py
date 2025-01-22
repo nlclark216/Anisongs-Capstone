@@ -269,7 +269,7 @@ def delete_lyric(id):
     if lyrics:
         db.session.delete(lyrics)
         db.session.commit()
-        return jsonify({'message': "Successfully deleted"}), 204
+        return {'message': "Successfully deleted"}, 204
     
 @song_routes.route('/<int:id>', methods=['POST'])
 @login_required
