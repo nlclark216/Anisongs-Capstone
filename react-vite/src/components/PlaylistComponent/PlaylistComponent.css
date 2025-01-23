@@ -22,6 +22,7 @@
 .img-info {
     display: flex;
     column-gap: 60px;
+    margin: 0 auto;
 }
 
 .created-for {
@@ -124,9 +125,15 @@
     border-radius: 60px;
 }
 
+.title-likes {
+    display: flex;
+    justify-content: center;
+}
+
 .creator-info {
     /* border: solid red; */
     display: flex;
+    justify-content: center;
     align-items: center;
     column-gap: 16px;
     font-weight: 400;
@@ -163,4 +170,18 @@
     .info#playlist {
         width: fit-content;
     }
+}
+    .created-for li {
+        display: flex;
+        justify-content: center;
+    }
+
+@media only screen and (max-width: 500px) {
+    .list-song-tile {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+    }
+
+    
 }

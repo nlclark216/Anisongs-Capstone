@@ -47,7 +47,14 @@ function ProfileButton() {
 
   return (
     <>
-      <button id="right" onClick={toggleMenu}>
+      <button
+      data-tooltip-class-name="img-info"
+      data-tooltip-id="tooltip"
+      data-tooltip-float={true}
+      data-tooltip-place="top"
+      data-tooltip-content='Profile'
+      id="right" 
+      onClick={toggleMenu}>
         {!user ? <FaUserCircle /> : <img height='40px' className="profile-pic-nav" src={user?.profile_pic} />}
       </button>
       {showMenu && (

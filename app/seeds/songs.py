@@ -69,7 +69,7 @@ def seed_songs():
         song_file='song file url',
         anime='Bleach',
         album_name='Gou On Progressive',
-        album_art='https://t2.genius.com/unsafe/177x177/https%3A%2F%2Fimages.genius.com%2Fcfdba2d7e3defef773fed294a1bf179b.754x754x1.jpg',
+        album_art='https://m.media-amazon.com/images/I/41WNM5WTBFL.jpg',
         year=2006
     )
     song8 = Songs(

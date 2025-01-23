@@ -12,6 +12,7 @@ import EditPlaylistModal from '../EditPlaylistModal';
 import DeletePlaylistModal from '../DeletePlaylistModal';
 import { FaPlay } from "react-icons/fa";
 import { IoArrowBackOutline } from "react-icons/io5";
+import { Tooltip } from 'react-tooltip';
 
 export default function PlaylistComponent() {
     const dispatch = useDispatch();
@@ -29,7 +30,6 @@ export default function PlaylistComponent() {
         return alert('Coming soon!')
     }
 
-    
     const allPlaylists = useSelector(state=>state.playlists.allPlaylists);
     const targetPlaylist = allPlaylists[playlistId];
     const songs = useSelector(state=>state.songs.playlistSongs);
@@ -40,7 +40,15 @@ export default function PlaylistComponent() {
     return (
         <div className='single-playlist'>
             <div className="back-button">
-                <Link to='/playlists/' ><IoArrowBackOutline /></Link> 
+                <Tooltip id="tooltip" followCursor/>
+                <Link
+                data-tooltip-class-name="img-info"
+                data-tooltip-id="tooltip"
+                data-tooltip-float={true}
+                data-tooltip-place="bottom"
+                data-tooltip-content='Back' 
+                to='/playlists/' 
+                ><IoArrowBackOutline /></Link> 
             </div>
             
             <div className='img-info'>

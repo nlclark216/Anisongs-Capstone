@@ -9,10 +9,12 @@ function Navigation() {
       <li>
         <MenuButton />
       </li>
+      
 
       <li>
         <ProfileButton />
       </li>
+      
     </ul>
   );
 }

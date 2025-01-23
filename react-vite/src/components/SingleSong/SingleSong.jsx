@@ -1,6 +1,6 @@
 import './SingleSong.css'
 import { useDispatch, useSelector } from 'react-redux'
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { thunkAllSongs } from '../../redux/songs';
 import { thunkSongLyrics } from '../../redux/lyrics';
 import { useNavigate, useParams, Link } from 'react-router-dom';
@@ -15,11 +15,13 @@ import { TbMusicPlus } from 'react-icons/tb';
 import AddSongModal from '../AddSongModal';
 import { IoArrowBackOutline } from "react-icons/io5";
 import { FaPlay } from "react-icons/fa";
+import { Tooltip } from 'react-tooltip';
 
 export default function SingleSong() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const user = useSelector(state=>state.session.user);
+    const [showLyrics, setShowLyrics] = useState(false);
     const { songId } = useParams();
 
     useEffect(() => {
@@ -29,6 +31,10 @@ export default function SingleSong() {
 
     const handleClick = () => {
         return alert('Coming soon!')
+    }
+
+    const onClick = () => {
+        return setShowLyrics(!showLyrics)
     }
 
     const songs = useSelector(state=>state.songs.allSongs);
@@ -44,7 +50,14 @@ export default function SingleSong() {
     return (
     <div className='single-song-page'>
         <div className="back-button">
-            <Link to='/songs/' ><IoArrowBackOutline /></Link> 
+            <Tooltip id="tooltip" followCursor/>
+            <Link
+            data-tooltip-class-name="img-info"
+            data-tooltip-id="tooltip"
+            data-tooltip-float={true}
+            data-tooltip-place="bottom"
+            data-tooltip-content='Back'
+             to='/songs/' ><IoArrowBackOutline /></Link> 
         </div>
         <div className='song-info'>
             <div className='song-img-info' id='song-page'>
@@ -60,7 +73,7 @@ export default function SingleSong() {
                     <FaPlay />Play</button>}
                     {user && 
                     <OpenModalMenuItem
-                    itemText={<button><TbMusicPlus /> Add to Playlist</button>}
+                    itemText={<button id='play'><TbMusicPlus /> Add to Playlist</button>}
                     modalComponent={<AddSongModal songId={song?.id} user={user} />}
                     />
                     }
@@ -106,9 +119,11 @@ export default function SingleSong() {
             </div>
         </div>      
     </div>
+
+    {user && <button className='lyrics-show' onClick={onClick}>Lyrics</button>}
             
 
-    <div className='lyrics-translation-container'>
+    {showLyrics && <div className='lyrics-translation-container'>
         <div className='lyrics'>
             {lyrics && 
             Object.values(lyrics)?.length > 0 && 
@@ -130,7 +145,7 @@ export default function SingleSong() {
             </div>
             }
         </div>
-    </div>
+    </div>}
 
     {!user && <p>Login to view lyrics submitted by Ani-Songs users!</p>}
     </div>

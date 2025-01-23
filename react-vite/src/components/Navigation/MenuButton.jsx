@@ -29,7 +29,15 @@ export default function MenuButton() {
 
   return (
     <>
-      <button id="left" onClick={toggleMenu}>
+      <button
+      data-tooltip-class-name="img-info"
+      data-tooltip-id="tooltip"
+      data-tooltip-float={true}
+      data-tooltip-place="top"
+      data-tooltip-content='Menu' 
+      id="left" 
+      onClick={toggleMenu}
+      >
         <IoIosMenu />
       </button>
       {showMenu && (

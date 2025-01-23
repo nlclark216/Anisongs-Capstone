@@ -47,6 +47,10 @@
 .back-button {
     /* border: solid red; */
     display: flex;
+    
+}
+
+.back-button a {
     font-size: 32px;
 }
 

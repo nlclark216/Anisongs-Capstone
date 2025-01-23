@@ -6,6 +6,7 @@ import { thunkAllLikes } from '../../redux/likes';
 import SongTile from './SongTileComponent';
 import { useNavigate, Link } from 'react-router-dom';
 import { IoArrowBackOutline } from "react-icons/io5";
+import { Tooltip } from 'react-tooltip';
 
 
 
@@ -35,7 +36,14 @@ export default function SongsComponent() {
     if(user) { return(
         <div className='songs-page'>
             <div className="back-button">
-                <Link to='/' ><IoArrowBackOutline /></Link> 
+                <Tooltip id="tooltip" followCursor/>
+                <Link
+                data-tooltip-class-name="img-info"
+                data-tooltip-id="tooltip"
+                data-tooltip-float={true}
+                data-tooltip-place="bottom"
+                data-tooltip-content='Back' 
+                to='/' ><IoArrowBackOutline /></Link> 
             </div>
         <h1>Songs</h1>
            <div className='title-button' id='songs-page'>
