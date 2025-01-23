@@ -32,7 +32,7 @@ export default function LandingPage(){
         <h1>Welcome to Ani-Songs!</h1>
         <h2 id='landing'><Link to='/songs'>Newest Uploads</Link> <FiChevronRight /></h2>
         <div className='all-songs' id='before-login'>
-        {allSongs && allSongs.map(song=>(
+        {allSongs && allSongs.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).map(song=>(
             <SongTile key={song.id} song={song} user={currentUser} />
         ))}
         </div> 
@@ -58,25 +58,33 @@ export default function LandingPage(){
     </h2>}
     <div className='user-songs' id='landing'>
     {userSongs && 
-    userSongs.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
+    userSongs.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
     .map(song=>(
         <SongTile key={song.id} song={song} user={currentUser} />
     ))}
     </div>
     {userPlaylists.length > 1 && <h2 id='landing'><Link to='/playlists/'>Your Playlists</Link> <FiChevronRight /></h2>}
     <div className='user-playlists' id='landing'>
-        {userPlaylists && userPlaylists.map(list=><ListTile key={list?.id} playlist={list} />)}  
+        {userPlaylists && 
+        userPlaylists.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+        .map(list=>
+        <ListTile key={list?.id} playlist={list} />)}  
     </div>
     <h2 id='landing'><Link to='/songs'>All Songs</Link> <FiChevronRight /></h2>
     <div className='all-songs' id='landing'>
     
-    {allSongs && allSongs.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt)).map(song=>(
+    {allSongs && allSongs
+    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+    .map(song=>(
         <SongTile key={song.id} song={song} user={currentUser} />
     ))}
     </div>
     <h2 id='landing'><Link to='/songs'>All Playlists</Link> <FiChevronRight /></h2>
     <div className='all-playlists'>
-        {allPlaylists && allPlaylists.map(list=><ListTile key={list?.id} playlist={list} />)}
+        {allPlaylists && 
+        allPlaylists.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+        .map(list=>
+        <ListTile key={list?.id} playlist={list} />)}
     </div>
     
     </div> 

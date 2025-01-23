@@ -9,7 +9,6 @@ export default function CreatePlaylistForm() {
     const { closeModal } = useModal();
 
     const [name, setName] = useState('');
-    // const [image, setImage] = useState();
     const [errors, setErrors] = useState({});
 
     const handleSubmit = async e => {

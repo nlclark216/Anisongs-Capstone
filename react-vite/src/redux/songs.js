@@ -1,5 +1,7 @@
 // import { csrfFetch } from "./csrf";
 
+import { csrfFetch } from "./csrf";
+
 const LOAD_SONGS = 'songs/loadSongs';
 const USER_SONGS = 'songs/userSongs';
 const DELETE_SONG = 'songs/deleteSong';
@@ -71,8 +73,8 @@ export const thunkDeleteSong = (id, navigate) => async dispatch => {
     const res = await fetch(`/api/songs/${+id}`, {method: 'DELETE'})
     if(res.ok) {
         dispatch(deleteSong(+id));
-        navigate('/songs/');
         window.location.reload();
+        navigate('/songs/');
     } else if (res.status < 500) {
     const errorMessages = await res.json();
     return errorMessages

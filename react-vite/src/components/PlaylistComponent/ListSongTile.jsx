@@ -6,7 +6,6 @@ import { TbMusicMinus } from "react-icons/tb";
 
 export default function ListSongTile({song, user, playlist, listSongs}) {
     const isPlaylistOwner = playlist?.creator_id === user?.id;
-    console.log(song)
 
     return (
         <div key={song?.id} className="list-song-tile">

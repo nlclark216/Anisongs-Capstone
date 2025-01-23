@@ -39,7 +39,7 @@ export default function CreateSongForm() {
           if (serverResponse) {
             setErrors(serverResponse);
           } else {
-            setSongLoading(true)
+            setSongLoading(true);
             alert('Song created!!');
             navigate('/songs/');
           }
@@ -51,6 +51,7 @@ export default function CreateSongForm() {
            <Link to='/songs/' ><IoArrowBackOutline /></Link> 
         </div>
         <h1>Upload Song</h1>
+        {songLoading && <p className="warning">Loading...</p>}
         {errors.server && <p className="error">{errors.server}</p>}
         <form 
         action="/posts/new" 
@@ -88,7 +89,7 @@ export default function CreateSongForm() {
                 required
                 />
             </label>
-            {(songLoading)&& <p>Loading...</p>}
+            
             {errors.file && <p className="error">{errors.file}</p>}
             <label>
                 Year

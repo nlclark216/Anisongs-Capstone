@@ -210,11 +210,12 @@ def delete_song(id):
         return jsonify({'message': 'Song not found'}), 404
     if song.owner_id != current_user.id:
         return jsonify({'message': 'Forbidden'}), 403
-
+    
     if song:
+        remove_file_from_s3(song.song_file)
         db.session.delete(song)
         db.session.commit()
-        return {'message': "Successfully deleted"}
+        return {'message': "Successfully deleted"}, 204
     
 @song_routes.route('/<int:id>/lyrics', methods=['PUT'])
 @login_required

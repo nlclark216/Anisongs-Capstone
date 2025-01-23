@@ -9,7 +9,7 @@ export default function EditSongModal({song}) {
     const { closeModal } = useModal();
     const [title, setTitle] = useState(song?.title);
     const [artist, setArtist] = useState(song?.artist);
-    const [file, setFile] = useState(null);
+    // const [file, setFile] = useState(song?.file);
     const [year, setYear] = useState(song?.year);
     const [anime, setAnime] = useState(song?.anime);
     const [albumName, setAlbumName] = useState(song?.album_name);
@@ -22,7 +22,7 @@ export default function EditSongModal({song}) {
         const formData = new FormData();
         formData.append('title', title);
         formData.append('artist', artist);
-        formData.append('song_file', file);
+        // formData.append('song_file', file);
         formData.append('year', year);
         formData.append('album_name', albumName);
         if(albumArtwork !== '') {formData.append('album_art', albumArtwork)}
@@ -72,16 +72,16 @@ export default function EditSongModal({song}) {
                 />
             </label>
             {errors.artist && <p className="error">{errors.artist}</p>}
-            <label>
+            {/* <label>
                 Upload Song File
                 <input
-                type="file"
-                accept="audio/*"
+                type="text"
+                // accept="audio/*"
                 defaultValue={file}
                 onChange={(e) => setFile(e.target.files[0])}
                 required
                 />
-            </label>
+            </label> */}
             {errors.file && <p className="error">{errors.file}</p>}
             <label>
                 Year
