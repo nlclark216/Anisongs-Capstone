@@ -27,6 +27,10 @@ export default function SongsComponent() {
     const userSongs = useSelector(state=>state.songs.userSongs);
     let otherSongs;
     if(allSongs) otherSongs = Object.values(allSongs).filter(list=>list?.owner_id !== user?.id);
+
+    const likes = Object.values(useSelector(state=>state.likes.allLikes));
+    const userLikes = likes.filter(like=>like.owner_id === user.id)
+    console.log(userLikes)
     
     const handleClick = e => {
         e.preventDefault();
@@ -45,10 +49,10 @@ export default function SongsComponent() {
                 data-tooltip-content='Home' 
                 to='/' ><IoArrowBackOutline /></Link> 
             </div>
-        <h1>Songs</h1>
+        <h1>Songs <button onClick={handleClick}>upload a track</button> </h1>
            <div className='title-button' id='songs-page'>
             <h2>Your Songs</h2>
-                <button onClick={handleClick}>upload a track</button>
+                
             </div>
             <div className='songs-container' id='your-songs'>
                {userSongs && 
@@ -57,14 +61,24 @@ export default function SongsComponent() {
                <SongTile key={song.id} song={song} user={user} 
                />)} 
             </div>
+            {userLikes && userLikes.length > 0 && <h2>Favorites</h2>}
+
+            {userLikes && userLikes.length > 0 && 
+            <div className='songs-container' id='user-faves'>
+                {userLikes
+                .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+                .map(like=><SongTile key={like.id} song={like?.song} user={user} />)}
+            </div>
+            }
+
+
             
-            <h2>User Submissions</h2>
+        <h2>User Submissions</h2>
             <div className='songs-container' id='user-songs'>
             {otherSongs && 
             otherSongs.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).map(song=>
             <SongTile key={song.id} song={song} user={user} 
-            />
-            )
+            />)
             } 
             </div>
         </div>

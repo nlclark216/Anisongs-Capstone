@@ -19,10 +19,8 @@ class Likes(db.Model):
             'id': self.id,
             'owner_id': self.owner_id,
             'song_id': self.song_id,
+            'createdAt': self.created_at,
+            'updatedAt': self.updated_at,
             'owner': (self.owner.username) if self.owner_id != current_user.id else 'Current User',
-            'song': {'title': self.song.title,
-                      'anime': self.song.anime, 
-                      'artist': self.song.artist, 
-                      'year': self.song.year, 
-                      'language': self.song.language} if self.song else None  
+            'song': self.song.to_dict() if self.song else None  
         }

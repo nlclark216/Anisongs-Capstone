@@ -10,7 +10,7 @@
     /* border: dashed yellow; */
     display: flex;
     width: 80%;
-    height: 24px;
+    height: 20px;
 }
 
 .song-tile-title span {
@@ -115,6 +115,12 @@
     margin: 10px 0px;
 }
 
+.songs-page h1 {
+    display: flex;
+    align-items: center;
+    column-gap: 16px;
+}
+
 /* Song Tiles Container */
 
 .songs-container {
@@ -131,6 +137,13 @@
 .songs-container img {
     height: 180px;
     width: 180px;
+}
+
+.songs-container#user-faves {
+    /* border: solid red; */
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
 }
 
 /* Responsive Design */

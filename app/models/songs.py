@@ -37,7 +37,7 @@ class Songs(db.Model):
             'songImage': self.song_img,
             'anime': self.anime,
             'albumName': self.album_name,
-            'albumArtwork': self.album_art,
+            'album_art': self.album_art,
             'year': self.year,
             'language': self.language,
             'createdAt': self.created_at,
