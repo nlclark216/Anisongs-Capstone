@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react';
 import { thunkAllSongs } from '../../redux/songs';
 import { thunkSongLyrics } from '../../redux/lyrics';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, Link } from 'react-router-dom';
 import CheckLikes from './CheckLikesComponent';
 import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
 import EditSongModal from '../EditSongModal';
@@ -13,6 +13,7 @@ import DeleteLyricsModal from '../DeleteLyricsModal';
 import CreateLyricsForm from '../CreateLyricsForm';
 import { TbMusicPlus } from 'react-icons/tb';
 import AddSongModal from '../AddSongModal';
+import { IoArrowBackOutline } from "react-icons/io5";
 
 export default function SingleSong() {
     const dispatch = useDispatch();
@@ -37,6 +38,9 @@ export default function SingleSong() {
 
     return (
     <div className='single-song-page'>
+        <div className="back-button">
+            <Link to='/songs/' ><IoArrowBackOutline /></Link> 
+        </div>
         <div className='song-info'>
             <div className='song-img-info' id='song-page'>
                 <img id='song' src={song?.album_art} />
@@ -118,7 +122,7 @@ export default function SingleSong() {
             </label>}
         </div>
     </div>
-    
+
     {!user && <p>Login to view lyrics submitted by Ani-Songs users!</p>}
     </div>
     )

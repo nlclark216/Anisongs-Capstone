@@ -4,7 +4,8 @@ import { useEffect } from 'react';
 import { thunkAllSongs, thunkUserSongs } from '../../redux/songs';
 import { thunkAllLikes } from '../../redux/likes';
 import SongTile from './SongTileComponent';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
+import { IoArrowBackOutline } from "react-icons/io5";
 
 
 
@@ -33,6 +34,9 @@ export default function SongsComponent() {
 
     if(user) { return(
         <div className='songs-page'>
+            <div className="back-button">
+                <Link to='/' ><IoArrowBackOutline /></Link> 
+            </div>
         <h1>Songs</h1>
            <div className='title-button' id='songs-page'>
             <h2>Your Songs</h2>

@@ -12,10 +12,18 @@
     row-gap: 20px;
 }
 
-.user-songs,
 .user-playlists,
+.all-playlists,
 .all-songs,
-.all-playlists {
+.user-songs {
+    display: flex;
+    column-gap: 40px;
+    overflow: scroll;
+}
+
+
+.all-songs,
+.user-songs {
     display: flex;
     column-gap: 20px;
     overflow: scroll;
@@ -25,14 +33,26 @@ div::-webkit-scrollbar {
     display: none;  /* Safari and Chrome */
 }
 
-h3#landing {
+h2#landing {
     /* border: dotted yellow; */
     display: flex;
     align-items: center;
+    margin: 10px 0px;
 }
 
 .user-songs button,
 .all-songs button {
     /* border: solid red; */
     display: none;
+}
+
+polyline {
+    height: 100%;
+}
+
+/* Song Tiles */
+
+.landing .song-tile {
+    /* border: solid red; */
+    width: fit-content;
 }

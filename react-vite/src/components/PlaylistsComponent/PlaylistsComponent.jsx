@@ -5,6 +5,8 @@ import { thunkAllPlaylists, thunkUserPlaylists } from '../../redux/playlists';
 import ListTile from './ListTileComponent';
 import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
 import CreatePlaylistForm from '../CreatePlaylistForm';
+import { Link } from 'react-router-dom';
+import { IoArrowBackOutline } from "react-icons/io5";
 
 export default function PlaylistsComponent() {
     const dispatch = useDispatch();
@@ -22,6 +24,9 @@ export default function PlaylistsComponent() {
 
     if(user) { return(
     <div className='playlists-page'>
+        <div className="back-button">
+            <Link to='/' ><IoArrowBackOutline /></Link> 
+        </div>
     <h1>Playlists</h1>
     <h2 className='your-playlists'>Your Playlists 
         <OpenModalMenuItem
@@ -38,7 +43,7 @@ export default function PlaylistsComponent() {
       />)}  
     </div>
     
-    <h3>User Submissions</h3>
+    <h2>User Submissions</h2>
     <div className='list-tiles-container'>
         {otherLists && 
         otherLists?.length > 0 && 

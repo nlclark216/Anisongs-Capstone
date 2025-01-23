@@ -25,9 +25,8 @@ export default function ListSongTile({song, user, playlist, listSongs}) {
             <p className="album" id="list-tile">{song?.song.album}</p>
             {isPlaylistOwner && 
             <>
-                <TbMusicMinus /> 
                 <OpenModalMenuItem
-                itemText={<button>Remove</button>}
+                itemText={<button><TbMusicMinus />Remove</button>}
                 modalComponent={
                 <RemovePlaylistSongModal id={song?.song_id} listSongs={listSongs} 
                 />} 

@@ -63,13 +63,14 @@
     display: flex;
     flex-direction: column;
     background-color: #282828;
-    row-gap: 20px;
+    row-gap: 10px;
 }
 
 .title-button {
     /* border: solid red; */
     display: flex;
     column-gap: 20px;
+    align-items: center;
 }
 
 .title-button h2 {
@@ -78,6 +79,7 @@
 
 .title-button button {
     border: none;
+    height: 32px;
     border-radius: 8px;
     background-color: #d07dfb;
     font-weight: 600;
@@ -88,6 +90,11 @@
     background-color: #c769f9;
     color: #3f3f3f;
     transform: scale(105%);
+}
+
+.songs-page h1,
+.songs-page h2 {
+    margin: 10px 0px;
 }
 
 /* Song Tiles Container */

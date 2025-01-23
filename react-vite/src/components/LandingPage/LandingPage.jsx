@@ -30,13 +30,13 @@ export default function LandingPage(){
     if(!currentUser) return (
     <div className='landing'>
         <h1>Welcome to Ani-Songs!</h1>
-        <h3 id='landing'><Link to='/songs'>Newest Uploads</Link> <FiChevronRight /></h3>
+        <h2 id='landing'><Link to='/songs'>Newest Uploads</Link> <FiChevronRight /></h2>
         <div className='all-songs' id='before-login'>
         {allSongs && allSongs.map(song=>(
             <SongTile key={song.id} song={song} user={currentUser} />
         ))}
         </div> 
-        <h3 id='landing'><Link to='/playlists'>Top Playlists</Link> <FiChevronRight /></h3>
+        <h2 id='landing'><Link to='/playlists'>Top Playlists</Link> <FiChevronRight /></h2>
         <div className='all-playlists'>
            {allPlaylists && 
            allPlaylists
@@ -50,29 +50,31 @@ export default function LandingPage(){
     <div className='landing'>
     <h1>Home</h1>
     {userPlaylists.length > 1 && 
-    <h3 id='landing'>
+    <h2 id='landing'>
         <Link to='/songs'>
         Your Songs
         </Link> 
         <FiChevronRight />
-    </h3>}
+    </h2>}
     <div className='user-songs' id='landing'>
-    {userSongs && userSongs.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt)).map(song=>(
-        <SongTile key={song.id} song={song} user={currentUser} id='landing-song-tile'  />
+    {userSongs && 
+    userSongs.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
+    .map(song=>(
+        <SongTile key={song.id} song={song} user={currentUser} />
     ))}
     </div>
-    {userPlaylists.length > 1 && <h3 id='landing'><Link to='/playlists/'>Your Playlists</Link> <FiChevronRight /></h3>}
+    {userPlaylists.length > 1 && <h2 id='landing'><Link to='/playlists/'>Your Playlists</Link> <FiChevronRight /></h2>}
     <div className='user-playlists' id='landing'>
         {userPlaylists && userPlaylists.map(list=><ListTile key={list?.id} playlist={list} />)}  
     </div>
-    <h3 id='landing'><Link to='/songs'>All Songs</Link> <FiChevronRight /></h3>
+    <h2 id='landing'><Link to='/songs'>All Songs</Link> <FiChevronRight /></h2>
     <div className='all-songs' id='landing'>
     
     {allSongs && allSongs.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt)).map(song=>(
-        <SongTile key={song.id} song={song} user={currentUser} id='landing-song-tile' />
+        <SongTile key={song.id} song={song} user={currentUser} />
     ))}
     </div>
-    <h3 id='landing'><Link to='/songs'>All Playlists</Link> <FiChevronRight /></h3>
+    <h2 id='landing'><Link to='/songs'>All Playlists</Link> <FiChevronRight /></h2>
     <div className='all-playlists'>
         {allPlaylists && allPlaylists.map(list=><ListTile key={list?.id} playlist={list} />)}
     </div>

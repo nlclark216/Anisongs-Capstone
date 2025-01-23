@@ -32,19 +32,17 @@ export default function CreatePlaylistForm() {
 
     return (
         <div className="modal" id="create-playlist">
-            <h1>Create Playlist</h1>
+            <h1>Create New Playlist</h1>
             {errors.server && <p className="error">{errors?.server}</p>}
             <form onSubmit={handleSubmit}>
                 <p>Choose a name for your new playlist</p>
-                <label>
-                    Name
-                    <input
-                    type="text"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    required 
-                    />
-                </label>
+                <input
+                type="text"
+                placeholder="New Playlist Name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required 
+                />
                 {errors.name && <p className="error">{errors.name}</p>}
                 <button
                 type="submit"

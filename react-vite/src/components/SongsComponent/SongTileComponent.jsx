@@ -16,8 +16,8 @@ export default function SongTile({song, user}) {
 
     if (song?.likes) likes = song?.likes;
     return (
-    <div className='song-tile' id='landing'>
-        <div className='favorite-add' id='landing'>
+    <div className='song-tile'>
+        <div className='favorite-add'>
             {user && 
             <OpenModalMenuItem
             itemText={
