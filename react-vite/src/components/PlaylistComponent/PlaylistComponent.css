@@ -125,10 +125,6 @@
     border-radius: 60px;
 }
 
-.title-likes {
-    display: flex;
-    justify-content: center;
-}
 
 .creator-info {
     /* border: solid red; */
