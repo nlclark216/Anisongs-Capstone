@@ -1,0 +1,26 @@
+.modal#edit-lyrics {
+    width: 600px;
+    height: fit-content;
+}
+
+.modal#edit-lyrics textarea {
+    height: 150px;
+}
+
+@media only screen and (max-width: 800px) {
+    .modal#edit-lyrics {
+        width: 400px;
+    }
+    .modal#edit-lyrics textarea {
+        height: 75px;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .modal#edit-lyrics {
+        width: 200px;
+    }
+    .modal#edit-lyrics textarea {
+        height: 40px;
+    }
+}

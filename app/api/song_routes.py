@@ -3,7 +3,7 @@ from flask_login import login_required, current_user
 from sqlalchemy import and_
 from app.models import Songs, db, Lyrics, PlaylistSongs, Likes
 from app.forms import SongForm, LyricsForm, LikesForm
-from .helper import (upload_file_to_s3, get_unique_filename)
+from .helper import (upload_file_to_s3, get_unique_filename, remove_file_from_s3)
 
 song_routes = Blueprint('songs', __name__)
 

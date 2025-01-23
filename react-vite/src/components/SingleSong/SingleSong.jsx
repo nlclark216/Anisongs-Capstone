@@ -14,6 +14,7 @@ import CreateLyricsForm from '../CreateLyricsForm';
 import { TbMusicPlus } from 'react-icons/tb';
 import AddSongModal from '../AddSongModal';
 import { IoArrowBackOutline } from "react-icons/io5";
+import { FaPlay } from "react-icons/fa";
 
 export default function SingleSong() {
     const dispatch = useDispatch();
@@ -25,6 +26,10 @@ export default function SingleSong() {
             dispatch(thunkAllSongs());
             if(user)dispatch(thunkSongLyrics(songId))
         }, [dispatch, songId, user]);
+
+    const handleClick = () => {
+        return alert('Coming soon!')
+    }
 
     const songs = useSelector(state=>state.songs.allSongs);
     const song = songs[songId];
@@ -50,6 +55,9 @@ export default function SingleSong() {
                         {likes && user && 
                         <CheckLikes user={user} songId={songId} />}
                     </h1>
+                    {user && 
+                    <button id='play' onClick={handleClick}>
+                    <FaPlay />Play</button>}
                     {user && 
                     <OpenModalMenuItem
                     itemText={<button><TbMusicPlus /> Add to Playlist</button>}
@@ -86,7 +94,7 @@ export default function SingleSong() {
                 />
             </div>
             }
-            {user && lyrics?.message &&
+            {user && songOwner && lyrics?.message &&
             <div className='buttons' id='song-page'>
                 <OpenModalMenuItem
                 itemText={<button>Add Lyrics</button>}

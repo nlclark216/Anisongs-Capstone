@@ -5,6 +5,9 @@
     background-color: #312039;
     max-width: 1000px;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
 }
 
 
@@ -22,6 +25,10 @@
     height: 200px;
     width: 200px;
     border-radius: 4px;
+}
+
+.single-song-page button {
+    width: 100%;
 }
 
 /* Title and Favoites Icon */
@@ -98,4 +105,16 @@ svg#like-icon:hover {
     /* border: solid red; */
     color: rgb(255, 197, 5);
     cursor: pointer;
+}
+
+/* Info buttons */
+
+.info button {
+    /* border: solid red; */
+    margin: 12px 0px;
+}
+
+.info button#play {
+    /* border: dashed yellow; */
+    column-gap: 8px;
 }
