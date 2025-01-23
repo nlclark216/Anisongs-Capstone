@@ -42,7 +42,7 @@ export default function SongsComponent() {
                 data-tooltip-id="tooltip"
                 data-tooltip-float={true}
                 data-tooltip-place="bottom"
-                data-tooltip-content='Back' 
+                data-tooltip-content='Home' 
                 to='/' ><IoArrowBackOutline /></Link> 
             </div>
         <h1>Songs</h1>
@@ -79,7 +79,7 @@ export default function SongsComponent() {
                 data-tooltip-id="tooltip"
                 data-tooltip-float={true}
                 data-tooltip-place="bottom"
-                data-tooltip-content='Back' 
+                data-tooltip-content='Home' 
                 to='/' ><IoArrowBackOutline /></Link> 
             </div>
         <h1>Songs</h1>

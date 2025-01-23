@@ -46,7 +46,7 @@ export default function PlaylistComponent() {
                 data-tooltip-id="tooltip"
                 data-tooltip-float={true}
                 data-tooltip-place="bottom"
-                data-tooltip-content='Back' 
+                data-tooltip-content='Playlists' 
                 to='/playlists/' 
                 ><IoArrowBackOutline /></Link> 
             </div>

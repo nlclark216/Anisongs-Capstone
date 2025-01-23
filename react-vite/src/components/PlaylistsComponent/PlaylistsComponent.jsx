@@ -32,7 +32,7 @@ export default function PlaylistsComponent() {
             data-tooltip-id="tooltip"
             data-tooltip-float={true}
             data-tooltip-place="bottom"
-            data-tooltip-content='Back' 
+            data-tooltip-content='Home' 
             to='/' ><IoArrowBackOutline /></Link> 
         </div>
     <h1>Playlists</h1>
@@ -74,7 +74,7 @@ export default function PlaylistsComponent() {
         data-tooltip-id="tooltip"
         data-tooltip-float={true}
         data-tooltip-place="bottom"
-        data-tooltip-content='Back' 
+        data-tooltip-content='Home' 
         to='/' ><IoArrowBackOutline /></Link> 
     </div>
     <h1>Playlists</h1>

@@ -56,7 +56,7 @@ export default function SingleSong() {
             data-tooltip-id="tooltip"
             data-tooltip-float={true}
             data-tooltip-place="bottom"
-            data-tooltip-content='Back'
+            data-tooltip-content='Songs'
              to='/songs/' ><IoArrowBackOutline /></Link> 
         </div>
         <div className='song-info'>
@@ -119,8 +119,6 @@ export default function SingleSong() {
             </div>
         </div>      
     </div>
-
-    {console.log(lyrics)}
 
     {user && 
     lyrics && 
