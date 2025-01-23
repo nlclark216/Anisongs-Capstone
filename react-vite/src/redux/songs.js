@@ -1,7 +1,3 @@
-// import { csrfFetch } from "./csrf";
-
-import { csrfFetch } from "./csrf";
-
 const LOAD_SONGS = 'songs/loadSongs';
 const USER_SONGS = 'songs/userSongs';
 const DELETE_SONG = 'songs/deleteSong';

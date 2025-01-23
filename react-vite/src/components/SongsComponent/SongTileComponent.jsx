@@ -4,6 +4,7 @@ import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
 import AddSongModal from '../AddSongModal';
 import { TbMusicPlus } from 'react-icons/tb';
 import { useModal } from '../../context/Modal';
+import { Tooltip } from 'react-tooltip';
 
 export default function SongTile({song, user}) {
     const { closeModal } = useModal();
@@ -29,10 +30,19 @@ export default function SongTile({song, user}) {
             />}
             />
             }
+        </div>
+
+        <div
+        data-tooltip-class-name="img-info"
+        data-tooltip-id="tooltip"
+        data-tooltip-float={true}
+        data-tooltip-place="bottom"
+        data-tooltip-content={song.anime}
+        >
+            <Tooltip id="tooltip" followCursor/>
+           <img src={imgSrc(song)} /> 
         </div> 
-        <img src={imgSrc(song)} />   
-        
-            
+
         <h4 className='title-likes'>
         <Link 
         key={song?.id} 
