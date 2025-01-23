@@ -7,27 +7,27 @@ import './EditSongModal.css';
 export default function EditSongModal({song}) {
     const dispatch = useDispatch();
     const { closeModal } = useModal();
-    const [title, setTitle] = useState(song.title);
-    const [artist, setArtist] = useState(song.artist);
-    const [file, setFile] = useState(song.file);
-    const [year, setYear] = useState(song.year);
-    const [anime, setAnime] = useState(song.anime);
-    const [albumName, setAlbumName] = useState(song.album_name);
-    const [albumArtwork, setAlbumArt] = useState(song.album_art);
+    const [title, setTitle] = useState(song?.title);
+    const [artist, setArtist] = useState(song?.artist);
+    const [file, setFile] = useState(null);
+    const [year, setYear] = useState(song?.year);
+    const [anime, setAnime] = useState(song?.anime);
+    const [albumName, setAlbumName] = useState(song?.album_name);
+    const [albumArtwork, setAlbumArt] = useState(song?.album_art);
     const [errors, setErrors] = useState({});
 
     const handleSubmit = async e => {
         e.preventDefault();
 
-        const formData = {
-                title,
-                artist,
-                'song_file': file,
-                year,
-                'album_name': albumName,
-                'album_art': albumArtwork,
-                anime 
-            }
+        const formData = new FormData();
+        formData.append('title', title);
+        formData.append('artist', artist);
+        formData.append('song_file', file);
+        formData.append('year', year);
+        formData.append('album_name', albumName);
+        if(albumArtwork !== '') {formData.append('album_art', albumArtwork)}
+        else {formData.append('album_art', '/song-default.png')}
+        formData.append('anime', anime)
 
         const serverResponse = await dispatch(
             thunkEditSong(formData, song.id)
@@ -46,7 +46,12 @@ export default function EditSongModal({song}) {
         <div className="modal" id="sign-up">
         <h1>Edit Song</h1>
         {errors.server && <p className="error">{errors.server}</p>}
-        <form className="signup-form" onSubmit={handleSubmit}>
+        <form
+        action="/posts/new" 
+        method="POST" 
+        encType="multipart/form-data" 
+        className="signup-form" 
+        onSubmit={handleSubmit}>
             <label>
                 Song Title
                 <input
@@ -70,9 +75,10 @@ export default function EditSongModal({song}) {
             <label>
                 Upload Song File
                 <input
-                type="text"
-                value={file}
-                onChange={(e) => setFile(e.target.value)}
+                type="file"
+                accept="audio/*"
+                defaultValue={file}
+                onChange={(e) => setFile(e.target.files[0])}
                 required
                 />
             </label>
