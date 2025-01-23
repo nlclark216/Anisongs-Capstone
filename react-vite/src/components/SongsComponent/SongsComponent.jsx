@@ -72,6 +72,16 @@ export default function SongsComponent() {
     
         else return (
         <div className='songs-page'>
+            <div className="back-button">
+            <Tooltip id="tooltip" followCursor/>
+                <Link
+                data-tooltip-class-name="img-info"
+                data-tooltip-id="tooltip"
+                data-tooltip-float={true}
+                data-tooltip-place="bottom"
+                data-tooltip-content='Back' 
+                to='/' ><IoArrowBackOutline /></Link> 
+            </div>
         <h1>Songs</h1>
         <div className='songs-container'>
           {allSongs && 

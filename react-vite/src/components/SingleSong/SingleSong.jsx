@@ -120,7 +120,11 @@ export default function SingleSong() {
         </div>      
     </div>
 
-    {user && <button className='lyrics-show' onClick={onClick}>Lyrics</button>}
+    {console.log(lyrics)}
+
+    {user && 
+    lyrics && 
+    !lyrics?.message && <button className='lyrics-show' onClick={onClick}>Show Lyrics</button>}
             
 
     {showLyrics && <div className='lyrics-translation-container'>

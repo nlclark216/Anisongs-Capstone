@@ -60,7 +60,8 @@
 }
 
 @media only screen and (max-width: 735px) {
-    .song-img-info {
+    .song-img-info,
+    .lyrics-translation-container {
         flex-direction: column;
         justify-content: center;
         row-gap: 12px;
@@ -70,6 +71,7 @@
         flex-direction: column;
         text-align: center;
     }
+
 }
 
 /* Edit and Delete Song buttons */

@@ -46,6 +46,11 @@
   color: whitesmoke;
 }
 
+.profile-dropdown span:hover {
+  cursor: pointer;
+  color: lightgray;
+}
+
 .profile-dropdown#right button:hover {
   background-color: #575757;
 }

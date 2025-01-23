@@ -98,7 +98,6 @@ export default function EditLyricsModal({target, songId}) {
                 </label>
                 {errors?.lyrics && <p className="error">{errors?.lyrics}</p>}
                 <button
-                disabled={type !== ''} 
                 type="submit">Submit Edits</button>
             </form> 
         </div>
