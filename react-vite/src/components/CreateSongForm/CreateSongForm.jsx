@@ -60,7 +60,11 @@ export default function CreateSongForm() {
             ><IoArrowBackOutline /></Link> 
         </div>
         <h1>Upload Song</h1>
-        {songLoading && <p className="loading">LOADING...</p>}
+        {songLoading && 
+        <div id="container">
+            <p>Loading...</p>
+            <div id="html-spinner"></div>
+        </div>}
         {errors.server && <p className="error">{errors.server}</p>}
         <form 
         action="/posts/new" 

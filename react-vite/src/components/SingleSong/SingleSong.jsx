@@ -14,8 +14,8 @@ import CreateLyricsForm from '../CreateLyricsForm';
 import { TbMusicPlus } from 'react-icons/tb';
 import AddSongModal from '../AddSongModal';
 import { IoArrowBackOutline } from "react-icons/io5";
-import { FaPlay } from "react-icons/fa";
 import { Tooltip } from 'react-tooltip';
+import AudioPlayer from '../AudioPlayer';
 
 export default function SingleSong() {
     const dispatch = useDispatch();
@@ -68,9 +68,11 @@ export default function SingleSong() {
                         {likes && user && 
                         <CheckLikes user={user} songId={songId} />}
                     </h1>
-                    {user && 
-                    <button id='play' onClick={handleClick}>
-                    <FaPlay />Play</button>}
+                    {user && song?.file !== 'song file url' &&
+                    <AudioPlayer url={song?.file} />
+                    // <button id='play' onClick={handleClick}>
+                    // <FaPlay />Play</button>
+                    }
                     {user && 
                     <OpenModalMenuItem
                     itemText={<button id='play'><TbMusicPlus /> Add to Playlist</button>}
