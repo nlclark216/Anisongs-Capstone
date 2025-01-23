@@ -114,20 +114,21 @@ export default function SingleSong() {
             Object.values(lyrics)?.length > 0 && 
             !lyrics?.message && 
             <div className='song-lyrics-translation'>
-                <label>
-                    <h3>Lyrics</h3>
-                <p style={{'whiteSpace': 'pre-line'}}>{(lyrics?.lyrics)}</p> 
-                </label>
+            
+            <h3>Lyrics</h3>
+            <p style={{'whiteSpace': 'pre-line'}}>{(lyrics?.lyrics)}</p> 
+                
             </div>}
         </div>
         <div className='translation'>
             {lyrics &&
             !lyrics?.message &&
             lyrics.translation && 
-            <label>
-                <h3>Translation</h3>
-                <p style={{'whiteSpace': 'pre-line'}}>{lyrics?.translation}</p> 
-            </label>}
+            <div className='song-lyrics-translation'>
+            <h3>Translation</h3>
+            <p style={{'whiteSpace': 'pre-line'}}>{lyrics?.translation}</p> 
+            </div>
+            }
         </div>
     </div>
 

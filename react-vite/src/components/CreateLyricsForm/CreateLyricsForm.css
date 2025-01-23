@@ -1,7 +1,3 @@
-.modal#add-lyrics {
-    /* border: solid red; */
-    min-width: 260px;
-}
 
 .modal#add-lyrics form {
     display: flex;
