@@ -49,3 +49,9 @@
     display: flex;
     font-size: 32px;
 }
+
+.loading {
+    color: #d07dfb;
+    font-size: 24px;
+    font-weight: 400;
+}

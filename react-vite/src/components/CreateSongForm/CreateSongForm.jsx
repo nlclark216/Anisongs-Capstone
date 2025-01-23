@@ -31,6 +31,7 @@ export default function CreateSongForm() {
         if(albumArtwork !== '') {formData.append('album_art', albumArtwork)}
         else {formData.append('album_art', '/song-default.png')}
         formData.append('anime', anime)
+        setSongLoading(true);
 
         const serverResponse = await dispatch(
             thunkCreateSong(formData)
@@ -39,7 +40,6 @@ export default function CreateSongForm() {
           if (serverResponse) {
             setErrors(serverResponse);
           } else {
-            setSongLoading(true);
             alert('Song created!!');
             navigate('/songs/');
           }
@@ -51,7 +51,7 @@ export default function CreateSongForm() {
            <Link to='/songs/' ><IoArrowBackOutline /></Link> 
         </div>
         <h1>Upload Song</h1>
-        {songLoading && <p className="warning">Loading...</p>}
+        {songLoading && <p className="loading">LOADING...</p>}
         {errors.server && <p className="error">{errors.server}</p>}
         <form 
         action="/posts/new" 

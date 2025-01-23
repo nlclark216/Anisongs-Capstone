@@ -73,8 +73,8 @@ export const thunkDeleteSong = (id, navigate) => async dispatch => {
     const res = await fetch(`/api/songs/${+id}`, {method: 'DELETE'})
     if(res.ok) {
         dispatch(deleteSong(+id));
-        window.location.reload();
         navigate('/songs/');
+        window.location.reload(); 
     } else if (res.status < 500) {
     const errorMessages = await res.json();
     return errorMessages
