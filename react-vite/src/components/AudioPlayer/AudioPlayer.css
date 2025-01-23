@@ -51,4 +51,15 @@
     align-items: center;
     column-gap: 8px;
   }
+
+  .play-button {
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
+    margin: 4px 0;
+    color: #282828;
+  }
   
+  .play-button:hover {
+    color: #3f3f3f;
+  }

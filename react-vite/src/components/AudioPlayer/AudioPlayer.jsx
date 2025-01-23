@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useGlobalAudioPlayer } from 'react-use-audio-player';
-import { FaPlay } from "react-icons/fa";
+import { FaPlay, FaPause } from "react-icons/fa";
 import './AudioPlayer.css';
 
 
@@ -27,7 +27,7 @@ export default function AudioPlayer({url}) {
 
     return (
         <div>
-            <button onClick={toggle}>{playing ? 'Pause' : 'Play'}</button>
+            <button onClick={toggle}>{playing ? <div className='play-button'><FaPause />Pause</div> : <div className='play-button'><FaPlay />Play</div>}</button>
             {playing && 
             <div id="container">
                 <div id="html-spinner"></div>

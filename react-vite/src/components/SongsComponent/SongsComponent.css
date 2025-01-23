@@ -7,13 +7,31 @@
 }
 
 .song-tile-title {
-    color: #e7b6fe;
+    /* border: dashed yellow; */
+    display: flex;
+    width: 80%;
+    height: 24px;
 }
 
-.title-likes {
+.song-tile-title span {
     /* border: solid red; */
     width: 100%;
 }
+
+.likes-star {
+    /* border: dotted pink; */
+    height: 100%;
+    width: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+.song-tile-title a {
+    color: #e7b6fe;
+}
+
 
 .song-tile a:hover {
     color: #d890fc;
@@ -63,7 +81,7 @@
     display: flex;
     flex-direction: column;
     background-color: #312039;
-    row-gap: 10px;
+    row-gap: 20px;
 }
 
 .title-button {

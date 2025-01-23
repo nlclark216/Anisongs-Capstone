@@ -29,9 +29,6 @@ export default function SingleSong() {
             if(user)dispatch(thunkSongLyrics(songId))
         }, [dispatch, songId, user]);
 
-    const handleClick = () => {
-        return alert('Coming soon!')
-    }
 
     const onClick = () => {
         return setShowLyrics(!showLyrics)
@@ -70,8 +67,6 @@ export default function SingleSong() {
                     </h1>
                     {user && song?.file !== 'song file url' &&
                     <AudioPlayer url={song?.file} />
-                    // <button id='play' onClick={handleClick}>
-                    // <FaPlay />Play</button>
                     }
                     {user && 
                     <OpenModalMenuItem
@@ -85,7 +80,7 @@ export default function SingleSong() {
                     
                 </div>
                     {user && songOwner &&
-                    <div className='buttons' id='song-page'>
+                    <div className='buttons-song-page' >
                         <OpenModalMenuItem
                         itemText={<button>Edit Song</button>} 
                         modalComponent={<EditSongModal song={song} />}
@@ -96,21 +91,8 @@ export default function SingleSong() {
                         />
                     </div>} 
                     <div className='edit-delete-add-buttons'>
-        {user && lyrics && 
-            lyrics?.creator_id === user?.id &&
-            <div className='buttons' id='song-page'>
-                <OpenModalMenuItem
-                itemText={<button>Edit Lyrics</button>}
-                modalComponent={<EditLyricsModal songId={+songId} target={lyrics} />} 
-                />
-                <OpenModalMenuItem
-                itemText={<button id='reverse'>Delete Lyrics</button>}
-                modalComponent={<DeleteLyricsModal songId={songId} />} 
-                />
-            </div>
-            }
             {user && songOwner && lyrics?.message &&
-            <div className='buttons' id='song-page'>
+            <div className='buttons-song-page' >
                 <OpenModalMenuItem
                 itemText={<button>Add Lyrics</button>}
                 modalComponent={<CreateLyricsForm songId={+songId} />} 
@@ -124,7 +106,25 @@ export default function SingleSong() {
 
     {user && 
     lyrics && 
-    !lyrics?.message && <button className='lyrics-show' onClick={onClick}>Show Lyrics</button>}
+    !lyrics?.message && 
+    <div className='show-lyrics'>
+       <button className='lyrics-show' onClick={onClick}>{!showLyrics ? 'Show Lyrics' : 'Hide Lyrics'}</button> 
+    </div>
+    }
+
+    {showLyrics && 
+        lyrics?.creator_id === user?.id &&
+            <div className='buttons-song-page' id='edit-delete' >
+                <OpenModalMenuItem
+                itemText={<button>Edit Lyrics</button>}
+                modalComponent={<EditLyricsModal songId={+songId} target={lyrics} />} 
+                />
+                <OpenModalMenuItem
+                itemText={<button id='reverse'>Delete Lyrics</button>}
+                modalComponent={<DeleteLyricsModal songId={songId} />} 
+                />
+            </div>
+            }
             
 
     {showLyrics && <div className='lyrics-translation-container'>
