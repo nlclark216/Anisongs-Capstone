@@ -27,7 +27,7 @@ export default function AudioPlayer({url}) {
 
     return (
         <div>
-            <button onClick={toggle}>{playing ? <div className='play-button'><FaPause />Pause</div> : <div className='play-button'><FaPlay />Play</div>}</button>
+            <button className='audio-button' onClick={toggle}>{playing ? <span className='play-button'><FaPause />Pause</span> : <span className='play-button'><FaPlay />Play</span>}</button>
             {playing && 
             <div id="container">
                 <div id="html-spinner"></div>

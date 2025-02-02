@@ -40,9 +40,8 @@ export default function SongsComponent() {
     if(user) { return(
         <div className='songs-page'>
             <div className="back-button">
-                <Tooltip id="tooltip" followCursor/>
+                <Tooltip id="tooltip" content='Home' followCursor/>
                 <Link
-                data-tooltip-class-name="img-info"
                 data-tooltip-id="tooltip"
                 data-tooltip-float={true}
                 data-tooltip-place="bottom"
@@ -89,7 +88,6 @@ export default function SongsComponent() {
             <div className="back-button">
             <Tooltip id="tooltip" followCursor/>
                 <Link
-                data-tooltip-class-name="img-info"
                 data-tooltip-id="tooltip"
                 data-tooltip-float={true}
                 data-tooltip-place="bottom"

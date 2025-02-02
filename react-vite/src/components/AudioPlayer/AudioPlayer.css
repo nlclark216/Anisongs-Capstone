@@ -56,8 +56,8 @@
     display: flex;
     align-items: center;
     column-gap: 8px;
-    margin: 4px 0;
     color: #282828;
+    width: fit-content;
   }
   
   .play-button:hover {

@@ -49,7 +49,6 @@ export default function SingleSong() {
         <div className="back-button">
             <Tooltip id="tooltip" followCursor/>
             <Link
-            data-tooltip-class-name="img-info"
             data-tooltip-id="tooltip"
             data-tooltip-float={true}
             data-tooltip-place="bottom"

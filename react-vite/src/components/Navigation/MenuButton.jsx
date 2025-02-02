@@ -30,7 +30,7 @@ export default function MenuButton() {
   return (
     <>
       <button
-      data-tooltip-class-name="img-info"
+      // 
       data-tooltip-id="tooltip"
       data-tooltip-float={true}
       data-tooltip-place="top"

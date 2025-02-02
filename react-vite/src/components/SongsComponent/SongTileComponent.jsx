@@ -33,7 +33,6 @@ export default function SongTile({song, user}) {
         </div>
 
         <div
-        data-tooltip-class-name="img-info"
         data-tooltip-id="tooltip"
         data-tooltip-float={true}
         data-tooltip-place="bottom"

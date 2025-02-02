@@ -28,7 +28,6 @@ export default function PlaylistsComponent() {
         <div className="back-button">
             <Tooltip id="tooltip" followCursor/>
             <Link
-            data-tooltip-class-name="img-info"
             data-tooltip-id="tooltip"
             data-tooltip-float={true}
             data-tooltip-place="bottom"
@@ -69,8 +68,7 @@ export default function PlaylistsComponent() {
     <div className='playlists-page'>
     <div className="back-button">
         <Tooltip id="tooltip" followCursor/>
-        <Link
-        data-tooltip-class-name="img-info"
+        <Link    
         data-tooltip-id="tooltip"
         data-tooltip-float={true}
         data-tooltip-place="bottom"
