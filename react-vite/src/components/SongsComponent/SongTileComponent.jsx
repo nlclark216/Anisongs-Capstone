@@ -26,7 +26,7 @@ export default function SongTile({song, user}) {
                 <TbMusicPlus /> Add to Playlist
             </button>}
             modalComponent={
-            <AddSongModal songId={song.id} user={user} closeModal={ closeModal } 
+            <AddSongModal songId={song?.id} user={user} closeModal={ closeModal } 
             />}
             />
             }
@@ -36,10 +36,10 @@ export default function SongTile({song, user}) {
         data-tooltip-id="tooltip"
         data-tooltip-float={true}
         data-tooltip-place="bottom"
-        data-tooltip-content={song.anime}
+        data-tooltip-content={song?.anime}
         >
             <Tooltip id="tooltip" followCursor/>
-           <img src={imgSrc(song)} /> 
+           <Link to={`/songs/${song?.id}`}><img src={imgSrc(song)} /></Link> 
         </div> 
 
         <div className='title-likes'>

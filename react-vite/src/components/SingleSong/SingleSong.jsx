@@ -150,7 +150,7 @@ export default function SingleSong() {
         </div>
     </div>}
 
-    {!user && <p>Login to view lyrics submitted by Ani-Songs users!</p>}
+    {!user && <p className='login-for-lyrics'>Login to view lyrics submitted by Ani-Songs users!</p>}
     </div>
     )
 }

@@ -17,8 +17,9 @@ export default function ListTile({playlist, user}) {
                     playlist?.creator : 'You'}</b>
                 </p> 
             </div>
-            </Link>
             <img height='300px' src={playlist?.image} />
+            </Link>
+            
         </div>
     )
 }
