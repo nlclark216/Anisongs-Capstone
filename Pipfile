@@ -29,6 +29,7 @@ flask = "*"
 flask-login = "*"
 email-validator = "*"
 boto3 = "*"
+flask-bcrypt = "*"
 
 [dev-packages]
 
