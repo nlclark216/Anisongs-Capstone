@@ -6,7 +6,6 @@ import DeleteLikeModal from "../DeleteLikeModal";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { thunkAllLikes } from "../../redux/likes";
-import { Tooltip } from "react-tooltip";
 
 export default function CheckLikes({ user, songId }){
     const dispatch = useDispatch();
