@@ -64,6 +64,11 @@ export default function SingleSong() {
                         {likes && user && 
                         <CheckLikes user={user} songId={songId} />}
                     </h1>
+                    <div className='song-info-anime'>
+                        <h4>Anime: <b>{song?.anime}</b></h4>
+                        <h4>Album: <b>{song?.album_name}</b></h4>
+                        <h4>Artist: <b>{song?.artist}</b></h4>
+                    </div>
                     {user && song?.file !== 'song file url' &&
                     <AudioPlayer url={song?.file} />
                     }
@@ -73,9 +78,8 @@ export default function SingleSong() {
                     modalComponent={<AddSongModal songId={song?.id} user={user} />}
                     />
                     }
-                    <h4>From: <b>{song?.anime}</b></h4>
-                    <h4>Album: <b>{song?.album_name}</b></h4>
-                    <h4>Artist: <b>{song?.artist}</b></h4> 
+                    
+                     
                     
                 </div>
                     {user && songOwner &&

@@ -172,3 +172,16 @@ svg#like-icon:hover {
     display: flex;
     justify-content: center;
 }
+
+
+.song-info .info {
+    /* border: solid red; */
+    width: 50%;
+}
+
+.song-info-anime {
+    /* border: dotted; */
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0px;
+}

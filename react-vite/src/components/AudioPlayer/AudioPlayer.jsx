@@ -10,7 +10,8 @@ export default function AudioPlayer({url}) {
             <ReactAudioPlayer
             src={url}
             controls
-            className='music-player' 
+            className='music-player'
+            style={{color: '#d07dfb'}}
             />
         </div>
     )

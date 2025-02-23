@@ -6,6 +6,7 @@ import DeleteLikeModal from "../DeleteLikeModal";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { thunkAllLikes } from "../../redux/likes";
+import { Tooltip } from "react-tooltip";
 
 export default function CheckLikes({ user, songId }){
     const dispatch = useDispatch();
@@ -21,13 +22,31 @@ export default function CheckLikes({ user, songId }){
     const targetArr = likes?.filter(ele=>ele?.owner_id===user?.id);
     const target = targetArr?.filter(ele=>+ele?.song_id === +songId);
 
-    if(target && target.length > 0) return (<OpenModalMenuItem
-     itemText={<FaStar style={style} id="like-icon" />}
-     modalComponent={<DeleteLikeModal songId={songId} likes={likes} user={user} />} 
-     />)
+    if(target && target.length > 0) return (
+        <div
+        data-tooltip-id="tooltip"
+        data-tooltip-float={true}
+        data-tooltip-place="bottom"
+        data-tooltip-content='Remove Favorite'
+        >
+          <OpenModalMenuItem 
+        itemText={<FaStar style={style} id="like-icon" />}
+        modalComponent={<DeleteLikeModal songId={songId} likes={likes} user={user} />} 
+        />  
+        </div>
+    
+    )
     else return (
-     <OpenModalMenuItem
-     itemText={<FaRegStar style={style} id="like-icon" />}
-     modalComponent={<AddLikeModal user={user} songId={songId} />} 
-     />)
+        <div
+        data-tooltip-id="tooltip"
+        data-tooltip-float={true}
+        data-tooltip-place="bottom"
+        data-tooltip-content='Add Favorite'
+        >
+        <OpenModalMenuItem
+        itemText={<FaRegStar style={style} id="like-icon" />}
+        modalComponent={<AddLikeModal user={user} songId={songId} />} 
+        />
+        </div>
+     )
  }
