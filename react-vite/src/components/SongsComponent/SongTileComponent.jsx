@@ -18,19 +18,6 @@ export default function SongTile({song, user}) {
     if (song?.likes) likes = song?.likes;
     return (
     <div className='song-tile'>
-        <div className='favorite-add'>
-            {user && 
-            <OpenModalMenuItem
-            itemText={
-            <button className='add-playlist-song'>
-                <TbMusicPlus /> Add to Playlist
-            </button>}
-            modalComponent={
-            <AddSongModal songId={song?.id} user={user} closeModal={ closeModal } 
-            />}
-            />
-            }
-        </div>
 
         <div
         data-tooltip-id="tooltip"
@@ -51,6 +38,21 @@ export default function SongTile({song, user}) {
             </Link>
             </div>
             <div className='likes-star'>
+            {user && 
+            <div
+            data-tooltip-id="tooltip"
+            data-tooltip-float={true}
+            data-tooltip-place="bottom"
+            data-tooltip-content='Add to Playlist'
+            >
+                <OpenModalMenuItem
+            itemText={<TbMusicPlus />}
+            modalComponent={
+            <AddSongModal songId={song?.id} user={user} closeModal={ closeModal } 
+            />}
+            />
+            </div>
+            }
             {user && likes && 
             <CheckLikes user={user} songId={song?.id} />} 
             </div>

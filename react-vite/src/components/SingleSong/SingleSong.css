@@ -185,3 +185,12 @@ svg#like-icon:hover {
     justify-content: space-between;
     margin: 10px 0px;
 }
+
+.add-remove-icons {
+    display: flex;
+    column-gap: 8px;
+}
+
+.add-remove-icons:hover {
+    cursor: pointer;
+}

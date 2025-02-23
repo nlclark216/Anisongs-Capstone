@@ -60,9 +60,24 @@ export default function SingleSong() {
                 <img id='song' src={song?.album_art} />
                 <div className='info' id='song'>
                     <h1 className='title-likes'>
-                        {song?.title} 
+                        {song?.title}
+                        <div className='add-remove-icons'>
+                        {user &&
+                         <div
+                        data-tooltip-id="tooltip"
+                        data-tooltip-float={true}
+                        data-tooltip-place="bottom"
+                        data-tooltip-content='Add to Playlist'
+                         >
+                            <OpenModalMenuItem
+                            itemText={<TbMusicPlus />}
+                            modalComponent={<AddSongModal songId={song?.id} user={user} />}
+                            />
+                        </div>
+                        }
                         {likes && user && 
                         <CheckLikes user={user} songId={songId} />}
+                        </div>
                     </h1>
                     <div className='song-info-anime'>
                         <h4>Anime: <b>{song?.anime}</b></h4>
@@ -71,12 +86,6 @@ export default function SingleSong() {
                     </div>
                     {user && song?.file !== 'song file url' &&
                     <AudioPlayer url={song?.file} />
-                    }
-                    {user && 
-                    <OpenModalMenuItem
-                    itemText={<button id='play'><TbMusicPlus /> Add to Playlist</button>}
-                    modalComponent={<AddSongModal songId={song?.id} user={user} />}
-                    />
                     }
                     
                      

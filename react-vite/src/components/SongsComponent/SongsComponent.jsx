@@ -37,7 +37,8 @@ export default function SongsComponent() {
         navigate('/songs/new')
     }
 
-    if(user) { return(
+    if(user) { 
+        return(
         <div className='songs-page'>
             <div className="back-button">
                 <Tooltip id="tooltip" content='Home' followCursor/>
@@ -48,35 +49,34 @@ export default function SongsComponent() {
                 data-tooltip-content='Home' 
                 to='/' ><IoArrowBackOutline /></Link> 
             </div>
-        <h1>Songs <button onClick={handleClick}>upload a track</button> </h1>
-           <div className='title-button' id='songs-page'>
-            <h2>Your Songs</h2>
-                
-            </div>
+        <h1>Songs</h1>
+            <h2>Your Songs <button onClick={handleClick}>upload a track</button> </h2>
             <div className='songs-container' id='your-songs'>
                {userSongs && 
                Object.values(userSongs)
-               .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).map(song=>
-               <SongTile key={song.id} song={song} user={user} 
+               .sort((a, b) => new Date(b?.createdAt) - new Date(a?.createdAt)).map(song=>
+               <SongTile key={song?.id} song={song} user={user} 
                />)} 
             </div>
-            {userLikes && userLikes.length > 0 && <h2>Favorites</h2>}
-
             {userLikes && userLikes.length > 0 && 
+        
+            <h2>Favorites</h2>}
             <div className='songs-container' id='user-faves'>
-                {userLikes
-                .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-                .map(like=><SongTile key={like.id} song={like?.song} user={user} />)}
+                {userLikes && userLikes
+                .sort((a, b) => new Date(b?.createdAt) - new Date(a?.createdAt))
+                .map(like=>
+                <SongTile key={like?.id} song={like?.song} user={user} />)}
             </div>
-            }
-
+        
+            
 
             
         <h2>User Submissions</h2>
             <div className='songs-container' id='user-songs'>
-            {otherSongs && 
-            otherSongs.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).map(song=>
-            <SongTile key={song.id} song={song} user={user} 
+            {otherSongs && otherSongs
+            .sort((a, b) => new Date(b?.createdAt) - new Date(a?.createdAt))
+            .map(song=>
+            <SongTile key={song?.id} song={song} user={user} 
             />)
             } 
             </div>
@@ -98,9 +98,9 @@ export default function SongsComponent() {
         <div className='songs-container'>
           {allSongs && 
           Object.values(allSongs)
-          .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+          .sort((a, b) => new Date(b?.createdAt) - new Date(a?.createdAt))
           .map(song=>
-          <SongTile key={song.id} song={song} user={user} 
+          <SongTile key={song?.id} song={song} user={user} 
           />)}  
         </div>
         </div>
