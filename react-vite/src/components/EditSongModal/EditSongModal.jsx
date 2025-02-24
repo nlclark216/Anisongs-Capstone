@@ -19,19 +19,30 @@ export default function EditSongModal({song}) {
     const handleSubmit = async e => {
         e.preventDefault();
 
-        const formData = new FormData();
-        formData.append('title', title);
-        formData.append('artist', artist);
-        // formData.append('song_file', file);
-        formData.append('year', year);
-        formData.append('album_name', albumName);
-        if(albumArtwork !== '') {formData.append('album_art', albumArtwork)}
-        else {formData.append('album_art', '/song-default.png')}
-        formData.append('anime', anime)
+        // const formData = new FormData();
+        // formData.append('title', title);
+        // formData.append('artist', artist);
+        // // formData.append('song_file', file);
+        // formData.append('year', year);
+        // formData.append('album_name', albumName);
+        // const art = () => {if(albumArtwork !== '') {formData.append('album_art', albumArtwork)}
+        // else {formData.append('album_art', '/song-default.png')}}
+        // formData.append('anime', anime)
+
+
+
+        const data = {
+            title,
+            artist,
+            year,
+            albumName,
+            albumArtwork,
+            anime
+        }
 
         const serverResponse = await dispatch(
-            thunkEditSong(formData, song.id)
-        )
+            thunkEditSong(data, song.id)
+        );
 
         if (serverResponse) {
         setErrors(serverResponse);
@@ -47,9 +58,9 @@ export default function EditSongModal({song}) {
         <h1>Edit Song</h1>
         {errors.server && <p className="error">{errors.server}</p>}
         <form
-        action="/posts/new" 
-        method="POST" 
-        encType="multipart/form-data" 
+        // action="/posts/new" 
+        // method="PUT" 
+        // encType="multipart/form-data" 
         className="signup-form" 
         onSubmit={handleSubmit}>
             <label>
@@ -82,7 +93,7 @@ export default function EditSongModal({song}) {
                 required
                 />
             </label> */}
-            {errors.file && <p className="error">{errors.file}</p>}
+            {/* {errors.file && <p className="error">{errors.file}</p>} */}
             <label>
                 Year
                 <input
