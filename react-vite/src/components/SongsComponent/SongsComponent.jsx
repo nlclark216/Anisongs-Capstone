@@ -29,8 +29,7 @@ export default function SongsComponent() {
     if(allSongs) otherSongs = Object.values(allSongs).filter(list=>list?.owner_id !== user?.id);
 
     const likes = Object.values(useSelector(state=>state.likes.allLikes));
-    const userLikes = likes.filter(like=>like.owner_id === user.id)
-    console.log(userLikes)
+    const userLikes = likes.filter(like=>like.owner_id === user.id);
     
     const handleClick = e => {
         e.preventDefault();

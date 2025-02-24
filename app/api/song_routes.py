@@ -190,7 +190,7 @@ def update_song(id):
     
     song.title = data.get('title', song.title)
     song.artist = data.get('artist', song.artist)
-    song.song_file = data.get('song_file', song.song_file)
+    # song.song_file = data.get('song_file', song.song_file)
     song.anime = data.get('anime', song.anime)
     song.album_name = data.get('album_name', song.album_name)
     song.album_art = data.get('album_art', song.album_art)

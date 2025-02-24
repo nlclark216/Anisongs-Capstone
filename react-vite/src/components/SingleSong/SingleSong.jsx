@@ -91,27 +91,29 @@ export default function SingleSong() {
                      
                     
                 </div>
-                    {user && songOwner &&
-                    <div className='buttons-song-page' >
-                        <OpenModalMenuItem
-                        itemText={<button>Edit Song</button>} 
-                        modalComponent={<EditSongModal song={song} />}
-                        />
-                        <OpenModalMenuItem
-                        itemText={<button id='reverse'>Delete Song</button>} 
-                        modalComponent={<DeleteSongModal id={songId} navigate={navigate} />}
-                        />
-                    </div>} 
-                    <div className='edit-delete-add-buttons'>
-            {user && songOwner && lyrics?.message &&
-            <div className='buttons-song-page' >
-                <OpenModalMenuItem
-                itemText={<button>Add Lyrics</button>}
-                modalComponent={<CreateLyricsForm songId={+songId} />} 
-                />
-            </div>
-            
-            }
+                <div className='buttons-container'>
+                {user && songOwner &&
+                <div className='buttons-song-page' >
+                    <OpenModalMenuItem
+                    itemText={<button>Edit Song</button>} 
+                    modalComponent={<EditSongModal song={song} />}
+                    />
+                    <OpenModalMenuItem
+                    itemText={<button id='reverse'>Delete Song</button>} 
+                    modalComponent={<DeleteSongModal id={songId} navigate={navigate} />}
+                    />
+                </div>} 
+                <div className='edit-delete-add-buttons'>
+                {user && songOwner && lyrics?.message &&
+                <div className='buttons-song-page' >
+                    <OpenModalMenuItem
+                    itemText={<button>Add Lyrics</button>}
+                    modalComponent={<CreateLyricsForm songId={+songId} />} 
+                    />
+                </div>
+                }
+                </div>
+                
             </div>
         </div>      
     </div>
