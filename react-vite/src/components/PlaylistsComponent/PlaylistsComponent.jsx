@@ -65,8 +65,8 @@ export default function PlaylistsComponent() {
     )}
 
     else return (
-    <div className='playlists-page'>
-    <div className="back-button">
+        <>
+        <div className="back-button">
         <Tooltip id="tooltip" followCursor/>
         <Link    
         data-tooltip-id="tooltip"
@@ -75,6 +75,8 @@ export default function PlaylistsComponent() {
         data-tooltip-content='Home' 
         to='/' ><IoArrowBackOutline /></Link> 
     </div>
+    <div className='playlists-page'>
+    
     <h1>Playlists</h1>
     <div className='list-tiles-container'>
        {allPlaylists &&
@@ -84,6 +86,8 @@ export default function PlaylistsComponent() {
         <ListTile user={user} key={+list?.id} playlist={list} />)} 
     </div>
     </div>
+        </>
+    
     )
 
     

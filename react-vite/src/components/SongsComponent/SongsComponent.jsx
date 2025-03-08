@@ -38,7 +38,7 @@ export default function SongsComponent() {
 
     if(user) { 
         return(
-        <div className='songs-page'>
+            <>
             <div className="back-button">
                 <Tooltip id="tooltip" content='Home' followCursor/>
                 <Link
@@ -48,6 +48,8 @@ export default function SongsComponent() {
                 data-tooltip-content='Home' 
                 to='/' ><IoArrowBackOutline /></Link> 
             </div>
+            <div className='songs-page'>
+            
         <h1>Songs</h1>
             <h2>Your Songs <button onClick={handleClick}>upload a track</button> </h2>
             <div className='songs-container' id='your-songs'>
@@ -80,10 +82,12 @@ export default function SongsComponent() {
             } 
             </div>
         </div>
+            </>
+        
         )}
     
         else return (
-        <div className='songs-page'>
+            <>
             <div className="back-button">
             <Tooltip id="tooltip" followCursor/>
                 <Link
@@ -93,6 +97,8 @@ export default function SongsComponent() {
                 data-tooltip-content='Home' 
                 to='/' ><IoArrowBackOutline /></Link> 
             </div>
+            <div className='songs-page'>
+            
         <h1>Songs</h1>
         <div className='songs-container'>
           {allSongs && 
@@ -103,5 +109,7 @@ export default function SongsComponent() {
           />)}  
         </div>
         </div>
+            </>
+        
         )
 }

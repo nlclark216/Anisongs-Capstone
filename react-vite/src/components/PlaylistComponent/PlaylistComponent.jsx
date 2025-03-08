@@ -38,8 +38,8 @@ export default function PlaylistComponent() {
     const listSongs = useSelector(state=>state.playlistSongs.allPlaylistSongs)
 
     return (
-        <div className='single-playlist'>
-            <div className="back-button">
+        <>
+        <div className="back-button">
                 <Tooltip id="tooltip" followCursor/>
                 <Link
                 data-tooltip-id="tooltip"
@@ -49,6 +49,8 @@ export default function PlaylistComponent() {
                 to='/playlists/' 
                 ><IoArrowBackOutline /></Link> 
             </div>
+            <div className='single-playlist'>
+            
             
             <div className='img-info'>
                <img src={targetPlaylist?.image} id='playlist' />
@@ -95,5 +97,7 @@ export default function PlaylistComponent() {
             
             
         </div>
+        </>
+        
     )
 }

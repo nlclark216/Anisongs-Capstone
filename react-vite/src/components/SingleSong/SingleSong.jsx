@@ -45,7 +45,7 @@ export default function SingleSong() {
  
 
     return (
-    <div className='single-song-page'>
+        <>
         <div className="back-button">
             <Tooltip id="tooltip" followCursor/>
             <Link
@@ -55,6 +55,8 @@ export default function SingleSong() {
             data-tooltip-content='Songs'
              to='/songs/' ><IoArrowBackOutline /></Link> 
         </div>
+        <div className='single-song-page'>
+        
         <div className='song-info'>
             <div className='song-img-info' id='song-page'>
                 <img id='song' src={song?.album_art} />
@@ -167,5 +169,7 @@ export default function SingleSong() {
 
     {!user && <p className='login-for-lyrics'>Login to view lyrics submitted by Ani-Songs users!</p>}
     </div>
+        </>
+    
     )
 }
