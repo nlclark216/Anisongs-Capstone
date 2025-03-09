@@ -59,7 +59,7 @@ export default function SingleSong() {
         
         <div className='song-info'>
             <div className='song-img-info' id='song-page'>
-                <img id='song' src={song?.album_art} />
+                <img id='song' className='single-song-img' src={song?.album_art} />
                 <div className='info' id='song'>
                     <h1 className='title-likes'>
                         {song?.title}
